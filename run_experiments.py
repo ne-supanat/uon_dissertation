@@ -23,22 +23,37 @@ def main():
     # evaluationQuestion = {}
     # evaluationAnswer = {}
 
-    pathSrc = f"data/DAICWOZ/txt/"
-    pathResult = f"results/"
+    pathSrc = f"data/DAICWOZ/txt"
+    pathResult = f"results"
 
     interviewFilePaths = os.listdir(pathSrc)
-    prompts = [p.PromptZeroShot]
+    prompts: list[p.Prompt] = [
+        p.PromptZeroShot,
+        p.PromptFewShot,
+    ]
+
+    os.makedirs(pathResult, exist_ok=True)
+    with open(f"{pathResult}/result.csv", "w") as f:
+        f.write(f"File path;Prompt;Response;Validity score;Usability score\n")
 
     for interviewFilePath in interviewFilePaths[0:1]:
         print(interviewFilePath)
-        interview = getContent(pathSrc + interviewFilePath)
+        interview = getContent(f"{pathSrc}/{interviewFilePath}")
         for prompt in prompts:
             result = experiment.runExperimentOnce(
                 prompt(interview=interview, topic=topic, labelDict=labelDict),
             )
 
             # TODO: record: interview, prompt, response, score
-            # os.makedirs(pathResult, exist_ok=True)
+            os.makedirs(pathResult, exist_ok=True)
+            with open(f"{pathResult}/result.csv", "a+") as f:
+                # result[0]: str    is Response
+                # result[1]: float  is Validity score
+                # result[2]: float  is Usability score
+
+                f.write(
+                    f"{interviewFilePath};{prompt.name()};{result[0].replace("\n", "")};{result[1]};{result[2]}\n"
+                )
 
 
 if __name__ == "__main__":

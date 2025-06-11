@@ -11,7 +11,12 @@ def runExperimentOnce(prompt):
     # TODO: evaluation
     # valid = evaluation_profile_validity.evaluateValidity(profile)
     # usability = evaluation_profile_usability.evaluateUsability(profile)
-    # TODO: write record
+
+    return [
+        profile,  # profile
+        0.5,  # validity_score
+        0.4,  # usability_score
+    ]
 
 
 if __name__ == "__main__":
@@ -29,5 +34,6 @@ if __name__ == "__main__":
         interview = f.read()
 
     runExperimentOnce(
-        prompt.PromptZeroShot(interview=interview, topic=topic, labelDict=labelDict),
+        # prompt.PromptZeroShot(interview=interview, topic=topic, labelDict=labelDict),
+        prompt.PromptFewShot(interview=interview, topic=topic, labelDict=labelDict),
     )

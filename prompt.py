@@ -12,13 +12,38 @@ class Prompt:
         self.topic = topic
         self.labelDict = labelDict
 
+    def name():
+        return "default"
+
     def buildPrompt(self):
+        return self.buildInstruction() + "\n\n" + self.buildFormat()
+
+    def buildInstruction(self):
         return ""
+
+    def buildFormat(self):
+        return """Please response in this JSON format
+
+{
+"general": {
+"name": {name},
+"age": {age},
+"occupation": {occupation},
+},
+"key_memory": [
+{supporting_evidence1},
+{supporting_evidence2}
+],
+"domain_label": {domain_label}
+"domain_label_reason": {domain_label_reason}
+}"""
 
 
 class PromptZeroShot(Prompt):
+    def name():
+        return "zero-shot"
 
-    def buildPrompt(self):
+    def buildInstruction(self):
         return f"""Base on this interview.
 
 {self.interview}
@@ -33,6 +58,33 @@ class PromptZeroShot(Prompt):
 3. Based on the evidence what should be this profile label and why?
 Pick a label from this list:
 {'\n'.join([f"\"{key}\": {self.labelDict[key]}" for key in self.labelDict.keys()])}
+"""
+
+
+class PromptFewShot(Prompt):
+    def name():
+        return "few-shot"
+
+    def buildInstruction(self):
+        return f"""Base on this interview.
+
+{self.interview}
+
+1. Extract following profile data:
+- name
+- age
+- occupation
+
+Please response only with the answer. for example "name" from sentence such as "My name is John" the response is "John"
+If there are no information present in the interview response with "None"
+
+2. Find supporting evidence that related to {self.topic}
+
+3. Based on the evidence what should be this profile label and why?
+Pick a label from this list:
+{'\n'.join([f"\"{key}\": {self.labelDict[key]}" for key in self.labelDict.keys()])}
+
+Please response with only label for example {[f"\"{key}\": {self.labelDict[key]}" for key in self.labelDict.keys()][0]} the response is {[key for key in self.labelDict.keys()][0]} 
 """
 
 
