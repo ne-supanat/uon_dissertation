@@ -22,21 +22,18 @@ class Prompt:
         return ""
 
     def buildFormat(self):
-        return """Please response in this JSON format
+        return """Please response in this format.
 
-{
-"general": {
-"name": {name},
-"age": {age},
-"occupation": {occupation},
-},
+"name": "Full name",
+"age": "age number",
+"occupation": "current occupation",
 "key_memory": [
-{supporting_evidence1},
-{supporting_evidence2}
+"supporting_evidence1",
+"supporting_evidence2"
 ],
-"domain_label": {domain_label}
-"domain_label_reason": {domain_label_reason}
-}"""
+"domain_label": "domain_label"
+"domain_label_reason": "domain_label_reason"
+"""
 
 
 class PromptZeroShot(Prompt):

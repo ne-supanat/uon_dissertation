@@ -20,8 +20,41 @@ def main():
         "fav_cold": "people who like cold countries",
     }
 
-    # evaluationQuestion = {}
-    # evaluationAnswer = {}
+    questionType = "label"
+    questions = [
+        {
+            "type": "individual",
+            "question": "Pick 2 countries you want to go?",
+            "choices": ["Thailand", "Spain", "Singapore", "England", "Norway"],
+            "choice_values": [
+                "fav_warm",
+                "fav_warm",
+                "fav_warm",
+                "fav_cold",
+                "fav_cold",
+            ],
+        },
+        {
+            "type": "individual",
+            "question": "Pick 2 activities you want to do?",
+            "choices": [
+                "Scuba Diving",
+                "Swimming",
+                "Nature Trails",
+                "Skiing",
+                "Ice Skating",
+                "Sauna",
+            ],
+            "choice_values": [
+                "fav_warm",
+                "fav_warm",
+                "fav_warm",
+                "fav_cold",
+                "fav_cold",
+                "fav_cold",
+            ],
+        },
+    ]
 
     pathSrc = f"data/DAICWOZ/txt"
     pathResult = f"results"
@@ -39,12 +72,19 @@ def main():
     for interviewFilePath in interviewFilePaths[0:1]:
         print(interviewFilePath)
         interview = getContent(f"{pathSrc}/{interviewFilePath}")
+        # TODO: drop some part of interview (drop 20-50%)
+
         for prompt in prompts:
             result = experiment.runExperimentOnce(
-                prompt(interview=interview, topic=topic, labelDict=labelDict),
+                prompt(
+                    interview=interview,
+                    topic=topic,
+                    labelDict=labelDict,
+                ),
+                questionType,
+                questions,
             )
 
-            # TODO: record: interview, prompt, response, score
             os.makedirs(pathResult, exist_ok=True)
             with open(f"{pathResult}/result.csv", "a+") as f:
                 # result[0]: str    is Response
