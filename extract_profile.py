@@ -3,25 +3,29 @@ from dotenv import load_dotenv
 from google import genai
 
 import prompt
+import llm
 
 
-def extractProfile(prompt: prompt.Prompt):
-    # Extract profile
-    prompt = prompt.buildPrompt()
-    # print(prompt)
+def generateProfile(prompt: prompt.Prompt):
+    buildProfilePrompt = prompt.buildProfilePrompt()
+    profile = llm.generateContent(buildProfilePrompt)
+    print(profile)
 
-    return generateProfile(prompt)
+    if profile.startswith("```json"):
+        profile = profile.replace("```json\n{", "").replace("}\n```", "")
 
+    #     profile = """
+    # "name": "None",
+    # "age": "32",
+    # "occupation": "Marine Biologist (recently graduated)",
+    # "key_memory": [
+    # "i traveled for eight months in central america",
+    # "diving the blue whole in belize it was really amazing"
+    # ],
+    # "domain_label": "fav_warm",
+    # "domain_label_reason": "The participant traveled to Central America for eight months and mentions diving in Belize, both of which are tropical or warm locations. This suggests a preference for warm climates and destinations."
+    # """
 
-def generateProfile(prompt):
-    load_dotenv()
-    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-    client = genai.Client(api_key=GOOGLE_API_KEY)
+    profile = "{" + profile.replace("\n", "") + "}"
 
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt,
-    )
-
-    print(response.text)
-    return response.text
+    return profile

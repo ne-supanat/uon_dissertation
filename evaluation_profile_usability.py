@@ -1,8 +1,7 @@
 from typing import Literal
 import json
-import os
-from dotenv import load_dotenv
-from google import genai
+
+import llm
 
 
 def evaluateUsability(
@@ -57,7 +56,7 @@ if answer is {choices[0]} the response is {choices[0]}
 if answer are {choices[0]} and {choices[1]} the response are {choices[0]};{choices[1]}
 """
 
-    response = answer(prompt)
+    response = llm.generateContent(prompt).strip()
     responseItems = [item.strip() for item in response.split(";")]
 
     score = 0.0
@@ -65,7 +64,7 @@ if answer are {choices[0]} and {choices[1]} the response are {choices[0]};{choic
         if choiceValues[choices.index(item)] == domainLabel:
             score += 1
 
-    return score / len(responseItems)
+    return score / len(responseItems)  # accuracy percentage
 
 
 def scoreQeustion(profile: str, question: str):
@@ -86,19 +85,5 @@ For example:
 if the answer is Agree, the response is 4
 """
 
-    response: str = answer(prompt).strip()
+    response: str = llm.generateContent(prompt).strip()
     return float(response)
-
-
-def answer(prompt):
-    load_dotenv()
-    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-    client = genai.Client(api_key=GOOGLE_API_KEY)
-
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt,
-    )
-
-    print(response.text)
-    return response.text

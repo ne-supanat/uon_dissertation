@@ -15,13 +15,13 @@ class Prompt:
     def name():
         return "default"
 
-    def buildPrompt(self):
-        return self.buildInstruction() + "\n\n" + self.buildFormat()
+    def buildProfilePrompt(self):
+        return self.buildProfileInstruction() + "\n\n" + self.buildProfileFormat()
 
-    def buildInstruction(self):
+    def buildProfileInstruction(self):
         return ""
 
-    def buildFormat(self):
+    def buildProfileFormat(self):
         return """Please response in this format.
 
 "name": "Full name",
@@ -40,7 +40,7 @@ class PromptZeroShot(Prompt):
     def name():
         return "zero-shot"
 
-    def buildInstruction(self):
+    def buildProfileInstruction(self):
         return f"""Base on this interview.
 
 {self.interview}
@@ -62,7 +62,7 @@ class PromptFewShot(Prompt):
     def name():
         return "few-shot"
 
-    def buildInstruction(self):
+    def buildProfileInstruction(self):
         return f"""Base on this interview.
 
 {self.interview}

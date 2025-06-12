@@ -12,12 +12,9 @@ def runExperimentOnce(
     questionType: Literal["label", "score"],
     questions: list[dict | str],
 ):
-    profile = extract_profile.extractProfile(prompt)
-    print(profile)
+    profile = extract_profile.generateProfile(prompt)
 
-    if profile.startswith("```json"):
-        profile = profile.replace("```json\n{", "").replace("}\n```", "")
-    profile = "{" + profile.replace("\n", "") + "}"
+    # TODO: add get answer first before evaluate
 
     # TODO: evaluation
     # TODO: valid = evaluation_profile_validity.evaluateValidity(profile)
