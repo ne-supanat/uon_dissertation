@@ -23,7 +23,6 @@ def main():
     questionType = "label"
     questions = [
         {
-            "type": "individual",
             "question": "Pick 2 countries you want to go?",
             "choices": ["Thailand", "Spain", "Singapore", "England", "Norway"],
             "choice_values": [
@@ -35,7 +34,6 @@ def main():
             ],
         },
         {
-            "type": "individual",
             "question": "Pick 2 activities you want to do?",
             "choices": [
                 "Scuba Diving",

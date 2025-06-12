@@ -24,6 +24,13 @@
       "request": "launch",
       "program": "experiment.py",
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Python Debugger: Test File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "unit_test.py",
+      "console": "integratedTerminal"
     }
   ]
 }

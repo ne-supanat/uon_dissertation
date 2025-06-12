@@ -1,7 +1,9 @@
 from typing import Literal
+import json
 
 import profile_generation
 import profile_validation
+import answer_generation
 import answer_evaluation
 import prompt
 
@@ -10,23 +12,33 @@ import prompt
 def runExperimentOnce(
     prompt: prompt.Prompt,
     questionType: Literal["label", "score"],
-    questions: list[dict | str],
+    questions: list[dict] | list[str],
 ):
+    # Extract profile
     profile = profile_generation.generateProfile(prompt)
+    jsonProfile = json.loads(profile)
 
-    # TODO: add get answer first before evaluate
+    # Evaluate profile
+    # TODO: validityScore = evaluation_profile_validity.evaluateValidity(profile)
 
-    # TODO: evaluation
-    # TODO: valid = evaluation_profile_validity.evaluateValidity(profile)
+    # Complete tasks
+    answers = answer_generation.answer(profile, questionType, questions)
 
-    usabilityScore = answer_evaluation.evaluateUsability(
-        profile, questionType, questions
+    # Evaluate usability
+    # use domain label/score depend on question type
+    domainTagKey = "domain_label" if questionType == "label" else "domain_score"
+    usabilityScore = answer_evaluation.evaluateAnswer(
+        questionType,
+        questions,
+        jsonProfile[domainTagKey],
+        answers,
     )
 
     return [
-        profile,  # profile
+        profile,
+        answers,
         0.5,  # validity_score
-        usabilityScore,  # usability_score
+        usabilityScore,
     ]
 
 
@@ -45,7 +57,6 @@ if __name__ == "__main__":
     questionType = "label"
     questions = [
         {
-            "type": "individual",
             "question": "Pick 2 countries you want to go?",
             "choices": ["Thailand", "Spain", "Singapore", "England", "Norway"],
             "choice_values": [
