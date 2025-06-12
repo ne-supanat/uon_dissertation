@@ -1,8 +1,8 @@
 from typing import Literal
 
-import extract_profile
-import evaluation_profile_validity
-import evaluation_profile_usability
+import profile_generation
+import profile_validation
+import answer_evaluation
 import prompt
 
 
@@ -12,14 +12,14 @@ def runExperimentOnce(
     questionType: Literal["label", "score"],
     questions: list[dict | str],
 ):
-    profile = extract_profile.generateProfile(prompt)
+    profile = profile_generation.generateProfile(prompt)
 
     # TODO: add get answer first before evaluate
 
     # TODO: evaluation
     # TODO: valid = evaluation_profile_validity.evaluateValidity(profile)
 
-    usabilityScore = evaluation_profile_usability.evaluateUsability(
+    usabilityScore = answer_evaluation.evaluateUsability(
         profile, questionType, questions
     )
 
