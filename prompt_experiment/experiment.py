@@ -5,7 +5,7 @@ import profile_generation
 import profile_validation
 import answer_generation
 import answer_evaluation
-import prompt
+import prompt_experiment.prompt as prompt
 
 
 # TODO: lable / score type

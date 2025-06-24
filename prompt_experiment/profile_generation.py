@@ -2,14 +2,17 @@ import os
 from dotenv import load_dotenv
 from google import genai
 
-import prompt
-import llm
+import prompt_experiment.prompt as prompt
+import mvp.llm as llm
 
 
 def generateProfile(prompt: prompt.Prompt):
     buildProfilePrompt = prompt.buildProfilePrompt()
-    profile = llm.generateContent(buildProfilePrompt)
-    print(profile)
+    response = llm.generateContent(buildProfilePrompt)
+    profile = response.text
+    # print(profile)
+
+    print(f"profile: {response.usage_metadata.total_token_count}")
 
     if profile.startswith("```json"):
         profile = profile.replace("```json\n{", "").replace("}\n```", "")

@@ -1,7 +1,7 @@
 import os
 
-import experiment
-import prompt as p
+import prompt_experiment.experiment as experiment
+import prompt_experiment.prompt as p
 
 
 def getContent(filePath):

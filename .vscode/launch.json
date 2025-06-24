@@ -10,27 +10,27 @@
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal"
-    },
-    {
-      "name": "Python Debugger: Main File",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "run_experiments.py",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Python Debugger: One Experiment File",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "experiment.py",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Python Debugger: Test File",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "unit_test.py",
-      "console": "integratedTerminal"
     }
+    // {
+    //   "name": "Python Debugger: Main File",
+    //   "type": "debugpy",
+    //   "request": "launch",
+    //   "program": "prompt_experiment/run_experiments.py",
+    //   "console": "integratedTerminal"
+    // },
+    // {
+    //   "name": "Python Debugger: One Experiment File",
+    //   "type": "debugpy",
+    //   "request": "launch",
+    //   "program": "prompt_experiment/experiment.py",
+    //   "console": "integratedTerminal"
+    // },
+    // {
+    //   "name": "Python Debugger: Test File",
+    //   "type": "debugpy",
+    //   "request": "launch",
+    //   "program": "prompt_experiment/unit_test.py",
+    //   "console": "integratedTerminal"
+    // }
   ]
 }

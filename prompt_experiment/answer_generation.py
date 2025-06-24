@@ -1,7 +1,8 @@
 from typing import Literal
 import json
+import random
 
-import llm
+import mvp.llm as llm
 
 
 def answer(
@@ -29,15 +30,18 @@ Answer this question:
 {question}
 
 Pick from this choices:
-{', '.join(choices)}
+{', '.join(random.shuffle(choices))}
 
 Please respone with only the answer(s). For example:
 if answer is {choices[0]} the response is {choices[0]}
 if answer are {choices[0]} and {choices[1]} the response are {choices[0]};{choices[1]}
 """
 
-    response = llm.generateContent(prompt).strip()
-    responseItems = [item.strip() for item in response.split(";")]
+    response = llm.generateContent(prompt)
+    responseText = response.text.strip()
+    responseItems = [item.strip() for item in responseText.split(";")]
+
+    print(f"answer label: {response.usage_metadata.total_token_count}")
 
     return responseItems
 
@@ -60,5 +64,7 @@ For example:
 if the answer is Agree, the response is 4
 """
 
-    response: str = llm.generateContent(prompt).strip()
-    return float(response)
+    response = llm.generateContent(prompt)
+    responseText = response.text.strip()
+    print(f"answer score: {response.usage_metadata.total_token_count}")
+    return float(responseText)
