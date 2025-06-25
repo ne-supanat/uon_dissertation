@@ -1,0 +1,48 @@
+```plantuml
+@startuml
+' Style definitions
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontName Arial
+  FontSize 12
+  StartColor Green
+  EndColor Red
+}
+
+skinparam arrow {
+  Color Black
+  Style solid
+  Thickness 1
+}
+
+' Activity Diagram
+title Commuter Transportation Choice Activity Diagram
+
+start
+
+' Choosing Mode of Transport
+:Choosing Mode of Transport;
+note right: Influenced by:\n- Traveller Characteristics\n- Environmental Conditions\n- Perceived Convenience\n- Cost
+
+if (Raining Heavily or Unwell?) then (yes)
+  :Take the Bus;
+  -> [End Condition] Stop
+elseif (Route is easy and cycle friendly?) then (yes)
+  :Cycle to Work;
+  note right: Consider Cycle-to-Work Scheme\n& secure bike storage/showers;
+  -> [End Condition] Stop
+elseif (Public transport is reliable and inexpensive?) then (yes)
+  :Take Public Transportation (Tram/Bus);
+  note right: Tram: Avoid Traffic,\nRead News/Memes;
+  -> [End Condition] Stop
+else (no)
+  :Consider Other Transportation Options (e.g., Car);
+  note right: Evaluate impact on Environment, Cost, and Convenience;
+  -> [End Condition] Stop
+endif
+
+stop
+
+@enduml
+```

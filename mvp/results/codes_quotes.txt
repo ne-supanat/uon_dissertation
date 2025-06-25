@@ -1,0 +1,218 @@
+data/mvp_1.txt
+Okay, here's the thematic analysis of the participant's responses in the interview transcript, using the EABSS framework, as requested:
+
+**Actors**
+
+-   "Individual Commuter/Participant"
+    -   "I usually wake up around 6:30 a.m., have a light breakfast, and then head out by 7:30. I live about 10 kilometers from my workplace, so I cycle most days. It takes me around 35 to 40 minutes, depending on traffic and weather."
+    -   "I also sometimes carpool with a colleague if we have early meetings."
+-   "Colleagues"
+    -   "A few of my colleagues have switched to biking too."
+    -   "I also sometimes carpool with a colleague if we have early meetings."
+-   "Other commuters (implied)"
+    -   "Instead of sitting in a jam, I’m cruising past traffic on a bike lane."
+    -  "I talk to friends who say they’d love to bike or take public transport, but the lack of safe bike lanes or inconsistent bus schedules puts them off."
+
+**Archetype**
+
+-   "Environmentally Conscious Commuter"
+    -   "I started thinking more about my carbon footprint—and honestly, it just felt better to be more active in the mornings."
+    -   "I think it’s one of the areas where individual choices can have a real impact."
+-   "Pragmatic Commuter"
+    -   "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
+    -   "I also sometimes carpool with a colleague if we have early meetings."
+-   "Advocate for Sustainable Commuting"
+    -   "If cities invested more in those systems, I think we’d see a huge change."
+    -   "In the end, sustainable choices should be the convenient ones—not the hard ones."
+
+**Social/Psychological Aspect**
+
+-   "Environmental Awareness/Guilt"
+    -   "One big factor was learning more about the environmental impact of daily commuting. I was reading articles and listening to podcasts about climate change, and it struck me that transportation is such a big contributor. I thought, “If I can do something small but consistent, maybe it helps in the long run.”"
+-   "Desire for Health and Well-being"
+    -   "I enjoy it! It’s energizing and gives me time to think."
+    -   "Absolutely. I feel fitter, and I’m less stressed during rush hour."
+-   "Social Influence/Norms"
+    -   "There’s a really nice culture of encouraging sustainable habits there."
+    -   "And don’t underestimate how good it feels to be part of the solution."
+-   "Convenience and Comfort Preferences"
+    -   "I talk to friends who say they’d love to bike or take public transport, but the lack of safe bike lanes or inconsistent bus schedules puts them off."
+
+**Key Activities**
+
+-   "Choosing Mode of Transport"
+    -   "I live about 10 kilometers from my workplace, so I cycle most days."
+    -   "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
+    -   "I also sometimes carpool with a colleague if we have early meetings."
+-   "Commuting by Bike"
+    -   "It takes me around 35 to 40 minutes, depending on traffic and weather."
+    -   "Instead of sitting in a jam, I’m cruising past traffic on a bike lane."
+-   "Using Public Transportation"
+    -   "It’s pretty reliable, and there’s a bus stop just a few minutes from my flat."
+    -   "And when I take the bus, I use the time to read or listen to audiobooks."
+-   "Advocating for Sustainable Commuting"
+    -   "Definitely more protected bike lanes, and maybe incentives for people to use e-bikes or carpool. Also, improving public transport frequency and making it more affordable."
+
+**Physical Component**
+
+-   "Bicycle"
+    -   "I cycle most days."
+    -   "I actually switched to biking regularly about two years ago."
+-   "Bus"
+    -   "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
+    -   "It’s pretty reliable, and there’s a bus stop just a few minutes from my flat."
+-   "Bike Lanes"
+    -   "Instead of sitting in a jam, I’m cruising past traffic on a bike lane."
+    -   "Definitely more protected bike lanes"
+-   "Workplace Facilities"
+    -   "They actually have a cycle-to-work scheme, which I joined. We also have secure bike storage and showers, which makes it easier."
+
+**Interactions**
+
+-   "Participant-Colleagues (Carpooling and Shared Culture)"
+    -   "I also sometimes carpool with a colleague if we have early meetings."
+    -   "A few of my colleagues have switched to biking too. There’s a really nice culture of encouraging sustainable habits there."
+-   "Participant-Friends/Acquaintances (Discussion of Barriers)"
+    -   "I talk to friends who say they’d love to bike or take public transport, but the lack of safe bike lanes or inconsistent bus schedules puts them off."
+-   "Participant-Employer (Through Cycle-to-Work Scheme)"
+    -   "They actually have a cycle-to-work scheme, which I joined. We also have secure bike storage and showers, which makes it easier."
+-   "Participant - Policy Maker(Implied through advocacy)"
+    - "Definitely more protected bike lanes, and maybe incentives for people to use e-bikes or carpool. Also, improving public transport frequency and making it more affordable. In the end, sustainable choices should be the convenient ones—not the hard ones."
+
+
+data/mvp_2.txt
+Here's a breakdown of the participant's responses from the transcript, analyzed using the Engineering Agent-Based Social Simulations (EABSS) framework with thematic analysis, focusing on the participant's own words:
+
+**Actors**
+
+- "Individual Commuter"
+    - "So, I’m not a morning person at all, but I manage to crawl out of bed around 7:15. I grab a coffee, stare at the wall for a bit, then leave by 8. I work in the city center, about 6 or 7 kilometers from home."
+    - "I’m less grumpy in the mornings, I save money, and I don’t have to panic about finding parking anymore."
+
+**Archetype**
+
+- "Environmentally Aware Commuter"
+    - "I started feeling guilty about my car basically puffing out fumes every day. I’m not a “perfect eco-warrior” or anything, but I figured if I could cut down on emissions and stress at the same time… win-win, right?"
+    - "I’m trying to be more mindful without going extreme. Like, I recycle, I try not to waste food, and I walk or use public transport when I can."
+
+- "Pragmatic Commuter"
+    - "Traffic was a nightmare, parking was expensive..."
+    - "Mostly by tram, actually. I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes."
+
+**Social/Psychological Aspects**
+
+- "Desire for Reduced Stress"
+    - "...sitting in traffic every morning was driving me a bit mad."
+    - "I’m less grumpy in the mornings..."
+
+- "Adoption of Social Norms"
+    - "...I started feeling guilty about my car basically puffing out fumes every day."
+    - "There’s definitely a culture of “hey, let’s not destroy the planet if we don’t have to,” which I appreciate."
+
+- "Influence of Perceived Convenience"
+    - "I’m lucky—my route is easy."
+
+**Key Activities**
+
+- "Tram Commuting"
+    - "Mostly by tram, actually. I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes."
+    - "...they give out travel vouchers for public transport, which is sweet."
+
+- "Walking"
+    - "Sometimes, yeah! If the weather’s nice, I’ll walk. It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
+    - "...and I walk or use public transport when I can."
+
+- "Reflective Consumption"
+    - "I recycle, I try not to waste food, and I walk or use public transport when I can. I don’t own a car anymore, and honestly, I don’t miss it."
+
+**Physical Component**
+
+- "Public Transportation System"
+    - "Mostly by tram, actually."
+    - "If public transport is reliable, clean, and not wildly expensive, more people will use it."
+
+- "Personal Devices"
+    - "Now, I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes."
+    - "It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
+    - "My smartwatch is very proud of me."
+
+- "Workplace Infrastructure"
+    - "We’ve got a bike rack, some people use it religiously."
+
+**Interactions**
+
+- "Workplace influencing Individual"
+    - "There’s definitely a culture of “hey, let’s not destroy the planet if we don’t have to,” which I appreciate."
+
+- "Individual Influencing Others (aspirational)"
+    - "If I’ve convinced even one person to leave their car keys behind, I consider it a success."
+
+- "System Constraints on Individual"
+    - "Honestly? Just make it easier and cheaper. If public transport is reliable, clean, and not wildly expensive, more people will use it. Same with cycling—give us safe bike lanes and people will ride."
+    - "But yeah, if the system made it simple and actually convenient to go green, more folks would jump on board."
+
+
+data/mvp_3.txt
+Okay, here's a thematic analysis of the participant's responses in the provided transcript, framed using the EABSS framework:
+
+**Actors:** Commuter, City Dweller, Environmental Advocate
+
+**Archetype:** Conscious Urban Commuter, Systems Thinker, Advocate for Sustainable Practices
+
+**Social/Psychological Aspects:**
+
+*   **Commitment to Efficiency and Predictability**
+    *   "Eventually I settled on the train because it’s the most predictable and time-efficient for my route. It gets me there within a fixed window almost every day."
+*   **Emphasis on Productivity During Commute**
+    *   "I also find I can use the time more productively—reading, planning, or sometimes just mentally resetting."
+*   **Environmental Consciousness**
+    *   "I care about long-term impact. Transportation is one of the more solvable areas in climate policy."
+*   **Belief in Systemic Solutions**
+    *   "If we design systems better—trains, buses, bike infrastructure—people will naturally make better choices without needing constant moral pressure."
+*   **Awareness of Urban Cycling Risks**
+    *   "But urban cycling still comes with risk factors—lane coverage, aggressive driving behavior."
+*   **Perception of Convenience as Key Barrier**
+    *   "Most people aren’t against sustainable transport—they just find it harder. If it’s slower, more confusing, or less comfortable than driving, they’ll default to the car."
+*   **Valuing Quality of Life Over Pure Speed/Cost**
+    *   "People talk about their commute in terms of quality of life, not just cost or speed. That shift in mindset matters."
+*   **Appreciation for Time for Reflection and Disconnection**
+    *   "I use commute time to disconnect or refocus."
+
+**Key Activities:**
+
+*   **Daily Commuting via Public Transport**
+    *   "I leave home by 7:30 and reach work around 8. I work about 8 kilometers away, and I usually take the train and walk the rest."
+*   **Experimenting with Commuting Options**
+    *   "I’ve experimented with different options over the years—driving, biking, walking combinations."
+*   **Evaluating Transportation Options Based on Multiple Factors**
+    *   "Eventually I settled on the train because it’s the most predictable and time-efficient for my route."
+*   **Advocating for Improved Infrastructure**
+    *   "For example, more park-and-ride stations or bike-share hubs would make the switch easier for many people."
+*   **Occasional Cycling**
+    *   "Yes, and I do it occasionally when the weather’s right and I don’t need to carry too much."
+*   **Reflecting on the Impact of Transportation Choices**
+    *   "It’s made me reflect on how transportation is not just about moving bodies, but about how people experience their day."
+*   **Imagining Ideal Transportation System**
+    *   "I’d focus on synchronizing modes—bus, train, bike—with a single, unified platform. One pass, one system, clear information."
+
+**Physical Components:**
+
+*   **Train**
+    *   "Eventually I settled on the train because it’s the most predictable and time-efficient for my route."
+*   **Walking (as part of commute)**
+    *   "I work about 8 kilometers away, and I usually take the train and walk the rest."
+*   **Bike (occasional use)**
+    *   "Yes, and I do it occasionally when the weather’s right and I don’t need to carry too much."
+*   **Park-and-Ride Stations (desired improvement)**
+    *   "For example, more park-and-ride stations or bike-share hubs would make the switch easier for many people."
+*   **Unified Transportation Platform (desired improvement)**
+    *   "One pass, one system, clear information."
+
+**Interactions:**
+
+*   **Interaction with Public Transport System:** Uses and assesses its effectiveness.
+*   **Interaction with City Infrastructure:** Observes and evaluates its support for sustainable commuting.
+*   **Interaction with Other Commuters (indirect):** Believes that better systems will influence their choices.
+*   **Interaction with Work Environment (indirect):** Influenced by the culture and policies.
+
+

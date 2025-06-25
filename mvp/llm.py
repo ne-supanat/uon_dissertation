@@ -1,9 +1,10 @@
 import os
 from dotenv import load_dotenv
 from google import genai
+from google.genai import types
 
 
-def generateContent(prompt: str):
+def generateContent(prompt: str, response_schema=None) -> types.GenerateContentResponse:
     load_dotenv()
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     client = genai.Client(api_key=GOOGLE_API_KEY)
@@ -11,21 +12,22 @@ def generateContent(prompt: str):
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt,
+        config=(
+            {
+                "response_mime_type": "application/json",
+                "response_schema": response_schema,
+            }
+            if response_schema
+            else None
+        ),
     )
 
     print(response.text)
+    print(response.usage_metadata.total_token_count)
     return response
 
 
 if __name__ == "__main__":
-    # response = generateContent(
-    #     "why sky is blue? answer in short 3 words only e.g. becasue it blue."
-    # )
-
-    # print(response.text)
-    # print(response.usage_metadata)
-    # ( e.g., prompt_token_count: 11, candidates_token_count: 73, total_token_count: 84 )
-
     interview = ""
     with open("data/mvp_1.txt", "r") as f:
         interview = f.read()

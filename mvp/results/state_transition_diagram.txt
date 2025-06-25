@@ -1,0 +1,80 @@
+```mermaid
+stateDiagram
+    [*] --> InitialState : Simulation Start
+
+    state InitialState {
+        [*] --> Commuter : Create Commuter Agent
+    }
+
+    state Commuter {
+        state EvaluateOptions {
+            [*] --> ConsiderConvenience : Consider Convenience
+            [*] --> ConsiderEnvironment : Consider Environmental Impact
+            [*] --> ConsiderWeather : Consider Weather
+            [*] --> ConsiderHealth : Consider Health
+        }
+        EvaluateOptions --> ChooseMode : All factors evaluated
+
+        state ChooseMode {
+            state CycleChoice {
+                [*] --> Cycle : Choose to Cycle
+            }
+            state BusChoice {
+                [*] --> Bus : Choose to Take Bus
+            }
+            state TramChoice {
+                [*] --> Tram : Choose to Take Tram
+            }
+            CycleChoice --> ChosenMode
+            BusChoice --> ChosenMode
+            TramChoice --> ChosenMode
+        }
+
+        state ChosenMode {
+            state Cycle {
+                [*] --> UpdateState : Update Commuter State (Cycle)
+            }
+            state Bus {
+                [*] --> UpdateState : Update Commuter State (Bus)
+            }
+            state Tram {
+                [*] --> UpdateState : Update Commuter State (Tram)
+            }
+        }
+
+        state UpdateState {
+            [*] -->Commute : Mode chosen, Commuting occurs
+        }
+        
+        state Commute {
+             Commute --> ArriveAtWork : Reached destination (workplace)
+        }
+
+        state ArriveAtWork {
+            [*] --> UpdateSimulation: Commute completed
+        }
+
+        EvaluateOptions --> EvaluateOptions : Re-evaluate options based on environment.
+    }
+
+    state UpdateSimulation {
+        UpdateSimulation --> [*]: Simulation updates
+    }
+    
+    state EnvironmentChanges {
+        EnvironmentChanges --> EvaluateOptions : External event impacts commuter
+    }
+
+    Commuter --> EnvironmentChanges : Event triggers environment update
+
+    state PragmaticCommuter {
+        PragmaticCommuter --> EvaluateOptions: Evaluate options for pragmatic commuter.
+    }
+
+    state EnvironmentallyAwareCommuter {
+        EnvironmentallyAwareCommuter --> EvaluateOptions: Evaluate options for environmentally aware commuter
+    }
+
+    Commuter --> PragmaticCommuter : Commuter is of archetype PragmaticCommuter
+    Commuter --> EnvironmentallyAwareCommuter : Commuter is of archetype EnvironmentallyAwareCommuter
+```
