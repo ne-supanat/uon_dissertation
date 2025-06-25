@@ -1,0 +1,232 @@
+{
+  "file": "data/mvp_1.txt",
+  "actors": [
+    {
+      "code": "Individual Commuter",
+      "quotes": [
+        "I usually wake up around 6:30 a.m., have a light breakfast, and then head out by 7:30.",
+        "I talk to friends who say they’d love to bike or take public transport, but the lack of safe bike lanes or inconsistent bus schedules puts them off."
+      ]
+    },
+    {
+      "code": "Colleagues",
+      "quotes": [
+        "I also sometimes carpool with a colleague if we have early meetings.",
+        "A few of my colleagues have switched to biking too."
+      ]
+    }
+  ],
+  "archetypes": [
+    {
+      "code": "Environmentally Conscious Commuter",
+      "quotes": [
+        "I started thinking more about my carbon footprint—and honestly, it just felt better to be more active in the mornings.",
+        "If I can do something small but consistent, maybe it helps in the long run."
+      ]
+    },
+    {
+      "code": "Flexible Commuter",
+      "quotes": [
+        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
+        "Start small. Maybe bike one or two days a week, or try the bus for a few days and see how it fits your routine."
+      ]
+    }
+  ],
+  "physicalComponents": [
+    {
+      "code": "Bicycle",
+      "quotes": [
+        "I live about 10 kilometers from my workplace, so I cycle most days.",
+        "Instead of sitting in a jam, I’m cruising past traffic on a bike lane."
+      ]
+    },
+    {
+      "code": "Public Transportation (Bus)",
+      "quotes": [
+        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
+        "It’s pretty reliable, and there’s a bus stop just a few minutes from my flat."
+      ]
+    }
+  ],
+  "socialAspect": [
+    {
+      "code": "Workplace Culture Supporting Sustainability",
+      "quotes": [
+        "They actually have a cycle-to-work scheme, which I joined.",
+        "There’s a really nice culture of encouraging sustainable habits there."
+      ]
+    },
+    {
+      "code": "Carpooling Norms",
+      "quotes": [
+        "I also sometimes carpool with a colleague if we have early meetings.",
+        "Also, improving public transport frequency and making it more affordable."
+      ]
+    }
+  ],
+  "psychologicalAspect": [
+    {
+      "code": "Sense of Well-being",
+      "quotes": [
+        "And it often improves quality of life too.",
+        "I feel fitter, and I’m less stressed during rush hour."
+      ]
+    },
+    {
+      "code": "Motivation through Knowledge",
+      "quotes": [
+        "One big factor was learning more about the environmental impact of daily commuting.",
+        "It’s not about being perfect—it’s about being consistent. And don’t underestimate how good it feels to be part of the solution."
+      ]
+    }
+  ],
+  "misc": [
+    {
+      "code": "Environmental Impact",
+      "quotes": [
+        "I was reading articles and listening to podcasts about climate change, and it struck me that transportation is such a big contributor.",
+        "Obviously, we need better infrastructure and policy, but when people choose to cycle, walk, or take public transport, it reduces emissions and traffic congestion."
+      ]
+    },
+    {
+      "code": "Commuting Distance",
+      "quotes": [
+        "I live about 10 kilometers from my workplace",
+        "It takes me around 35 to 40 minutes, depending on traffic and weather."
+      ]
+    }
+  ],
+  "keyActivities": [
+    {
+      "code": "Commuting Mode Selection",
+      "quotes": [
+        "I actually switched to biking regularly about two years ago. I used to drive",
+        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
+      ]
+    },
+    {
+      "code": "Advocating for Infrastructure Improvement",
+      "quotes": [
+        "Definitely more protected bike lanes, and maybe incentives for people to use e-bikes or carpool.",
+        "If cities invested more in those systems, I think we’d see a huge change."
+      ]
+    }
+  ]
+}
+
+{
+  "file": "data/mvp_2.txt",
+  "actors": [
+    {
+      "code": "Individual Commuter",
+      "quotes": [
+        "I’m not a morning person at all, but I manage to crawl out of bed around 7:15.",
+        "I recycle, I try not to waste food, and I walk or use public transport when I can."
+      ]
+    },
+    {
+      "code": "Workplace",
+      "quotes": [
+        "They also give out travel vouchers for public transport, which is sweet.",
+        "There’s definitely a culture of “hey, let’s not destroy the planet if we don’t have to,” which I appreciate."
+      ]
+    }
+  ],
+  "archetypes": [
+    {
+      "code": "Eco-conscious Commuter",
+      "quotes": [
+        "I’m trying to be more mindful without going extreme.",
+        "I don’t own a car anymore, and honestly, I don’t miss it."
+      ]
+    },
+    {
+      "code": "Pragmatic Commuter",
+      "quotes": [
+        "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
+        "If public transport is reliable, clean, and not wildly expensive, more people will use it."
+      ]
+    }
+  ],
+  "physicalComponents": [
+    {
+      "code": "Tram System",
+      "quotes": [
+        "Mostly by tram, actually.",
+        "Now, I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes."
+      ]
+    },
+    {
+      "code": "Bike and Walking Infrastructure",
+      "quotes": [
+        "give us safe bike lanes and people will ride.",
+        "We’ve got a bike rack, some people use it religiously."
+      ]
+    }
+  ],
+  "socialAspect": [
+    {
+      "code": "Workplace Culture of Sustainability",
+      "quotes": [
+        "There’s definitely a culture of “hey, let’s not destroy the planet if we don’t have to,” which I appreciate.",
+        "They also give out travel vouchers for public transport, which is sweet."
+      ]
+    },
+    {
+      "code": "Social influence and Norms",
+      "quotes": [
+        "I’m not a “perfect eco-warrior” or anything, but I figured if I could cut down on emissions and stress at the same time… win-win, right?",
+        "If I’ve convinced even one person to leave their car keys behind, I consider it a success."
+      ]
+    }
+  ],
+  "psychologicalAspect": [
+    {
+      "code": "Stress Reduction",
+      "quotes": [
+        "sitting in traffic every morning was driving me a bit mad.",
+        "I’m less grumpy in the mornings, I save money, and I don’t have to panic about finding parking anymore."
+      ]
+    },
+    {
+      "code": "Guilt and Environmental Responsibility",
+      "quotes": [
+        "I started feeling guilty about my car basically puffing out fumes every day.",
+        "I’m trying to be more mindful without going extreme."
+      ]
+    }
+  ],
+  "misc": [
+    {
+      "code": "Distance",
+      "quotes": [
+        "I work in the city center, about 6 or 7 kilometers from home.",
+        "It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
+      ]
+    },
+    {
+      "code": "Weather",
+      "quotes": [
+        "If the weather’s nice, I’ll walk.",
+        "Sometimes, yeah! If the weather’s nice, I’ll walk."
+      ]
+    }
+  ],
+  "keyActivities": [
+    {
+      "code": "Choosing Commute Method",
+      "quotes": [
+        "I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram",
+        "Try walking or taking the bus once or twice a week."
+      ]
+    },
+    {
+      "code": "Daily Commute",
+      "quotes": [
+        "I grab a coffee, stare at the wall for a bit, then leave by 8.",
+        "I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes."
+      ]
+    }
+  ]
+}
+
