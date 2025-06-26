@@ -8,7 +8,7 @@ import mvp.llm as llm
 
 def generateProfile(prompt: prompt.Prompt):
     buildProfilePrompt = prompt.buildProfilePrompt()
-    response = llm.generateContent(buildProfilePrompt)
+    response = llm.generate_content(buildProfilePrompt)
     profile = response.text
     # print(profile)
 

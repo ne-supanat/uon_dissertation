@@ -33,11 +33,11 @@ class TransportationMode(enum.Enum):
     Driving = "Driving"
 
 
-def getObjective():
+def get_objective():
     return "explore sustainability in different usages of transportation from home to workplace"
 
 
-def getInputOutput():
+def get_input_output():
     # response = llm.generateContent(
     #     prompt=f"""based on this objective: {obj}, what should be input and output of the simulation to satisfied the objective""",
     #     response_schema=InputOutput,
@@ -84,12 +84,12 @@ key component 1
     - "supporting quote 1"
     - "supporting quote 2"
 """
-    response = llm.generateContent(prompt)
+    response = llm.generate_content(prompt)
     return response.text
 
 
 def finalise_codes_quotes(
-    codesQuotes: str,
+    codes_quotes: str,
     objective: str,
     input: str,
     output: str,
@@ -97,7 +97,7 @@ def finalise_codes_quotes(
     prompt = f"""
 Based on following codes and quotes
 
-{codesQuotes}
+{codes_quotes}
 
 Use Engineering Agent-Based Social Simulations (EABSS) framework structure
 -	Actors (people/groups/organisation)
@@ -121,54 +121,54 @@ key component 1
     - "supporting quote 1"
     - "supporting quote 2"
 """
-    response = llm.generateContent(prompt)
+    response = llm.generate_content(prompt)
     return response.text
 
 
-def drawUsecaseDiagram(keyComponent: str):
+def draw_usecase_diagram(key_component: str):
     prompt = f"""
 Based on following Engineering Agent-Based Social Simulations (EABSS) key components
 
-{keyComponent}
+{key_component}
 
 generate UML use case diagram for all key activities
 response in plantUML format
 """
-    response = llm.generateContent(prompt)
+    response = llm.generate_content(prompt)
     return response.text
 
 
-def drawActivityDiagram(keyComponent: str):
+def draw_activity_diagram(key_component: str):
     prompt = f"""
 Based on following Engineering Agent-Based Social Simulations (EABSS) key components
 
-{keyComponent}
+{key_component}
 
 generate UML activity diagram for all key activities
 response in plantUML format
 """
-    response = llm.generateContent(prompt)
+    response = llm.generate_content(prompt)
     return response.text
 
 
-def drawStateTransitionDiagram(keyComponent: str):
+def draw_state_transition_diagram(key_component: str):
     prompt = f"""
 Based on following Engineering Agent-Based Social Simulations (EABSS) key components
 
-{keyComponent}
+{key_component}
 
 generate UML state transition diagram of actor acretype if needed
 response in plantUML format
 """
-    response = llm.generateContent(prompt)
+    response = llm.generate_content(prompt)
     return response.text
 
 
 def extract_profile(
     interview: str,
-    profileAttrs: list[str],
+    profile_attrs: list[str],
     objective: str,
-    keyComponents: str,
+    key_components: str,
 ):
     prompt = f"""
 Base on this interview.
@@ -177,17 +177,17 @@ Base on this interview.
 
 and Key components
 
-{keyComponents}
+{key_components}
 
-{f"""1. Extract following profile data:\n{[f"- {attr}\n" for attr in profileAttrs]}""" if profileAttrs else ""}
+{f"""1. Extract following profile data:\n{[f"- {attr}\n" for attr in profile_attrs]}""" if profile_attrs else ""}
 2. Find supporting evidence (quotes) that related to {objective}
 3. Identify archetype base on archetype in key component
 """
-    response = llm.generateContent(prompt, Profile)
+    response = llm.generate_content(prompt, Profile)
     return response.text
 
 
-def generateScenarioQuestions():
+def generate_scenario_questions():
     prompt = f"""
 Generate set of {6} scenario-questions that let responders decide what to choose
 in different situation that needs to consider following options: Weather, Personal Health, Perceive Convenience, Environmental Impact, Cost
@@ -195,11 +195,11 @@ with these transportation choices: Tram, Cycling, Taking Bus, Driving
 
 Response with only questions
 """
-    response = llm.generateContent(prompt, list[str])
+    response = llm.generate_content(prompt, list[str])
     return response.text
 
 
-def answerQuestions(profile, questions):
+def answer_questions(profile, questions):
     prompt = f"""
 Based on this profile
 
@@ -209,17 +209,17 @@ answer this question
 
 {questions}
 """
-    response = llm.generateContent(prompt, list[TransportationMode])
+    response = llm.generate_content(prompt, list[TransportationMode])
     return response.text
 
 
-def generateSimulationScript(
-    obj, input, output, keyComponent, usecase, activity, stateTransition, actionProb
+def generate_simulation_script(
+    obj, input, output, key_component, usecase, activity, state_transition, action_prob
 ):
     prompt = f"""
 Based on these EABSS key components
 
-{keyComponent}
+{key_component}
 
 Objective
 {obj}
@@ -237,14 +237,14 @@ UML activity diagram
 {activity}
 
 UML state transition diagram
-{stateTransition}
+{state_transition}
 
 Archetype action probability
-{actionProb}
+{action_prob}
 
 generate agentPy simulation script
 """
-    response = llm.generateContent(prompt)
+    response = llm.generate_content(prompt)
     return response.text
 
 
@@ -255,7 +255,7 @@ def main():
     obj = "explore different usages of transportation from home to workplace"
 
     # input, output
-    input, output = getInputOutput()
+    input, output = get_input_output()
 
     # # codes, quotes
     # for i in range(1,4):

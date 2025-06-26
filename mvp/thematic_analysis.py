@@ -14,13 +14,13 @@ class KeyComponents(BaseModel):
     file: str
     actors: list[Code]
     archetypes: list[Code]
-    physicalComponents: list[Code]
-    socialAspect: list[Code]
-    psychologicalAspect: list[Code]
+    physical_components: list[Code]
+    social_aspect: list[Code]
+    psychological_aspect: list[Code]
     misc: list[Code]
-    keyActivities: list[Code]
+    key_activities: list[Code]
 
-    def getComponentNames():
+    def get_component_names():
         return [
             "Actors",
             "Archetypes",
@@ -31,63 +31,63 @@ class KeyComponents(BaseModel):
             "Key Activities",
         ]
 
-    def getComponentKeys():
+    def get_component_keys():
         return [
             "actors",
             "archetypes",
-            "physicalComponents",
-            "socialAspect",
-            "psychologicalAspect",
+            "physical_components",
+            "social_aspect",
+            "psychological_aspect",
             "misc",
-            "keyActivities",
+            "key_activities",
         ]
 
 
 def thematic_analyse(
-    interviewPaths: list[str], destinationPathTXT: str, destinationPathCSV: str
+    interview_paths: list[str], destination_path_txt: str, destination_path_csv: str
 ):
     # Write head of table
-    with open(destinationPathCSV, "w") as f:
+    with open(destination_path_csv, "w") as f:
         f.write("File;Component;Code;Quote\n")
 
-    for interviewPath in interviewPaths:
+    for interview_path in interview_paths:
         interview = ""
-        with open(interviewPath, "r") as f:
+        with open(interview_path, "r") as f:
             interview = f.read()
-        response = extract_key_components(interview, interviewPath)
+        response = extract_key_components(interview, interview_path)
 
         # Write raw response (json)
-        with open(destinationPathTXT, "a+") as f:
+        with open(destination_path_txt, "a+") as f:
             f.write(response.text)
             f.write("\n\n")
 
         # Write records for human review
-        keyComponents: KeyComponents = response.parsed
+        key_components: KeyComponents = response.parsed
         for i, component in enumerate(
             [
-                keyComponents.actors,
-                keyComponents.archetypes,
-                keyComponents.physicalComponents,
-                keyComponents.socialAspect,
-                keyComponents.psychologicalAspect,
-                keyComponents.misc,
-                keyComponents.keyActivities,
+                key_components.actors,
+                key_components.archetypes,
+                key_components.physical_components,
+                key_components.social_aspect,
+                key_components.psychological_aspect,
+                key_components.misc,
+                key_components.key_activities,
             ]
         ):
             for code in component:
                 for quote in code.quotes:
-                    componentName = KeyComponents.getComponentNames()[i]
+                    component_name = KeyComponents.get_component_names()[i]
 
                     # Write quote as row record (csv)
-                    with open(destinationPathCSV, "a+") as f:
+                    with open(destination_path_csv, "a+") as f:
                         f.write(
-                            f"{interviewPath};{componentName};{code.code};{quote}\n"
+                            f"{interview_path};{component_name};{code.code};{quote}\n"
                         )
 
 
 def extract_key_components(
     interview: str,
-    interviewPath: str,
+    interview_path: str,
 ) -> GenerateContentResponse:
 
     prompt = f"""
@@ -112,35 +112,35 @@ Following these key components
 Each component has minimum of {2} codes
 Each code has maximum of {2} quotes
 
-filePath is {interviewPath}
+filePath is {interview_path}
 """
-    response = llm.generateContent(
+    response = llm.generate_content(
         prompt,
         response_schema=KeyComponents,
     )
     return response
 
 
-def write_quotes_from_raw_txt(destinationPath: str):
+def write_quotes_from_raw_txt(destination_path: str):
     # Read final raw codes
     with open(f"mvp/results/codes_quotes_raw.txt", "r") as f:
         content = f.read()
 
     # Write head of table
-    with open(destinationPath, "w") as f:
+    with open(destination_path, "w") as f:
         f.write("File;Component;Code;Quote\n")
 
     # Write quotes (csv)
     for c in content.strip().split("\n\n"):
         component: dict = json.loads(c)
 
-        for i, key in enumerate(KeyComponents.getComponentKeys()):
+        for i, key in enumerate(KeyComponents.get_component_keys()):
             for code in component[key]:
                 for quote in code["quotes"]:
-                    componentName = KeyComponents.getComponentNames()[i]
-                    with open(destinationPath, "a+") as f:
+                    component_name = KeyComponents.get_component_names()[i]
+                    with open(destination_path, "a+") as f:
                         f.write(
-                            f"{component['file']};{componentName};{code['code']};{quote}\n"
+                            f"{component['file']};{component_name};{code['code']};{quote}\n"
                         )
 
 
@@ -149,7 +149,7 @@ if __name__ == "__main__":
 
     # thematic_analyse(
     #     ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"],
-    #     destinationPathTXT="mvp/results/codes_quotes_raw.txt",
-    #     destinationPathCSV="mvp/results/codes_quotes.csv",
+    #     destination_path_txt="mvp/results/codes_quotes_raw.txt",
+    #     destination_path_csv="mvp/results/codes_quotes.csv",
     # )
-    # write_quotes_from_raw_txt("mvp/results/codes_quotes_full.csv")
+    write_quotes_from_raw_txt("mvp/results/codes_quotes_full.csv")

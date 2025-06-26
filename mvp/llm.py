@@ -4,7 +4,7 @@ from google import genai
 from google.genai.types import GenerateContentResponse
 
 
-def generateContent(prompt: str, response_schema=None) -> GenerateContentResponse:
+def generate_content(prompt: str, response_schema=None) -> GenerateContentResponse:
     load_dotenv()
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     client = genai.Client(api_key=GOOGLE_API_KEY)
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     with open("data/mvp_1.txt", "r") as f:
         interview = f.read()
 
-    response = generateContent(
+    response = generate_content(
         f"""
 base on this transcript
 {interview}
