@@ -7,6 +7,9 @@ from pydantic import BaseModel
 import llm
 
 
+# TODO: function, variable name format
+
+
 class InputOutput(BaseModel):
     input: str
     output: str

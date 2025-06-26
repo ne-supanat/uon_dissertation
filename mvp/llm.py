@@ -1,10 +1,10 @@
 import os
 from dotenv import load_dotenv
 from google import genai
-from google.genai import types
+from google.genai.types import GenerateContentResponse
 
 
-def generateContent(prompt: str, response_schema=None) -> types.GenerateContentResponse:
+def generateContent(prompt: str, response_schema=None) -> GenerateContentResponse:
     load_dotenv()
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     client = genai.Client(api_key=GOOGLE_API_KEY)

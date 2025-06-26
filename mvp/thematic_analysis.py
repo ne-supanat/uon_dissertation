@@ -1,7 +1,6 @@
 import json
 from pydantic import BaseModel
-from google.genai import types
-import pandas as pd
+from google.genai.types import GenerateContentResponse
 
 import llm
 
@@ -42,42 +41,6 @@ class KeyComponents(BaseModel):
             "misc",
             "keyActivities",
         ]
-
-
-def extract_key_components(
-    interview: str,
-    interviewPath: str,
-) -> types.GenerateContentResponse:
-
-    prompt = f"""
-Based on this transcript
-
-{interview}
-
-Focus only participant responses.
-Perform thematic analysis and identify key codes and supporting quotes for Agent-Based Modeling system
-
-Following these key components
--	Actors are agents which can be a person or groups or organisation inside the system
--	Archetypes are categories of Actors defines what they are allowed or expected to do
--	Physical components are objects or tools or systems that actors use
--	Social aspect is rules or norms about social behaviour
--   Psychological aspect is rules or norms about psychological behaviour
--   Misc are real world elements that do not fall in any component
-
--	Key activities are interactions between actors and actors or actors and system environment
-
-
-Each component has minimum of {2} codes
-Each code has maximum of {2} quotes
-
-filePath is {interviewPath}
-"""
-    response = llm.generateContent(
-        prompt,
-        response_schema=KeyComponents,
-    )
-    return response
 
 
 def thematic_analyse(
@@ -122,6 +85,42 @@ def thematic_analyse(
                         )
 
 
+def extract_key_components(
+    interview: str,
+    interviewPath: str,
+) -> GenerateContentResponse:
+
+    prompt = f"""
+Based on this transcript
+
+{interview}
+
+Focus only participant responses.
+Perform thematic analysis and identify key codes and supporting quotes for Agent-Based Modeling system
+
+Following these key components
+-	Actors are agents which can be a person or groups or organisation inside the system
+-	Archetypes are categories of Actors defines what they are allowed or expected to do
+-	Physical components are objects or tools or systems that actors use
+-	Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-	Key activities are interactions between actors and actors or actors and system environment
+
+
+Each component has minimum of {2} codes
+Each code has maximum of {2} quotes
+
+filePath is {interviewPath}
+"""
+    response = llm.generateContent(
+        prompt,
+        response_schema=KeyComponents,
+    )
+    return response
+
+
 def write_quotes_from_raw_txt(destinationPath: str):
     # Read final raw codes
     with open(f"mvp/results/codes_quotes_raw.txt", "r") as f:
@@ -154,5 +153,3 @@ if __name__ == "__main__":
     #     destinationPathCSV="mvp/results/codes_quotes.csv",
     # )
     # write_quotes_from_raw_txt("mvp/results/codes_quotes_full.csv")
-
-    # TODO: Evaluation
