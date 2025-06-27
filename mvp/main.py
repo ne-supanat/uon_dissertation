@@ -4,10 +4,11 @@ import llm
 
 import thematic_analysis
 import thematic_analysis_evaluation
+import thematic_analysis_extra
 import key_component_generation
 
 import profile_generation
-import profile_generation_evaluation
+import mvp.profile_evaluation as profile_evaluation
 import scenario_decision
 import scenario_decision_evaluation
 import decision_table
@@ -76,6 +77,7 @@ def main():
     # Extract key components codes with supporting quotes
     thematic_analysis.analyse(document_paths, ta_codes_txt_path, ta_codes_csv_path)
     thematic_analysis_evaluation.evaluate(document_paths)
+    thematic_analysis_extra.analyse(document_paths)
 
     kc_scope_path = "mvp/results/key_component_scope.txt"
     kc_usecase_diagram_path = "mvp/results/key_component_usecase_diagram.txt"
@@ -106,7 +108,7 @@ def main():
         kc_scope_path,
         profiles_path,
     )
-    profile_generation_evaluation.evaluate(profiles_path)
+    profile_evaluation.evaluate(profiles_path)
     # + human review: attribute correctness and archetype and quotes coherence
 
     scenario_questions_path = "mvp/results/scenario_questions.txt"
