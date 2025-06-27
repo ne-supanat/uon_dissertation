@@ -144,12 +144,51 @@ def write_quotes_from_raw_txt(destination_path: str):
                         )
 
 
-if __name__ == "__main__":
-    pass
+# TODO: improve - output format
+def finalise_key_components(
+    codes_quotes: str,
+    objective: str,
+    input: str,
+    output: str,
+) -> str:
+    prompt = f"""
+Based on following codes and quotes
 
+{codes_quotes}
+
+Use Engineering Agent-Based Social Simulations (EABSS) framework structure
+-	Actors (people/groups/organisation)
+-	Archetype (role/what they are allowed or expected to do)
+-	Social/Psychological aspect (rules or norms)
+-	key activities (behaviours performed under certain conditions)
+-	Physical component (tools or systems used)
+-	Interactions (who talks to or affects whom)
+
+Select minimum items from each each components that are the most important to build Agent-based modeling simulation with
+objective: {objective}
+input: {input}
+output: {output}
+
+Please reponse in this format
+key component 1
+- "code 1"
+    - "supporting quote 1"
+    - "supporting quote 2"
+- "code 2"
+    - "supporting quote 1"
+    - "supporting quote 2"
+"""
+    response = llm.generate_content(prompt)
+
+    # save key component
+    with open(f"mvp/results/key_components.txt", "w") as f:
+        f.write(response.text)
+
+
+if __name__ == "__main__":
     # thematic_analyse(
     #     ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"],
-    #     destination_path_txt="mvp/results/codes_quotes_raw.txt",
-    #     destination_path_csv="mvp/results/codes_quotes.csv",
+    #     destination_path_txt="mvp/results/thematic_analysis_codes.txt",
+    #     destination_path_csv="mvp/results/thematic_analysis_codes.csv",
     # )
-    write_quotes_from_raw_txt("mvp/results/codes_quotes_full.csv")
+    write_quotes_from_raw_txt("mvp/results/thematic_analysis_codes_sum.csv")

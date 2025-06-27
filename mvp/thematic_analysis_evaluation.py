@@ -113,11 +113,10 @@ def clustering(corpus: list[str]):
         print()
 
 
-if __name__ == "__main__":
-    interview_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+def evaluate(document_paths):
     corpus = []
 
-    for interview_path in interview_paths:
+    for interview_path in document_paths:
         with open(interview_path, "r") as f:
             for line in f:
                 # Cut only participant sentences
@@ -133,3 +132,8 @@ if __name__ == "__main__":
     topic_modeling(corpus)
     # Clustering
     clustering(corpus)
+
+
+if __name__ == "__main__":
+    document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    evaluate(document_paths)

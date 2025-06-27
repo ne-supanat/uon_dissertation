@@ -6,31 +6,15 @@ from pydantic import BaseModel
 
 import llm
 
+import thematic_analysis as ta
+import thematic_analysis_evaluation as tae
+import key_component_generation as kcg
 
-# TODO: function, variable name format
-
-
-class InputOutput(BaseModel):
-    input: str
-    output: str
-
-
-class Archetype(enum.Enum):
-    PragmaticCommuter = "Pragmatic Commuter"
-    EnvironmentallyAwareCommuter = "Environmentally Aware Commuter"
-
-
-class Profile(BaseModel):
-    attrs: list[str]
-    quotes: list[str]
-    archetype: Archetype
-
-
-class TransportationMode(enum.Enum):
-    Tram = "Tram"
-    Cycling = "Cycling"
-    Bus = "Bus"
-    Driving = "Driving"
+import profile_generation as pg
+import profile_generation_evaluation as pge
+import scenario_decision as sd
+import scenario_decision_evaluation as sde
+import decision_table as dt
 
 
 def get_objective():
@@ -54,163 +38,6 @@ def get_input_output():
         "traveller characteristic (age, gender, occupation, transportation preference)",
         "number of used of each transportation type",
     )
-
-
-def extract_code_and_quote(interview: str) -> str:
-    prompt = f"""
-Based on this transcript
-
-{interview}
-
-Use Engineering Agent-Based Social Simulations (EABSS) framework structure
--	Actors (people/groups/organisation)
--	Archetype (role/what they are allowed or expected to do)
--	Social/Psychological aspect (rules or norms)
--	Key activities (behaviours performed under certain conditions)
--	Physical component (tools or systems used)
--	Interactions (who talks to or affects whom)
-
-Perform thematic analysis on it. Focus only participant responses.
-follow these steps
-1. read the transcript
-2. identify components and supporting quotes under EABSS key components
-
-Please reponse in this format
-key component 1
-- "code 1"
-    - "supporting quote 1"
-    - "supporting quote 2"
-- "code 2"
-    - "supporting quote 1"
-    - "supporting quote 2"
-"""
-    response = llm.generate_content(prompt)
-    return response.text
-
-
-def finalise_codes_quotes(
-    codes_quotes: str,
-    objective: str,
-    input: str,
-    output: str,
-) -> str:
-    prompt = f"""
-Based on following codes and quotes
-
-{codes_quotes}
-
-Use Engineering Agent-Based Social Simulations (EABSS) framework structure
--	Actors (people/groups/organisation)
--	Archetype (role/what they are allowed or expected to do)
--	Social/Psychological aspect (rules or norms)
--	key activities (behaviours performed under certain conditions)
--	Physical component (tools or systems used)
--	Interactions (who talks to or affects whom)
-
-Select minimum items from each each components that are the most important to build Agent-based modeling simulation with
-objective: {objective}
-input: {input}
-output: {output}
-
-Please reponse in this format
-key component 1
-- "code 1"
-    - "supporting quote 1"
-    - "supporting quote 2"
-- "code 2"
-    - "supporting quote 1"
-    - "supporting quote 2"
-"""
-    response = llm.generate_content(prompt)
-    return response.text
-
-
-def draw_usecase_diagram(key_component: str):
-    prompt = f"""
-Based on following Engineering Agent-Based Social Simulations (EABSS) key components
-
-{key_component}
-
-generate UML use case diagram for all key activities
-response in plantUML format
-"""
-    response = llm.generate_content(prompt)
-    return response.text
-
-
-def draw_activity_diagram(key_component: str):
-    prompt = f"""
-Based on following Engineering Agent-Based Social Simulations (EABSS) key components
-
-{key_component}
-
-generate UML activity diagram for all key activities
-response in plantUML format
-"""
-    response = llm.generate_content(prompt)
-    return response.text
-
-
-def draw_state_transition_diagram(key_component: str):
-    prompt = f"""
-Based on following Engineering Agent-Based Social Simulations (EABSS) key components
-
-{key_component}
-
-generate UML state transition diagram of actor acretype if needed
-response in plantUML format
-"""
-    response = llm.generate_content(prompt)
-    return response.text
-
-
-def extract_profile(
-    interview: str,
-    profile_attrs: list[str],
-    objective: str,
-    key_components: str,
-):
-    prompt = f"""
-Base on this interview.
-
-{interview}
-
-and Key components
-
-{key_components}
-
-{f"""1. Extract following profile data:\n{[f"- {attr}\n" for attr in profile_attrs]}""" if profile_attrs else ""}
-2. Find supporting evidence (quotes) that related to {objective}
-3. Identify archetype base on archetype in key component
-"""
-    response = llm.generate_content(prompt, Profile)
-    return response.text
-
-
-def generate_scenario_questions():
-    prompt = f"""
-Generate set of {6} scenario-questions that let responders decide what to choose
-in different situation that needs to consider following options: Weather, Personal Health, Perceive Convenience, Environmental Impact, Cost
-with these transportation choices: Tram, Cycling, Taking Bus, Driving
-
-Response with only questions
-"""
-    response = llm.generate_content(prompt, list[str])
-    return response.text
-
-
-def answer_questions(profile, questions):
-    prompt = f"""
-Based on this profile
-
-{profile}
-
-answer this question
-
-{questions}
-"""
-    response = llm.generate_content(prompt, list[TransportationMode])
-    return response.text
 
 
 def generate_simulation_script(
@@ -252,105 +79,38 @@ def main():
     os.makedirs("mvp/results", exist_ok=True)
 
     # objective
-    obj = "explore different usages of transportation from home to workplace"
+    objective = "explore different usages of transportation from home to workplace"
 
     # input, output
     input, output = get_input_output()
 
-    # # codes, quotes
-    # for i in range(1,4):
-    #     interview = ""
-    #     file_name = f"data/mvp_{i}.txt"
-    #     with open(file_name, "r") as f:
-    #         interview = f.read()
-    #     codesAndQuotes = extract_code_and_quote(interview)
+    document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
 
-    #     # save codes, quotes
-    #     with open(f"mvp/results/codes_quotes.txt", "a+") as f:
-    #         f.write(f"{file_name}\n")
-    #         f.write(codesAndQuotes)
-    #         f.write("\n\n")
+    ta_codes_txt_path = "mvp/results/thematic_analysis_codes.txt"
+    ta_codes_csv_path = "mvp/results/thematic_analysis_codes.csv"
 
-    # # finalise EABSS key components
-    # with open("mvp/results/codes_quotes.txt", "r") as f:
-    #     codesQuotes = f.read()
-    # keyComponents = finalise_codes_quotes(codesQuotes, obj, input, output)
+    # # Extract key components codes with supporting quotes
+    # ta.thematic_analyse(document_paths, ta_codes_txt_path, ta_codes_csv_path)
+    # tae.evaluate(document_paths)
 
-    # # save key component
-    # with open(f"mvp/results/key_components.txt", "w") as f:
-    #     f.write(keyComponents)
+    # # Generate ABM key components
+    # kcg.generate()
+    # # - human review -
 
-    with open("mvp/results/key_components.txt", "r") as f:
-        keyComponents = f.read()
+    # # Profiles generation
+    # pg.generate_profile()
+    # pge.evaluate_profile()
 
-    # # key activities - UML use case diagram
-    # usecaseDiagram = drawKeyActivityUsecaseDiagram(keyComponents)
-    # with open(f"mvp/results/usecase_diagram.txt", "w") as f:
-    #     f.write(usecaseDiagram)
+    # # Scenario-question answering
+    # sd.generate_profile_answers(
+    #     "mvp/results/scenario_questions.txt",
+    #     "mvp/results/profiles.txt",
+    #     "mvp/results/scenario_answer_record.csv",
+    # )
+    # sde.score_anwser()
 
-    # activityDiagram = drawActivityDiagram(keyComponents)
-    # with open(f"mvp/results/activity_diagram.txt", "w") as f:
-    #     f.write(activityDiagram)
-
-    # # user state machine - UML state diagram
-    # stateTransitionDiagram = drawStateTransition(keyComponents)
-    # with open(f"mvp/results/state_transition_diagram.txt", "w") as f:
-    #     f.write(stateTransitionDiagram)
-
-    # # profiles
-    # for i in range(1, 4):
-    #     interview = ""
-    #     file_name = f"data/mvp_{i}.txt"
-    #     with open(file_name, "r") as f:
-    #         interview = f.read()
-    #     profileStr = extract_profile(
-    #         interview, ["age", "distance from homw to work"], obj, keyComponents
-    #     )
-
-    #     profile: dict = json.loads(profileStr)
-    #     profile["file"] = file_name
-
-    #     with open(f"mvp/results/profiles.txt", "a+") as f:
-    #         f.write(json.dumps(profile))
-    #         f.write("\n\n")
-
-    # # generate scenario-questions
-    # questions = generateScenarioQuestions()
-    # with open(f"mvp/results/scenario_questions.txt", "a+") as f:
-    #     f.write(questions)
-
-    # scenario-question answering
-    with open(f"mvp/results/scenario_questions.txt", "r") as f:
-        questions = json.loads(f.read())
-    with open("mvp/results/profiles.txt", "r") as f:
-        content = f.read()
-        profiles = [p for p in content.split("\n\n") if p != ""]
-
-    # with open(f"mvp/results/answer_record.csv", "a+") as f:
-    #     for profileStr in profiles:
-    #         profile: dict = json.loads(profileStr)
-    #         answers = answerQuestions(profile, questions)
-    #         f.write(f"{profile['file']};{profile['archetype']};")
-    #         f.write(";".join(json.loads(answers)))
-    #         f.write("\n")
-
-    # # action decision table
-    # df = pd.read_csv("mvp/results/answer_record.csv", sep=";", header=None)
-    # df.columns = ["file", "type"] + [f"q{i+1}" for i in range(len(questions))]
-
-    # with open(f"mvp/results/answer_prob.csv", "a+") as f:
-    #     for type in Archetype:
-    #         archetypeDF = df[df["type"] == type.value]
-    #         archetypeSize = archetypeDF.shape[0]
-
-    #         for i in range(len(questions)):
-    #             for mode in TransportationMode:
-    #                 answerDF = archetypeDF[archetypeDF[f"q{i+1}"] == mode.value]
-
-    #                 prob = answerDF.shape[0] / archetypeSize
-    #                 print(f"{type.value};{questions[i]};{mode.value};{prob}")
-
-    #                 f.write(f"{type.value};{questions[i]};{mode.value};{prob}\n")
+    # # Decision table
+    # dt.generate()
 
     # # gen simulation script
     # with open(f"mvp/results/usecase_diagram.txt", "r") as f:
@@ -377,9 +137,6 @@ def main():
     # )
     # with open(f"mvp/results/script.py", "w") as f:
     #     f.write(script)
-
-    # evaluation
-    #
 
 
 if __name__ == "__main__":
