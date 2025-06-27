@@ -13,6 +13,7 @@ class Archetype(enum.Enum):
 
 
 class Profile(BaseModel):
+    file: str
     attrs: list[str]
     quotes: list[str]
     archetype: Archetype

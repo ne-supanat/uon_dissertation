@@ -89,17 +89,18 @@ def main():
     ta_codes_txt_path = "mvp/results/thematic_analysis_codes.txt"
     ta_codes_csv_path = "mvp/results/thematic_analysis_codes.csv"
 
-    # # Extract key components codes with supporting quotes
-    # ta.thematic_analyse(document_paths, ta_codes_txt_path, ta_codes_csv_path)
-    # tae.evaluate(document_paths)
+    # Extract key components codes with supporting quotes
+    ta.thematic_analyse(document_paths, ta_codes_txt_path, ta_codes_csv_path)
+    tae.evaluate(document_paths)
 
-    # # Generate ABM key components
-    # kcg.generate()
-    # # - human review -
+    # Generate ABM key components
+    kcg.generate()
+    # + human review: codes and quotes coherence
 
-    # # Profiles generation
-    # pg.generate_profile()
-    # pge.evaluate_profile()
+    # Profiles generation
+    pg.generate_profile()
+    pge.evaluate_profile()
+    # + human review: attribute correctness and archetype and quotes coherence
 
     # # Scenario-question answering
     # sd.generate_profile_answers(
