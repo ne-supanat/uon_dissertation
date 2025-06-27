@@ -1,20 +1,16 @@
 import os
-import enum
-import json
-import pandas as pd
-from pydantic import BaseModel
 
 import llm
 
-import thematic_analysis as ta
-import thematic_analysis_evaluation as tae
-import key_component_generation as kcg
+import thematic_analysis
+import thematic_analysis_evaluation
+import key_component_generation
 
-import profile_generation as pg
-import profile_generation_evaluation as pge
-import scenario_decision as sd
-import scenario_decision_evaluation as sde
-import decision_table as dt
+import profile_generation
+import profile_generation_evaluation
+import scenario_decision
+import scenario_decision_evaluation
+import decision_table
 
 
 def get_objective():
@@ -22,18 +18,6 @@ def get_objective():
 
 
 def get_input_output():
-    # response = llm.generateContent(
-    #     prompt=f"""based on this objective: {obj}, what should be input and output of the simulation to satisfied the objective""",
-    #     response_schema=InputOutput,
-    # )
-
-    # # Use instantiated objects.
-    # inputOutput: InputOutput = response.parsed
-
-    # print(inputOutput)
-    # return inputOutput.input, inputOutput.output
-
-    # return input, output
     return (
         "traveller characteristic (age, gender, occupation, transportation preference)",
         "number of used of each transportation type",
@@ -78,10 +62,10 @@ generate agentPy simulation script
 def main():
     os.makedirs("mvp/results", exist_ok=True)
 
-    # objective
+    # Objective
     objective = "explore different usages of transportation from home to workplace"
 
-    # input, output
+    # Input, Output
     input, output = get_input_output()
 
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
@@ -90,30 +74,69 @@ def main():
     ta_codes_csv_path = "mvp/results/thematic_analysis_codes.csv"
 
     # Extract key components codes with supporting quotes
-    ta.thematic_analyse(document_paths, ta_codes_txt_path, ta_codes_csv_path)
-    tae.evaluate(document_paths)
+    thematic_analysis.analyse(document_paths, ta_codes_txt_path, ta_codes_csv_path)
+    thematic_analysis_evaluation.evaluate(document_paths)
+
+    kc_scope_path = "mvp/results/key_component_scope.txt"
+    kc_usecase_diagram_path = "mvp/results/key_component_usecase_diagram.txt"
+    kc_activity_diagram_path = "mvp/results/key_component_activity_diagram.txt"
+    kc_state_transition_diagram_path = (
+        "mvp/results/key_component_state_transition_diagram.txt"
+    )
 
     # Generate ABM key components
-    kcg.generate()
-    # + human review: codes and quotes coherence
+    key_component_generation.generate(
+        objective,
+        input,
+        output,
+        ta_codes_txt_path,
+        kc_scope_path,
+        kc_usecase_diagram_path,
+        kc_activity_diagram_path,
+        kc_state_transition_diagram_path,
+    )
+    # + human review: codes and quotes coherence, diagrams review
+
+    profiles_path = "mvp/results/profiles.txt"
 
     # Profiles generation
-    pg.generate_profile()
-    pge.evaluate_profile()
+    profile_generation.generate(
+        document_paths,
+        objective,
+        kc_scope_path,
+        profiles_path,
+    )
+    profile_generation_evaluation.evaluate(profiles_path)
     # + human review: attribute correctness and archetype and quotes coherence
 
-    # # Scenario-question answering
-    # sd.generate_profile_answers(
-    #     "mvp/results/scenario_questions.txt",
-    #     "mvp/results/profiles.txt",
-    #     "mvp/results/scenario_answer_record.csv",
-    # )
-    # sde.score_anwser()
+    scenario_questions_path = "mvp/results/scenario_questions.txt"
+    scenario_ground_truth_path = "mvp/results/scenario_ground_truth.txt"
 
-    # # Decision table
-    # dt.generate()
+    scenario_answers_path = "mvp/results/scenario_answers.csv"
+    scenario_scores_path = "mvp/results/scenario_scores.csv"
 
-    # # gen simulation script
+    # Scenario-question answering
+    scenario_decision.generate_profile_answers(
+        scenario_questions_path,
+        profiles_path,
+        scenario_answers_path,
+    )
+    scenario_decision_evaluation.generate_ground_truth(
+        scenario_questions_path,
+        scenario_ground_truth_path,
+    )
+    scenario_decision_evaluation.score_profile_anwsers(
+        scenario_ground_truth_path,
+        scenario_answers_path,
+        scenario_scores_path,
+    )
+
+    scenario_probability_path = "scenario_probability.csv"
+
+    # Decision table
+    decision_table.generate(scenario_questions_path, scenario_probability_path)
+
+    # # Generate simulation script
     # with open(f"mvp/results/usecase_diagram.txt", "r") as f:
     #     usecase = f.read()
 

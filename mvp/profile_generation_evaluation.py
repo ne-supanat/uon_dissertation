@@ -3,7 +3,7 @@ import json
 from response_models import Profile
 
 
-def evaluate_profile(profiles_path: str):
+def evaluate(profiles_path: str):
     with open(profiles_path, "r") as f:
         content = f.read()
 
@@ -31,4 +31,5 @@ def evaluate_profile(profiles_path: str):
 
 
 if __name__ == "__main__":
-    evaluate_profile("mvp/results/profiles.txt")
+    profiles_path = "mvp/results/profiles.txt"
+    evaluate(profiles_path)

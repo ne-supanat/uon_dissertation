@@ -1,60 +1,22 @@
 import json
-from pydantic import BaseModel
 from google.genai.types import GenerateContentResponse
 
 import llm
+from response_models import KeyComponents
 
 
-class Code(BaseModel):
-    code: str
-    quotes: list[str]
-
-
-class KeyComponents(BaseModel):
-    file: str
-    actors: list[Code]
-    archetypes: list[Code]
-    physical_components: list[Code]
-    social_aspect: list[Code]
-    psychological_aspect: list[Code]
-    misc: list[Code]
-    key_activities: list[Code]
-
-    def get_component_names():
-        return [
-            "Actors",
-            "Archetypes",
-            "Physical Components",
-            "Social Aspect",
-            "Psychological Aspect",
-            "Misc",
-            "Key Activities",
-        ]
-
-    def get_component_keys():
-        return [
-            "actors",
-            "archetypes",
-            "physical_components",
-            "social_aspect",
-            "psychological_aspect",
-            "misc",
-            "key_activities",
-        ]
-
-
-def thematic_analyse(
-    interview_paths: list[str], destination_path_txt: str, destination_path_csv: str
+def analyse(
+    document_paths: list[str], destination_path_txt: str, destination_path_csv: str
 ):
     # Write head of table
     with open(destination_path_csv, "w") as f:
         f.write("File;Component;Code;Quote\n")
 
-    for interview_path in interview_paths:
-        interview = ""
-        with open(interview_path, "r") as f:
-            interview = f.read()
-        response = extract_key_components(interview, interview_path)
+    for document_path in document_paths:
+        document = ""
+        with open(document_path, "r") as f:
+            document = f.read()
+        response = extract_key_components(document, document_path)
 
         # Write raw response (json)
         with open(destination_path_txt, "a+") as f:
@@ -81,38 +43,30 @@ def thematic_analyse(
                     # Write quote as row record (csv)
                     with open(destination_path_csv, "a+") as f:
                         f.write(
-                            f"{interview_path};{component_name};{code.code};{quote}\n"
+                            f"{document_path};{component_name};{code.code};{quote}\n"
                         )
 
 
 def extract_key_components(
-    interview: str,
-    interview_path: str,
+    document: str,
+    document_path: str,
 ) -> GenerateContentResponse:
 
     prompt = f"""
 Based on this transcript
 
-{interview}
+{document}
 
 Focus only participant responses.
 Perform thematic analysis and identify key codes and supporting quotes for Agent-Based Modeling system
 
 Following these key components
--	Actors are agents which can be a person or groups or organisation inside the system
--	Archetypes are categories of Actors defines what they are allowed or expected to do
--	Physical components are objects or tools or systems that actors use
--	Social aspect is rules or norms about social behaviour
--   Psychological aspect is rules or norms about psychological behaviour
--   Misc are real world elements that do not fall in any component
-
--	Key activities are interactions between actors and actors or actors and system environment
-
+{KeyComponents.get_explanation()}
 
 Each component has minimum of {2} codes
 Each code has maximum of {2} quotes
 
-filePath is {interview_path}
+file is {document_path}
 """
     response = llm.generate_content(
         prompt,
@@ -121,9 +75,9 @@ filePath is {interview_path}
     return response
 
 
-def write_quotes_from_raw_txt(destination_path: str):
+def write_codes_csv_from_txt(codes_txt_path, destination_path: str):
     # Read final raw codes
-    with open(f"mvp/results/codes_quotes_raw.txt", "r") as f:
+    with open(codes_txt_path, "r") as f:
         content = f.read()
 
     # Write head of table
@@ -144,51 +98,14 @@ def write_quotes_from_raw_txt(destination_path: str):
                         )
 
 
-# TODO: improve - output format
-def finalise_key_components(
-    codes_quotes: str,
-    objective: str,
-    input: str,
-    output: str,
-) -> str:
-    prompt = f"""
-Based on following codes and quotes
-
-{codes_quotes}
-
-Use Engineering Agent-Based Social Simulations (EABSS) framework structure
--	Actors (people/groups/organisation)
--	Archetype (role/what they are allowed or expected to do)
--	Social/Psychological aspect (rules or norms)
--	key activities (behaviours performed under certain conditions)
--	Physical component (tools or systems used)
--	Interactions (who talks to or affects whom)
-
-Select minimum items from each each components that are the most important to build Agent-based modeling simulation with
-objective: {objective}
-input: {input}
-output: {output}
-
-Please reponse in this format
-key component 1
-- "code 1"
-    - "supporting quote 1"
-    - "supporting quote 2"
-- "code 2"
-    - "supporting quote 1"
-    - "supporting quote 2"
-"""
-    response = llm.generate_content(prompt)
-
-    # save key component
-    with open(f"mvp/results/key_components.txt", "w") as f:
-        f.write(response.text)
-
-
 if __name__ == "__main__":
-    # thematic_analyse(
-    #     ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"],
-    #     destination_path_txt="mvp/results/thematic_analysis_codes.txt",
-    #     destination_path_csv="mvp/results/thematic_analysis_codes.csv",
-    # )
-    write_quotes_from_raw_txt("mvp/results/thematic_analysis_codes_sum.csv")
+    document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    analyse(
+        document_paths,
+        "mvp/results/thematic_analysis_codes.txt",
+        "mvp/results/thematic_analysis_codes.csv",
+    )
+    write_codes_csv_from_txt(
+        "mvp/results/thematic_analysis_codes.txt",
+        "mvp/results/thematic_analysis_codes_sum.csv",
+    )

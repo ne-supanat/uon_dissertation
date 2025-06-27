@@ -1,50 +1,79 @@
 import json
+from google.genai.types import GenerateContentResponse
+
 import llm
 from response_models import Profile
 
 
 def extract_profile(
-    interview: str,
+    document: str,
     profile_attrs: list[str],
     objective: str,
-    key_components: str,
-):
+    key_component_scope: str,
+    document_path: str,
+) -> GenerateContentResponse:
     prompt = f"""
-Base on this interview.
+Base on this transcript
 
-{interview}
+{document}
 
-and Key components
+and this key components
 
-{key_components}
+{key_component_scope}
 
-{f"""1. Extract following profile data:\n{[f"- {attr}\n" for attr in profile_attrs]}""" if profile_attrs else ""}
-2. Find supporting evidence (quotes) that related to {objective}
-3. Identify archetype base on archetype in key component
+{f"""Extract following profile data:
+ {[f"- {attr}\n" for attr in profile_attrs]}
+
+reponse with only answer. for example "my age is 25" response with "25"
+""" if profile_attrs else ""}
+
+Find supporting evidence (quotes) that related to {objective}
+Identify archetype base on archetype in key component
+
+file is {document_path}
 """
     response = llm.generate_content(prompt, Profile)
-    return response.text
+    return response
 
 
-def generate_profile():
-    objective = ""
+def generate(
+    document_paths: list[str],
+    objective: str,
+    key_component_scope_path: str,
+    profiles_path: str,
+):
+    with open(key_component_scope_path, "r") as f:
+        key_component_scope = f.read()
 
-    with open("mvp/results/key_components.txt", "r") as f:
-        key_components = f.read()
-
-    # profiles
-    for i in range(1, 4):
-        interview = ""
-        file_name = f"data/mvp_{i}.txt"
-        with open(file_name, "r") as f:
-            interview = f.read()
-        profileStr = extract_profile(
-            interview, ["age", "distance from homw to work"], objective, key_components
+    for document_path in document_paths:
+        document = ""
+        with open(document_path, "r") as f:
+            document = f.read()
+        response = extract_profile(
+            document,
+            [
+                "age: how old is participant",
+                "distance: what is distance from homw to work",
+            ],
+            objective,
+            key_component_scope,
+            document_path,
         )
 
-        profile: dict = json.loads(profileStr)
-        profile["file"] = file_name
-
-        with open(f"mvp/results/profiles.txt", "a+") as f:
-            f.write(json.dumps(profile))
+        with open(profiles_path, "a+") as f:
+            f.write(response.text)
             f.write("\n\n")
+
+
+if __name__ == "__main__":
+    document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    objective = "explore different usages of transportation from home to workplace"
+    kc_scope_path = "mvp/results/key_component_scope.txt"
+    profiles_path = "mvp/results/profiles.txt"
+
+    generate(
+        document_paths,
+        objective,
+        kc_scope_path,
+        profiles_path,
+    )

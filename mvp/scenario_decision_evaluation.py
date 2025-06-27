@@ -4,7 +4,10 @@ import llm
 from response_models import TransportationMode, Archetype
 
 
-def generate_ground_truth(questions: list[str]):
+def generate_ground_truth(scenario_questions_path, scenario_ground_truth_path):
+    with open(scenario_questions_path, "r") as f:
+        questions = json.loads(f.read())
+
     prompt = f"""
 Archetypes are {", ".join([type.value for type in Archetype])}
 Choices are {", ".join([type.value for type in TransportationMode])}
@@ -29,15 +32,17 @@ which is
 ]{"}"}
 """
     response = llm.generate_content(prompt, list[list[list[TransportationMode]]])
-    with open(f"mvp/results/scenario_ground_truth.txt", "w") as f:
+    with open(scenario_ground_truth_path, "w") as f:
         f.write(response.text)
 
 
-def score_anwser():
-    with open(f"mvp/results/scenario_ground_truth.txt", "r") as fr:
+def score_profile_anwsers(
+    scenario_ground_truth_path, scenario_answers_path, scenario_scores_path
+):
+    with open(scenario_ground_truth_path, "r") as fr:
         ground_truth: list[list[list[TransportationMode]]] = json.loads(fr.read())
 
-    with open(f"mvp/results/scenario_answer_record.csv", "r") as fr:
+    with open(scenario_answers_path, "r") as fr:
         line = fr.readline()
         while line:
             line_split = line.strip().split(";")
@@ -51,15 +56,24 @@ def score_anwser():
                 if answer in ground_truth[i][archetype_index]:
                     score += 1
 
-            with open(f"mvp/results/scenario_question_score.csv", "a+") as fw:
+            with open(scenario_scores_path, "a+") as fw:
                 fw.write(f"{file};{score / len(answers)}\n")
 
             line = fr.readline()
 
 
 if __name__ == "__main__":
-    # with open(f"mvp/results/scenario_questions.txt", "r") as f:
-    #     questions = json.loads(f.read())
-    #     generate_ground_truth(questions)
+    scenario_questions_path = "mvp/results/scenario_questions.txt"
+    scenario_ground_truth_path = "mvp/results/scenario_ground_truth.txt"
 
-    score_anwser()
+    scenario_answers_path = "mvp/results/scenario_answers.csv"
+    scenario_scores_path = "mvp/results/scenario_scores.csv"
+
+    generate_ground_truth(
+        scenario_questions_path,
+        scenario_ground_truth_path,
+    )
+
+    score_profile_anwsers(
+        scenario_ground_truth_path, scenario_answers_path, scenario_scores_path
+    )
