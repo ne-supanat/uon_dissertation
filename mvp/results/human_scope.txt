@@ -1,0 +1,78 @@
+*Actors are agents which can be a person or groups or organisation inside the system
+participant
+
+
+*Archetypes are categories of Actors defines what they are allowed or expected to do
+environmental awareness
+    (1) I started thinking more about my carbon footprint
+    (1) One big factor was learning more about the environmental impact of daily commuting
+
+
+*Physical components are objects or tools or systems that actors use
+bike
+    (1) so I cycle most days
+car
+    (1) I used to drive
+    (2) I used to drive
+public transport (bus, tram, train)
+    (1) I take the bus
+    (1) but when people choose to cycle, walk, or take public transport
+    (2) Mostly by tram
+    (3) Eventually I settled on the train because it’s the most predictable and time-efficient for my route
+
+
+*Social aspect is rules or norms about social behaviour
+transportation mode depend on environment
+    (1) depending on traffic and weather
+    (2) I do it occasionally when the weather’s right
+workplace supports sustainable commuting
+    (1) They actually have a cycle-to-work scheme
+    (1) There’s a really nice culture of encouraging sustainable habits there.
+    (2) We’ve got a bike rack
+    (2) They also give out travel vouchers for public transport
+    (3) We have flexible hours, a good remote work policy, and support for cycle commuting
+
+Psychological aspect is rules or norms about psychological behaviour
+environmental awareness
+    (2) I started feeling guilty about my car basically puffing out fumes every day
+    (2) if the system made it simple and actually convenient to go green, more folks would jump on board.
+    (3) I care about long-term impact
+mood change
+    (2) I’m less grumpy in the mornings
+    (2) I don’t have to panic about finding parking anymore
+convenience (+traffic, +parking fee)
+    (2) but sitting in traffic every morning was driving me a bit mad
+    (2) Traffic was a nightmare
+    (2) parking was expensive
+    (2) Same with cycling—give us safe bike lanes and people will ride. It shouldn’t feel like you need a survival kit just to bike to work
+    (2) If public transport is reliable, clean, and not wildly expensive, more people will use it
+    (3) If it’s slower, more confusing, or less comfortable than driving, they’ll default to the car
+
+Misc are real world elements that do not fall in any component
+carbon emissions
+    (1) it reduces emissions and traffic congestion
+traffic congestion
+    (1) it reduces emissions and traffic congestion
+    (1) Instead of sitting in a jam
+quality of life
+    (1) And it often improves quality of life too.
+money
+    (1) I also save money on fuel and parking
+distance to work
+    (3) I work about 8 kilometers away
+weather
+    (1) if it’s raining heavily or I’m feeling unwell
+    (2) If the weather’s nice, I’ll walk
+policy
+    (1) we need better infrastructure and policy
+    (1) the lack of safe bike lanes or inconsistent bus schedules puts them off
+
+Key activities are interactions between actors and actors or actors and system environment
+choose trasportation mode
+    (1) so I cycle most days
+    (2)  I walk or use public transport when I can
+talk to friends
+    (1) Yes, 100%. I talk to friends who say they’d love to bike or take public transport
+    (3) People talk about their commute in terms of quality of life, not just cost or speed. That shift in mindset matters.
+green behaviour
+    (2) I recycle, I try not to waste food

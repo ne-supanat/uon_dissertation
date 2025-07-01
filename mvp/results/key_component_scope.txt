@@ -9,26 +9,26 @@
       ]
     },
     {
-      "code": "City Planners/Designers",
+      "code": "Colleagues",
       "quotes": [
-        "If we design systems better—trains, buses, bike infrastructure—people will naturally make better choices",
-        "Integrated planning. I’d focus on synchronizing modes—bus, train, bike—with a single, unified platform."
+        "I also sometimes carpool with a colleague if we have early meetings.",
+        "A few of my colleagues have switched to biking too."
       ]
     }
   ],
   "archetypes": [
     {
-      "code": "Sustainable Commuter",
+      "code": "Environmentally Conscious Commuter",
       "quotes": [
-        "Yes, most of the time. I actually switched to biking regularly about two years ago.",
-        "Eventually I settled on the train because it’s the most predictable and time-efficient for my route."
+        "I started thinking more about my carbon footprint",
+        "I was reading articles and listening to podcasts about climate change, and it struck me that transportation is such a big contributor."
       ]
     },
     {
-      "code": "Pragmatic commuter",
+      "code": "Pragmatic adopter",
       "quotes": [
         "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
-        "I think a lot of people want to, but life gets in the way. You’ve got families, long commutes, weird schedules."
+        "If public transport is reliable, clean, and not wildly expensive, more people will use it."
       ]
     }
   ],
@@ -36,15 +36,15 @@
     {
       "code": "Bicycle",
       "quotes": [
-        "I live about 10 kilometers from my workplace, so I cycle most days.",
-        "We’ve got a bike rack, some people use it religiously."
+        "I cycle most days.",
+        "Instead of sitting in a jam, I’m cruising past traffic on a bike lane."
       ]
     },
     {
-      "code": "Public Transportation (Bus)",
+      "code": "Bus",
       "quotes": [
         "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
-        "Just make it easier and cheaper. If public transport is reliable, clean, and not wildly expensive, more people will use it."
+        "It’s pretty reliable, and there’s a bus stop just a few minutes from my flat."
       ]
     }
   ],
@@ -52,15 +52,13 @@
     {
       "code": "Workplace Culture",
       "quotes": [
-        "Definitely. They actually have a cycle-to-work scheme, which I joined.",
-        "They also give out travel vouchers for public transport, which is sweet."
+        "There’s a really nice culture of encouraging sustainable habits there."
       ]
     },
     {
-      "code": "Community infrastructure",
+      "code": "Carpooling Norms",
       "quotes": [
-        "give us safe bike lanes and people will ride.",
-        "It shouldn’t feel like you need a survival kit just to bike to work."
+        "I also sometimes carpool with a colleague if we have early meetings."
       ]
     }
   ],
@@ -68,47 +66,48 @@
     {
       "code": "Stress reduction",
       "quotes": [
-        "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
-        "Reducing stress, improving fitness, saving money—these things add up."
+        "Traffic was a nightmare, parking was expensive",
+        "I’m less grumpy in the mornings, I save money, and I don’t have to panic about finding parking anymore."
       ]
     },
     {
       "code": "Enjoyment of commute",
       "quotes": [
         "I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes.",
-        "It’s just a more peaceful start to the day."
+        "If the weather’s nice, I’ll walk. It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
       ]
     }
   ],
   "misc": [
-    {
-      "code": "Distance",
-      "quotes": [
-        "I live about 10 kilometers from my workplace",
-        "I work in the city center, about 6 or 7 kilometers from home."
-      ]
-    },
     {
       "code": "Weather",
       "quotes": [
         "depending on traffic and weather.",
         "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
       ]
+    },
+    {
+      "code": "Distance",
+      "quotes": [
+        "I live about 10 kilometers from my workplace",
+        "I work about 8 kilometers away"
+      ]
     }
   ],
   "key_activities": [
     {
-      "code": "Commuting Choice",
+      "code": "Commuting Mode Selection",
       "quotes": [
-        "I used to drive, but I started thinking more about my carbon footprint—and honestly, it just felt better to be more active in the mornings.",
-        "I used to drive, but sitting in traffic every morning was driving me a bit mad."
+        "I cycle most days.",
+        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
+        "I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram"
       ]
     },
     {
-      "code": "Advocacy and Awareness",
+      "code": "Workplace Interaction",
       "quotes": [
-        "I talk to friends who say they’d love to bike or take public transport, but the lack of safe bike lanes or inconsistent bus schedules puts them off.",
-        "Infrastructure first, then behavior follows."
+        "I also sometimes carpool with a colleague if we have early meetings.",
+        "We also have secure bike storage and showers, which makes it easier."
       ]
     }
   ]

@@ -7,6 +7,10 @@ class InputOutput(BaseModel):
     output: str
 
 
+class ScriptResponse(BaseModel):
+    script: str
+
+
 class Code(BaseModel):
     code: str
     quotes: list[str]

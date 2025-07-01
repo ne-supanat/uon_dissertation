@@ -1,48 +1,40 @@
 ```plantuml
 @startuml
-' Style definitions
-skinparam activity {
+' Styling options
+skinparam activity{
   BackgroundColor White
   BorderColor Black
-  FontName Arial
-  FontSize 12
-  StartColor Green
-  EndColor Red
 }
 
-skinparam arrow {
-  Color Black
-  Style solid
-  Thickness 1
-}
+' Start
+(*) --> "[Commuting Mode Selection]";
 
-' Activity Diagram
-title Commuter Transportation Choice Activity Diagram
-
-start
-
-' Choosing Mode of Transport
-:Choosing Mode of Transport;
-note right: Influenced by:\n- Traveller Characteristics\n- Environmental Conditions\n- Perceived Convenience\n- Cost
-
-if (Raining Heavily or Unwell?) then (yes)
-  :Take the Bus;
-  -> [End Condition] Stop
-elseif (Route is easy and cycle friendly?) then (yes)
-  :Cycle to Work;
-  note right: Consider Cycle-to-Work Scheme\n& secure bike storage/showers;
-  -> [End Condition] Stop
-elseif (Public transport is reliable and inexpensive?) then (yes)
-  :Take Public Transportation (Tram/Bus);
-  note right: Tram: Avoid Traffic,\nRead News/Memes;
-  -> [End Condition] Stop
-else (no)
-  :Consider Other Transportation Options (e.g., Car);
-  note right: Evaluate impact on Environment, Cost, and Convenience;
-  -> [End Condition] Stop
+' Commuting Mode Selection
+if "[Commuting Mode Selection]" then
+  -[#blue]->[Cycle] "Cycle most days";
+  -[#green]->[Bus] "Raining or Unwell";
+  -[#red]->[Tram/Public Transport] "Used to drive, now take tram";
+  -[#orange]->[Drive] "Based on Pragmatic adopter";
+else
+  --> [*]
 endif
 
-stop
+' Workplace Interaction
+"[Commuting Mode Selection]" --> "[Workplace Interaction]": Commute to work;
 
+if "[Workplace Interaction]" then
+  -[#blue]->[Carpooling] "Carpool with colleagues for early meetings";
+  -[#green]->[Use Bike Storage/Showers] "Use bike storage and showers";
+else
+  --> [*]
+endif
+
+' End
+"[Carpooling]" --> (*)
+"[Use Bike Storage/Showers]" --> (*)
+"[Cycle]" --> (*)
+"[Bus]" --> (*)
+"[Tram/Public Transport]" --> (*)
+"[Drive]" --> (*)
 @enduml
 ```

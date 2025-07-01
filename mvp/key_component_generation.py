@@ -1,5 +1,5 @@
 import llm
-from response_models import KeyComponents
+from response_models import KeyComponents, ScriptResponse
 
 
 def finalise_key_components(
@@ -26,7 +26,6 @@ Each code has maximum all relevant quotes
 
 file is {None}
 """
-    print(prompt)
     response = llm.generate_content(prompt, KeyComponents)
 
     # Save key component
@@ -43,8 +42,8 @@ Based on following Engineering Agent-Based Social Simulations (EABSS) key compon
 generate UML use case diagram for all key activities
 response in plantUML format
 """
-    response = llm.generate_content(prompt)
-    return response.text
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
 
 
 def draw_activity_diagram(key_component: str):
@@ -56,8 +55,8 @@ Based on following Engineering Agent-Based Social Simulations (EABSS) key compon
 generate UML activity diagram for all key activities
 response in plantUML format
 """
-    response = llm.generate_content(prompt)
-    return response.text
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
 
 
 def draw_state_transition_diagram(key_component: str):
@@ -69,8 +68,8 @@ Based on following Engineering Agent-Based Social Simulations (EABSS) key compon
 generate UML state transition diagram of actor acretype if needed
 response in plantUML format
 """
-    response = llm.generate_content(prompt)
-    return response.text
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
 
 
 def generate(

@@ -3,18 +3,16 @@
 left to right direction
 
 actor "Individual Commuter" as Commuter
+actor "Colleagues" as Colleagues
 
-rectangle "Transportation ABM System" {
-  usecase "Choosing Mode of Transport" as ChooseMode
-  usecase "Tram Commuting" as TramCommuting
+rectangle "Commuting System" {
+  usecase "Commuting Mode Selection" as ModeSelection
+  usecase "Workplace Interaction" as Interaction
 }
 
-Commuter -- ChooseMode
-Commuter -- TramCommuting
-
-note left of ChooseMode : Includes considering:\n- Weather\n- Health\n- Convenience\n- Route characteristics
-
-note right of TramCommuting :  Impacted by:\n- Traffic\n- Travel Time\n- Comfort
+Commuter -- ModeSelection
+Colleagues -- Interaction
+Colleagues -- ModeSelection : Carpool
 
 @enduml
 ```

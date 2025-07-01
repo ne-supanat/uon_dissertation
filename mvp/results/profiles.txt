@@ -1,15 +1,12 @@
 {
   "file": "data/mvp_1.txt",
   "attrs": [
-    "age: unknown",
-    "miles: 10 kilometers"
+    "10 kilometers"
   ],
   "quotes": [
-    "I live about 10 kilometers from my workplace, so I cycle most days.",
-    "Yes, most of the time. I actually switched to biking regularly about two years ago.",
-    "I used to drive, but I started thinking more about my carbon footprint—and honestly, it just felt better to be more active in the mornings.",
+    "I cycle most days.",
     "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
-    "I also sometimes carpool with a colleague if we have early meetings."
+    "I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram"
   ],
   "archetype": "Environmentally Aware Commuter"
 }
@@ -17,14 +14,13 @@
 {
   "file": "data/mvp_2.txt",
   "attrs": [
-    "distance: 6-7 kilometers"
+    "distance"
   ],
   "quotes": [
-    "Mostly by tram, actually. I used to drive, but sitting in traffic every morning was driving me a bit mad.",
+    "I work in the city center, about 6 or 7 kilometers from home.",
     "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
     "Sometimes, yeah! If the weather’s nice, I’ll walk.",
-    "I don’t own a car anymore, and honestly, I don’t miss it.",
-    "I used to drive, but sitting in traffic every morning was driving me a bit mad."
+    "I’m less grumpy in the mornings, I save money, and I don’t have to panic about finding parking anymore."
   ],
   "archetype": "Pragmatic Commuter"
 }
@@ -32,12 +28,11 @@
 {
   "file": "data/mvp_3.txt",
   "attrs": [
-    "miles: 5 miles"
+    "8 kilometers"
   ],
   "quotes": [
     "I work about 8 kilometers away, and I usually take the train and walk the rest.",
-    "Eventually I settled on the train because it’s the most predictable and time-efficient for my route.",
-    "I’ve experimented with different options over the years—driving, biking, walking combinations."
+    "I’ve experimented with different options over the years—driving, biking, walking combinations. Eventually I settled on the train because it’s the most predictable and time-efficient for my route."
   ],
   "archetype": "Pragmatic Commuter"
 }

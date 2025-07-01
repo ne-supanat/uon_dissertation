@@ -26,6 +26,8 @@ def generate_profile_answers(question_path, profiles_path, answer_path):
         content = f.read()
     profiles = [profile for profile in content.strip().split("\n\n")]
 
+    # TODO: hide archetype
+
     with open(answer_path, "a+") as f:
         for profileStr in profiles:
             profile: Profile = Profile.model_validate_json(profileStr)
