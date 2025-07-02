@@ -15,12 +15,9 @@ import decision_table
 import script_generation
 
 
-def get_objective():
-    return
-
-
-def get_input_output():
-    return ()
+def get_transcript_file_paths(source_path):
+    return ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    # return [f"{source_path}/{filename}" for filename in sorted(os.listdir(source_path))]
 
 
 def main():
@@ -28,12 +25,10 @@ def main():
 
     # Objective, Input, Output
     objective = "explore different usages of transportation from home to workplace"
-    input = (
-        "traveller characteristic (age, gender, occupation, transportation preference)",
-    )
-    output = ("number of used of each transportation type",)
+    input = "traveller characteristic (transportation preference)"
+    output = "number of used of each transportation type"
 
-    document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    document_paths = get_transcript_file_paths("data/diary_txt")
 
     ta_codes_txt_path = "mvp/results/thematic_analysis_codes.txt"
     ta_codes_csv_path = "mvp/results/thematic_analysis_codes.csv"

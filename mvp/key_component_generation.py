@@ -18,8 +18,8 @@ Following these key components
 
 Select minimum items from each each components that are the most important to build Agent-based modeling simulation with
 Objective: {objective}
-Input: {input}
-Output: {output}
+Experiment factors (inputs): {input}
+Responses (outputs): {output}
 
 Each component has minimum of {2} codes
 Each code has maximum all relevant quotes
