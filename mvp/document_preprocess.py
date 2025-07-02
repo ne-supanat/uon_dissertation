@@ -49,8 +49,4 @@ if __name__ == "__main__":
     doc_path = "data/diary"
     txt_path = "data/diary_txt"
 
-    # read()
-    # process_docx_to_txt(doc_path, txt_path)
-
-    for filename in sorted(os.listdir(txt_path)):
-        print(filename)
+    process_docx_to_txt(doc_path, txt_path)
