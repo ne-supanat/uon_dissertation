@@ -1,18 +1,20 @@
-```plantuml
-@startuml
-left to right direction
+```mermaid
+graph LR
+    actor(Individual Commuter)
+    actor2(Colleagues)
 
-actor "Individual Commuter" as Commuter
-actor "Colleagues" as Colleagues
+    usecase(Choose Commuting Mode)
+    usecase2(Carpooling)
+    usecase3(Utilize Workplace Facilities)
 
-rectangle "Commuting System" {
-  usecase "Commuting Mode Selection" as ModeSelection
-  usecase "Workplace Interaction" as Interaction
-}
+    actor --> usecase
+    actor --> usecase2
+    actor2 --> usecase2
+    actor --> usecase3
 
-Commuter -- ModeSelection
-Colleagues -- Interaction
-Colleagues -- ModeSelection : Carpool
-
-@enduml
+    style actor fill:#f9f,stroke:#333,stroke-width:2px
+    style actor2 fill:#f9f,stroke:#333,stroke-width:2px
+    style usecase fill:#ccf,stroke:#333,stroke-width:2px
+    style usecase2 fill:#ccf,stroke:#333,stroke-width:2px
+    style usecase3 fill:#ccf,stroke:#333,stroke-width:2px
 ```

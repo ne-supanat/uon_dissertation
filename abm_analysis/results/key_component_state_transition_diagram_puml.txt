@@ -1,0 +1,55 @@
+@startuml
+state "Individual Commuter" {
+    state "Driving" {
+    }
+    state "Public Transport" {
+    }
+    state "Cycling" {
+    }
+    state "Walking" {
+    }
+
+    [*] --> Driving : Initial State
+    Driving --> Public Transport : Traffic, Parking Issues
+    Driving --> Cycling : Environmentally Conscious, Health
+    Driving --> Walking : Short Distance, Nice Weather
+    Public Transport --> Cycling : Weather Improvement, Personal Preference
+    Public Transport --> Walking : Short Distance, Enjoyment
+    Cycling --> Public Transport : Bad Weather, Feeling Unwell
+    Cycling --> Walking : Mechanical Issues, Short Distance
+    Walking --> Public Transport : Bad Weather, Tired
+    Walking --> Cycling : Feeling Energetic, Longer Distance
+}
+
+state "Environmentally Conscious Commuter" {
+    state "Awareness" {
+    }
+    state "Action" {
+    }
+
+    [*] --> Awareness : Initial State
+    Awareness --> Action : Increased Awareness, Motivation
+    Action --> Awareness : Feedback, New Information
+    Action --> Action : Continuous Improvement
+}
+
+state "Pragmatic Adopter" {
+    state "Dissatisfaction" {
+    }
+    state "Evaluation" {
+    }
+    state "Adoption" {
+    }
+
+    [*] --> Dissatisfaction : Initial State
+    Dissatisfaction --> Evaluation : Trigger Event (Traffic, Cost)
+    Evaluation --> Adoption : Positive Evaluation (Reliable, Clean, Affordable)
+    Evaluation --> Dissatisfaction : Negative Evaluation
+    Adoption --> Dissatisfaction : Negative Experience
+    Adoption --> Adoption : Continued Positive Experience
+}
+
+"Individual Commuter" --> "Environmentally Conscious Commuter" : Increased Environmental Awareness
+"Individual Commuter" --> "Pragmatic Adopter" : Dissatisfaction with Current Commute
+
+@enduml

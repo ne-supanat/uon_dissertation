@@ -25,7 +25,7 @@
       ]
     },
     {
-      "code": "Pragmatic adopter",
+      "code": "Pragmatic Commuter",
       "quotes": [
         "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
         "If public transport is reliable, clean, and not wildly expensive, more people will use it."
@@ -71,10 +71,9 @@
       ]
     },
     {
-      "code": "Enjoyment of commute",
+      "code": "Motivation for Sustainable Choices",
       "quotes": [
-        "I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes.",
-        "If the weather’s nice, I’ll walk. It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
+        "I enjoy it! It’s energizing and gives me time to think."
       ]
     }
   ],
@@ -90,7 +89,7 @@
       "code": "Distance",
       "quotes": [
         "I live about 10 kilometers from my workplace",
-        "I work about 8 kilometers away"
+        "I work in the city center, about 6 or 7 kilometers from home."
       ]
     }
   ],
@@ -99,8 +98,7 @@
       "code": "Commuting Mode Selection",
       "quotes": [
         "I cycle most days.",
-        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
-        "I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram"
+        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
       ]
     },
     {

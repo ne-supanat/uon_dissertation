@@ -35,12 +35,13 @@ file is {None}
 
 def draw_usecase_diagram(key_component: str):
     prompt = f"""
-Based on following Engineering Agent-Based Social Simulations (EABSS) key components
+Following these key components
+{KeyComponents.get_explanation()}
 
 {key_component}
 
-generate UML use case diagram for all key activities
-response in plantUML format
+generate very simple comprehensive UML usecase diagram
+response in mermaid.js format (mermaid.js might not support have diagram called use case diagram. use any diagram that can represent UML use case diagram)
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -48,12 +49,13 @@ response in plantUML format
 
 def draw_activity_diagram(key_component: str):
     prompt = f"""
-Based on following Engineering Agent-Based Social Simulations (EABSS) key components
+Following these key components
+{KeyComponents.get_explanation()}
 
 {key_component}
 
-generate UML activity diagram for all key activities
-response in plantUML format
+generate very simple comprehensive UML activity diagram
+response in mermaid.js format (mermaid.js might not support have diagram called activity diagram. use any diagram that can represent UML uactivity diagram)
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -61,12 +63,13 @@ response in plantUML format
 
 def draw_state_transition_diagram(key_component: str):
     prompt = f"""
-Based on following Engineering Agent-Based Social Simulations (EABSS) key components
+Following these key components
+{KeyComponents.get_explanation()}
 
 {key_component}
 
-generate UML state transition diagram of actor acretype if needed
-response in plantUML format
+generate very simple comprehensive UML state transition diagram
+response in mermaid.js format
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -90,7 +93,7 @@ def generate(
     with open(key_component_scope_path, "r") as f:
         key_components = f.read()
 
-    print(key_components)
+    # print(key_components)
 
     # key activities - UML use case diagram
     usecaseDiagram = draw_usecase_diagram(key_components)
@@ -111,12 +114,12 @@ if __name__ == "__main__":
     # Objective
     objective = "explore different usages of transportation from home to workplace"
 
-    # Input, Output
-    input = (
-        "traveller characteristic (age, gender, occupation, transportation preference)"
-    )
+    # Input
+    input = "traveller characteristic (transportation preference)"
 
+    # Output
     output = "number of used of each transportation type"
+
     ta_codes_txt_path = "abm_analysis/results/thematic_analysis_codes.txt"
     kc_scope_path = "abm_analysis/results/key_component_scope.txt"
     kc_usecase_diagram_path = "abm_analysis/results/key_component_usecase_diagram.txt"

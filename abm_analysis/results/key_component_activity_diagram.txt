@@ -1,40 +1,23 @@
-```plantuml
-@startuml
-' Styling options
-skinparam activity{
-  BackgroundColor White
-  BorderColor Black
-}
+graph LR
+    subgraph Individual Commuter
+        A[Wake up] --> B{Check Weather}
+        B -- Rain --> C[Take Bus]
+        B -- No Rain --> D{Consider Distance}
+        D -- Long Distance --> E[Take Tram/Bus]
+        D -- Short Distance --> F{Consider Physical Condition}
+        F -- Unwell --> C
+        F -- Well --> G[Cycle/Walk]
+        C --> H[Arrive at Work]
+        E --> H
+        G --> H
+    end
 
-' Start
-(*) --> "[Commuting Mode Selection]";
+    subgraph Colleagues
+        I[Check Meeting Schedule] --> J{Early Meeting?}
+        J -- Yes --> K[Carpool]
+        J -- No --> L[Individual Commute]
+        K --> H
+        L --> H
+    end
 
-' Commuting Mode Selection
-if "[Commuting Mode Selection]" then
-  -[#blue]->[Cycle] "Cycle most days";
-  -[#green]->[Bus] "Raining or Unwell";
-  -[#red]->[Tram/Public Transport] "Used to drive, now take tram";
-  -[#orange]->[Drive] "Based on Pragmatic adopter";
-else
-  --> [*]
-endif
-
-' Workplace Interaction
-"[Commuting Mode Selection]" --> "[Workplace Interaction]": Commute to work;
-
-if "[Workplace Interaction]" then
-  -[#blue]->[Carpooling] "Carpool with colleagues for early meetings";
-  -[#green]->[Use Bike Storage/Showers] "Use bike storage and showers";
-else
-  --> [*]
-endif
-
-' End
-"[Carpooling]" --> (*)
-"[Use Bike Storage/Showers]" --> (*)
-"[Cycle]" --> (*)
-"[Bus]" --> (*)
-"[Tram/Public Transport]" --> (*)
-"[Drive]" --> (*)
-@enduml
-```
+    style H fill:#f9f,stroke:#333,stroke-width:2px

@@ -1,51 +1,50 @@
-```plantuml
-@startuml
-[*] --> IndividualCommuter
-state IndividualCommuter {
-  [*] --> WakeUp
-  WakeUp --> PrepareForWork : Time to get ready
-  PrepareForWork --> ConsiderTransportationOptions : Ready to leave
-  ConsiderTransportationOptions --> Bicycle : Weather good, feeling energetic
-  ConsiderTransportationOptions --> Bus : Raining or feeling unwell
-  ConsiderTransportationOptions --> Carpool : Early meeting with colleague
-  ConsiderTransportationOptions --> Tram : Reliable and quick option
-  ConsiderTransportationOptions --> Walking : Nice weather and time available
-  ConsiderTransportationOptions --> Driving : No other suitable options (implicitly)
-  Bicycle --> Commute
-  Bus --> Commute
-  Carpool --> Commute
-  Tram --> Commute
-  Walking --> Commute
-  Driving --> Commute
-  Commute --> ArriveAtWork
-  ArriveAtWork --> [*]
-}
-
-state Colleagues {
-  [*] --> Available
-  Available --> CarpoolWithIndividualCommuter : Early meeting and requested
-  CarpoolWithIndividualCommuter --> [*]
-}
-
-state EnvironmentallyConsciousCommuter {
-  [*] --> AwareOfCarbonFootprint
-  AwareOfCarbonFootprint --> EvaluateTransportationOptions : Consider impact of transportation
-  EvaluateTransportationOptions --> SelectSustainableMode : Choose low-carbon option
-  SelectSustainableMode --> [*]
-}
-
-state PragmaticAdopter {
-  [*] --> FrustratedWithCurrentMode
-  FrustratedWithCurrentMode --> EvaluateAlternativeOptions : Traffic, parking, or cost issues
-  EvaluateAlternativeOptions --> SelectEfficientMode : Choose reliable, clean, and affordable option
-  SelectEfficientMode --> [*]
-}
-
-IndividualCommuter -- Colleagues : Interacts through carpooling
-IndividualCommuter -- EnvironmentallyConsciousCommuter : May embody this archetype
-IndividualCommuter -- PragmaticAdopter : May embody this archetype
-
-EnvironmentallyConsciousCommuter -- PragmaticAdopter : Not Mutually Exclusive (can be both)
-
-@enduml
-```
+stateDiagram
+  state Commuting {
+    state Driving {
+      [*] --> StartDriving
+      StartDriving --> InTraffic : Experience Traffic
+      InTraffic --> ArriveWork : Traffic Clears
+      InTraffic --> DrivingStress : High Traffic
+      DrivingStress --> ArriveWork : Reach Destination
+      ArriveWork --> [*]
+    }
+    state PublicTransport {
+      [*] --> WaitForTransport
+      WaitForTransport --> OnTransport : Transport Arrives
+      OnTransport --> ArriveWork : Reach Destination
+      OnTransport --> Delay : Transport Delayed
+      Delay --> OnTransport : Delay Resolved
+      ArriveWork --> [*]
+    }
+    state Cycling {
+      [*] --> StartCycling
+      StartCycling --> CyclingToWork : Begin Journey
+      CyclingToWork --> ArriveWork : Reach Destination
+      CyclingToWork --> WeatherImpact : Bad Weather
+      WeatherImpact --> PublicTransport : Switch to Bus
+      ArriveWork --> [*]
+    }
+    state Walking {
+      [*] --> StartWalking
+      StartWalking --> WalkingToWork : Begin Journey
+      WalkingToWork --> ArriveWork : Reach Destination
+      WalkingToWork --> WeatherImpact : Bad Weather
+      WeatherImpact --> PublicTransport : Switch to Bus
+      ArriveWork --> [*]
+    }
+    state Carpooling {
+      [*] --> ArrangeCarpool
+      ArrangeCarpool --> MeetColleague : Coordinate
+      MeetColleague --> CarpoolingToWork : Begin Journey
+      CarpoolingToWork --> ArriveWork : Reach Destination
+      CarpoolingToWork --> TrafficEncountered : Traffic
+      TrafficEncountered --> ArriveWork : Traffic Clears
+      ArriveWork --> [*]
+    }
+    [*] --> Driving : Choose to Drive
+    [*] --> PublicTransport : Choose Public Transport
+    [*] --> Cycling : Choose to Cycle
+    [*] --> Walking : Choose to Walk
+    [*] --> Carpooling : Choose to Carpool
+  }
+  Commuting --> [*]
