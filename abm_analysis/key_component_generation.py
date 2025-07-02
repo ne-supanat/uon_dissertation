@@ -29,7 +29,7 @@ file is {None}
     response = llm.generate_content(prompt, KeyComponents)
 
     # Save key component
-    with open(f"mvp/results/key_component_scope.txt", "w") as f:
+    with open(f"abm_analysis/results/key_component_scope.txt", "w") as f:
         f.write(response.text)
 
 
@@ -117,12 +117,12 @@ if __name__ == "__main__":
     )
 
     output = "number of used of each transportation type"
-    ta_codes_txt_path = "mvp/results/thematic_analysis_codes.txt"
-    kc_scope_path = "mvp/results/key_component_scope.txt"
-    kc_usecase_diagram_path = "mvp/results/key_component_usecase_diagram.txt"
-    kc_activity_diagram_path = "mvp/results/key_component_activity_diagram.txt"
+    ta_codes_txt_path = "abm_analysis/results/thematic_analysis_codes.txt"
+    kc_scope_path = "abm_analysis/results/key_component_scope.txt"
+    kc_usecase_diagram_path = "abm_analysis/results/key_component_usecase_diagram.txt"
+    kc_activity_diagram_path = "abm_analysis/results/key_component_activity_diagram.txt"
     kc_state_transition_diagram_path = (
-        "mvp/results/key_component_state_transition_diagram.txt"
+        "abm_analysis/results/key_component_state_transition_diagram.txt"
     )
 
     generate(

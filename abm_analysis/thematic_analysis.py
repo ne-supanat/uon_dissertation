@@ -102,10 +102,10 @@ if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
     analyse(
         document_paths,
-        "mvp/results/thematic_analysis_codes.txt",
-        "mvp/results/thematic_analysis_codes.csv",
+        "abm_analysis/results/thematic_analysis_codes.txt",
+        "abm_analysis/results/thematic_analysis_codes.csv",
     )
     write_codes_csv_from_txt(
-        "mvp/results/thematic_analysis_codes.txt",
-        "mvp/results/thematic_analysis_codes_sum.csv",
+        "abm_analysis/results/thematic_analysis_codes.txt",
+        "abm_analysis/results/thematic_analysis_codes_sum.csv",
     )

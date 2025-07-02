@@ -29,5 +29,5 @@ def evaluate(profiles_path: str):
 
 
 if __name__ == "__main__":
-    profiles_path = "mvp/results/profiles.txt"
+    profiles_path = "abm_analysis/results/profiles.txt"
     evaluate(profiles_path)

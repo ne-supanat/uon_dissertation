@@ -30,8 +30,8 @@ def generate(scenario_questions_path, scenario_answers_path, scenario_probabilit
 
 
 if __name__ == "__main__":
-    scenario_questions_path = "mvp/results/scenario_questions.txt"
-    scenario_answers_path = "mvp/results/scenario_answers.csv"
-    scenario_probability_path = "mvp/results/scenario_probability.csv"
+    scenario_questions_path = "abm_analysis/results/scenario_questions.txt"
+    scenario_answers_path = "abm_analysis/results/scenario_answers.csv"
+    scenario_probability_path = "abm_analysis/results/scenario_probability.csv"
 
     generate(scenario_questions_path, scenario_answers_path, scenario_probability_path)

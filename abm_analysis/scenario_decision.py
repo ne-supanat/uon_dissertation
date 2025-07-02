@@ -38,9 +38,9 @@ def generate_profile_answers(question_path, profiles_path, answer_path):
 
 
 if __name__ == "__main__":
-    scenario_questions_path = "mvp/results/scenario_questions.txt"
-    profiles_path = "mvp/results/profiles.txt"
-    scenario_answers_path = "mvp/results/scenario_answers.csv"
+    scenario_questions_path = "abm_analysis/results/scenario_questions.txt"
+    profiles_path = "abm_analysis/results/profiles.txt"
+    scenario_answers_path = "abm_analysis/results/scenario_answers.csv"
 
     generate_profile_answers(
         scenario_questions_path,

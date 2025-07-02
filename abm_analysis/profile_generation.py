@@ -68,8 +68,8 @@ def generate(
 if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
     objective = "explore different usages of transportation from home to workplace"
-    kc_scope_path = "mvp/results/key_component_scope.txt"
-    profiles_path = "mvp/results/profiles.txt"
+    kc_scope_path = "abm_analysis/results/key_component_scope.txt"
+    profiles_path = "abm_analysis/results/profiles.txt"
 
     generate(
         document_paths,
