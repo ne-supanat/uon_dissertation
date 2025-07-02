@@ -44,20 +44,24 @@ def main():
     kc_state_transition_diagram_path = (
         "abm_analysis/results/key_component_state_transition_diagram.txt"
     )
-
-    # Generate ABM key components
-    key_component_generation.generate(
-        objective,
-        input,
-        output,
-        ta_codes_txt_path,
-        kc_scope_path,
-        kc_usecase_diagram_path,
-        kc_activity_diagram_path,
-        kc_state_transition_diagram_path,
+    kc_interaction_diagram_path = (
+        "abm_analysis/results/key_component_interaction_diagram.txt"
     )
-    # + human review: codes and quotes coherence, diagrams review
-    # * UPDATE archetype model *
+
+    # # Generate ABM key components
+    # key_component_generation.generate(
+    #     objective,
+    #     input,
+    #     output,
+    #     ta_codes_txt_path,
+    #     kc_scope_path,
+    #     kc_usecase_diagram_path,
+    #     kc_activity_diagram_path,
+    #     kc_state_transition_diagram_path,
+    #     kc_interaction_diagram_path,
+    # )
+    # # + human review: codes and quotes coherence, diagrams review
+    # # * UPDATE archetype model *
 
     profiles_path = "abm_analysis/results/profiles.txt"
 

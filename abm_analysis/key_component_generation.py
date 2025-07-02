@@ -75,6 +75,20 @@ response in mermaid.js format
     return response.script
 
 
+def draw_interaction_diagram(key_component: str):
+    prompt = f"""
+Following these key components
+{KeyComponents.get_explanation()}
+
+{key_component}
+
+generate very simple comprehensive UML sequence diagram
+response in mermaid.js format
+"""
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
+
+
 def generate(
     objective,
     input,
@@ -84,30 +98,34 @@ def generate(
     key_component_usecase_diagram_path,
     key_component_activity_diagram_path,
     key_component_state_transition_diagram_path,
+    key_component_interactions_diagram_path,
 ):
-    # Finalise key components
-    with open(thematic_analysis_codes_txt_path, "r") as f:
-        codes = f.read()
-    finalise_key_components(codes, objective, input, output)
+    # # Finalise key components
+    # with open(thematic_analysis_codes_txt_path, "r") as f:
+    #     codes = f.read()
+    # finalise_key_components(codes, objective, input, output)
 
     with open(key_component_scope_path, "r") as f:
         key_components = f.read()
 
-    # print(key_components)
-
     # key activities - UML use case diagram
-    usecaseDiagram = draw_usecase_diagram(key_components)
+    usecase_diagram = draw_usecase_diagram(key_components)
     with open(key_component_usecase_diagram_path, "w") as f:
-        f.write(usecaseDiagram)
+        f.write(usecase_diagram)
 
-    activityDiagram = draw_activity_diagram(key_components)
+    activity_diagram = draw_activity_diagram(key_components)
     with open(key_component_activity_diagram_path, "w") as f:
-        f.write(activityDiagram)
+        f.write(activity_diagram)
 
     # user state machine - UML state diagram
-    stateTransitionDiagram = draw_state_transition_diagram(key_components)
+    state_transition_diagram = draw_state_transition_diagram(key_components)
     with open(key_component_state_transition_diagram_path, "w") as f:
-        f.write(stateTransitionDiagram)
+        f.write(state_transition_diagram)
+
+    # interactions - UML sequence diagram
+    interactions_diagram = draw_interaction_diagram(key_components)
+    with open(key_component_interactions_diagram_path, "w") as f:
+        f.write(interactions_diagram)
 
 
 if __name__ == "__main__":
@@ -127,6 +145,9 @@ if __name__ == "__main__":
     kc_state_transition_diagram_path = (
         "abm_analysis/results/key_component_state_transition_diagram.txt"
     )
+    kc_interaction_diagram_path = (
+        "abm_analysis/results/key_component_interaction_diagram.txt"
+    )
 
     generate(
         objective,
@@ -137,4 +158,5 @@ if __name__ == "__main__":
         kc_usecase_diagram_path,
         kc_activity_diagram_path,
         kc_state_transition_diagram_path,
+        kc_interaction_diagram_path,
     )
