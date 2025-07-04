@@ -11,6 +11,11 @@ class ScriptResponse(BaseModel):
     script: str
 
 
+class ThinkScriptResponse(BaseModel):
+    think: str
+    script: str
+
+
 class Code(BaseModel):
     code: str
     quotes: list[str]
