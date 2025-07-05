@@ -17,18 +17,25 @@ Base on this transcript
 
 {document}
 
-and this key components
+objective
+
+{objective}
+
+and key components
 
 {key_component_scope}
 
 {f"""Extract following profile data:
  {[f"- {attr}\n" for attr in profile_attrs]}
 
-reponse with only answer. for example "my age is 25" response with "25"
+respond with only answer. for example "my age is 25" respond with "25"
 """ if profile_attrs else ""}
 
-Find supporting evidence (quotes) that related to {objective}
-Identify archetype base on archetype in key component
+Summarise profile within 50 words
+
+Find supporting evidence (quotes) that related to objective and key components
+
+Using information from profile summary and quote, classify this profile archetype from archetype in key component
 
 file is {document_path}
 """

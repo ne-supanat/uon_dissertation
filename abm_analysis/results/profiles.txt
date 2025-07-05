@@ -1,27 +1,30 @@
 {
   "file": "data/mvp_1.txt",
   "attrs": [
-    "10 kilometers"
+    "distance: 10 kilometers"
   ],
   "quotes": [
-    "I cycle most days.",
+    "I live about 10 kilometers from my workplace, so I cycle most days.",
+    "I used to drive, but I started thinking more about my carbon footprint—and honestly, it just felt better to be more active in the mornings.",
     "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
-    "I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram"
+    "Definitely. They actually have a cycle-to-work scheme, which I joined."
   ],
-  "archetype": "Environmentally Aware Commuter"
+  "summary": "The participant lives 10 kilometers from work and cycles most days. They switched to biking to reduce their carbon footprint and be more active. They use the bus when the weather is bad and participate in their workplace's cycle-to-work scheme.",
+  "archetype": "Environmentally Conscious Commuter"
 }
 
 {
   "file": "data/mvp_2.txt",
   "attrs": [
-    "distance"
+    "6-7 kilometers"
   ],
   "quotes": [
     "I work in the city center, about 6 or 7 kilometers from home.",
     "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
-    "Sometimes, yeah! If the weather’s nice, I’ll walk.",
-    "I’m less grumpy in the mornings, I save money, and I don’t have to panic about finding parking anymore."
+    "I’m less grumpy in the mornings, I save money, and I don’t have to panic about finding parking anymore.",
+    "Honestly? Just make it easier and cheaper. If public transport is reliable, clean, and not wildly expensive, more people will use it."
   ],
+  "summary": "The participant commutes 6-7 kilometers to work in the city center. They switched from driving to tram due to traffic, parking costs, and environmental concerns. They value convenience and cost-effectiveness in sustainable transportation options.",
   "archetype": "Pragmatic Commuter"
 }
 
@@ -31,9 +34,14 @@
     "8 kilometers"
   ],
   "quotes": [
-    "I work about 8 kilometers away, and I usually take the train and walk the rest.",
-    "I’ve experimented with different options over the years—driving, biking, walking combinations. Eventually I settled on the train because it’s the most predictable and time-efficient for my route."
+    "I leave home by 7:30 and reach work around 8. I work about 8 kilometers away, and I usually take the train and walk the rest.",
+    "Eventually I settled on the train because it’s the most predictable and time-efficient for my route.",
+    "And from a systems perspective, fewer individual cars on the road benefits everyone.",
+    "I’m not someone who’s driven by slogans, but I care about long-term impact.",
+    "If we design systems better—trains, buses, bike infrastructure—people will naturally make better choices without needing constant moral pressure.",
+    "Convenience and perception. Most people aren’t against sustainable transport—they just find it harder. If it’s slower, more confusing, or less comfortable than driving, they’ll default to the car. So if we want change, we need to remove those friction points. Infrastructure first, then behavior follows."
   ],
-  "archetype": "Pragmatic Commuter"
+  "summary": "The participant commutes 8 kilometers to work, primarily using the train for its predictability and time efficiency. They value sustainability and believe in designing better transportation systems to encourage eco-friendly choices. They prioritize convenience and reducing friction in sustainable transport options.",
+  "archetype": "Environmentally Conscious Commuter"
 }
 

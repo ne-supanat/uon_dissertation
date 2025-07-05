@@ -63,7 +63,7 @@ Archetype action probability
 
 Generate a very simple NetLogo simulation script that can represent system based on UML diagrams
 and can answer objective key
-and response with output key at the end of simulation.
+and respond with output key at the end of simulation.
 
 population is {100} and randomly assign with archetype
 run for {100} tick

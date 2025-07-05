@@ -41,7 +41,7 @@ Following these key components
 {key_component}
 
 generate very simple comprehensive UML usecase diagram
-response in mermaid.js format (mermaid.js might not support have diagram called use case diagram. use any diagram that can represent UML use case diagram)
+respond in mermaid.js format (mermaid.js might not support have diagram called use case diagram. use any diagram that can represent UML use case diagram)
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -55,7 +55,7 @@ Following these key components
 {key_component}
 
 generate very simple comprehensive UML activity diagram
-response in mermaid.js format (mermaid.js might not support have diagram called activity diagram. use any diagram that can represent UML uactivity diagram)
+respond in mermaid.js format (mermaid.js might not support have diagram called activity diagram. use any diagram that can represent UML uactivity diagram)
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -69,7 +69,7 @@ Following these key components
 {key_component}
 
 generate very simple comprehensive UML state transition diagram
-response in mermaid.js format
+respond in mermaid.js format
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -83,7 +83,7 @@ Following these key components
 {key_component}
 
 generate very simple comprehensive UML sequence diagram
-response in mermaid.js format
+respond in mermaid.js format
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script

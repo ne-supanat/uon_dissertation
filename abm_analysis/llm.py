@@ -50,7 +50,7 @@ if __name__ == "__main__":
 # -	Interactions (who talks to or affects whom)
 # -	Artificial lab (global variables)
 
-# response in short and very simple way. this is just to outlite the model.
+# respond in short and very simple way. this is just to outlite the model.
 # """
 #     )
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 # -	Artifacts (tools or systems used)
 # -	Interactions (who talks to or affects whom)
 
-# response in short and very simple way. this is just to outlite the model.
+# respond in short and very simple way. this is just to outlite the model.
 # """
 #     )
 
@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
 # list activity mention in the interview
 
-# response in this format
+# respond in this format
 # action:
 # condition:
 # evidence:

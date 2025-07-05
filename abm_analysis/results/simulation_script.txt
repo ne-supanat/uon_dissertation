@@ -1,68 +1,97 @@
 globals [
   population-size
-  rain
+  tram-users
+  cycling-users
+  bus-users
+  driving-users
 ]
 
 turtles-own [
   archetype
-  transport-mode
 ]
 
 to setup
   clear-all
   set population-size 100
+  set tram-users 0
+  set cycling-users 0
+  set bus-users 0
+  set driving-users 0
+
   create-turtles population-size [
     setxy random-xcor random-ycor
-    set archetype one-of ["Pragmatic Commuter" "Environmentally Aware Commuter"]
-    set transport-mode ""
+    ; Randomly assign an archetype
+    ifelse random 2 = 0
+    [ set archetype "Pragmatic Commuter" ]
+    [ set archetype "Environmentally Conscious Commuter" ]
     set color white
   ]
-  set rain false
   reset-ticks
 end
 
 to go
   tick
-  ifelse random 2 = 0 [set rain true][set rain false]
+  set tram-users 0
+  set cycling-users 0
+  set bus-users 0
+  set driving-users 0
+
   ask turtles [
-    choose-transport-mode
-  ]
-  update-plots
-  if ticks = 100 [stop]
-end
-
-to choose-transport-mode
-  ; Determine usual transport mode
-  let usual-mode ""
-  if archetype = "Pragmatic Commuter" [
-    if rain [
-      set usual-mode "Driving"
-    ] else [
-      set usual-mode "Driving"
+    let transport-mode choose-transport-mode
+    ifelse transport-mode = "Tram"
+    [ set tram-users tram-users + 1 ]
+    [ ifelse transport-mode = "Cycling"
+      [ set cycling-users cycling-users + 1 ]
+      [ ifelse transport-mode = "Bus"
+        [ set bus-users bus-users + 1 ]
+        [ set driving-users driving-users + 1 ]
+      ]
     ]
   ]
-  if archetype = "Environmentally Aware Commuter" [
-    if rain [
-      set usual-mode "Bus"
-    ] else [
-      set usual-mode "Tram"
-    ]
-  ]
-  set transport-mode usual-mode
+  update-visual
+  if ticks = 100 [ stop ]
 end
 
-to update-plots
-  set-current-plot "Transportation Mode Usage"
+to choose-transport-mode  ; reporter
+  let mode ""
+  let raining? random 2 = 0 ; 50% chance of rain
+
+  ifelse archetype = "Pragmatic Commuter" [
+    ifelse raining? [
+      set mode "Tram"
+    ]
+    [
+      set mode "Tram"
+    ]
+  ]
+  [
+    ifelse archetype = "Environmentally Conscious Commuter" [
+      ifelse raining? [
+        set mode "Bus"
+      ]
+      [
+        ifelse random-float 1 < 0.5 [set mode "Tram"] [set mode "Cycling"]
+      ]
+    ]
+    [
+      set mode "Driving" ; Default case
+    ]
+  ]
+  report mode
+end
+
+to update-visual
+  set-current-plot "Transportation Usage"
 
   set-current-plot-pen "Tram"
-  plotxy ticks count turtles with [transport-mode = "Tram"]
+  plotxy ticks tram-users
 
   set-current-plot-pen "Cycling"
-  plotxy ticks count turtles with [transport-mode = "Cycling"]
+  plotxy ticks cycling-users
 
   set-current-plot-pen "Bus"
-  plotxy ticks count turtles with [transport-mode = "Bus"]
+  plotxy ticks bus-users
 
   set-current-plot-pen "Driving"
-  plotxy ticks count turtles with [transport-mode = "Driving"]
+  plotxy ticks driving-users
 end

@@ -66,7 +66,7 @@ class KeyComponents(BaseModel):
 
 class Archetype(enum.Enum):
     PragmaticCommuter = "Pragmatic Commuter"
-    EnvironmentallyAwareCommuter = "Environmentally Aware Commuter"
+    EnvironmentallyAwareCommuter = "Environmentally Conscious Commuter"
 
 
 class TransportationMode(enum.Enum):
@@ -80,4 +80,5 @@ class Profile(BaseModel):
     file: str
     attrs: list[str]
     quotes: list[str]
+    summary: str
     archetype: Archetype

@@ -11,7 +11,7 @@ def generate(scenario_questions_path, scenario_answers_path, scenario_probabilit
     df = pd.read_csv(scenario_answers_path, sep=";", header=None)
     df.columns = ["file", "type"] + [f"q{i+1}" for i in range(len(questions))]
 
-    with open(scenario_probability_path, "a+") as f:
+    with open(scenario_probability_path, "w") as f:
         for type in Archetype:
             archetype_df = df[df["type"] == type.value]
             archetype_size = archetype_df.shape[0]

@@ -22,7 +22,7 @@ class Prompt:
         return ""
 
     def buildProfileFormat(self):
-        return """Please response in this format.
+        return """Please respond in this format.
 
 "name": "Full name",
 "age": "age number",

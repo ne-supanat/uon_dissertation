@@ -107,10 +107,10 @@ def main():
 
     scenario_probability_path = folder_path + "/scenario_probability.csv"
 
-    # # Decision table
-    # decision_table.generate(
-    #     scenario_questions_path, scenario_answers_path, scenario_probability_path
-    # )
+    # Decision table
+    decision_table.generate(
+        scenario_questions_path, scenario_answers_path, scenario_probability_path
+    )
 
     simulation_script_path = folder_path + "/simulation_script.txt"
 
