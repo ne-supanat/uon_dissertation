@@ -1,0 +1,5 @@
+{
+    "problem": "to explore different usages of transportation from home to workplace",
+    "input": "ratio of transport mode preference",
+    "output": "number of used transport mode each day"
+}
