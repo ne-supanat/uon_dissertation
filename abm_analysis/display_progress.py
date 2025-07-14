@@ -1,17 +1,85 @@
+import os
 import json
 
+from response_models import KeyComponents
 
-def display(
+
+def display_header():
+    print("\nCurrent progress")
+    print("-" * 50)
+
+
+def display_problem_statement(
     problem_statement_path,
 ):
-    print(problem_statement_path)
-    # Print current progress of the system
     with open(problem_statement_path, "r") as f:
         problem_statement_raw = f.read()
         problem_statement: dict = json.loads(problem_statement_raw)
-        print(f"\nLoading Stage 1 data from: '{problem_statement_path}'\n")
-        print("---")
         print(f'Problem statement: {problem_statement["problem"]}')
         print(f'Input/Experimental factor: {problem_statement["input"]}')
         print(f'Output/Response: {problem_statement["output"]}')
-        print("---\n")
+        print("-" * 50)
+
+
+def display_eabss_components(
+    eabss_scope_path,
+):
+    with open(eabss_scope_path, "r") as f:
+        scope_raw = f.read()
+        scope: dict = json.loads(scope_raw)
+        print("-" * 50)
+        print("{:<25} {:<30}".format("Component", "Element"))
+        print("-" * 50)
+        for key in scope.keys():
+            component = KeyComponents.get_component_names()[
+                KeyComponents.get_component_keys().index(key)
+            ]
+
+            for item in scope[key]:
+                elemenet = item["code"]
+                print("{:<25} {:<30}".format(component, elemenet))
+        print("-" * 50)
+
+
+def display_eabss_diagrams(
+    eabss_usecase_diagram_path,
+    eabss_activity_diagram_path,
+    eabss_state_transition_diagram_path,
+    eabss_interaction_diagram_path,
+):
+    print("View diagrams with mermaid.js")
+    print(f"Use case diagram at: '{eabss_usecase_diagram_path}'")
+    print(f"Activity diagram at: '{eabss_activity_diagram_path}'")
+    print(f"State transition diagram at: '{eabss_state_transition_diagram_path}'")
+    print(f"Interaction diagram at: '{eabss_interaction_diagram_path}'")
+    print("-" * 50)
+
+
+if __name__ == "__main__":
+    results_folder = "abm_analysis/results_1"
+    results_path = results_folder
+    problem_statement_path = os.path.join(results_path, "problem_statement.txt")
+    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    eabss_usecase_diagram_path = os.path.join(results_path, "eabss_usecase_diagram.txt")
+    eabss_activity_diagram_path = os.path.join(
+        results_path, "eabss_activity_diagram.txt"
+    )
+    eabss_state_transition_diagram_path = os.path.join(
+        results_path, "eabss_state_diagram.txt"
+    )
+    # TODO: add transition table = os.path.join(results_path,"/eabss_state_table.txt")
+    eabss_interaction_diagram_path = os.path.join(
+        results_path, "eabss_interaction_diagram.txt"
+    )
+
+    print(os.path.join(results_path, "eabss_interaction_diagram.txt"))
+
+    display_header()
+    display_problem_statement(problem_statement_path)
+    display_eabss_components(eabss_components_path)
+    display_eabss_diagrams(
+        eabss_usecase_diagram_path,
+        eabss_activity_diagram_path,
+        eabss_state_transition_diagram_path,
+        eabss_interaction_diagram_path,
+    )
