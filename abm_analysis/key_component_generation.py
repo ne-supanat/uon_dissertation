@@ -1,36 +1,167 @@
+import json
+import ast
+from google.genai.types import GenerateContentResponse
+
 import llm
-from response_models import KeyComponents, ScriptResponse
+from response_models import KeyComponents, ScriptResponse, Code, CodeJustification
 
 
-def finalise_key_components(
+def finalise_eabss_component(
+    component: str,
     codes_quotes: str,
     objective: str,
     input: str,
     output: str,
-):
+) -> GenerateContentResponse:
+    # Finalise EABSS' given component
     prompt = f"""
-Based on following codes and quotes
+Following these key components
+{KeyComponents.get_explanation()}
+    
+Based on following codes & quotes of {component}
 
 {codes_quotes}
 
-Following these key components
-{KeyComponents.get_explanation()}
-
-Select minimum items from each each components that are the most important to build Agent-based modeling simulation with
+Select minimum items from the codes & quotes that are the most important to build Agent-based modeling simulation with
 Objective: {objective}
 Experiment factors (inputs): {input}
 Responses (outputs): {output}
 
-Each component has minimum of {2} codes
+The final codes & quotes has at least {2} codes
 Each code has maximum all relevant quotes
-
-file is {None}
 """
-    response = llm.generate_content(prompt, KeyComponents)
+    response = llm.generate_content(prompt, list[Code])
+
+    return response
+
+
+def generate_components(
+    problem_statement_path,
+    thematic_analysis_codes_txt_path,
+    eabss_components_path,
+):
+    # with open(problem_statement_path, "r") as f:
+    #     problem_statement_raw = f.read()
+    #     problem_statement: dict = json.loads(problem_statement_raw)
+    #     problem = problem_statement["problem"]
+    #     input = problem_statement["input"]
+    #     output = problem_statement["output"]
+
+    # # Finalise key components
+    # with open(thematic_analysis_codes_txt_path, "r") as f:
+    #     text = f.read()
+
+    # component_dict = {}
+
+    # documents = text.strip().split("\n\n")
+    # for document_raw in documents:
+    #     document: dict = json.loads(document_raw)
+    #     for key in document.keys():
+    #         if key not in component_dict:
+    #             component_dict[key] = []
+
+    #         for item in document[key]:
+    #             component_dict[key].append(item)
+
+    # final_component_dict = {}
+    # for component in list(component_dict.keys()):
+    #     if component != "file":
+    #         response = finalise_eabss_component_just(
+    #             component,
+    #             component_dict[component],
+    #             problem,
+    #             input,
+    #             output,
+    #         )
+
+    #         final_component_dict[component] = ast.literal_eval(response.text)
+
+    # # Save key component
+    # with open(eabss_components_path, "w") as f:
+    #     f.write(json.dumps(final_component_dict, indent=4))
+
+    print(f"\nEABSS components result saved to: '{eabss_components_path}'")
+    #     TODO: tell user to update relevant models for next step (archetypes, questions, choices)
+    print("Please reivew it and update the component as necessary.")
+
+
+def finalise_eabss_component_just(
+    component: str,
+    codes_quotes: str,
+    objective: str,
+    input: str,
+    output: str,
+) -> GenerateContentResponse:
+    # Finalise EABSS' given component
+    prompt = f"""
+Following these key components
+{KeyComponents.get_explanation()}
+    
+Based on following codes & quotes of {component}
+
+{codes_quotes}
+
+Select minimum items from the codes & quotes that are the most important to build Agent-based modeling simulation with
+Objective: {objective}
+Experiment factors (inputs): {input}
+Responses (outputs): {output}
+
+The final codes & quotes has at least {2} codes
+Each with justification why you select them
+"""
+    response = llm.generate_content(prompt, list[CodeJustification])
+
+    return response
+
+
+def generate_components_table(
+    problem_statement_path,
+    thematic_analysis_codes_txt_path,
+    eabss_components_path,
+):
+    with open(problem_statement_path, "r") as f:
+        problem_statement_raw = f.read()
+        problem_statement: dict = json.loads(problem_statement_raw)
+        problem = problem_statement["problem"]
+        input = problem_statement["input"]
+        output = problem_statement["output"]
+
+    # Finalise key components
+    with open(thematic_analysis_codes_txt_path, "r") as f:
+        text = f.read()
+
+    component_dict = {}
+
+    documents = text.strip().split("\n\n")
+    for document_raw in documents:
+        document: dict = json.loads(document_raw)
+        for key in document.keys():
+            if key not in component_dict:
+                component_dict[key] = []
+
+            for item in document[key]:
+                component_dict[key].append(item)
+
+    final_component_dict = {}
+    for component in list(component_dict.keys()):
+        if component != "file":
+            response = finalise_eabss_component(
+                component,
+                component_dict[component],
+                problem,
+                input,
+                output,
+            )
+
+            final_component_dict[component] = ast.literal_eval(response.text)
 
     # Save key component
-    with open(f"abm_analysis/results/key_component_scope.txt", "w") as f:
-        f.write(response.text)
+    with open(eabss_components_path, "w") as f:
+        f.write(json.dumps(final_component_dict, indent=4))
+
+    # TODO: remind where it saved and to review & update required components
+    print(f"\nEABSS components result saved to: '{eabss_components_path}'")
+    print("Please reivew & update generated components")
 
 
 def draw_usecase_diagram(key_component: str):
@@ -41,7 +172,7 @@ Following these key components
 {key_component}
 
 generate very simple comprehensive UML usecase diagram
-respond in mermaid.js format (mermaid.js might not support have diagram called use case diagram. use any diagram that can represent UML use case diagram)
+respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -55,7 +186,7 @@ Following these key components
 {key_component}
 
 generate very simple comprehensive UML activity diagram
-respond in mermaid.js format (mermaid.js might not support have diagram called activity diagram. use any diagram that can represent UML uactivity diagram)
+respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML uactivity diagram)
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -68,7 +199,7 @@ Following these key components
 
 {key_component}
 
-generate very simple comprehensive UML state transition diagram
+generate very simple comprehensive state machine diagram of Actors and Key activities
 respond in mermaid.js format
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
@@ -82,81 +213,77 @@ Following these key components
 
 {key_component}
 
-generate very simple comprehensive UML sequence diagram
+generate very simple comprehensive UML sequence diagram of Actors
 respond in mermaid.js format
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
 
 
-def generate(
-    objective,
-    input,
-    output,
-    thematic_analysis_codes_txt_path,
-    key_component_scope_path,
-    key_component_usecase_diagram_path,
-    key_component_activity_diagram_path,
-    key_component_state_transition_diagram_path,
-    key_component_interactions_diagram_path,
+def generate_diagrams(
+    eabss_components_path,
+    eabss_usecase_diagram_path,
+    eabss_activity_diagram_path,
+    eabss_state_transition_diagram_path,
+    eabss_interaction_diagram_path,
 ):
-    # # Finalise key components
-    # with open(thematic_analysis_codes_txt_path, "r") as f:
-    #     codes = f.read()
-    # finalise_key_components(codes, objective, input, output)
-
-    with open(key_component_scope_path, "r") as f:
+    with open(eabss_components_path, "r") as f:
         key_components = f.read()
 
     # key activities - UML use case diagram
     usecase_diagram = draw_usecase_diagram(key_components)
-    with open(key_component_usecase_diagram_path, "w") as f:
+    with open(eabss_usecase_diagram_path, "w") as f:
         f.write(usecase_diagram)
 
     activity_diagram = draw_activity_diagram(key_components)
-    with open(key_component_activity_diagram_path, "w") as f:
+    with open(eabss_activity_diagram_path, "w") as f:
         f.write(activity_diagram)
 
     # user state machine - UML state diagram
     state_transition_diagram = draw_state_transition_diagram(key_components)
-    with open(key_component_state_transition_diagram_path, "w") as f:
+    with open(eabss_state_transition_diagram_path, "w") as f:
         f.write(state_transition_diagram)
 
     # interactions - UML sequence diagram
     interactions_diagram = draw_interaction_diagram(key_components)
-    with open(key_component_interactions_diagram_path, "w") as f:
+    with open(eabss_interaction_diagram_path, "w") as f:
         f.write(interactions_diagram)
+
+    print(f"Use case diagram result saved to: '{eabss_usecase_diagram_path}'")
+    print(f"Activity diagram result saved to: '{eabss_activity_diagram_path}'")
+    print(f"State transition result saved to: '{eabss_state_transition_diagram_path}'")
+    # TODO: print(f"State condition saved to: '{eabss_interaction_diagram_path}'")
+    print(f"Interaction result saved to: '{eabss_interaction_diagram_path}'")
 
 
 if __name__ == "__main__":
-    # Objective
-    objective = "explore different usages of transportation from home to workplace"
-
-    # Input
-    input = "traveller characteristic (transportation preference)"
-
-    # Output
-    output = "number of used of each transportation type"
-
-    ta_codes_txt_path = "abm_analysis/results/thematic_analysis_codes.txt"
-    kc_scope_path = "abm_analysis/results/key_component_scope.txt"
-    kc_usecase_diagram_path = "abm_analysis/results/key_component_usecase_diagram.txt"
-    kc_activity_diagram_path = "abm_analysis/results/key_component_activity_diagram.txt"
-    kc_state_transition_diagram_path = (
-        "abm_analysis/results/key_component_state_transition_diagram.txt"
+    problem_statement_path = "abm_analysis/results_1/problem_statement.txt"
+    ta_codes_txt_path = "abm_analysis/results_1/thematic_analysis_codes.txt"
+    ta_codes_csv_path = "abm_analysis/results_1/thematic_analysis_codes.csv"
+    eabss_components_path = "abm_analysis/results_1/key_component_scope.txt"
+    eabss_usecase_diagram_path = (
+        "abm_analysis/results_1/key_component_usecase_diagram.txt"
     )
-    kc_interaction_diagram_path = (
-        "abm_analysis/results/key_component_interaction_diagram.txt"
+    eabss_activity_diagram_path = (
+        "abm_analysis/results_1/key_component_activity_diagram.txt"
+    )
+    eabss_state_transition_diagram_path = (
+        "abm_analysis/results_1/key_component_state_transition_diagram.txt"
+    )
+    eabss_interaction_diagram_path = (
+        "abm_analysis/results_1/key_component_interaction_diagram.txt"
     )
 
-    generate(
-        objective,
-        input,
-        output,
+    generate_components(
+        problem_statement_path,
         ta_codes_txt_path,
-        kc_scope_path,
-        kc_usecase_diagram_path,
-        kc_activity_diagram_path,
-        kc_state_transition_diagram_path,
-        kc_interaction_diagram_path,
+        eabss_components_path,
     )
+
+    # generate_diagrams(
+    #     eabss_components_path,
+    #     eabss_usecase_diagram_path,
+    #     eabss_activity_diagram_path,
+    #     eabss_state_transition_diagram_path,
+    #     eabss_interaction_diagram_path,
+    # )
