@@ -40,49 +40,48 @@ def generate_components(
     thematic_analysis_codes_txt_path,
     eabss_components_path,
 ):
-    # with open(problem_statement_path, "r") as f:
-    #     problem_statement_raw = f.read()
-    #     problem_statement: dict = json.loads(problem_statement_raw)
-    #     problem = problem_statement["problem"]
-    #     input = problem_statement["input"]
-    #     output = problem_statement["output"]
+    with open(problem_statement_path, "r") as f:
+        objective_statement = f.read()
+        objective_statement: dict = json.loads(objective_statement)
+        objective = objective_statement["objective"]
+        input = objective_statement["input"]
+        output = objective_statement["output"]
 
-    # # Finalise key components
-    # with open(thematic_analysis_codes_txt_path, "r") as f:
-    #     text = f.read()
+    # Finalise key components
+    with open(thematic_analysis_codes_txt_path, "r") as f:
+        text = f.read()
 
-    # component_dict = {}
+    component_dict = {}
 
-    # documents = text.strip().split("\n\n")
-    # for document_raw in documents:
-    #     document: dict = json.loads(document_raw)
-    #     for key in document.keys():
-    #         if key not in component_dict:
-    #             component_dict[key] = []
+    documents = text.strip().split("\n\n")
+    for document_raw in documents:
+        document: dict = json.loads(document_raw)
+        for key in document.keys():
+            if key not in component_dict:
+                component_dict[key] = []
 
-    #         for item in document[key]:
-    #             component_dict[key].append(item)
+            for item in document[key]:
+                component_dict[key].append(item)
 
-    # final_component_dict = {}
-    # for component in list(component_dict.keys()):
-    #     if component != "file":
-    #         response = finalise_eabss_component_just(
-    #             component,
-    #             component_dict[component],
-    #             problem,
-    #             input,
-    #             output,
-    #         )
+    final_component_dict = {}
+    for component in list(component_dict.keys()):
+        if component != "file":
+            response = finalise_eabss_component_just(
+                component,
+                component_dict[component],
+                objective,
+                input,
+                output,
+            )
 
-    #         final_component_dict[component] = ast.literal_eval(response.text)
+            final_component_dict[component] = ast.literal_eval(response.text)
 
-    # # Save key component
-    # with open(eabss_components_path, "w") as f:
-    #     f.write(json.dumps(final_component_dict, indent=4))
+    # Save key component
+    with open(eabss_components_path, "w") as f:
+        f.write(json.dumps(final_component_dict, indent=4))
 
     print(f"\nEABSS components result saved to: '{eabss_components_path}'")
-    #     TODO: tell user to update relevant models for next step (archetypes, questions, choices)
-    print("Please reivew it and update the component as necessary.")
+    print("Please reivew and update the EABSS components if necessary.")
 
 
 def finalise_eabss_component_just(
@@ -249,11 +248,24 @@ def generate_diagrams(
     with open(eabss_interaction_diagram_path, "w") as f:
         f.write(interactions_diagram)
 
-    print(f"Use case diagram result saved to: '{eabss_usecase_diagram_path}'")
-    print(f"Activity diagram result saved to: '{eabss_activity_diagram_path}'")
-    print(f"State transition result saved to: '{eabss_state_transition_diagram_path}'")
-    # TODO: print(f"State condition saved to: '{eabss_interaction_diagram_path}'")
-    print(f"Interaction result saved to: '{eabss_interaction_diagram_path}'")
+    # TODO: (optional) consifer State condition table
+    for name, path in zip(
+        [
+            "Use case diagram",
+            "Activity diagram",
+            "State transition diagram",
+            # "State condition"
+            "Interaction diagram",
+        ],
+        [
+            eabss_usecase_diagram_path,
+            eabss_activity_diagram_path,
+            eabss_state_transition_diagram_path,
+            # eabss_interaction_diagram_path
+            eabss_interaction_diagram_path,
+        ],
+    ):
+        print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ import os
 import sys
 import json
 
-import objective_setup as objective_setup
+import objective_setup
 
 import thematic_analysis
 import thematic_analysis_evaluation
@@ -29,7 +29,7 @@ def get_transcript_file_paths(source_path):
 def ask_approval(stage_str: str) -> bool:
     approve = None
     while approve not in ["y", "n"]:
-        approve = input(f"Proceed to next stage: {stage_str}? (y/n): ").lower()
+        approve = input(f"\nProceed to next stage: {stage_str}? (y/n): ").lower()
     return approve == "y"
 
 
@@ -58,7 +58,6 @@ def main(source_folder: str, results_folder: str):
         print("\nNo existing project detected.")
         print("Starting new project...")
         objective_setup.define_problem_statement(problem_statement_path)
-        print("-" * 50)
         display_progress.display_problem_statement(problem_statement_path)
         print_end_stage()
         sys.exit()
@@ -67,86 +66,90 @@ def main(source_folder: str, results_folder: str):
         display_progress.display_header()
         display_progress.display_problem_statement(problem_statement_path)
 
-    # ## Build EABSS components
-    # ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
-    # ta_codes_csv_path = os.path.join(results_path, "thematic_analysis_codes.csv")
+    ## Build EABSS components
+    ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
+    ta_codes_csv_path = os.path.join(results_path, "thematic_analysis_codes.csv")
 
-    # eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
 
-    # if not os.path.isfile(eabss_components_path):
-    #     stage_str = "Build EABSS components"
-    #     proceed = ask_approval(stage_str)
+    if not os.path.isfile(eabss_components_path):
+        stage_str = "Build EABSS components"
+        proceed = ask_approval(stage_str)
 
-    #     if proceed:
-    #         # Thematic analysis
-    #         thematic_analysis.analyse(
-    #             source_paths,
-    #             ta_codes_txt_path,
-    #             ta_codes_csv_path,
-    #         )
+        if proceed:
+            # Thematic analysis
+            thematic_analysis.analyse(
+                source_paths,
+                ta_codes_txt_path,
+                ta_codes_csv_path,
+            )
 
-    #         # Finalise EABSS components
-    #         key_component_generation.generate_components(
-    #             problem_statement_path,
-    #             ta_codes_txt_path,
-    #             eabss_components_path,
-    #         )
+            # Finalise EABSS components
+            key_component_generation.generate_components(
+                problem_statement_path,
+                ta_codes_txt_path,
+                eabss_components_path,
+            )
 
-    #         # # EABSS components Evaluation
-    #         # thematic_analysis_evaluation.evaluate(ta_codes_csv_path)
-    #         # thematic_analysis_extra.analyse(source_paths)
+            # # EABSS components Evaluation
+            # thematic_analysis_evaluation.evaluate(ta_codes_csv_path)
+            # thematic_analysis_extra.analyse(source_paths)
 
-    #         display_progress.display_eabss_components(eabss_components_path)
-    #         print_end_stage(stage_str)
+            print()
+            display_progress.display_eabss_components(eabss_components_path)
+            print_end_stage()
 
-    #     sys.exit()
-    # else:
-    #     # Display EABSS components
-    #     display_progress.display_eabss_components(eabss_components_path)
+        sys.exit()
+    else:
+        # Display EABSS components result
+        display_progress.display_eabss_components(eabss_components_path)
 
-    # ## Build EABSS diagrams
-    # eabss_usecase_diagram_path = os.path.join(results_path, "eabss_usecase_diagram.txt")
-    # eabss_activity_diagram_path = os.path.join(
-    #     results_path, "eabss_activity_diagram.txt"
-    # )
-    # eabss_state_transition_diagram_path = os.path.join(
-    #     results_path, "eabss_state_diagram.txt"
-    # )
-    # # TODO: add transition table = os.path.join(results_path,"/eabss_state_table.txt")
-    # eabss_interaction_diagram_path = os.path.join(
-    #     results_path, "eabss_interaction_diagram.txt"
-    # )
+    ## Build EABSS diagrams
+    eabss_usecase_diagram_path = os.path.join(
+        results_path, "eabss_diagram_usecase_diagram.txt"
+    )
+    eabss_activity_diagram_path = os.path.join(
+        results_path, "eabss_diagram_activity_diagram.txt"
+    )
+    eabss_state_transition_diagram_path = os.path.join(
+        results_path, "eabss_diagram_state_diagram.txt"
+    )
+    # TODO: (optional) add transition table
+    # eabss_state_transition_table_path = os.path.join(results_path,"eabss_diagram_state_table.txt")
+    eabss_interaction_diagram_path = os.path.join(
+        results_path, "eabss_diagram_interaction_diagram.txt"
+    )
 
-    # if not os.path.isfile(eabss_usecase_diagram_path):
-    #     stage_str = "Generate EABSS diagrams"
-    #     proceed = ask_approval(stage_str)
-    #     if proceed:
-    #         # Generate EABSS diagrams
-    #         key_component_generation.generate_diagrams(
-    #             eabss_components_path,
-    #             eabss_usecase_diagram_path,
-    #             eabss_activity_diagram_path,
-    #             eabss_state_transition_diagram_path,
-    #             eabss_interaction_diagram_path,
-    #         )
+    if not os.path.isfile(eabss_usecase_diagram_path):
+        stage_str = "Generate EABSS diagrams"
+        proceed = ask_approval(stage_str)
+        if proceed:
+            # Generate EABSS diagrams
+            key_component_generation.generate_diagrams(
+                eabss_components_path,
+                eabss_usecase_diagram_path,
+                eabss_activity_diagram_path,
+                eabss_state_transition_diagram_path,
+                eabss_interaction_diagram_path,
+            )
 
-    #         display_progress.display_eabss_diagrams(
-    #             eabss_usecase_diagram_path,
-    #             eabss_activity_diagram_path,
-    #             eabss_state_transition_diagram_path,
-    #             eabss_interaction_diagram_path,
-    #         )
+            display_progress.display_eabss_diagrams(
+                eabss_usecase_diagram_path,
+                eabss_activity_diagram_path,
+                eabss_state_transition_diagram_path,
+                eabss_interaction_diagram_path,
+            )
 
-    #         print_end_stage(stage_str)
-    #     sys.exit()
-    # else:
-    #     # Display EABSS diagrams
-    #     display_progress.display_eabss_diagrams(
-    #         eabss_usecase_diagram_path,
-    #         eabss_activity_diagram_path,
-    #         eabss_state_transition_diagram_path,
-    #         eabss_interaction_diagram_path,
-    #     )
+            print_end_stage()
+        sys.exit()
+    else:
+        # Display EABSS diagrams result
+        display_progress.display_eabss_diagrams(
+            eabss_usecase_diagram_path,
+            eabss_activity_diagram_path,
+            eabss_state_transition_diagram_path,
+            eabss_interaction_diagram_path,
+        )
 
     # ## Define scenario-questions & answer choices
     # archetype_path = os.path.join(results_path, "archetype.py")
@@ -238,6 +241,7 @@ def main(source_folder: str, results_folder: str):
 
     #     print_end_stage(6)
     #     sys.exit()
+    print()
 
 
 if __name__ == "__main__":

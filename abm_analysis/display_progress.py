@@ -6,7 +6,6 @@ from response_models import KeyComponents
 
 def display_header():
     print("\nCurrent progress")
-    print("-" * 50)
 
 
 def display_problem_statement(
@@ -15,10 +14,10 @@ def display_problem_statement(
     with open(problem_statement_path, "r") as f:
         problem_statement_raw = f.read()
         problem_statement: dict = json.loads(problem_statement_raw)
+        print("-" * 50)
         print(f'Objective: {problem_statement["objective"]}')
         print(f'Input/Experimental factor: {problem_statement["input"]}')
         print(f'Output/Response: {problem_statement["output"]}')
-        print("-" * 50)
 
 
 def display_eabss_components(
@@ -38,7 +37,6 @@ def display_eabss_components(
             for item in scope[key]:
                 elemenet = item["code"]
                 print("{:<25} {:<30}".format(component, elemenet))
-        print("-" * 50)
 
 
 def display_eabss_diagrams(
@@ -47,18 +45,38 @@ def display_eabss_diagrams(
     eabss_state_transition_diagram_path,
     eabss_interaction_diagram_path,
 ):
-    print("View diagrams with mermaid.js")
-    print(f"Use case diagram at: '{eabss_usecase_diagram_path}'")
-    print(f"Activity diagram at: '{eabss_activity_diagram_path}'")
-    print(f"State transition diagram at: '{eabss_state_transition_diagram_path}'")
-    print(f"Interaction diagram at: '{eabss_interaction_diagram_path}'")
     print("-" * 50)
+
+    for name, path in zip(
+        [
+            "Use case diagram",
+            "Activity diagram",
+            "State transition diagram",
+            "Interaction diagram",
+        ],
+        [
+            eabss_usecase_diagram_path,
+            eabss_activity_diagram_path,
+            eabss_state_transition_diagram_path,
+            eabss_interaction_diagram_path,
+        ],
+    ):
+        print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
+
+    # print(f"Use case diagram            :saved to '{eabss_usecase_diagram_path}'")
+    # print(f"Activity diagram            :saved to '{eabss_activity_diagram_path}'")
+    # print(
+    #     f"State transition diagram      :saved to '{eabss_state_transition_diagram_path}'"
+    # )
+    # print(f"Interaction diagram         : saved to '{eabss_interaction_diagram_path}'")
+    print()
+    print("You can view these diagrams using mermaid.js.")
 
 
 if __name__ == "__main__":
-    results_folder = "abm_analysis/results_1"
+    results_folder = "abm_analysis/results_2"
     results_path = results_folder
-    problem_statement_path = os.path.join(results_path, "problem_statement.txt")
+    problem_statement_path = os.path.join(results_path, "objective.txt")
     eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
     eabss_usecase_diagram_path = os.path.join(results_path, "eabss_usecase_diagram.txt")
     eabss_activity_diagram_path = os.path.join(

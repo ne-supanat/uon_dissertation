@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 from google.genai.types import GenerateContentResponse
 
 import llm
@@ -8,9 +9,9 @@ from response_models import KeyComponents
 def analyse(
     document_paths: list[str], destination_path_txt: str, destination_path_csv: str
 ):
-    # Write head of table
-    with open(destination_path_csv, "w") as f:
-        f.write("File;Component;Code;Quote\n")
+    # New file
+    with open(destination_path_txt, "w") as f:
+        f.write("")
 
     for document_path in document_paths:
         document = ""
@@ -18,33 +19,19 @@ def analyse(
             document = f.read()
         response = extract_key_components(document, document_path)
 
-        # Write raw response (json)
+        # Save extracted code (json text)
         with open(destination_path_txt, "a+") as f:
             f.write(response.text)
             f.write("\n\n")
 
-        # Write records for human review
-        key_components: KeyComponents = response.parsed
-        for i, component in enumerate(
-            [
-                key_components.actors,
-                key_components.archetypes,
-                key_components.physical_components,
-                key_components.social_aspect,
-                key_components.psychological_aspect,
-                key_components.misc,
-                key_components.key_activities,
-            ]
-        ):
-            for code in component:
-                for quote in code.quotes:
-                    component_name = KeyComponents.get_component_names()[i]
+        # Save extracted code (csv format)
+        write_codes_csv_from_txt(
+            destination_path_txt,
+            destination_path_csv,
+        )
 
-                    # Write quote as row record (csv)
-                    with open(destination_path_csv, "a+") as f:
-                        f.write(
-                            f"{document_path};{component_name};{code.code};{quote}\n"
-                        )
+    print(f"Thematic analaysis text json result saved to: '{destination_path_txt}'")
+    print(f"Thematic analaysis csv result saved to: '{destination_path_csv}'")
 
 
 def extract_key_components(
@@ -63,7 +50,7 @@ Perform thematic analysis and identify key codes and supporting quotes for Agent
 Following these key components
 {KeyComponents.get_explanation()}
 
-Each component has minimum of {2} codes
+Each component has at least {2} codes
 Each code has maximum of {2} quotes
 
 file is {document_path}
@@ -75,37 +62,42 @@ file is {document_path}
     return response
 
 
-def write_codes_csv_from_txt(codes_txt_path, destination_path: str):
+def write_codes_csv_from_txt(codes_txt_path, codes_csv_path: str):
     # Read final raw codes
     with open(codes_txt_path, "r") as f:
         content = f.read()
 
     # Write head of table
-    with open(destination_path, "w") as f:
+    with open(codes_csv_path, "w") as f:
         f.write("File;Component;Code;Quote\n")
 
     # Write quotes (csv)
     for c in content.strip().split("\n\n"):
-        component: dict = json.loads(c)
+        document: dict = json.loads(c)
 
         for i, key in enumerate(KeyComponents.get_component_keys()):
-            for code in component[key]:
+            for code in document[key]:
                 for quote in code["quotes"]:
                     component_name = KeyComponents.get_component_names()[i]
-                    with open(destination_path, "a+") as f:
+                    with open(codes_csv_path, "a+") as f:
                         f.write(
-                            f"{component['file']};{component_name};{code['code']};{quote}\n"
+                            f"{document['file']};{component_name};{code['code']};{quote}\n"
                         )
+
+    df = pd.read_csv(codes_csv_path, delimiter=";")
+    df_sorted = df.sort_values(by="Component")  # sort by Component
+    df_sorted.to_csv(codes_csv_path, index=False)  # index=False : no row name
 
 
 if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
-    analyse(
-        document_paths,
-        "abm_analysis/results/thematic_analysis_codes.txt",
-        "abm_analysis/results/thematic_analysis_codes.csv",
-    )
+    # analyse(
+    #     document_paths,
+    #     "abm_analysis/results/thematic_analysis_codes.txt",
+    #     "abm_analysis/results/thematic_analysis_codes.csv",
+    # )
+
     write_codes_csv_from_txt(
-        "abm_analysis/results/thematic_analysis_codes.txt",
-        "abm_analysis/results/thematic_analysis_codes_sum.csv",
+        "abm_analysis/results_2/thematic_analysis_codes.txt",
+        "abm_analysis/results_2/thematic_analysis_codes.csv",
     )
