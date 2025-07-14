@@ -27,8 +27,8 @@
     {
       "code": "Pragmatic Commuter",
       "quotes": [
-        "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
-        "If public transport is reliable, clean, and not wildly expensive, more people will use it."
+        "Eventually I settled on the train because it’s the most predictable and time-efficient for my route.",
+        "If it’s slower, more confusing, or less comfortable than driving, they’ll default to the car."
       ]
     }
   ],
@@ -89,7 +89,7 @@
       "code": "Distance",
       "quotes": [
         "I live about 10 kilometers from my workplace",
-        "I work in the city center, about 6 or 7 kilometers from home."
+        "I work about 8 kilometers away"
       ]
     }
   ],

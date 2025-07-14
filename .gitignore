@@ -196,3 +196,5 @@ cython_debug/
 
 # MACOS folder metadata
 .DS_Store
+
+result*/

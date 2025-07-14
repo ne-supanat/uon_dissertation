@@ -5,7 +5,7 @@
       "code": "Individual Commuter",
       "quotes": [
         "I usually wake up around 6:30 a.m., have a light breakfast, and then head out by 7:30.",
-        "If I can do something small but consistent, maybe it helps in the long run."
+        "I feel fitter, and I’m less stressed during rush hour."
       ]
     },
     {
@@ -20,15 +20,15 @@
     {
       "code": "Environmentally Conscious Commuter",
       "quotes": [
-        "I started thinking more about my carbon footprint",
-        "I was reading articles and listening to podcasts about climate change, and it struck me that transportation is such a big contributor."
+        "I started thinking more about my carbon footprint—and honestly, it just felt better to be more active in the mornings.",
+        "If I can do something small but consistent, maybe it helps in the long run."
       ]
     },
     {
-      "code": "Health-Oriented Commuter",
+      "code": "Flexible Commuter",
       "quotes": [
-        "honestly, it just felt better to be more active in the mornings.",
-        "I feel fitter, and I’m less stressed during rush hour."
+        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
+        "Start small. Maybe bike one or two days a week, or try the bus for a few days and see how it fits your routine."
       ]
     }
   ],
@@ -36,15 +36,15 @@
     {
       "code": "Bicycle",
       "quotes": [
-        "I cycle most days.",
+        "I live about 10 kilometers from my workplace, so I cycle most days.",
         "Instead of sitting in a jam, I’m cruising past traffic on a bike lane."
       ]
     },
     {
-      "code": "Bus",
+      "code": "Public Transportation (Bus)",
       "quotes": [
         "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus.",
-        "It’s pretty reliable, and there’s a bus stop just a few minutes from my flat."
+        "And when I take the bus, I use the time to read or listen to audiobooks."
       ]
     }
   ],
@@ -52,42 +52,45 @@
     {
       "code": "Workplace Culture",
       "quotes": [
+        "They actually have a cycle-to-work scheme, which I joined.",
         "There’s a really nice culture of encouraging sustainable habits there."
       ]
     },
     {
-      "code": "Carpooling Norms",
+      "code": "Infrastructure Influence",
       "quotes": [
-        "I also sometimes carpool with a colleague if we have early meetings."
+        "I talk to friends who say they’d love to bike or take public transport, but the lack of safe bike lanes or inconsistent bus schedules puts them off.",
+        "If cities invested more in those systems, I think we’d see a huge change."
       ]
     }
   ],
   "psychological_aspect": [
     {
-      "code": "Motivation for Sustainable Choices",
+      "code": "Motivation for Sustainable Commuting",
       "quotes": [
-        "I enjoy it! It’s energizing and gives me time to think."
+        "A combination of things, really. One big factor was learning more about the environmental impact of daily commuting.",
+        "Plus, I enjoy it! It’s energizing and gives me time to think."
       ]
     },
     {
       "code": "Perceived Benefits",
       "quotes": [
-        "It’s just a more peaceful start to the day."
+        "I feel fitter, and I’m less stressed during rush hour.",
+        "And don’t underestimate how good it feels to be part of the solution."
       ]
     }
   ],
   "misc": [
     {
-      "code": "Weather",
-      "quotes": [
-        "depending on traffic and weather.",
-        "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
-      ]
-    },
-    {
       "code": "Distance",
       "quotes": [
         "I live about 10 kilometers from my workplace"
+      ]
+    },
+    {
+      "code": "Environmental Impact",
+      "quotes": [
+        "I was reading articles and listening to podcasts about climate change, and it struck me that transportation is such a big contributor."
       ]
     }
   ],
@@ -95,14 +98,14 @@
     {
       "code": "Commuting Mode Selection",
       "quotes": [
-        "I cycle most days.",
+        "I actually switched to biking regularly about two years ago. I used to drive",
         "Yes, if it’s raining heavily or I’m feeling unwell, I take the bus."
       ]
     },
     {
-      "code": "Workplace Interaction",
+      "code": "Workplace Support Interaction",
       "quotes": [
-        "I also sometimes carpool with a colleague if we have early meetings.",
+        "They actually have a cycle-to-work scheme, which I joined.",
         "We also have secure bike storage and showers, which makes it easier."
       ]
     }
@@ -120,10 +123,10 @@
       ]
     },
     {
-      "code": "Workplace",
+      "code": "Workplace/Employer",
       "quotes": [
-        "We’ve got a bike rack, some people use it religiously.",
-        "They also give out travel vouchers for public transport, which is sweet."
+        "They also give out travel vouchers for public transport, which is sweet.",
+        "There’s definitely a culture of “hey, let’s not destroy the planet if we don’t have to,” which I appreciate."
       ]
     }
   ],
@@ -131,12 +134,12 @@
     {
       "code": "Eco-conscious commuter",
       "quotes": [
-        "I’m not a “perfect eco-warrior” or anything, but I figured if I could cut down on emissions and stress at the same time… win-win, right?",
-        "I recycle, I try not to waste food, and I walk or use public transport when I can."
+        "I’m trying to be more mindful without going extreme.",
+        "I don’t own a car anymore, and honestly, I don’t miss it."
       ]
     },
     {
-      "code": "Pragmatic adopter",
+      "code": "Pragmatic commuter",
       "quotes": [
         "Traffic was a nightmare, parking was expensive, and I started feeling guilty about my car basically puffing out fumes every day.",
         "If public transport is reliable, clean, and not wildly expensive, more people will use it."
@@ -145,31 +148,33 @@
   ],
   "physical_components": [
     {
-      "code": "Tram System",
+      "code": "Tram",
       "quotes": [
-        "Mostly by tram, actually. I used to drive, but sitting in traffic every morning was driving me a bit mad.",
+        "Mostly by tram, actually.",
         "Now, I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes."
       ]
     },
     {
-      "code": "Bicycle and Infrastructure",
+      "code": "Bike",
       "quotes": [
         "I’ve thought about biking more often, but I need to invest in one that doesn’t squeak like a haunted house.",
-        "give us safe bike lanes and people will ride."
+        "We’ve got a bike rack, some people use it religiously."
       ]
     }
   ],
   "social_aspect": [
     {
-      "code": "Workplace culture of sustainability",
+      "code": "Workplace support for sustainable commuting",
       "quotes": [
-        "There’s definitely a culture of “hey, let’s not destroy the planet if we don’t have to,” which I appreciate."
+        "We’ve got a bike rack, some people use it religiously.",
+        "They also give out travel vouchers for public transport, which is sweet."
       ]
     },
     {
-      "code": "Normative influence on commute choices",
+      "code": "Social Norms",
       "quotes": [
-        "If I’ve convinced even one person to leave their car keys behind, I consider it a success."
+        "There’s definitely a culture of “hey, let’s not destroy the planet if we don’t have to,” which I appreciate.",
+        "I figured if I could cut down on emissions and stress at the same time… win-win, right?"
       ]
     }
   ],
@@ -177,15 +182,15 @@
     {
       "code": "Stress reduction",
       "quotes": [
-        "Traffic was a nightmare, parking was expensive",
+        "sitting in traffic every morning was driving me a bit mad.",
         "I’m less grumpy in the mornings, I save money, and I don’t have to panic about finding parking anymore."
       ]
     },
     {
-      "code": "Enjoyment of commute",
+      "code": "Guilt reduction",
       "quotes": [
-        "I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes.",
-        "If the weather’s nice, I’ll walk. It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
+        "I started feeling guilty about my car basically puffing out fumes every day.",
+        "I’m trying to be more mindful without going extreme."
       ]
     }
   ],
@@ -193,29 +198,31 @@
     {
       "code": "Distance",
       "quotes": [
-        "I work in the city center, about 6 or 7 kilometers from home."
+        "I work in the city center, about 6 or 7 kilometers from home.",
+        "It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
       ]
     },
     {
-      "code": "Time",
+      "code": "Weather",
       "quotes": [
-        "It takes about 45 minutes"
+        "If the weather’s nice, I’ll walk.",
+        "Sometimes, yeah! If the weather’s nice, I’ll walk."
       ]
     }
   ],
   "key_activities": [
     {
-      "code": "Choosing Transportation Mode",
+      "code": "Choosing a mode of transport",
       "quotes": [
         "I used to drive, but sitting in traffic every morning was driving me a bit mad. Now, I just hop on the tram",
-        "Sometimes, yeah! If the weather’s nice, I’ll walk."
+        "If the weather’s nice, I’ll walk."
       ]
     },
     {
       "code": "Commuting to work",
       "quotes": [
-        "I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes.",
-        "It takes about 45 minutes, but I throw on a podcast and it’s actually pretty relaxing."
+        "I work in the city center, about 6 or 7 kilometers from home.",
+        "Now, I just hop on the tram, scroll through memes or read the news, and boom—I’m at work in 20 minutes."
       ]
     }
   ]
@@ -235,54 +242,54 @@
       "code": "City Planners/Designers",
       "quotes": [
         "If we design systems better—trains, buses, bike infrastructure—people will naturally make better choices without needing constant moral pressure.",
-        "I’d focus on synchronizing modes—bus, train, bike—with a single, unified platform."
+        "Until cities treat cyclists as full participants in the network, adoption will be uneven."
       ]
     }
   ],
   "archetypes": [
     {
-      "code": "Environmentally Conscious Commuter",
+      "code": "Sustainable Commuter",
       "quotes": [
-        "I’m not someone who’s driven by slogans, but I care about long-term impact.",
-        "I use commute time to disconnect or refocus."
+        "Eventually I settled on the train because it’s the most predictable and time-efficient for my route.",
+        "I’m not someone who’s driven by slogans, but I care about long-term impact."
       ]
     },
     {
-      "code": "Pragmatic Commuter",
+      "code": "Car Dependent Commuter",
       "quotes": [
-        "Eventually I settled on the train because it’s the most predictable and time-efficient for my route.",
-        "If it’s slower, more confusing, or less comfortable than driving, they’ll default to the car."
+        "If it’s slower, more confusing, or less comfortable than driving, they’ll default to the car.",
+        "Convenience and perception."
       ]
     }
   ],
   "physical_components": [
     {
-      "code": "Train System",
+      "code": "Transportation Infrastructure",
       "quotes": [
-        "I usually take the train and walk the rest.",
-        "Improved train frequency, better integration of ticketing systems."
+        "trains, buses, bike infrastructure",
+        "more park-and-ride stations or bike-share hubs"
       ]
     },
     {
-      "code": "Bicycle Infrastructure",
+      "code": "Ticketing Systems",
       "quotes": [
-        "Bike-share hubs would make the switch easier for many people.",
-        "Until cities treat cyclists as full participants in the network, adoption will be uneven."
+        "better integration of ticketing systems.",
+        "One pass, one system, clear information."
       ]
     }
   ],
   "social_aspect": [
     {
-      "code": "Community Benefit Norm",
+      "code": "Community Benefits",
       "quotes": [
-        "And from a systems perspective, fewer individual cars on the road benefits everyone.",
+        "fewer individual cars on the road benefits everyone.",
         "People talk about their commute in terms of quality of life, not just cost or speed."
       ]
     },
     {
-      "code": "Road Safety Norms",
+      "code": "Safety Norms",
       "quotes": [
-        "Urban cycling still comes with risk factors—lane coverage, aggressive driving behavior.",
+        "urban cycling still comes with risk factors—lane coverage, aggressive driving behavior.",
         "Until cities treat cyclists as full participants in the network, adoption will be uneven."
       ]
     }
@@ -291,45 +298,47 @@
     {
       "code": "Stress Reduction",
       "quotes": [
-        "For one, it decouples me from traffic unpredictability.",
+        "I also find I can use the time more productively—reading, planning, or sometimes just mentally resetting.",
         "Reducing stress, improving fitness, saving money—these things add up."
       ]
     },
     {
-      "code": "Productivity Enhancement",
+      "code": "Perception of Convenience",
       "quotes": [
-        "I also find I can use the time more productively—reading, planning, or sometimes just mentally resetting.",
-        "I use commute time to disconnect or refocus."
+        "Most people aren’t against sustainable transport—they just find it harder.",
+        "If it’s slower, more confusing, or less comfortable than driving, they’ll default to the car."
       ]
     }
   ],
   "misc": [
     {
-      "code": "Weather Conditions",
+      "code": "Climate Policy",
       "quotes": [
-        "Yes, and I do it occasionally when the weather’s right and I don’t need to carry too much."
+        "Transportation is one of the more solvable areas in climate policy.",
+        "I’m not someone who’s driven by slogans, but I care about long-term impact."
       ]
     },
     {
-      "code": "Distance",
+      "code": "Time Management",
       "quotes": [
-        "I work about 8 kilometers away"
+        "I’m more deliberate with my time.",
+        "I use commute time to disconnect or refocus."
       ]
     }
   ],
   "key_activities": [
     {
-      "code": "Mode Selection",
+      "code": "Commuting Mode Choice",
       "quotes": [
         "I’ve experimented with different options over the years—driving, biking, walking combinations.",
         "Eventually I settled on the train because it’s the most predictable and time-efficient for my route."
       ]
     },
     {
-      "code": "System Integration",
+      "code": "System Design and Planning",
       "quotes": [
-        "Integrated planning. I’d focus on synchronizing modes—bus, train, bike—with a single, unified platform.",
-        "One pass, one system, clear information."
+        "If we design systems better—trains, buses, bike infrastructure—people will naturally make better choices without needing constant moral pressure.",
+        "Integrated planning. I’d focus on synchronizing modes—bus, train, bike—with a single, unified platform."
       ]
     }
   ]
