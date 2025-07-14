@@ -4,18 +4,18 @@ import json
 def define_problem_statement(result_path):
     print("\nPlease answer the following setup questions:\n")
 
-    print("What is the simulation's problem statement?")
-    input_problem_statement = input()
+    print("What is the simulation's Objective?")
+    input_objective = input()
 
-    print("\nWhat is the simulation's input/experimental factor?")
+    print("\nWhat is the simulation's Input / Experimental factor?")
     input_experiment_factor = input()
 
-    print("\nWhat is the simulation's output/response?")
+    print("\nWhat is the simulation's Output / Response?")
     input_response = input()
 
     with open(result_path, "w") as f:
         dict = {
-            "problem": input_problem_statement,
+            "objective": input_objective,
             "input": input_experiment_factor,
             "output": input_response,
         }

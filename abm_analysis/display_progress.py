@@ -15,7 +15,7 @@ def display_problem_statement(
     with open(problem_statement_path, "r") as f:
         problem_statement_raw = f.read()
         problem_statement: dict = json.loads(problem_statement_raw)
-        print(f'Problem statement: {problem_statement["problem"]}')
+        print(f'Objective: {problem_statement["objective"]}')
         print(f'Input/Experimental factor: {problem_statement["input"]}')
         print(f'Output/Response: {problem_statement["output"]}')
         print("-" * 50)
