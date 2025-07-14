@@ -1,7 +1,8 @@
 import pandas as pd
 import json
 
-from response_models import Archetype, TransportationMode
+from models.archetypes import Archetype
+from models.scenario_answer_choices import ScenarioChoice
 
 
 def generate(scenario_questions_path, scenario_answers_path, scenario_probability_path):
@@ -17,7 +18,7 @@ def generate(scenario_questions_path, scenario_answers_path, scenario_probabilit
             archetype_size = archetype_df.shape[0]
 
             for i in range(len(questions)):
-                for mode in TransportationMode:
+                for mode in ScenarioChoice:
                     answer_df = archetype_df[archetype_df[f"q{i+1}"] == mode.value]
 
                     if archetype_size:

@@ -1,10 +1,11 @@
 import json
 
 import llm
-from response_models import TransportationMode, Profile
+from response_models import Profile
+from models.scenario_answer_choices import ScenarioChoice
 
 
-def _answer_scenario_questions(profile, questions) -> list[TransportationMode]:
+def _answer_scenario_questions(profile, questions) -> list[ScenarioChoice]:
     prompt = f"""
 Based on this profile
 
@@ -14,8 +15,8 @@ Answer these questions
 
 {questions}
 """
-    response = llm.generate_content(prompt, list[TransportationMode])
-    result: list[TransportationMode] = response.parsed
+    response = llm.generate_content(prompt, list[ScenarioChoice])
+    result: list[ScenarioChoice] = response.parsed
     return result
 
 

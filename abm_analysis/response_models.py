@@ -1,6 +1,8 @@
 import enum
 from pydantic import BaseModel
 
+from models.archetypes import Archetype
+
 
 class InputOutput(BaseModel):
     input: str
@@ -19,6 +21,11 @@ class ThinkScriptResponse(BaseModel):
 class Code(BaseModel):
     code: str
     quotes: list[str]
+
+
+class CodeJustification(BaseModel):
+    code: str
+    justification: str
 
 
 class KeyComponents(BaseModel):
@@ -62,18 +69,6 @@ class KeyComponents(BaseModel):
 -   Misc are real world elements that do not fall in any component
 
 -   Key activities are interactions between actors and actors or actors and system environment"""
-
-
-class Archetype(enum.Enum):
-    PragmaticCommuter = "Pragmatic Commuter"
-    EnvironmentallyAwareCommuter = "Environmentally Conscious Commuter"
-
-
-class TransportationMode(enum.Enum):
-    Tram = "Tram"
-    Cycling = "Cycling"
-    Bus = "Bus"
-    Driving = "Driving"
 
 
 class Profile(BaseModel):

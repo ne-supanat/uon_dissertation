@@ -1,7 +1,8 @@
 import json
 
 import llm
-from response_models import TransportationMode, Archetype
+from models.archetypes import Archetype
+from models.scenario_answer_choices import ScenarioChoice
 
 
 def generate_ground_truth(scenario_questions_path, scenario_ground_truth_path):
@@ -10,7 +11,7 @@ def generate_ground_truth(scenario_questions_path, scenario_ground_truth_path):
 
     prompt = f"""
 Archetypes are {", ".join([type.value for type in Archetype])}
-Choices are {", ".join([type.value for type in TransportationMode])}
+Choices are {", ".join([type.value for type in ScenarioChoice])}
 
 What archetype each choice belong (choice can be in one, both or none of the archetypes)
 
@@ -31,7 +32,7 @@ which is
 [[Choices belong to Archetype 1 of Question 2], [Choices belong to Archetype 2 of Question 2]],
 ]{"}"}
 """
-    response = llm.generate_content(prompt, list[list[list[TransportationMode]]])
+    response = llm.generate_content(prompt, list[list[list[ScenarioChoice]]])
     with open(scenario_ground_truth_path, "w") as f:
         f.write(response.text)
 
@@ -40,7 +41,7 @@ def score_profile_anwsers(
     scenario_ground_truth_path, scenario_answers_path, scenario_scores_path
 ):
     with open(scenario_ground_truth_path, "r") as fr:
-        ground_truth: list[list[list[TransportationMode]]] = json.loads(fr.read())
+        ground_truth: list[list[list[ScenarioChoice]]] = json.loads(fr.read())
 
     with open(scenario_answers_path, "r") as fr:
         line = fr.readline()
