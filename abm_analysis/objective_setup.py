@@ -1,7 +1,7 @@
 import json
 
 
-def define_problem_statement(result_path):
+def define_objective_statement(result_path):
     print("\nPlease answer the following setup questions:\n")
 
     print("What is the simulation's Objective?")
@@ -28,4 +28,4 @@ if __name__ == "__main__":
     results_path = "abm_analysis/results_1"
     problem_statement_path = results_path + "/problem_statement.txt"
 
-    define_problem_statement(problem_statement_path)
+    define_objective_statement(problem_statement_path)

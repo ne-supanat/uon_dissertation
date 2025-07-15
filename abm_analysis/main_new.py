@@ -57,7 +57,7 @@ def main(source_folder: str, results_folder: str):
         # New project
         print("\nNo existing project detected.")
         print("Starting new project...")
-        objective_setup.define_problem_statement(problem_statement_path)
+        objective_setup.define_objective_statement(problem_statement_path)
         display_progress.display_problem_statement(problem_statement_path)
         print_end_stage()
         sys.exit()
