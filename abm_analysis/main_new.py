@@ -7,18 +7,26 @@ import objective_setup
 import thematic_analysis
 import thematic_analysis_evaluation
 import thematic_analysis_extra
+
 import key_component_generation
 
 import archetype_scenario_setup
 
 import profile_generation
 import profile_evaluation
+
 import scenario_decision
 import scenario_decision_evaluation
+
 import decision_table
+
 import script_generation
 
 import display_progress
+
+
+# TODO: resume the process: error at profile 3 > should continue at profile 4
+# TODO: add comments
 
 
 def get_transcript_file_paths(source_path):
@@ -217,38 +225,79 @@ def main(source_folder: str, results_folder: str):
         # Display Profiles saved location
         display_progress.display_profile(profiles_path)
 
-        # Display scenario question' answer of each profile
-        display_progress.display_profile_scenario_answer(profile_scenario_answers_path)
+    ## Create Decision probability table
+    decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
 
-    # ## Create Decision probability table
-    # decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
-    # if not os.path.isfile(decision_probability_path):
-    #     print("- decision prob step")
-    #     decision_table.generate(
-    #         scenario_questions_path, scenario_answers_path, decision_probability_path
-    #     )
-    #     print_end_stage(5)
-    #     sys.exit()
+    if not os.path.isfile(decision_probability_path):
+        stage_str = "Decision probability table"
+        proceed = ask_proceed(stage_str)
+        if proceed:
+            # # Answer scenario-questions
+            if not os.path.isfile(profile_scenario_answers_path):
+                scenario_decision.generate_profile_scenario_answers(
+                    scenario_questions_path,
+                    profiles_path,
+                    profile_scenario_answers_path,
+                )
+
+                # Display scenario question' answer of each profile
+                display_progress.display_profile_scenario_answer(
+                    profile_scenario_answers_path
+                )
+
+            # Create decision probability table
+            decision_table.generate(
+                scenario_questions_path,
+                profile_scenario_answers_path,
+                decision_probability_path,
+            )
+
+            display_progress.display_decision_probability_table(
+                decision_probability_path
+            )
+
+            # scenario_ground_truth_path = os.path.join(results_path, "scenario_ground_truth.txt")
+            # scenario_scores_path = os.path.join(results_path, "scenario_scores.csv")
+            # scenario_decision_evaluation.generate_ground_truth(
+            #     scenario_questions_path,
+            #     scenario_ground_truth_path,
+            # )
+            # scenario_decision_evaluation.score_profile_anwsers(
+            #     scenario_ground_truth_path,
+            #     scenario_answers_path,
+            #     scenario_scores_path,
+            # )
+
+            print_end_stage()
+        sys.exit()
+    else:
+        # Display Scenario answer saved path & Decision probability table
+        display_progress.display_profile_scenario_answer(profile_scenario_answers_path)
+        display_progress.display_decision_probability_table(decision_probability_path)
 
     # ## Generate Simulation script
     # simulation_script_path = os.path.join(results_path, "simulation_script.txt")
 
     # if not os.path.isfile(simulation_script_path):
-    #     print("- sim script step")
-    #     script_generation.generate(
-    #         problem_statement_path,
-    #         eabss_components_path,
-    #         eabss_usecase_diagram_path,
-    #         eabss_activity_diagram_path,
-    #         eabss_state_transition_diagram_path,
-    #         eabss_interaction_diagram_path,
-    #         decision_probability_path,
-    #         simulation_script_path,
-    #     )
-    #     # TODO: tell user to review & update script (manually/LLMs)
-
-    #     print_end_stage(6)
+    #     stage_str = "Generate simulation script"
+    #     proceed = ask_proceed(stage_str)
+    #     if proceed:
+    #         script_generation.generate(
+    #             problem_statement_path,
+    #             eabss_components_path,
+    #             eabss_usecase_diagram_path,
+    #             eabss_activity_diagram_path,
+    #             eabss_state_transition_diagram_path,
+    #             eabss_interaction_diagram_path,
+    #             decision_probability_path,
+    #             simulation_script_path,
+    #         )
+    #         # TODO: tell user to review & update script (manually/LLMs)
+    #     print_end_stage()
     #     sys.exit()
+    # else:
+    #     pass
+    #     # TODO: Display file path
     print()
 
 

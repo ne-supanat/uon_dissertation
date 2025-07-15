@@ -102,7 +102,7 @@ Select step: """
             f.write(questions)
 
         # Scenario-question answering
-        scenario_decision.generate_profile_answers(
+        scenario_decision.generate_profile_scenario_answers(
             scenario_questions_path,
             profiles_path,
             scenario_answers_path,

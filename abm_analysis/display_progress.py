@@ -1,7 +1,10 @@
 import os
 import json
+import csv
+from tabulate import tabulate, SEPARATING_LINE
 
 from response_models import KeyComponents
+from models.scenario_choices import ScenarioChoice
 
 
 def display_header():
@@ -23,12 +26,12 @@ def display_problem_statement(
 def display_eabss_components(
     eabss_scope_path,
 ):
+    print("-" * 50)
     with open(eabss_scope_path, "r") as f:
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)
-        print("-" * 50)
-        print("{:<25} {:<30}".format("Component", "Element"))
-        print("-" * 50)
+
+        table = []
         for key in scope.keys():
             component = KeyComponents.get_component_names()[
                 KeyComponents.get_component_keys().index(key)
@@ -36,7 +39,9 @@ def display_eabss_components(
 
             for item in scope[key]:
                 elemenet = item["code"]
-                print("{:<25} {:<30}".format(component, elemenet))
+                table.append([component, elemenet])
+
+    print(tabulate(table, headers=["Component", "Element"], tablefmt="rst"))
 
 
 def display_eabss_diagrams(
@@ -106,6 +111,29 @@ def display_profile_scenario_answer(profile_scenario_answers_path):
     )
 
 
+def display_decision_probability_table(decision_probability_path):
+    print("-" * 50)
+    with open(decision_probability_path) as f:
+        reader = csv.reader(f, delimiter=";")
+
+        headers = ["Question", "Archetype"]
+        headers += [choice.value for choice in ScenarioChoice]
+
+        rows = []
+        current_question = ""
+        for row in reader:
+            if current_question == row[0]:
+                row[0] = ""  # Hide repeated question
+            else:
+                if current_question != "":
+                    rows.append(SEPARATING_LINE)
+                current_question = row[0]
+
+            rows.append(row)
+
+        print(tabulate(rows, headers=headers, tablefmt="rst"))
+
+
 if __name__ == "__main__":
     results_folder = "abm_analysis/results_2"
     results_path = results_folder
@@ -129,6 +157,7 @@ if __name__ == "__main__":
     profile_scenario_answers_path = os.path.join(
         results_path, "profile_scenario_answers.csv"
     )
+    decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
 
     display_header()
     display_problem_statement(problem_statement_path)
@@ -143,3 +172,4 @@ if __name__ == "__main__":
     display_scenario(scenario_questions_path, scenario_choices_path)
     display_profile(profiles_path)
     display_profile_scenario_answer(profile_scenario_answers_path)
+    display_decision_probability_table(decision_probability_path)
