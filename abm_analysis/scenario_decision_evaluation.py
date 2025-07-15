@@ -2,7 +2,7 @@ import json
 
 import llm
 from models.archetypes import Archetype
-from models.scenario_answer_choices import ScenarioChoice
+from models.scenario_choices import ScenarioChoice
 
 
 def generate_ground_truth(scenario_questions_path, scenario_ground_truth_path):

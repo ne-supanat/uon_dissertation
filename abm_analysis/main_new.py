@@ -151,30 +151,39 @@ def main(source_folder: str, results_folder: str):
             eabss_interaction_diagram_path,
         )
 
-    # ## Define scenario-questions & answer choices
-    # archetype_path = os.path.join(results_path, "archetype.py")
-    # scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
-    # scenario_answer_choices_path = os.path.join(results_path, "answers_choices.py")
+    ## Define scenario-questions & answer choices
+    archetype_path = os.path.join(results_path, "archetype.txt")
+    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
 
-    # if (
-    #     not os.path.isfile(archetype_path)
-    #     or not os.path.isfile(scenario_questions_path)
-    #     or not os.path.isfile(scenario_answer_choices_path)
-    # ):
-    #     stage_str = "Define Archetype, Scenario questions & answer choices"
-    #     proceed = ask_approval(stage_str)
-    #     archetype_scenario_setup.setup_archetype_scenario()
-    #     # TODO: tell user to update relevant models for next step (archetypes, questions, choices)
-    #     print("- scenario questions step")
-    #     # Define scenario questions
-    #     # TODO:
-    #     # with open(scenario_questions_path, "w") as f:
-    #     #     f.write("questions")
-    #     # Define scenario answer choices
-    #     # TODO:
+    if (
+        not os.path.isfile(archetype_path)
+        or not os.path.isfile(scenario_questions_path)
+        or not os.path.isfile(scenario_choices_path)
+    ):
+        stage_str = "Define Archetype, Scenario questions & answer choices"
+        proceed = ask_approval(stage_str)
+        archetype_scenario_setup.setup_archetype_scenario(
+            eabss_components_path,
+            archetype_path,
+            scenario_questions_path,
+            scenario_choices_path,
+        )
 
-    #     print_end_stage(stage_str)
-    #     sys.exit()
+        display_progress.display_archetype(archetype_path)
+        display_progress.display_scenario(
+            scenario_questions_path,
+            scenario_choices_path,
+        )
+        print_end_stage()
+        sys.exit()
+    else:
+        # Display Archetype, Scenario questions & answer choices
+        display_progress.display_archetype(archetype_path)
+        display_progress.display_scenario(
+            scenario_questions_path,
+            scenario_choices_path,
+        )
 
     # ## Extract Profiles (& classify profile archetype)
     # profiles_path = os.path.join(results_path, "profiles.txt")

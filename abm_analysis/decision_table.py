@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 from models.archetypes import Archetype
-from models.scenario_answer_choices import ScenarioChoice
+from models.scenario_choices import ScenarioChoice
 
 
 def generate(scenario_questions_path, scenario_answers_path, scenario_probability_path):

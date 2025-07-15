@@ -2,7 +2,7 @@ import json
 
 import llm
 from response_models import Profile
-from models.scenario_answer_choices import ScenarioChoice
+from models.scenario_choices import ScenarioChoice
 
 
 def _answer_scenario_questions(profile, questions) -> list[ScenarioChoice]:

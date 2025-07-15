@@ -46,7 +46,7 @@ def display_eabss_diagrams(
     eabss_interaction_diagram_path,
 ):
     print("-" * 50)
-
+    print("You can view EABSS diagrams using mermaid.js")
     for name, path in zip(
         [
             "Use case diagram",
@@ -61,16 +61,35 @@ def display_eabss_diagrams(
             eabss_interaction_diagram_path,
         ],
     ):
-        print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
+        print("  {:<25} {:<30}".format(name, f": saved to '{path}'"))
 
-    # print(f"Use case diagram            :saved to '{eabss_usecase_diagram_path}'")
-    # print(f"Activity diagram            :saved to '{eabss_activity_diagram_path}'")
-    # print(
-    #     f"State transition diagram      :saved to '{eabss_state_transition_diagram_path}'"
-    # )
-    # print(f"Interaction diagram         : saved to '{eabss_interaction_diagram_path}'")
+
+def display_archetype(archetype_path):
+    print("-" * 50)
+    print("Archetypes:")
+    with open(archetype_path, "r") as f:
+        content = f.read()
+
+    for i, archetype in enumerate(content.strip().split("\n")):
+        print(f"{i+1}. {archetype}")
+
+
+def display_scenario(scenario_questions_path, scenario_choices_path):
+    print("-" * 50)
+    print("Scenario questions:")
+    with open(scenario_questions_path, "r") as f:
+        content = f.read()
+
+    for i, question in enumerate(content.split("\n")):
+        print(f"{i+1}. {question}")
+
     print()
-    print("You can view these diagrams using mermaid.js.")
+    print("Scenario answer choices:")
+    with open(scenario_choices_path, "r") as f:
+        content = f.read()
+
+    for i, choice in enumerate(content.strip().split("\n")):
+        print(f"{i+1}. {choice}")
 
 
 if __name__ == "__main__":
@@ -89,8 +108,9 @@ if __name__ == "__main__":
     eabss_interaction_diagram_path = os.path.join(
         results_path, "eabss_interaction_diagram.txt"
     )
-
-    print(os.path.join(results_path, "eabss_interaction_diagram.txt"))
+    archetype_path = os.path.join(results_path, "archetype.txt")
+    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
 
     display_header()
     display_problem_statement(problem_statement_path)
@@ -101,3 +121,5 @@ if __name__ == "__main__":
         eabss_state_transition_diagram_path,
         eabss_interaction_diagram_path,
     )
+    display_archetype(archetype_path)
+    display_scenario(scenario_questions_path, scenario_choices_path)
