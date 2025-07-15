@@ -92,6 +92,20 @@ def display_scenario(scenario_questions_path, scenario_choices_path):
         print(f"{i+1}. {choice}")
 
 
+def display_profile(profiles_path):
+    print("-" * 50)
+    print("{:<25} {:<30}".format("Profiles", f": saved to '{profiles_path}'"))
+
+
+def display_profile_scenario_answer(profile_scenario_answers_path):
+    print("-" * 50)
+    print(
+        "{:<25} {:<30}".format(
+            "Scenario answers", f": saved to '{profile_scenario_answers_path}'"
+        )
+    )
+
+
 if __name__ == "__main__":
     results_folder = "abm_analysis/results_2"
     results_path = results_folder
@@ -111,6 +125,10 @@ if __name__ == "__main__":
     archetype_path = os.path.join(results_path, "archetype.txt")
     scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
     scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
+    profiles_path = os.path.join(results_path, "profiles.txt")
+    profile_scenario_answers_path = os.path.join(
+        results_path, "profile_scenario_answers.csv"
+    )
 
     display_header()
     display_problem_statement(problem_statement_path)
@@ -123,3 +141,5 @@ if __name__ == "__main__":
     )
     display_archetype(archetype_path)
     display_scenario(scenario_questions_path, scenario_choices_path)
+    display_profile(profiles_path)
+    display_profile_scenario_answer(profile_scenario_answers_path)

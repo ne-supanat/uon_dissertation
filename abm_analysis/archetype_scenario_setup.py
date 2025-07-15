@@ -1,5 +1,7 @@
 import json
 
+# TODO: (optional) sanitize name
+
 
 def setup_archetype_scenario(
     eabss_components_path,

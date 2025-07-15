@@ -26,7 +26,7 @@ def get_transcript_file_paths(source_path):
     # return [f"{source_path}/{filename}" for filename in sorted(os.listdir(source_path))]
 
 
-def ask_approval(stage_str: str) -> bool:
+def ask_proceed(stage_str: str) -> bool:
     approve = None
     while approve not in ["y", "n"]:
         approve = input(f"\nProceed to next stage: {stage_str}? (y/n): ").lower()
@@ -74,7 +74,7 @@ def main(source_folder: str, results_folder: str):
 
     if not os.path.isfile(eabss_components_path):
         stage_str = "Build EABSS components"
-        proceed = ask_approval(stage_str)
+        proceed = ask_proceed(stage_str)
 
         if proceed:
             # Thematic analysis
@@ -122,7 +122,7 @@ def main(source_folder: str, results_folder: str):
 
     if not os.path.isfile(eabss_usecase_diagram_path):
         stage_str = "Generate EABSS diagrams"
-        proceed = ask_approval(stage_str)
+        proceed = ask_proceed(stage_str)
         if proceed:
             # Generate EABSS diagrams
             key_component_generation.generate_diagrams(
@@ -151,7 +151,7 @@ def main(source_folder: str, results_folder: str):
             eabss_interaction_diagram_path,
         )
 
-    ## Define scenario-questions & answer choices
+    ## Define archetyp, scenario questions, scenarion answer choices
     archetype_path = os.path.join(results_path, "archetype.txt")
     scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
     scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
@@ -162,20 +162,24 @@ def main(source_folder: str, results_folder: str):
         or not os.path.isfile(scenario_choices_path)
     ):
         stage_str = "Define Archetype, Scenario questions & answer choices"
-        proceed = ask_approval(stage_str)
-        archetype_scenario_setup.setup_archetype_scenario(
-            eabss_components_path,
-            archetype_path,
-            scenario_questions_path,
-            scenario_choices_path,
-        )
+        proceed = ask_proceed(stage_str)
+        if proceed:
+            # Define archetyp, scenario questions, scenarion answer choices
+            archetype_scenario_setup.setup_archetype_scenario(
+                eabss_components_path,
+                archetype_path,
+                scenario_questions_path,
+                scenario_choices_path,
+            )
 
-        display_progress.display_archetype(archetype_path)
-        display_progress.display_scenario(
-            scenario_questions_path,
-            scenario_choices_path,
-        )
-        print_end_stage()
+            # TODO: add update model manaully mode
+
+            display_progress.display_archetype(archetype_path)
+            display_progress.display_scenario(
+                scenario_questions_path,
+                scenario_choices_path,
+            )
+            print_end_stage()
         sys.exit()
     else:
         # Display Archetype, Scenario questions & answer choices
@@ -185,41 +189,36 @@ def main(source_folder: str, results_folder: str):
             scenario_choices_path,
         )
 
-    # ## Extract Profiles (& classify profile archetype)
-    # profiles_path = os.path.join(results_path, "profiles.txt")
-    # scenario_answers_path = os.path.join(results_path, "scenario_answers.csv")
+    ## Extract Profiles (& classify profile archetype)
+    profiles_path = os.path.join(results_path, "profiles.txt")
+    profile_scenario_answers_path = os.path.join(
+        results_path, "profile_scenario_answers.csv"
+    )
 
-    # if not os.path.isfile(profiles_path):
-    #     print("- extract profiles step")
-    #     # Extract profile
-    #     profile_generation.generate(
-    #         source_paths,
-    #         problem_statement_path,
-    #         eabss_components_path,
-    #         profiles_path,
-    #     )
-    #     # Answer scenario-questions
-    #     scenario_decision.generate_profile_answers(
-    #         scenario_questions_path,
-    #         profiles_path,
-    #         scenario_answers_path,
-    #     )
-    #     # # Profile Evaluation
-    #     # scenario_ground_truth_path = os.path.join(results_path, "scenario_ground_truth.txt")
-    #     # scenario_scores_path = os.path.join(results_path, "scenario_scores.csv")
-    #     # profile_evaluation.evaluate(profiles_path)
-    #     # scenario_decision_evaluation.generate_ground_truth(
-    #     #     scenario_questions_path,
-    #     #     scenario_ground_truth_path,
-    #     # )
-    #     # scenario_decision_evaluation.score_profile_anwsers(
-    #     #     scenario_ground_truth_path,
-    #     #     scenario_answers_path,
-    #     #     scenario_scores_path,
-    #     # )
+    if not os.path.isfile(profiles_path):
+        stage_str = "Extract profiles"
+        proceed = ask_proceed(stage_str)
+        if proceed:
+            # Extract profile
+            profile_generation.generate(
+                source_paths,
+                problem_statement_path,
+                eabss_components_path,
+                profiles_path,
+            )
+            display_progress.display_profile(profiles_path)
 
-    #     print_end_stage(4)
-    #     sys.exit()
+            # # Profile Evaluation
+            # profile_evaluation.evaluate(profiles_path)
+
+            print_end_stage()
+        sys.exit()
+    else:
+        # Display Profiles saved location
+        display_progress.display_profile(profiles_path)
+
+        # Display scenario question' answer of each profile
+        display_progress.display_profile_scenario_answer(profile_scenario_answers_path)
 
     # ## Create Decision probability table
     # decision_probability_path = os.path.join(results_path, "scenario_probability.csv")

@@ -77,3 +77,10 @@ class Profile(BaseModel):
     quotes: list[str]
     summary: str
     archetype: Archetype
+
+
+class ProfileShort(BaseModel):
+    file: str
+    summary: str
+    quotes: list[str]
+    archetype: Archetype
