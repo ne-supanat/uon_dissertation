@@ -1,5 +1,4 @@
 import os
-import json
 
 import llm
 from models.response_models import KeyComponents, ScriptResponse, ThinkScriptResponse

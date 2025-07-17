@@ -2,25 +2,25 @@ import os
 import sys
 import json
 
-import objective_setup
+import stage_01_objective_setup
 
-import thematic_analysis
-import thematic_analysis_evaluation
-import thematic_analysis_extra
+import stage_02_thematic_analysis
+import stage_02_thematic_analysis_evaluation
+import stage_02_thematic_analysis_extra
 
-import key_component_generation
+import stage_03_eabss_components_generation
 
-import archetype_scenario_setup
+import stage_04_archetype_scenario_setup
 
-import profile_generation
-import profile_evaluation
+import stage_05_profile_generation
+import stage_05_profile_evaluation
 
-import scenario_decision
-import scenario_decision_evaluation
+import stage_06_scenario_decision
+import stage_06_scenario_decision_evaluation
 
-import decision_table
+import stage_07_decision_table
 
-import script_generation
+import stage_08_script_generation
 
 import display_progress
 
@@ -64,7 +64,7 @@ def main(source_folder: str, results_folder: str):
         # New project
         print("\nNo existing project detected.")
         print("Starting new project...")
-        objective_setup.define_objective_statement(objective_statement_path)
+        stage_01_objective_setup.define_objective_statement(objective_statement_path)
         print(display_progress.objective_statement_progress(objective_statement_path))
         print_end_stage()
         sys.exit()
@@ -85,14 +85,14 @@ def main(source_folder: str, results_folder: str):
 
         if proceed:
             # Thematic analysis
-            thematic_analysis.analyse(
+            stage_02_thematic_analysis.analyse(
                 source_paths,
                 ta_codes_txt_path,
                 ta_codes_csv_path,
             )
 
             # Finalise EABSS components
-            key_component_generation.generate_components(
+            stage_03_eabss_components_generation.generate_components(
                 objective_statement_path,
                 ta_codes_txt_path,
                 eabss_components_path,
@@ -133,7 +133,7 @@ def main(source_folder: str, results_folder: str):
         proceed = ask_proceed(stage_str)
         if proceed:
             # Generate EABSS diagrams
-            key_component_generation.generate_diagrams(
+            stage_03_eabss_components_generation.generate_diagrams(
                 eabss_components_path,
                 eabss_usecase_diagram_path,
                 eabss_activity_diagram_path,
@@ -177,7 +177,7 @@ def main(source_folder: str, results_folder: str):
         proceed = ask_proceed(stage_str)
         if proceed:
             # Define archetyp, scenario questions, scenarion answer choices
-            archetype_scenario_setup.setup_archetype_scenario(
+            stage_04_archetype_scenario_setup.setup_archetype_scenario(
                 eabss_components_path,
                 archetype_path,
                 scenario_questions_path,
@@ -214,7 +214,7 @@ def main(source_folder: str, results_folder: str):
         proceed = ask_proceed(stage_str)
         if proceed:
             # Extract profile
-            profile_generation.generate(
+            stage_05_profile_generation.generate(
                 source_paths,
                 objective_statement_path,
                 eabss_components_path,
@@ -240,7 +240,7 @@ def main(source_folder: str, results_folder: str):
         if proceed:
             # # Answer scenario-questions
             if not os.path.isfile(profile_scenario_answers_path):
-                scenario_decision.generate_profile_scenario_answers(
+                stage_06_scenario_decision.generate_profile_scenario_answers(
                     scenario_questions_path,
                     profiles_path,
                     profile_scenario_answers_path,
@@ -254,7 +254,7 @@ def main(source_folder: str, results_folder: str):
                 )
 
             # Create decision probability table
-            decision_table.generate(
+            stage_07_decision_table.generate(
                 scenario_questions_path,
                 profile_scenario_answers_path,
                 decision_probability_path,
@@ -300,7 +300,7 @@ def main(source_folder: str, results_folder: str):
         stage_str = "Generate simulation script"
         proceed = ask_proceed(stage_str)
         if proceed:
-            script_generation.generate(
+            stage_08_script_generation.generate(
                 objective_statement_path,
                 eabss_components_path,
                 eabss_usecase_diagram_path,
