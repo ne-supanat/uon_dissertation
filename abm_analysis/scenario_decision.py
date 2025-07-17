@@ -14,13 +14,7 @@ def generate_profile_scenario_answers(question_path, profiles_path, answer_path)
         content = f.read()
     profiles = [profile for profile in content.strip().split("\n\n")]
 
-    # TODO: hide archetype
-
-    # New file
     with open(answer_path, "w") as f:
-        f.write()
-
-    with open(answer_path, "a+") as f:
         for profile_str in profiles:
             profile: ProfileShort = ProfileShort.model_validate_json(profile_str)
             answers = answer_scenario_questions(profile, questions)
@@ -34,13 +28,14 @@ def answer_scenario_questions(
     questions: list[str],
 ) -> list[ScenarioChoice]:
     prompt = f"""
-Based on this profile
+Based on this profile summary:
+{profile.summary}
 
-{profile}
+And these support quotes:
+{"\n".join([f'- "{quote}"' for quote in profile.quotes])}
 
-Answer these questions
-
-{questions}
+Answer following questions
+{"\n".join([f'- {question}' for question in questions])}
 """
     response = llm.generate_content(prompt, list[ScenarioChoice])
     result: list[ScenarioChoice] = response.parsed
@@ -72,13 +67,13 @@ def mock_scenario_answer(question_path, answer_path):
 
 if __name__ == "__main__":
     scenario_questions_path = "abm_analysis/results_2/scenario_questions.txt"
-    profiles_path = "abm_analysis/results/profiles.txt"
+    profiles_path = "abm_analysis/results_2/profiles.txt"
     scenario_answers_path = "abm_analysis/results_2/profile_scenario_answers.csv"
 
-    # generate_profile_answers(
-    #     scenario_questions_path,
-    #     profiles_path,
-    #     scenario_answers_path,
-    # )
+    generate_profile_scenario_answers(
+        scenario_questions_path,
+        profiles_path,
+        scenario_answers_path,
+    )
 
-    mock_scenario_answer(scenario_questions_path, scenario_answers_path)
+    # mock_scenario_answer(scenario_questions_path, scenario_answers_path)
