@@ -11,22 +11,24 @@ def display_header():
     print("\nCurrent progress")
 
 
-def display_problem_statement(
-    problem_statement_path,
+def objective_statement_progress(
+    objective_statement_path,
 ):
-    with open(problem_statement_path, "r") as f:
+    str = "-" * 50 + "\n"
+    with open(objective_statement_path, "r") as f:
         problem_statement_raw = f.read()
         problem_statement: dict = json.loads(problem_statement_raw)
-        print("-" * 50)
-        print(f'Objective: {problem_statement["objective"]}')
-        print(f'Input/Experimental factor: {problem_statement["input"]}')
-        print(f'Output/Response: {problem_statement["output"]}')
+        str += f'Objective: {problem_statement["objective"]}\n'
+        str += f'Input/Experimental factor: {problem_statement["input"]}\n'
+        str += f'Output/Response: {problem_statement["output"]}'
+
+    return str
 
 
-def display_eabss_components(
+def eabss_components_progress(
     eabss_scope_path,
 ):
-    print("-" * 50)
+    str = "-" * 50 + "\n"
     with open(eabss_scope_path, "r") as f:
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)
@@ -41,17 +43,18 @@ def display_eabss_components(
                 elemenet = item["code"]
                 table.append([component, elemenet])
 
-    print(tabulate(table, headers=["Component", "Element"], tablefmt="rst"))
+    str += tabulate(table, headers=["Component", "Element"], tablefmt="rst")
+    return str
 
 
-def display_eabss_diagrams(
+def eabss_diagrams_progess(
     eabss_usecase_diagram_path,
     eabss_activity_diagram_path,
     eabss_state_transition_diagram_path,
     eabss_interaction_diagram_path,
 ):
-    print("-" * 50)
-    print("You can view EABSS diagrams using mermaid.js")
+    str = "-" * 50 + "\n"
+    str += "You can view EABSS diagrams using mermaid.js"
     for name, path in zip(
         [
             "Use case diagram",
@@ -66,53 +69,61 @@ def display_eabss_diagrams(
             eabss_interaction_diagram_path,
         ],
     ):
-        print("  {:<25} {:<30}".format(name, f": saved to '{path}'"))
+        str += "\n  {:<25} {:<30}".format(name, f": saved to '{path}'")
+
+    return str
 
 
-def display_archetype(archetype_path):
-    print("-" * 50)
-    print("Archetypes:")
+def archetype_progess(archetype_path):
+    str = "-" * 50 + "\n"
+    str += "Archetypes:"
     with open(archetype_path, "r") as f:
         content = f.read()
 
     for i, archetype in enumerate(content.strip().split("\n")):
-        print(f"{i+1}. {archetype}")
+        str += f"\n{i+1}. {archetype}"
+
+    return str
 
 
-def display_scenario(scenario_questions_path, scenario_choices_path):
-    print("-" * 50)
-    print("Scenario questions:")
+def scenario_progess(scenario_questions_path, scenario_choices_path):
+    str = "-" * 50 + "\n"
+    str += "Scenario questions:"
     with open(scenario_questions_path, "r") as f:
         content = f.read()
 
     for i, question in enumerate(content.split("\n")):
-        print(f"{i+1}. {question}")
+        str += f"\n{i+1}. {question}"
 
-    print()
-    print("Scenario answer choices:")
+    str += "\n" + "-" * 50 + "\n"
+    str += "Scenario answer choices:"
     with open(scenario_choices_path, "r") as f:
         content = f.read()
 
     for i, choice in enumerate(content.strip().split("\n")):
-        print(f"{i+1}. {choice}")
+        str += f"\n{i+1}. {choice}"
+
+    return str
 
 
-def display_profile(profiles_path):
-    print("-" * 50)
-    print("{:<25} {:<30}".format("Profiles", f": saved to '{profiles_path}'"))
+def profile_progess(profiles_path):
+    str = "-" * 50 + "\n"
+    str += "{:<25} {:<30}".format("Profiles", f": saved to '{profiles_path}'")
+
+    return str
 
 
-def display_profile_scenario_answer(profile_scenario_answers_path):
-    print("-" * 50)
-    print(
-        "{:<25} {:<30}".format(
-            "Scenario answers", f": saved to '{profile_scenario_answers_path}'"
-        )
+def profile_scenario_answer_progess(profile_scenario_answers_path):
+    str = "-" * 50 + "\n"
+    str += "{:<25} {:<30}".format(
+        "Scenario answers", f": saved to '{profile_scenario_answers_path}'"
     )
 
+    return str
 
-def display_decision_probability_table(decision_probability_path):
-    print("-" * 50)
+
+def decision_probability_table_progess(decision_probability_path):
+    str = "-" * 50 + "\n"
     with open(decision_probability_path) as f:
         reader = csv.reader(f, delimiter=";")
 
@@ -131,7 +142,18 @@ def display_decision_probability_table(decision_probability_path):
 
             rows.append(row)
 
-        print(tabulate(rows, headers=headers, tablefmt="rst"))
+        str += tabulate(rows, headers=headers, tablefmt="rst")
+
+    return str
+
+
+def profile_scenario_answer_progess(simulation_script_path):
+    str = "-" * 50 + "\n"
+    str += "{:<25} {:<30}".format(
+        "Simulation script", f": saved to '{simulation_script_path}'"
+    )
+
+    return str
 
 
 if __name__ == "__main__":
@@ -158,18 +180,23 @@ if __name__ == "__main__":
         results_path, "profile_scenario_answers.csv"
     )
     decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
+    simulation_script_path = os.path.join(results_path, "simulation_script.txt")
 
     display_header()
-    display_problem_statement(problem_statement_path)
-    display_eabss_components(eabss_components_path)
-    display_eabss_diagrams(
-        eabss_usecase_diagram_path,
-        eabss_activity_diagram_path,
-        eabss_state_transition_diagram_path,
-        eabss_interaction_diagram_path,
+    print(objective_statement_progress(problem_statement_path))
+    print(eabss_components_progress(eabss_components_path))
+    print(
+        eabss_diagrams_progess(
+            eabss_usecase_diagram_path,
+            eabss_activity_diagram_path,
+            eabss_state_transition_diagram_path,
+            eabss_interaction_diagram_path,
+        )
     )
-    display_archetype(archetype_path)
-    display_scenario(scenario_questions_path, scenario_choices_path)
-    display_profile(profiles_path)
-    display_profile_scenario_answer(profile_scenario_answers_path)
-    display_decision_probability_table(decision_probability_path)
+    print(archetype_progess(archetype_path))
+    print(scenario_progess(scenario_questions_path, scenario_choices_path))
+    print(profile_progess(profiles_path))
+    print(profile_scenario_answer_progess(profile_scenario_answers_path))
+    print(decision_probability_table_progess(decision_probability_path))
+    print(profile_scenario_answer_progess(simulation_script_path))
+    print()

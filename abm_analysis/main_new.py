@@ -45,7 +45,7 @@ def print_end_stage(is_last_stage: bool = False):
     if not is_last_stage:
         print("\nRun 'python main.py' to continue to the next stage.\n")
     else:
-        print("\n- Done -\n")
+        print("-" * 50 + "\nAll stages completed\n" + "=" * 50)
 
 
 def main(source_folder: str, results_folder: str):
@@ -59,20 +59,20 @@ def main(source_folder: str, results_folder: str):
     # TODO: make user approve the stage result first
 
     ## Define Objective, Input, Output
-    problem_statement_path = os.path.join(results_path, "objective.txt")
+    objective_statement_path = os.path.join(results_path, "objective.txt")
 
-    if not os.path.isfile(problem_statement_path):
+    if not os.path.isfile(objective_statement_path):
         # New project
         print("\nNo existing project detected.")
         print("Starting new project...")
-        objective_setup.define_objective_statement(problem_statement_path)
-        display_progress.display_problem_statement(problem_statement_path)
+        objective_setup.define_objective_statement(objective_statement_path)
+        print(display_progress.objective_statement_progress(objective_statement_path))
         print_end_stage()
         sys.exit()
     else:
         # Display objective result
         display_progress.display_header()
-        display_progress.display_problem_statement(problem_statement_path)
+        print(display_progress.objective_statement_progress(objective_statement_path))
 
     ## Build EABSS components
     ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
@@ -94,7 +94,7 @@ def main(source_folder: str, results_folder: str):
 
             # Finalise EABSS components
             key_component_generation.generate_components(
-                problem_statement_path,
+                objective_statement_path,
                 ta_codes_txt_path,
                 eabss_components_path,
             )
@@ -104,13 +104,13 @@ def main(source_folder: str, results_folder: str):
             # thematic_analysis_extra.analyse(source_paths)
 
             print()
-            display_progress.display_eabss_components(eabss_components_path)
+            print(display_progress.eabss_components_progress(eabss_components_path))
             print_end_stage()
 
         sys.exit()
     else:
         # Display EABSS components result
-        display_progress.display_eabss_components(eabss_components_path)
+        print(display_progress.eabss_components_progress(eabss_components_path))
 
     ## Build EABSS diagrams
     eabss_usecase_diagram_path = os.path.join(
@@ -141,22 +141,26 @@ def main(source_folder: str, results_folder: str):
                 eabss_interaction_diagram_path,
             )
 
-            display_progress.display_eabss_diagrams(
-                eabss_usecase_diagram_path,
-                eabss_activity_diagram_path,
-                eabss_state_transition_diagram_path,
-                eabss_interaction_diagram_path,
+            print(
+                display_progress.eabss_diagrams_progess(
+                    eabss_usecase_diagram_path,
+                    eabss_activity_diagram_path,
+                    eabss_state_transition_diagram_path,
+                    eabss_interaction_diagram_path,
+                )
             )
 
             print_end_stage()
         sys.exit()
     else:
         # Display EABSS diagrams result
-        display_progress.display_eabss_diagrams(
-            eabss_usecase_diagram_path,
-            eabss_activity_diagram_path,
-            eabss_state_transition_diagram_path,
-            eabss_interaction_diagram_path,
+        print(
+            display_progress.eabss_diagrams_progess(
+                eabss_usecase_diagram_path,
+                eabss_activity_diagram_path,
+                eabss_state_transition_diagram_path,
+                eabss_interaction_diagram_path,
+            )
         )
 
     ## Define archetyp, scenario questions, scenarion answer choices
@@ -182,19 +186,23 @@ def main(source_folder: str, results_folder: str):
 
             # TODO: add update model manaully mode
 
-            display_progress.display_archetype(archetype_path)
-            display_progress.display_scenario(
-                scenario_questions_path,
-                scenario_choices_path,
+            print(display_progress.archetype_progess(archetype_path))
+            print(
+                display_progress.scenario_progess(
+                    scenario_questions_path,
+                    scenario_choices_path,
+                )
             )
             print_end_stage()
         sys.exit()
     else:
         # Display Archetype, Scenario questions & answer choices
-        display_progress.display_archetype(archetype_path)
-        display_progress.display_scenario(
-            scenario_questions_path,
-            scenario_choices_path,
+        print(display_progress.archetype_progess(archetype_path))
+        print(
+            display_progress.scenario_progess(
+                scenario_questions_path,
+                scenario_choices_path,
+            )
         )
 
     ## Extract Profiles (& classify profile archetype)
@@ -210,11 +218,11 @@ def main(source_folder: str, results_folder: str):
             # Extract profile
             profile_generation.generate(
                 source_paths,
-                problem_statement_path,
+                objective_statement_path,
                 eabss_components_path,
                 profiles_path,
             )
-            display_progress.display_profile(profiles_path)
+            print(display_progress.profile_progess(profiles_path))
 
             # # Profile Evaluation
             # profile_evaluation.evaluate(profiles_path)
@@ -223,7 +231,7 @@ def main(source_folder: str, results_folder: str):
         sys.exit()
     else:
         # Display Profiles saved location
-        display_progress.display_profile(profiles_path)
+        print(display_progress.profile_progess(profiles_path))
 
     ## Create Decision probability table
     decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
@@ -241,8 +249,10 @@ def main(source_folder: str, results_folder: str):
                 )
 
                 # Display scenario question' answer of each profile
-                display_progress.display_profile_scenario_answer(
-                    profile_scenario_answers_path
+                print(
+                    display_progress.profile_scenario_answer_progess(
+                        profile_scenario_answers_path
+                    )
                 )
 
             # Create decision probability table
@@ -252,8 +262,10 @@ def main(source_folder: str, results_folder: str):
                 decision_probability_path,
             )
 
-            display_progress.display_decision_probability_table(
-                decision_probability_path
+            print(
+                display_progress.decision_probability_table_progess(
+                    decision_probability_path
+                )
             )
 
             # scenario_ground_truth_path = os.path.join(results_path, "scenario_ground_truth.txt")
@@ -272,32 +284,47 @@ def main(source_folder: str, results_folder: str):
         sys.exit()
     else:
         # Display Scenario answer saved path & Decision probability table
-        display_progress.display_profile_scenario_answer(profile_scenario_answers_path)
-        display_progress.display_decision_probability_table(decision_probability_path)
+        print(
+            display_progress.profile_scenario_answer_progess(
+                profile_scenario_answers_path
+            )
+        )
+        print(
+            display_progress.decision_probability_table_progess(
+                decision_probability_path
+            )
+        )
 
-    # ## Generate Simulation script
-    # simulation_script_path = os.path.join(results_path, "simulation_script.txt")
+    ## Generate Simulation script
+    simulation_script_path = os.path.join(results_path, "simulation_script.txt")
 
-    # if not os.path.isfile(simulation_script_path):
-    #     stage_str = "Generate simulation script"
-    #     proceed = ask_proceed(stage_str)
-    #     if proceed:
-    #         script_generation.generate(
-    #             problem_statement_path,
-    #             eabss_components_path,
-    #             eabss_usecase_diagram_path,
-    #             eabss_activity_diagram_path,
-    #             eabss_state_transition_diagram_path,
-    #             eabss_interaction_diagram_path,
-    #             decision_probability_path,
-    #             simulation_script_path,
-    #         )
-    #         # TODO: tell user to review & update script (manually/LLMs)
-    #     print_end_stage()
-    #     sys.exit()
-    # else:
-    #     pass
-    #     # TODO: Display file path
+    if os.path.isfile(simulation_script_path):
+        stage_str = "Generate simulation script"
+        proceed = ask_proceed(stage_str)
+        if proceed:
+            script_generation.generate(
+                objective_statement_path,
+                eabss_components_path,
+                eabss_usecase_diagram_path,
+                eabss_activity_diagram_path,
+                eabss_state_transition_diagram_path,
+                eabss_interaction_diagram_path,
+                archetype_path,
+                scenario_questions_path,
+                scenario_choices_path,
+                decision_probability_path,
+                simulation_script_path,
+            )
+
+            print(
+                display_progress.profile_scenario_answer_progess(simulation_script_path)
+            )
+            print_end_stage(True)
+        sys.exit()
+    else:
+        print(display_progress.profile_scenario_answer_progess(simulation_script_path))
+        print_end_stage(True)
+
     print()
 
 

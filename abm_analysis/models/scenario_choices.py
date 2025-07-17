@@ -1,6 +1,7 @@
 import enum
 
+
 class ScenarioChoice(enum.Enum):
-	Walking = "Walking"
-	Cycling = "Cycling"
-	Driving = "Driving"
+    Walking = "Walking"
+    Cycling = "Cycling"
+    Driving = "Driving"

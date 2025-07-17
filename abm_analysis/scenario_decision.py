@@ -55,7 +55,15 @@ def mock_scenario_answer(question_path, answer_path):
         for i in range(100):
             archetype = random.choice([archetype.value for archetype in Archetype])
             answers = [
-                random.choice([choice._value_ for choice in ScenarioChoice])
+                random.choices(
+                    [choice._value_ for choice in ScenarioChoice],
+                    weights=(
+                        [1, 1, 8]
+                        if archetype == Archetype.PragmaticAdopter.value
+                        else [4, 4, 2]
+                    ),
+                    k=1,
+                )[0]
                 for _ in range(len(questions))
             ]
             f.write(f"{i};{archetype};" + ";".join(answers) + "\n")
