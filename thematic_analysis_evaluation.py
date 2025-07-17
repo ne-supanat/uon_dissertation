@@ -36,5 +36,5 @@ def evaluate(ta_codes_csv_path: str):
 
 if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
-    ta_codes_csv_path = "abm_analysis/results/thematic_analysis_codes.csv"
+    ta_codes_csv_path = "results/thematic_analysis_codes.csv"
     evaluate(ta_codes_csv_path)

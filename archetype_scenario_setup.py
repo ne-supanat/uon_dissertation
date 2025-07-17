@@ -1,4 +1,5 @@
 import json
+import os
 
 # TODO: (optional) sanitize name
 
@@ -26,8 +27,7 @@ def setup_archetype(eabss_components_path, archetype_path):
     print(f"Archetype saved at: '{archetype_path}'")
 
     ## Update Archeype model
-    # TODO: change path to models/archetype.py
-    model_archetype_path = "abm_analysis/models/archetypes.py"
+    model_archetype_path = "models/archetypes.py"
 
     # Example output
     # ----------------
@@ -123,8 +123,7 @@ def setup_scenario_choices(scenario_choices_path):
     print(f"Scenario choices saved at: '{scenario_choices_path}''")
 
     ## Update Scenario choice model
-    # TODO: change path to models/scenario_choices.py
-    answer_choices_path = "abm_analysis/models/scenario_choices.py"
+    answer_choices_path = "models/scenario_choices.py"
 
     # Example output
     # ----------------
@@ -146,11 +145,13 @@ def setup_scenario_choices(scenario_choices_path):
 
 
 if __name__ == "__main__":
-    results_path = "abm_analysis/results_1"
-    eabss_components_path = results_path + "/eabss_scope.txt"
-    archetype_path = results_path + "/archetypes.txt"
-    scenario_questions_path = results_path + "/scenario_questions.txt"
-    scenario_choices_path = results_path + "/scenario_choices.txt"
+    results_path = "results_2"
+
+    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    archetype_path = os.path.join(results_path, "archetype.txt")
+    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
+
     setup_archetype_scenario(
         eabss_components_path,
         archetype_path,

@@ -1,4 +1,0 @@
-[
-"Which transport mode do you usually take?",
-"Which transport mode do you take when it rain?"
-]

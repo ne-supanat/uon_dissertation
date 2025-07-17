@@ -1,3 +1,6 @@
-## head2
+## Translating Qualitative data into Agent-Based Modelling key componenets with help of LLMs
 
-<mark style="background: red;">markdown</mark>
+Setup steps
+install requirement.ymal
+
+setup Gemini API key at .env follow template in .env.example

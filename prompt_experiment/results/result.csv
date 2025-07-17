@@ -1,3 +1,0 @@
-File path;Prompt;Response;Validity score;Usability score
-MID_325_TRANSCRIPT.txt;zero-shot;{"name": "Unknown","age": "Unknown","occupation": "Retail","key_memory": ["i love the weather the beach","the weather"],"domain_label": "fav_warm","domain_score": 12,"domain_label_reason": "The participant explicitly states a love for the weather and the beach in LA, indicating a preference for warm climates."};0.5;1.0
-MID_325_TRANSCRIPT.txt;few-shot;{"name": "Unknown","age": "Unknown","occupation": "Retail","key_memory": ["i love the weather the beach","the weather"],"domain_label": "fav_warm","domain_score": 12,"domain_label_reason": "The participant explicitly states a love for the weather and the beach in LA, indicating a preference for warm climates."};0.5;1.0

@@ -1,4 +1,4 @@
-from response_models import Profile
+from models.response_models import Profile
 
 
 def evaluate(profiles_path: str):
@@ -29,5 +29,5 @@ def evaluate(profiles_path: str):
 
 
 if __name__ == "__main__":
-    profiles_path = "abm_analysis/results/profiles.txt"
+    profiles_path = "results/profiles.txt"
     evaluate(profiles_path)

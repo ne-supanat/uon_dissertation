@@ -1,7 +1,8 @@
+import os
 import json
 
 
-def define_objective_statement(result_path):
+def define_objective_statement(objective_statement_path):
     print("\nPlease answer the following setup questions:\n")
 
     print("What is the simulation's Objective?")
@@ -13,7 +14,7 @@ def define_objective_statement(result_path):
     print("\nWhat is the simulation's Output / Response?")
     input_response = input()
 
-    with open(result_path, "w") as f:
+    with open(objective_statement_path, "w") as f:
         dict = {
             "objective": input_objective,
             "input": input_experiment_factor,
@@ -21,11 +22,11 @@ def define_objective_statement(result_path):
         }
         f.write(json.dumps(dict, indent=4))
 
-    print(f"\nResult saved to: '{result_path}'")
+    print(f"\nResult saved to: '{objective_statement_path}'")
 
 
 if __name__ == "__main__":
-    results_path = "abm_analysis/results_1"
-    problem_statement_path = results_path + "/problem_statement.txt"
+    results_path = "results_2"
+    objective_statement_path = os.path.join(results_path, "objective.txt")
 
-    define_objective_statement(problem_statement_path)
+    define_objective_statement(objective_statement_path)

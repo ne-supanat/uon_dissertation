@@ -27,7 +27,6 @@ import display_progress
 
 # TODO: resume the process: error at profile 3 > should continue at profile 4
 # TODO: add comments
-# TODO: restructure project folder
 
 
 def get_transcript_file_paths(source_path):
@@ -100,6 +99,7 @@ def main(source_folder: str, results_folder: str):
             )
 
             # # EABSS components Evaluation
+            # TODO: use only txt file
             # thematic_analysis_evaluation.evaluate(ta_codes_csv_path)
             # thematic_analysis_extra.analyse(source_paths)
 
@@ -296,7 +296,7 @@ def main(source_folder: str, results_folder: str):
     ## Generate Simulation script
     simulation_script_path = os.path.join(results_path, "simulation_script.txt")
 
-    if os.path.isfile(simulation_script_path):
+    if not os.path.isfile(simulation_script_path):
         stage_str = "Generate simulation script"
         proceed = ask_proceed(stage_str)
         if proceed:
@@ -328,6 +328,6 @@ def main(source_folder: str, results_folder: str):
 
 if __name__ == "__main__":
     source_folder = "data/diary_txt"
-    results_folder = "abm_analysis/results_2"
-    # TODO: pick project
+    results_folder = "results_2"
+    # TODO: pick source & project from terminal
     main(source_folder, results_folder)

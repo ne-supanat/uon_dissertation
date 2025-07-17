@@ -1,9 +1,10 @@
+import os
 import json
 import pandas as pd
 from google.genai.types import GenerateContentResponse
 
 import llm
-from response_models import KeyComponents
+from models.response_models import KeyComponents
 
 
 def analyse(
@@ -94,13 +95,18 @@ def write_codes_csv_from_txt(codes_txt_path, codes_csv_path: str):
 
 if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+
+    results_path = "results_2"
+    ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
+    ta_codes_csv_path = os.path.join(results_path, "thematic_analysis_codes.csv")
+
     # analyse(
     #     document_paths,
-    #     "abm_analysis/results/thematic_analysis_codes.txt",
-    #     "abm_analysis/results/thematic_analysis_codes.csv",
+    #     "results/thematic_analysis_codes.txt",
+    #     "results/thematic_analysis_codes.csv",
     # )
 
     write_codes_csv_from_txt(
-        "abm_analysis/results_2/thematic_analysis_codes.txt",
-        "abm_analysis/results_2/thematic_analysis_codes.csv",
+        "results_2/thematic_analysis_codes.txt",
+        "results_2/thematic_analysis_codes.csv",
     )

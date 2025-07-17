@@ -1,3 +1,4 @@
+import os
 import csv
 from models.archetypes import Archetype
 from models.scenario_choices import ScenarioChoice
@@ -5,8 +6,8 @@ from models.scenario_choices import ScenarioChoice
 
 def generate(
     scenario_questions_path,
-    scenario_answers_path,
-    scenario_probability_path,
+    profile_scenario_answers_path,
+    decision_probability_path,
 ):
     # Fetch scenario questions
     with open(scenario_questions_path, "r") as f:
@@ -23,7 +24,7 @@ def generate(
     archetype_counts = {archetype.value: 0 for archetype in Archetype}
 
     # Read scenario answers
-    with open(scenario_answers_path, newline="") as f:
+    with open(profile_scenario_answers_path, newline="") as f:
         reader = csv.reader(f, delimiter=";")
         for row in reader:
             if not row or len(row) < 2 + len(questions):
@@ -35,7 +36,7 @@ def generate(
                 answer_dict[question][archetype][choice] += 1
 
     # Write probabilities to output file
-    with open(scenario_probability_path, "w") as f:
+    with open(decision_probability_path, "w") as f:
         for question in questions:
             for archetype in Archetype:
                 count = archetype_counts[archetype.value]
@@ -54,12 +55,20 @@ def generate(
                     + "\n"
                 )
                 f.write(line)
-    print(f"\nDecision probability table saved to: '{scenario_probability_path}'\n")
+    print(f"\nDecision probability table saved to: '{decision_probability_path}'\n")
 
 
 if __name__ == "__main__":
-    scenario_questions_path = "abm_analysis/results_2/scenario_questions.txt"
-    scenario_answers_path = "abm_analysis/results_2/profile_scenario_answers.csv"
-    scenario_probability_path = "abm_analysis/results_2/scenario_probability.csv"
+    results_path = "results_2"
 
-    generate(scenario_questions_path, scenario_answers_path, scenario_probability_path)
+    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
+    profile_scenario_answers_path = os.path.join(
+        results_path, "profile_scenario_answers.csv"
+    )
+    decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
+
+    generate(
+        scenario_questions_path,
+        profile_scenario_answers_path,
+        decision_probability_path,
+    )

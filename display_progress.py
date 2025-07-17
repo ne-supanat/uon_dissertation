@@ -3,7 +3,7 @@ import json
 import csv
 from tabulate import tabulate, SEPARATING_LINE
 
-from response_models import KeyComponents
+from models.response_models import KeyComponents
 from models.scenario_choices import ScenarioChoice
 
 
@@ -157,8 +157,7 @@ def profile_scenario_answer_progess(simulation_script_path):
 
 
 if __name__ == "__main__":
-    results_folder = "abm_analysis/results_2"
-    results_path = results_folder
+    results_path = "results_2"
     problem_statement_path = os.path.join(results_path, "objective.txt")
     eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
     eabss_usecase_diagram_path = os.path.join(results_path, "eabss_usecase_diagram.txt")

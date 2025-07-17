@@ -1,7 +1,8 @@
+import os
 import random
 
 import llm
-from response_models import Profile, ProfileShort
+from models.response_models import Profile, ProfileShort
 from models.archetypes import Archetype
 from models.scenario_choices import ScenarioChoice
 
@@ -66,14 +67,18 @@ def mock_scenario_answer(question_path, answer_path):
 
 
 if __name__ == "__main__":
-    scenario_questions_path = "abm_analysis/results_2/scenario_questions.txt"
-    profiles_path = "abm_analysis/results_2/profiles.txt"
-    scenario_answers_path = "abm_analysis/results_2/profile_scenario_answers.csv"
+    results_path = "results_2"
+    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
+    profiles_path = os.path.join(results_path, "profiles.txt")
+    profile_scenario_answers_path = os.path.join(
+        results_path, "profile_scenario_answers.csv"
+    )
 
     generate_profile_scenario_answers(
         scenario_questions_path,
         profiles_path,
-        scenario_answers_path,
+        profile_scenario_answers_path,
     )
 
-    # mock_scenario_answer(scenario_questions_path, scenario_answers_path)
+    # NOTE: this is only for testing & development purpose
+    # mock_scenario_answer(scenario_questions_path, profile_scenario_answers_path)

@@ -1,17 +1,23 @@
+import os
 import json
 import ast
 from google.genai.types import GenerateContentResponse
 
 import llm
-from response_models import KeyComponents, ScriptResponse, Code, CodeJustification
+from models.response_models import (
+    KeyComponents,
+    ScriptResponse,
+    Code,
+    CodeJustification,
+)
 
 
 def generate_components(
-    problem_statement_path,
+    objective_statement_path,
     thematic_analysis_codes_txt_path,
     eabss_components_path,
 ):
-    with open(problem_statement_path, "r") as f:
+    with open(objective_statement_path, "r") as f:
         objective_statement = f.read()
         objective_statement: dict = json.loads(objective_statement)
         objective = objective_statement["objective"]
@@ -219,33 +225,33 @@ respond in mermaid.js format
 
 
 if __name__ == "__main__":
-    problem_statement_path = "abm_analysis/results_1/problem_statement.txt"
-    ta_codes_txt_path = "abm_analysis/results_1/thematic_analysis_codes.txt"
-    ta_codes_csv_path = "abm_analysis/results_1/thematic_analysis_codes.csv"
-    eabss_components_path = "abm_analysis/results_1/key_component_scope.txt"
-    eabss_usecase_diagram_path = (
-        "abm_analysis/results_1/key_component_usecase_diagram.txt"
+    results_path = "results_2"
+    objective_statement_path = os.path.join(results_path, "objective.txt")
+    ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
+    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    eabss_usecase_diagram_path = os.path.join(
+        results_path, "eabss_diagram_usecase_diagram.txt"
     )
-    eabss_activity_diagram_path = (
-        "abm_analysis/results_1/key_component_activity_diagram.txt"
+    eabss_activity_diagram_path = os.path.join(
+        results_path, "eabss_diagram_activity_diagram.txt"
     )
-    eabss_state_transition_diagram_path = (
-        "abm_analysis/results_1/key_component_state_transition_diagram.txt"
+    eabss_state_transition_diagram_path = os.path.join(
+        results_path, "eabss_diagram_state_diagram.txt"
     )
-    eabss_interaction_diagram_path = (
-        "abm_analysis/results_1/key_component_interaction_diagram.txt"
+    eabss_interaction_diagram_path = os.path.join(
+        results_path, "eabss_diagram_interaction_diagram.txt"
     )
 
     generate_components(
-        problem_statement_path,
+        objective_statement_path,
         ta_codes_txt_path,
         eabss_components_path,
     )
 
-    # generate_diagrams(
-    #     eabss_components_path,
-    #     eabss_usecase_diagram_path,
-    #     eabss_activity_diagram_path,
-    #     eabss_state_transition_diagram_path,
-    #     eabss_interaction_diagram_path,
-    # )
+    generate_diagrams(
+        eabss_components_path,
+        eabss_usecase_diagram_path,
+        eabss_activity_diagram_path,
+        eabss_state_transition_diagram_path,
+        eabss_interaction_diagram_path,
+    )

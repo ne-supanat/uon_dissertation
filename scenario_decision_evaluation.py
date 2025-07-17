@@ -64,11 +64,11 @@ def score_profile_anwsers(
 
 
 if __name__ == "__main__":
-    scenario_questions_path = "abm_analysis/results/scenario_questions.txt"
-    scenario_ground_truth_path = "abm_analysis/results/scenario_ground_truth.txt"
+    scenario_questions_path = "results/scenario_questions.txt"
+    scenario_ground_truth_path = "results/scenario_ground_truth.txt"
 
-    scenario_answers_path = "abm_analysis/results/scenario_answers.csv"
-    scenario_scores_path = "abm_analysis/results/scenario_scores.csv"
+    scenario_answers_path = "results/scenario_answers.csv"
+    scenario_scores_path = "results/scenario_scores.csv"
 
     generate_ground_truth(
         scenario_questions_path,

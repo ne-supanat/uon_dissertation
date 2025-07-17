@@ -2,7 +2,7 @@ import os
 import json
 
 import llm
-from response_models import KeyComponents, ScriptResponse, ThinkScriptResponse
+from models.response_models import KeyComponents, ScriptResponse, ThinkScriptResponse
 import display_progress
 from models.archetypes import Archetype
 
@@ -161,7 +161,7 @@ The generated script must not have functions named "update-plots", "setup-plots"
 
 
 if __name__ == "__main__":
-    results_path = "abm_analysis/results_2"
+    results_path = "results_2"
 
     objective_statement_path = os.path.join(results_path, "objective.txt")
 
