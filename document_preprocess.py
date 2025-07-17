@@ -1,15 +1,6 @@
 import os
-import docx2txt
 import re
 from docx import Document
-
-
-def read():
-    source_path = "data/diary"
-    filename = "ESM00385X1 W06w1.docx"
-    content = docx2txt.process(f"{source_path}/{filename}")
-    print(content[:50])
-    print()
 
 
 def process_docx_to_txt(source_path, destination_path):
