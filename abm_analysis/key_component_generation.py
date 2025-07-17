@@ -37,10 +37,7 @@ def generate_components(
     final_component_dict = {}
     for component in list(component_dict.keys()):
         if component != "file":
-            # TODO: decide which method to use
-            # 1) components with justification - finalise_eabss_component_just
-            # 2) components with quotes - finalise_eabss_component
-            response = finalise_eabss_component_just(
+            response = finalise_eabss_component_justification(
                 component,
                 component_dict[component],
                 objective,
@@ -58,7 +55,7 @@ def generate_components(
     print("Please reivew and update the EABSS components if necessary.")
 
 
-def finalise_eabss_component_just(
+def finalise_eabss_component_justification(
     component: str,
     codes_quotes: str,
     objective: str,
@@ -145,7 +142,7 @@ def generate_diagrams(
     with open(eabss_interaction_diagram_path, "w") as f:
         f.write(interactions_diagram)
 
-    # TODO: (optional) consifer State condition table
+    # TODO: (optional) consider State condition table
     for name, path in zip(
         [
             "Use case diagram",

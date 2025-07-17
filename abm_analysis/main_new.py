@@ -27,6 +27,7 @@ import display_progress
 
 # TODO: resume the process: error at profile 3 > should continue at profile 4
 # TODO: add comments
+# TODO: restructure project folder
 
 
 def get_transcript_file_paths(source_path):
@@ -56,7 +57,6 @@ def main(source_folder: str, results_folder: str):
     # NOTE: if main file of that stage exists that process already done
     # if not os.path.isfile(problem_statement_path):
     # TODO: (optional) change to check project name and its stage in json
-    # TODO: make user approve the stage result first
 
     ## Define Objective, Input, Output
     objective_statement_path = os.path.join(results_path, "objective.txt")
@@ -183,8 +183,6 @@ def main(source_folder: str, results_folder: str):
                 scenario_questions_path,
                 scenario_choices_path,
             )
-
-            # TODO: add update model manaully mode
 
             print(display_progress.archetype_progess(archetype_path))
             print(
