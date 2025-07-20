@@ -1,7 +1,9 @@
 import os
 from dotenv import load_dotenv
 from google import genai
-from google.genai.types import GenerateContentResponse, GenerateContentConfig
+from google.genai.types import GenerateContentResponse, GenerateContentConfig, Part
+
+import requests
 
 
 def generate_content(prompt: str, response_schema=None) -> GenerateContentResponse:
@@ -21,6 +23,49 @@ def generate_content(prompt: str, response_schema=None) -> GenerateContentRespon
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt,
+        config=config,
+    )
+
+    print(response.text)
+    print(response.usage_metadata.total_token_count)
+    return response
+
+
+def generate_content_from_images(
+    image_paths: list[str], prompt: str, response_schema=None
+):
+    # Modification of Gemini's Image Understanding Documentation
+    # ref: https://ai.google.dev/gemini-api/docs/image-understanding
+    load_dotenv()
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+    client = genai.Client(api_key=GOOGLE_API_KEY)
+
+    config = GenerateContentConfig(
+        temperature=0.0,  # the randomness of responses - default: 1
+        top_p=0.9,  # the sum of candidate token probabilities - default: 0.5
+    )
+
+    if response_schema:
+        config.response_mime_type = "application/json"
+        config.response_schema = response_schema
+
+    # Upload the first image
+    for i in range(len(image_paths) - 1):
+        uploaded_file = client.files.upload(file=image_paths[i])
+
+    # Prepare the second image as inline data
+    image2_path = image_paths[-1]
+    with open(image2_path, "rb") as f:
+        last_img_bytes = f.read()
+
+    # Create the prompt with text and multiple images
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=[
+            prompt,
+            uploaded_file,  # Use the uploaded file reference
+            Part.from_bytes(data=last_img_bytes, mime_type="image/png"),
+        ],
         config=config,
     )
 

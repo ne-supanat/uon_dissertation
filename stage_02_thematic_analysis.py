@@ -54,9 +54,6 @@ Following these key components
 Each component has at least {2} codes
 Each code has maximum of {2} quotes
 
-Except Archetype component.
-For Archetype component, please classify participant an archetype.
-
 file is {document_path}
 """
     response = llm.generate_content(

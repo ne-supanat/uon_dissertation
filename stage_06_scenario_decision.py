@@ -74,11 +74,11 @@ if __name__ == "__main__":
         results_path, "profile_scenario_answers.csv"
     )
 
-    generate_profile_scenario_answers(
-        scenario_questions_path,
-        profiles_path,
-        profile_scenario_answers_path,
-    )
+    # generate_profile_scenario_answers(
+    #     scenario_questions_path,
+    #     profiles_path,
+    #     profile_scenario_answers_path,
+    # )
 
     # NOTE: this is only for testing & development purpose
-    # mock_scenario_answer(scenario_questions_path, profile_scenario_answers_path)
+    mock_scenario_answer(scenario_questions_path, profile_scenario_answers_path)

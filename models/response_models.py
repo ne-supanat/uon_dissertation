@@ -1,12 +1,11 @@
-import enum
 from pydantic import BaseModel
 
 from models.archetypes import Archetype
 
 
-class InputOutput(BaseModel):
-    input: str
-    output: str
+class ThinkResponse(BaseModel):
+    think: str
+    response: str
 
 
 class ScriptResponse(BaseModel):

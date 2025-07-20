@@ -45,7 +45,8 @@ def print_end_stage(is_last_stage: bool = False):
     if not is_last_stage:
         print("\nRun 'python main.py' to continue to the next stage.\n")
     else:
-        print("-" * 50 + "\nAll stages completed\n" + "=" * 50)
+        print("-" * 50 + "\nAll model development stages completed\n" + "=" * 50)
+        print("\nRun 'python main_post.py' to analyse the model output.\n")
 
 
 def main(source_folder: str, results_folder: str):

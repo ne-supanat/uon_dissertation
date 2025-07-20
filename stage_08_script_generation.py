@@ -17,6 +17,7 @@ def generate(
     scenario_questions_path,
     scenario_choices_path,
     decision_probability_path,
+    simulation_script_think_path,
     simulation_script_path,
 ):
     with open(eabss_usecase_diagram_path, "r") as f:
@@ -31,7 +32,7 @@ def generate(
     with open(eabss_interaction_diagram_path, "r") as f:
         eabss_interaction_diagram = f.read()
 
-    script = generate_script(
+    response = generate_script(
         objective_statement_path,
         eabss_components_path,
         eabss_usecase_diagram,
@@ -43,10 +44,16 @@ def generate(
         scenario_choices_path,
         decision_probability_path,
     )
-    with open(simulation_script_path, "w") as f:
-        f.write(script)
 
-    print(f"\nSimulation script result saved to: '{simulation_script_path}'\n")
+    with open(simulation_script_think_path, "w") as f:
+        f.write(response.think)
+    with open(simulation_script_path, "w") as f:
+        f.write(response.script)
+
+    print(
+        f"\nSimulation script reasoning result saved to: '{simulation_script_think_path}'"
+    )
+    print(f"Simulation script result saved to: '{simulation_script_path}'\n")
     print("Please reivew and update the generated simulation script if necessary.")
     print(
         "If there are errors or need some improvements consider do it manually or use LLMs e.g. ChatGPT"
@@ -64,7 +71,7 @@ def generate_script(
     scenario_questions_path,
     scenario_choices_path,
     decision_probability_path,
-):
+) -> ThinkScriptResponse:
     prompt = f"""
 Based on these EABSS key components:
 {KeyComponents.get_explanation()}
@@ -93,10 +100,9 @@ Generate a very simple NetLogo simulation script that can represent system based
 and can answer objective key
 and respond with output key at the end of simulation.
 
+{"-"*50}
 Follow this NetLogo template:
-"""
 
-    prompt += f""" 
 turtles-own [
   archetype
 ]
@@ -121,42 +127,32 @@ to setup
     ]
     reset-ticks
 end
-"""
 
-    prompt += f"""
 to go
     tick
 
     ;ask turtle to do "Key activities"
+
+    save
+    if ticks = {500} [stop]
 end
+ 
+to save
+    file-open "outputs.csv"
+    
+    ; file-print outputs
+    
+    file-close
+end
+
+{"-"*50}
+
+Save output should use file-print. So, It has no double-quote and ready to be used in CSV format
+This is NetLogo Language not Python. The way writing if-else is different.
 """
 
-    """
-population is {100} and randomly assign with archetype
-run for {100} tick
-
-plot graph of chosen transportation each day
-if script is if [] else [] change it to ifelse [] []
-
-you don't have to setup plots
-to update plot MUST use "update-visual"
-
-when update plot, set current plot first then update value. this is an example
-
-set-current-plot "Plot Name"
-
-set-current-plot-pen "Pen name1"
-plotxy ticks "value"
-
-set-current-plot-pen "Pen name2"
-plotxy ticks "value"
-
-Please think first.
-The generated script must not have functions named "update-plots", "setup-plots" in it
-"""
-    # print(prompt)
-    response: ScriptResponse = llm.generate_content(prompt, ThinkScriptResponse).parsed
-    return response.script
+    response = llm.generate_content(prompt, ThinkScriptResponse).parsed
+    return response
 
 
 if __name__ == "__main__":
@@ -183,6 +179,9 @@ if __name__ == "__main__":
     scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
     scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
     decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
+    simulation_script_think_path = os.path.join(
+        results_path, "simulation_script_think.txt"
+    )
     simulation_script_path = os.path.join(results_path, "simulation_script.txt")
 
     generate(
@@ -196,5 +195,6 @@ if __name__ == "__main__":
         scenario_questions_path,
         scenario_choices_path,
         decision_probability_path,
+        simulation_script_think_path,
         simulation_script_path,
     )

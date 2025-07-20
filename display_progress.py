@@ -156,6 +156,43 @@ def profile_scenario_answer_progess(simulation_script_path):
     return str
 
 
+def model_output_progess(output_path):
+    str = "-" * 50 + "\n"
+    str += "{:<35} {:<30}".format(
+        "Model output",
+        f": found at '{output_path}'",
+    )
+
+    return str
+
+
+def visualisation_template_progess(
+    simulation_script_think_path, simulation_script_path
+):
+    str = "-" * 50 + "\n"
+    str += "{:<35} {:<30}".format(
+        "Visualisation template reasoning",
+        f": saved to '{simulation_script_think_path}'",
+    )
+    str += "\n"
+    str += "{:<35} {:<30}".format(
+        "Visualisation template script",
+        f": saved to '{simulation_script_path}'",
+    )
+
+    return str
+
+
+def visualisation_analysis_progess(visualisation_analysis):
+    str = "-" * 50 + "\n"
+    str += "{:<35} {:<30}".format(
+        "Visualisation analysis ",
+        f": saved to '{visualisation_analysis}'",
+    )
+
+    return str
+
+
 if __name__ == "__main__":
     results_path = "results_2"
     problem_statement_path = os.path.join(results_path, "objective.txt")
@@ -181,6 +218,16 @@ if __name__ == "__main__":
     decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
     simulation_script_path = os.path.join(results_path, "simulation_script.txt")
 
+    # Output analysis
+    model_output_path = "./output.csv"
+    visualisation_template_think_path = os.path.join(
+        results_path, "visualisation_template_think.txt"
+    )
+    visualisation_template_path = os.path.join(
+        results_path, "visualisation_template.txt"
+    )
+    visualisation_analysis = os.path.join(results_path, "visualisation_analysis.txt")
+
     display_header()
     print(objective_statement_progress(problem_statement_path))
     print(eabss_components_progress(eabss_components_path))
@@ -199,3 +246,10 @@ if __name__ == "__main__":
     print(decision_probability_table_progess(decision_probability_path))
     print(profile_scenario_answer_progess(simulation_script_path))
     print()
+    print(model_output_progess(model_output_path))
+    print(
+        visualisation_template_progess(
+            visualisation_template_think_path, visualisation_template_path
+        )
+    )
+    print(visualisation_analysis_progess(visualisation_analysis))
