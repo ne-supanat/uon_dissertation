@@ -76,12 +76,3 @@ class Profile(BaseModel):
     quotes: list[str]
     attributes: list[str]
     archetype: Archetype
-
-
-# TODO: remove ProfileShort
-class ProfileShort(BaseModel):
-    file: str
-    summary: str
-    quotes: list[str]
-    attributes: list[str]
-    archetype: Archetype

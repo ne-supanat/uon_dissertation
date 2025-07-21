@@ -3,7 +3,7 @@ import json
 from google.genai.types import GenerateContentResponse
 
 import llm
-from models.response_models import Profile, ProfileShort
+from models.response_models import Profile
 import display_progress
 
 

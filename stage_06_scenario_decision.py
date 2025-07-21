@@ -2,7 +2,7 @@ import os
 import random
 
 import llm
-from models.response_models import Profile, ProfileShort
+from models.response_models import Profile
 from models.archetypes import Archetype
 from models.scenario_choices import ScenarioChoice
 
