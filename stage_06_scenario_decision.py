@@ -17,7 +17,7 @@ def generate_profile_scenario_answers(question_path, profiles_path, answer_path)
 
     with open(answer_path, "w") as f:
         for profile_str in profiles:
-            profile: ProfileShort = ProfileShort.model_validate_json(profile_str)
+            profile: Profile = Profile.model_validate_json(profile_str)
             answers = answer_scenario_questions(profile, questions)
             f.write(f"{profile.file};{profile.archetype.value};")
             f.write(";".join([a.value for a in answers]))
@@ -25,18 +25,21 @@ def generate_profile_scenario_answers(question_path, profiles_path, answer_path)
 
 
 def answer_scenario_questions(
-    profile: ProfileShort,
+    profile: Profile,
     questions: list[str],
 ) -> list[ScenarioChoice]:
     prompt = f"""
 Based on this profile summary:
 {profile.summary}
 
-And these support quotes:
-{"\n".join([f'- "{quote}"' for quote in profile.quotes])}
+Profile attributes:
+{"\n".join([f'{i+1}. {attribute}' for i,attribute in enumerate(profile.attributes)])}
 
-Answer following questions
-{"\n".join([f'- {question}' for question in questions])}
+Supporting quotes:
+{"\n".join([f'{i+1}. {quote}' for i,quote in enumerate(profile.quotes)])}
+
+Answer following questions:
+{"\n".join([f'{i+1}. {question}' for i,question in enumerate(questions)])}
 """
     response = llm.generate_content(prompt, list[ScenarioChoice])
     result: list[ScenarioChoice] = response.parsed
@@ -67,18 +70,18 @@ def mock_scenario_answer(question_path, answer_path):
 
 
 if __name__ == "__main__":
-    results_path = "results_2"
+    results_path = "results_3"
     scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
     profiles_path = os.path.join(results_path, "profiles.txt")
     profile_scenario_answers_path = os.path.join(
         results_path, "profile_scenario_answers.csv"
     )
 
-    # generate_profile_scenario_answers(
-    #     scenario_questions_path,
-    #     profiles_path,
-    #     profile_scenario_answers_path,
-    # )
+    generate_profile_scenario_answers(
+        scenario_questions_path,
+        profiles_path,
+        profile_scenario_answers_path,
+    )
 
-    # NOTE: this is only for testing & development purpose
-    mock_scenario_answer(scenario_questions_path, profile_scenario_answers_path)
+    # # NOTE: this is only for testing & development purpose
+    # mock_scenario_answer(scenario_questions_path, profile_scenario_answers_path)

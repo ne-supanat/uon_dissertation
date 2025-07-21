@@ -13,6 +13,7 @@ def generate(
     eabss_activity_diagram_path,
     eabss_state_transition_diagram_path,
     eabss_interaction_diagram_path,
+    eabss_class_diagram_path,
     archetype_path,
     scenario_questions_path,
     scenario_choices_path,
@@ -32,6 +33,9 @@ def generate(
     with open(eabss_interaction_diagram_path, "r") as f:
         eabss_interaction_diagram = f.read()
 
+    with open(eabss_class_diagram_path, "r") as f:
+        eabss_class_diagram = f.read()
+
     response = generate_script(
         objective_statement_path,
         eabss_components_path,
@@ -39,6 +43,7 @@ def generate(
         eabss_activity_diagram,
         eabss_state_transition_diagram,
         eabss_interaction_diagram,
+        eabss_class_diagram,
         archetype_path,
         scenario_questions_path,
         scenario_choices_path,
@@ -67,6 +72,7 @@ def generate_script(
     eabss_activity_diagram,
     eabss_state_transition_diagram,
     eabss_interaction_diagram,
+    eabss_class_diagram,
     archetype_path,
     scenario_questions_path,
     scenario_choices_path,
@@ -81,6 +87,9 @@ And following model detail:
 {display_progress.eabss_components_progress(eabss_components_path)}
 Use case diagram:
 {eabss_usecase_diagram}
+{"-"*50}
+Class diagram:
+{eabss_class_diagram}
 {"-"*50}
 Activity diagram:
 {eabss_activity_diagram}

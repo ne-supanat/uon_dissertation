@@ -72,14 +72,16 @@ class KeyComponents(BaseModel):
 
 class Profile(BaseModel):
     file: str
-    attrs: list[str]
-    quotes: list[str]
     summary: str
+    quotes: list[str]
+    attributes: list[str]
     archetype: Archetype
 
 
+# TODO: remove ProfileShort
 class ProfileShort(BaseModel):
     file: str
     summary: str
     quotes: list[str]
+    attributes: list[str]
     archetype: Archetype

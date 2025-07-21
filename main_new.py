@@ -117,6 +117,10 @@ def main(source_folder: str, results_folder: str):
     eabss_usecase_diagram_path = os.path.join(
         results_path, "eabss_diagram_usecase_diagram.txt"
     )
+
+    eabss_class_diagram_path = os.path.join(
+        results_path, "eabss_diagram_class_diagram.txt"
+    )
     eabss_activity_diagram_path = os.path.join(
         results_path, "eabss_diagram_activity_diagram.txt"
     )
@@ -140,14 +144,15 @@ def main(source_folder: str, results_folder: str):
                 eabss_activity_diagram_path,
                 eabss_state_transition_diagram_path,
                 eabss_interaction_diagram_path,
+                eabss_class_diagram_path,
             )
-
             print(
                 display_progress.eabss_diagrams_progess(
                     eabss_usecase_diagram_path,
                     eabss_activity_diagram_path,
                     eabss_state_transition_diagram_path,
                     eabss_interaction_diagram_path,
+                    eabss_class_diagram_path,
                 )
             )
 
@@ -161,31 +166,38 @@ def main(source_folder: str, results_folder: str):
                 eabss_activity_diagram_path,
                 eabss_state_transition_diagram_path,
                 eabss_interaction_diagram_path,
+                eabss_class_diagram_path,
             )
         )
 
     ## Define archetyp, scenario questions, scenarion answer choices
     archetype_path = os.path.join(results_path, "archetype.txt")
+    attribute_path = os.path.join(results_path, "attribute.txt")
     scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
     scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
 
     if (
         not os.path.isfile(archetype_path)
+        or not os.path.isfile(attribute_path)
         or not os.path.isfile(scenario_questions_path)
         or not os.path.isfile(scenario_choices_path)
     ):
-        stage_str = "Define Archetype, Scenario questions & answer choices"
+        stage_str = (
+            "Define Archetype, Profile attribute, Scenario questions & answer choices"
+        )
         proceed = ask_proceed(stage_str)
         if proceed:
             # Define archetyp, scenario questions, scenarion answer choices
-            stage_04_archetype_scenario_setup.setup_archetype_scenario(
+            stage_04_archetype_scenario_setup.setup_archetype_attribute_scenario(
                 eabss_components_path,
                 archetype_path,
+                attribute_path,
                 scenario_questions_path,
                 scenario_choices_path,
             )
 
             print(display_progress.archetype_progess(archetype_path))
+            print(display_progress.attribute_progess(attribute_path))
             print(
                 display_progress.scenario_progess(
                     scenario_questions_path,
@@ -197,6 +209,7 @@ def main(source_folder: str, results_folder: str):
     else:
         # Display Archetype, Scenario questions & answer choices
         print(display_progress.archetype_progess(archetype_path))
+        print(display_progress.attribute_progess(attribute_path))
         print(
             display_progress.scenario_progess(
                 scenario_questions_path,
@@ -219,6 +232,7 @@ def main(source_folder: str, results_folder: str):
                 source_paths,
                 objective_statement_path,
                 eabss_components_path,
+                attribute_path,
                 profiles_path,
             )
             print(display_progress.profile_progess(profiles_path))
@@ -295,6 +309,9 @@ def main(source_folder: str, results_folder: str):
         )
 
     ## Generate Simulation script
+    simulation_script_think_path = os.path.join(
+        results_path, "simulation_script_think.txt"
+    )
     simulation_script_path = os.path.join(results_path, "simulation_script.txt")
 
     if not os.path.isfile(simulation_script_path):
@@ -308,10 +325,12 @@ def main(source_folder: str, results_folder: str):
                 eabss_activity_diagram_path,
                 eabss_state_transition_diagram_path,
                 eabss_interaction_diagram_path,
+                eabss_class_diagram_path,
                 archetype_path,
                 scenario_questions_path,
                 scenario_choices_path,
                 decision_probability_path,
+                simulation_script_think_path,
                 simulation_script_path,
             )
 

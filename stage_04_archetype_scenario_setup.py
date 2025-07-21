@@ -4,13 +4,15 @@ import os
 # TODO: (optional) sanitize name
 
 
-def setup_archetype_scenario(
+def setup_archetype_attribute_scenario(
     eabss_components_path,
     archetype_path,
+    attribute_path,
     scenario_questions_path,
     scenario_choices_path,
 ):
     setup_archetype(eabss_components_path, archetype_path)
+    setup_profile_attribute(attribute_path)
     setup_scenario(scenario_questions_path, scenario_choices_path)
 
 
@@ -47,8 +49,48 @@ def setup_archetype(eabss_components_path, archetype_path):
     print(f"System's Archetype model updated at: '{model_archetype_path}'")
 
 
+def setup_profile_attribute(attribute_path):
+    print("-" * 50)
+    print("Define profile attributes.")
+    print(
+        """
+- Example input -
+Please enter the number of attributes: 2
+
+Enter the attribute 1 text: Age
+Enter the attribute 2 text: Occupation
+"""
+    )
+
+    while True:
+        try:
+            attributes_size = int(input("Please enter the number of attribute: "))
+            break
+        except:
+            pass
+
+    attributes = []
+    for i in range(attributes_size):
+        while True:
+            attributes_text = input(f"Enter the attribute {i+1} text: ")
+            if attributes_text.strip() != "":
+                break
+        attributes.append(attributes_text.strip())
+
+    # Example output
+    # ----------------
+    # Age
+    # Occupation
+
+    with open(attribute_path, "w") as f:
+        f.write(f'{'\n'.join(attributes)}')
+
+    print(f"\nProfile attributes saved to: '{attribute_path}'\n")
+
+
 def setup_scenario(questions_path, scenario_choices_path):
-    print("\nDefine scenario questions and answers choices.")
+    print("-" * 50)
+    print("Define scenario questions and answers choices.")
     print(
         "For simplicity of the model, please use questions that can answer with the same set of choices."
     )
@@ -145,16 +187,18 @@ def setup_scenario_choices(scenario_choices_path):
 
 
 if __name__ == "__main__":
-    results_path = "results_2"
+    results_path = "results_3"
 
     eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
     archetype_path = os.path.join(results_path, "archetype.txt")
+    attribute_path = os.path.join(results_path, "attribute.txt")
     scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
     scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
 
-    setup_archetype_scenario(
+    setup_archetype_attribute_scenario(
         eabss_components_path,
         archetype_path,
+        attribute_path,
         scenario_questions_path,
         scenario_choices_path,
     )

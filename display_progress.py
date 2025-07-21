@@ -52,6 +52,7 @@ def eabss_diagrams_progess(
     eabss_activity_diagram_path,
     eabss_state_transition_diagram_path,
     eabss_interaction_diagram_path,
+    eabss_class_diagram_path,
 ):
     str = "-" * 50 + "\n"
     str += "You can view EABSS diagrams using mermaid.js"
@@ -61,12 +62,14 @@ def eabss_diagrams_progess(
             "Activity diagram",
             "State transition diagram",
             "Interaction diagram",
+            "Class diagram",
         ],
         [
             eabss_usecase_diagram_path,
             eabss_activity_diagram_path,
             eabss_state_transition_diagram_path,
             eabss_interaction_diagram_path,
+            eabss_class_diagram_path,
         ],
     ):
         str += "\n  {:<25} {:<30}".format(name, f": saved to '{path}'")
@@ -82,6 +85,18 @@ def archetype_progess(archetype_path):
 
     for i, archetype in enumerate(content.strip().split("\n")):
         str += f"\n{i+1}. {archetype}"
+
+    return str
+
+
+def attribute_progess(attribute_path):
+    str = "-" * 50 + "\n"
+    str += "Profile attributes:"
+    with open(attribute_path, "r") as f:
+        content = f.read()
+
+    for i, attribute in enumerate(content.strip().split("\n")):
+        str += f"\n{i+1}. {attribute}"
 
     return str
 
@@ -209,6 +224,7 @@ if __name__ == "__main__":
         results_path, "eabss_interaction_diagram.txt"
     )
     archetype_path = os.path.join(results_path, "archetype.txt")
+    attribute_path = os.path.join(results_path, "attribute.txt")
     scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
     scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
     profiles_path = os.path.join(results_path, "profiles.txt")
@@ -240,6 +256,7 @@ if __name__ == "__main__":
         )
     )
     print(archetype_progess(archetype_path))
+    print(attribute_progess(attribute_path))
     print(scenario_progess(scenario_questions_path, scenario_choices_path))
     print(profile_progess(profiles_path))
     print(profile_scenario_answer_progess(profile_scenario_answers_path))
