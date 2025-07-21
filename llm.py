@@ -5,15 +5,21 @@ from google.genai.types import GenerateContentResponse, GenerateContentConfig, P
 
 import requests
 
+import display_progress
+from models.response_models import ThinkResponse
+
 
 def generate_content(prompt: str, response_schema=None) -> GenerateContentResponse:
     load_dotenv()
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     client = genai.Client(api_key=GOOGLE_API_KEY)
 
+    # Config parameter values
+    # ref: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values
     config = GenerateContentConfig(
         temperature=0.0,  # the randomness of responses - default: 1
-        top_p=0.9,  # the sum of candidate token probabilities - default: 0.5
+        top_p=0.0,  # the sum of candidate token probabilities - default: 0.5
+        seed=0,  # fixed seed should provides the same response for same prompt - defualt: random number
     )
 
     if response_schema:
@@ -75,68 +81,14 @@ def generate_content_from_images(
 
 
 if __name__ == "__main__":
-    response = generate_content("write a poem about cat and dog. only 4 lines")
+    # response = generate_content("write a poem about cat and dog. only 4 lines")
+    results_path = "results_2"
+    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
 
-#     interview = ""
-#     with open("data/mvp_1.txt", "r") as f:
-#         interview = f.read()
+    prompt = f"""
+Based on this EABSS components
+{display_progress.eabss_components_progress(eabss_components_path)}
 
-#     response = generate_content(
-#         f"""
-# base on this transcript
-# {interview}
-
-# extract key components for the simulation based on Engineering Agent-Based Social Simulations (EABSS) framework structure
-# -	Actors (people/groups/organisation)
-# -	Archetype (role/what they are allowed or expected to do)
-# -	Social/Psychological aspect (rules or norms)
-# -	key activities (behaviours performed under certain conditions)
-# -	Physical component (tools or systems used)
-# -	Interactions (who talks to or affects whom)
-# -	Artificial lab (global variables)
-
-# respond in short and very simple way. this is just to outlite the model.
-# """
-#     )
-
-#     print(response.usage_metadata.total_token_count)
-
-# response = generateContent(
-#         f"""
-# base on this interview
-# {interview}
-
-# extract components for Modelling Agent systems based on Institutional Analysis (MAIA)
-# -	Actors (people/groups)
-# -	Roles (what they are allowed or expected to do)
-# -	Institutions (rules or norms)
-# -	Actions (behaviours performed under certain conditions)
-# -	Artifacts (tools or systems used)
-# -	Interactions (who talks to or affects whom)
-
-# respond in short and very simple way. this is just to outlite the model.
-# """
-#     )
-
-#     response = generateContent(
-#         f"""
-# base on this interview
-# {interview}
-
-# list activity mention in the interview
-
-# respond in this format
-# action:
-# condition:
-# evidence:
-
-# for example
-# interview:
-# "every saturday, I go to park"
-
-# response:
-# action: "go to park"
-# condition: "on saturday"
-# evidence: "every saturday, I go to park"
-# """
-#     )
+generate NetLogo simulation script
+"""
+    response = generate_content(prompt, ThinkResponse)
