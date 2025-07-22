@@ -4,11 +4,11 @@ import json
 
 import stage_01_objective_setup
 
-import stage_02_thematic_analysis
-import stage_02_thematic_analysis_evaluation
-import stage_02_thematic_analysis_extra
+import stage_02_build_eabss
+import stage_02_build_eabss_evaluation
+import stage_02_build_eabss_extra
 
-import stage_03_eabss_components_generation
+import stage_03_generate_eabss_diagram
 
 import stage_04_archetype_scenario_setup
 
@@ -18,9 +18,7 @@ import stage_05_profile_evaluation
 import stage_06_scenario_decision
 import stage_06_scenario_decision_evaluation
 
-import stage_07_decision_table
-
-import stage_08_script_generation
+import stage_07_script_generation
 
 import display_progress
 
@@ -86,14 +84,14 @@ def main(source_folder: str, results_folder: str):
 
         if proceed:
             # Thematic analysis
-            stage_02_thematic_analysis.analyse(
+            stage_02_build_eabss.analyse(
                 source_paths,
                 ta_codes_txt_path,
                 ta_codes_csv_path,
             )
 
             # Finalise EABSS components
-            stage_03_eabss_components_generation.generate_components(
+            stage_02_build_eabss.generate_final_components(
                 objective_statement_path,
                 ta_codes_txt_path,
                 eabss_components_path,
@@ -138,7 +136,7 @@ def main(source_folder: str, results_folder: str):
         proceed = ask_proceed(stage_str)
         if proceed:
             # Generate EABSS diagrams
-            stage_03_eabss_components_generation.generate_diagrams(
+            stage_03_generate_eabss_diagram.generate_diagrams(
                 eabss_components_path,
                 eabss_usecase_diagram_path,
                 eabss_activity_diagram_path,
@@ -318,7 +316,7 @@ def main(source_folder: str, results_folder: str):
         stage_str = "Generate simulation script"
         proceed = ask_proceed(stage_str)
         if proceed:
-            stage_08_script_generation.generate(
+            stage_07_script_generation.generate(
                 objective_statement_path,
                 eabss_components_path,
                 eabss_usecase_diagram_path,

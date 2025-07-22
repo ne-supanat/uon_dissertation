@@ -1,6 +1,7 @@
 import os
 import sys
 
+import stage_08_run_experiment_warning
 import stage_09_visualisation_template_generation
 import stage_10_visualisation_analysis
 
@@ -29,9 +30,7 @@ def main(model_output_path: str, results_folder: str):
 
     ## Ask to run experiment
     if not os.path.isfile(model_output_path):
-        print(f"\nNo existing output found at '{model_output_path}'")
-        print("Please run an experiment first.")
-        print("Note: output must be in CSV format")
+        stage_08_run_experiment_warning.warn(model_output_path)
         sys.exit()
     else:
         # Display output file location
