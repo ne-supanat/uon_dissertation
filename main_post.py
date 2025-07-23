@@ -23,6 +23,8 @@ def print_end_stage(is_last_stage: bool = False):
         print("\nRun 'python main_post.py' to continue to the next stage.\n")
     else:
         print("-" * 50 + "\nAll post process stages completed\n" + "=" * 50)
+        print("\nRun 'main_post.py' to review the progress.")
+        print("Run 'main_eval.py' to evaluate the result.")
 
 
 def main(model_output_path: str, results_folder: str):
@@ -45,24 +47,19 @@ def main(model_output_path: str, results_folder: str):
     visualisation_template_path = os.path.join(
         results_path, paths.visualisation_template_file_path
     )
+    visualisations_path = os.path.join(results_path, paths.visualisation_directory_path)
 
     if not os.path.isfile(visualisation_template_path):
         stage_str = "Generate visualisation template script"
         proceed = ask_proceed(stage_str)
         if proceed:
             stage_09_visualisation_template_generation.generate(
-                results_path,
+                visualisations_path,
                 model_output_path,
                 visualisation_template_think_path,
                 visualisation_template_path,
             )
 
-            print(
-                display_progress.visualisation_template_progess(
-                    visualisation_template_think_path,
-                    visualisation_template_path,
-                )
-            )
             print_end_stage()
         sys.exit()
     else:
@@ -79,8 +76,6 @@ def main(model_output_path: str, results_folder: str):
     )
 
     if not os.path.isfile(visualisation_analysis_path):
-        visualisations_path = os.path.join(results_path, "visualisations")
-
         os.makedirs(visualisations_path, exist_ok=True)
 
         images = [image for image in os.listdir(visualisations_path)]
@@ -107,12 +102,8 @@ def main(model_output_path: str, results_folder: str):
                 visualisation_analysis_path,
             )
 
-            print(
-                display_progress.visualisation_analysis_progess(
-                    visualisation_analysis_path
-                )
-            )
             print_end_stage(True)
+            print()
         sys.exit()
     else:
         print(

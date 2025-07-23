@@ -28,6 +28,8 @@ def analyse(document_paths: list[str], destination_path_txt: str):
             f.write(response.text)
             f.write("\n\n")
 
+    print()
+    print("-" * 50)
     print(f"Thematic analaysis text json result saved to: '{destination_path_txt}'")
 
 
@@ -131,8 +133,10 @@ def generate_final_components(
     with open(eabss_components_path, "w") as f:
         f.write(json.dumps(final_component_dict, indent=4))
 
-    print(f"\nEABSS components result saved to: '{eabss_components_path}'")
-    print("Please reivew and update the EABSS components if necessary.")
+    print()
+    print("-" * 50)
+    print(f"EABSS components result saved to: '{eabss_components_path}'")
+    print("\nPlease reivew and update the EABSS components if necessary.")
 
 
 def finalise_eabss_component_justification(

@@ -22,7 +22,9 @@ def define_objective_statement(objective_statement_path):
         }
         f.write(json.dumps(dict, indent=4))
 
-    print(f"\nResult saved to: '{objective_statement_path}'")
+    print()
+    print("-" * 50)
+    print(f"Result saved to: '{objective_statement_path}'")
 
 
 if __name__ == "__main__":

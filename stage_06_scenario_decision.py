@@ -121,7 +121,10 @@ def generate_decision_prob_table(
                     + "\n"
                 )
                 f.write(line)
-    print(f"\nDecision probability table saved to: '{decision_probability_path}'\n")
+
+    print()
+    print("-" * 50)
+    print(f"Decision probability table saved to: '{decision_probability_path}'\n")
 
 
 if __name__ == "__main__":

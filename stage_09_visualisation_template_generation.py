@@ -6,32 +6,32 @@ import plotly.express as px
 
 
 def generate(
-    results_path,
+    visualisations_path,
     model_output_path,
     output_analysis_think_path,
     output_analysis_path,
 ):
 
-    visualisation_folder_path = os.path.join(results_path, "visualisations")
-
     df = pd.read_csv(model_output_path)
     example_df = str(df.head())
 
-    response = generate_script(visualisation_folder_path, example_df)
+    response = generate_script(visualisations_path, example_df)
 
     with open(output_analysis_think_path, "w") as f:
         f.write(response.think)
     with open(output_analysis_path, "w") as f:
         f.write(response.script)
 
+    print()
+    print("-" * 50)
     print(
-        f"\nVisualisation template script reasoning result saved to: '{output_analysis_think_path}'"
+        f"Visualisation template script reasoning result saved to: '{output_analysis_think_path}'"
     )
-    print(f"Visualisation template script result saved to: '{output_analysis_path}'\n")
+    print(f"Visualisation template script result saved to: '{output_analysis_path}'")
     print(
-        f"Please use the generated template to create some visualisations at '{visualisation_folder_path}'."
+        f"\nPlease use the generated template to create some visualisations at '{visualisations_path}'."
     )
-    print(f"Don't forget to update the Visualisation title to match the scenario.\n")
+    print(f"Don't forget to update the Visualisation title to match the scenario.")
 
 
 def generate_script(visualisation_folder_path, example_df) -> ThinkScriptResponse:

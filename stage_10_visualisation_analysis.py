@@ -10,9 +10,9 @@ def analyse(
     with open(visualisation_analysis_path, "w") as f:
         f.write(response.text)
 
-    print(
-        f"\nVisualisation analysis result saved to: '{visualisation_analysis_path}'\n"
-    )
+    print()
+    print("-" * 50)
+    print(f"Visualisation analysis result saved to: '{visualisation_analysis_path}'\n")
 
 
 def generate_explanation(images_paths):

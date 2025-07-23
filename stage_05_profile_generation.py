@@ -42,6 +42,10 @@ def generate(
             f.write(response.text)
             f.write("\n\n")
 
+    print()
+    print("-" * 50)
+    print(f"Profiles result saved to: '{profiles_path}'")
+
 
 def extract_profile(
     document: str,

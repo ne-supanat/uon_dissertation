@@ -12,18 +12,19 @@ def generate_usecase_diagrams(
     eabss_components_path,
     eabss_usecase_diagram_path,
 ):
-    # # key activities - UML use case diagram
-    # usecase_diagram = draw_usecase_diagram(eabss_components_path)
-    # with open(eabss_usecase_diagram_path, "w") as f:
-    #     f.write(usecase_diagram)
+    # key activities - UML use case diagram
+    usecase_diagram = draw_usecase_diagram(eabss_components_path)
+    with open(eabss_usecase_diagram_path, "w") as f:
+        f.write(usecase_diagram)
 
     print()
+    print("-" * 50)
     print(
         "{:<25} {:<30}".format(
             "Use case diagram", f": saved to '{eabss_usecase_diagram_path}'"
         )
     )
-    print("Please reivew and update the use case diagram if necessary.")
+    print("\nPlease reivew and update the use case diagram if necessary.")
 
 
 def draw_usecase_diagram(key_component_path: str):
@@ -85,6 +86,8 @@ def generate_diagrams(
         f.write(interactions_diagram)
 
     # TODO: (optional) consider State condition table
+    print()
+    print("-" * 50)
     for name, path in zip(
         [
             "Activity diagram",
@@ -102,6 +105,7 @@ def generate_diagrams(
         ],
     ):
         print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
+    print("\nPlease reivew and update the EABSS components if necessary.")
 
 
 def draw_activity_diagram(key_component_path: str, usecase_diagram: str):

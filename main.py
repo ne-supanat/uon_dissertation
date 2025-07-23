@@ -36,7 +36,8 @@ def print_end_stage(is_last_stage: bool = False):
         print("\nRun 'main.py' to continue to the next stage.\n")
     else:
         print("-" * 50 + "\nAll model development stages completed\n" + "=" * 50)
-        print("\nRun 'main_post.py' to analyse the model output.\n")
+        print("\nRun 'main.py' to review the progress.")
+        print("Run 'main_post.py' to analyse the model output.")
 
 
 def main(source_folder: str, results_folder: str):
@@ -80,6 +81,8 @@ def main(source_folder: str, results_folder: str):
                 ta_codes_txt_path,
             )
 
+            print()
+
             # Finalise EABSS components
             stage_02_build_eabss.generate_final_components(
                 objective_statement_path,
@@ -87,7 +90,6 @@ def main(source_folder: str, results_folder: str):
                 eabss_components_path,
             )
 
-            print()
             print(display_progress.eabss_components_progress(eabss_components_path))
 
             print_end_stage()
@@ -125,13 +127,6 @@ def main(source_folder: str, results_folder: str):
                 eabss_usecase_diagram_path,
             )
 
-            print(display_progress.diagram_header())
-            print(
-                display_progress.eabss_usecase_diagrams_progess(
-                    eabss_usecase_diagram_path,
-                )
-            )
-
             print_end_stage()
         sys.exit()
     else:
@@ -162,16 +157,6 @@ def main(source_folder: str, results_folder: str):
                 eabss_class_diagram_path,
             )
 
-            print(display_progress.diagram_header())
-            print(
-                display_progress.eabss_diagrams_progess(
-                    eabss_activity_diagram_path,
-                    eabss_state_transition_diagram_path,
-                    eabss_interaction_diagram_path,
-                    eabss_class_diagram_path,
-                )
-            )
-
             print_end_stage()
         sys.exit()
     else:
@@ -193,11 +178,16 @@ def main(source_folder: str, results_folder: str):
     )
     scenario_choices_path = os.path.join(results_path, paths.scenario_choices_file_path)
 
+    scenario_ground_truth_path = os.path.join(
+        results_path, paths.scenario_ground_truth_file_path
+    )
+
     if (
         not os.path.isfile(archetype_path)
         or not os.path.isfile(attribute_path)
         or not os.path.isfile(scenario_questions_path)
         or not os.path.isfile(scenario_choices_path)
+        or not os.path.isfile(scenario_ground_truth_path)
     ):
         stage_str = (
             "Define Archetype, Profile attribute, Scenario questions & answer choices"
@@ -267,8 +257,6 @@ def main(source_folder: str, results_folder: str):
                 profiles_path,
             )
 
-            print(display_progress.profile_progess(profiles_path))
-
             print_end_stage()
         sys.exit()
     else:
@@ -293,13 +281,6 @@ def main(source_folder: str, results_folder: str):
                     scenario_questions_path,
                     profiles_path,
                     profile_scenario_answers_path,
-                )
-
-                # Display scenario question' answer of each profile
-                print(
-                    display_progress.profile_scenario_answer_progess(
-                        profile_scenario_answers_path
-                    )
                 )
 
             # Create decision probability table
@@ -358,13 +339,11 @@ def main(source_folder: str, results_folder: str):
                 simulation_script_path,
             )
 
-            print(
-                display_progress.profile_scenario_answer_progess(simulation_script_path)
-            )
             print_end_stage(True)
+            print()
         sys.exit()
     else:
-        print(display_progress.profile_scenario_answer_progess(simulation_script_path))
+        print(display_progress.simulation_script_progess(simulation_script_path))
         print_end_stage(True)
 
     print()

@@ -32,6 +32,7 @@ def eabss_components_progress(
     eabss_scope_path,
 ):
     str = "-" * 50 + "\n"
+    str += "EABSS Components:\n"
     with open(eabss_scope_path, "r") as f:
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)
@@ -148,7 +149,7 @@ def ground_truth_progess(
     # archetype2: choice, choice
 
     str = "-" * 50 + "\n"
-    str += "Scenario ground truth:\n"
+    str += "Scenario ground truth:\n\n"
 
     with open(scenario_questions_path, "r") as f:
         content = f.read()
@@ -163,10 +164,14 @@ def ground_truth_progess(
 
     max_lenght = len(max(archetypes, key=len))
 
+    blocks = []
     for i, question_list in enumerate(content):
-        str += f"\nQuestion: {questions[i]}\n"
+        rows = []
+        rows.append(f"Question {i+1}: {questions[i]}")
         for j, answer_list in enumerate(question_list):
-            str += f"{archetypes[j]:<{max_lenght+2}}: {", ".join(answer_list)}\n"
+            rows.append(f"  {archetypes[j]:<{max_lenght+2}}: {", ".join(answer_list)}")
+        blocks.append("\n".join(rows))
+    str += "\n\n".join(blocks)
 
     return str
 
@@ -212,7 +217,7 @@ def decision_probability_table_progess(decision_probability_path):
     return str
 
 
-def profile_scenario_answer_progess(simulation_script_path):
+def simulation_script_progess(simulation_script_path):
     str = "-" * 50 + "\n"
     str += "{:<25} {:<30}".format(
         "Simulation script", f": saved to '{simulation_script_path}'"
@@ -329,15 +334,15 @@ if __name__ == "__main__":
         )
     )
 
-    # print(profile_progess(profiles_path))
-    # print(profile_scenario_answer_progess(profile_scenario_answers_path))
-    # print(decision_probability_table_progess(decision_probability_path))
-    # print(profile_scenario_answer_progess(simulation_script_path))
-    # print()
-    # print(model_output_progess(model_output_path))
-    # print(
-    #     visualisation_template_progess(
-    #         visualisation_template_think_path, visualisation_template_path
-    #     )
-    # )
-    # print(visualisation_analysis_progess(visualisation_analysis))
+    print(profile_progess(profiles_path))
+    print(profile_scenario_answer_progess(profile_scenario_answers_path))
+    print(decision_probability_table_progess(decision_probability_path))
+    print(simulation_script_progess(simulation_script_path))
+    print()
+    print(model_output_progess(model_output_path))
+    print(
+        visualisation_template_progess(
+            visualisation_template_think_path, visualisation_template_path
+        )
+    )
+    print(visualisation_analysis_progess(visualisation_analysis))

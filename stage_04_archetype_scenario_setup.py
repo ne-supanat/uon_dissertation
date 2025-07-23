@@ -29,6 +29,8 @@ def setup_archetype(eabss_components_path, archetype_path):
     with open(archetype_path, "w") as f:
         f.write("\n".join(item["code"] for item in scope["archetypes"]))
 
+    print()
+    print("-" * 50)
     print(f"Archetype saved at: '{archetype_path}'")
 
     ## Update Archeype model
@@ -88,7 +90,9 @@ Enter the attribute 2 text: Occupation
     with open(attribute_path, "w") as f:
         f.write(f'{'\n'.join(attributes)}')
 
-    print(f"\nProfile attributes saved to: '{attribute_path}'\n")
+    print()
+    print("-" * 50)
+    print(f"Profile attributes saved to: '{attribute_path}'\n")
 
 
 def setup_scenario(questions_path, scenario_choices_path):
@@ -146,7 +150,9 @@ def setup_scenario_questions(questions_path):
     with open(questions_path, "w") as f:
         f.write(f'{'\n'.join(questions)}')
 
-    print(f"\nScenario questions saved to: '{questions_path}'\n")
+    print()
+    print("-" * 50)
+    print(f"Scenario questions saved to: '{questions_path}'\n")
 
 
 def setup_scenario_choices(scenario_choices_path):
@@ -171,6 +177,8 @@ def setup_scenario_choices(scenario_choices_path):
     with open(scenario_choices_path, "w") as f:
         f.write("\n".join(answers))
 
+    print()
+    print("-" * 50)
     print(f"Scenario choices saved to: '{scenario_choices_path}''")
 
     ## Update Scenario choice model
@@ -192,7 +200,7 @@ def setup_scenario_choices(scenario_choices_path):
     with open(answer_choices_path, "w") as f:
         f.write(content)
 
-    print(f"\nSystem's Scenario choice model updated at: '{answer_choices_path}''")
+    print(f"System's Scenario choice model updated at: '{answer_choices_path}''")
 
 
 def sanitise_name(str: str):
@@ -204,7 +212,9 @@ def create_ground_truth(scenario_questions_path, scenario_ground_truth_path):
     with open(scenario_ground_truth_path, "w") as f:
         f.write(response.text)
 
-    print(f"\nScenario questions saved to: '{scenario_ground_truth_path}'\n")
+    print()
+    print("-" * 50)
+    print(f"Scenario ground truths saved to: '{scenario_ground_truth_path}'\n")
 
 
 def generate_synthetic_answer(

@@ -55,8 +55,10 @@ def generate(
     with open(simulation_script_path, "w") as f:
         f.write(response.script)
 
+    print()
+    print("-" * 50)
     print(
-        f"\nSimulation script reasoning result saved to: '{simulation_script_think_path}'"
+        f"Simulation script reasoning result saved to: '{simulation_script_think_path}'"
     )
     print(f"Simulation script result saved to: '{simulation_script_path}'\n")
     print("Please reivew and update the generated simulation script if necessary.")
