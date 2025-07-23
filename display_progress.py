@@ -47,34 +47,44 @@ def eabss_components_progress(
     return str
 
 
-def eabss_diagrams_progess(
+def diagram_header():
+    str = "-" * 50 + "\n"
+    str += "You can view EABSS diagrams using mermaid.js"
+    return str
+
+
+def eabss_usecase_diagrams_progess(
     eabss_usecase_diagram_path,
+):
+    return "  {:<25} {:<30}".format(
+        "Use case diagram", f": saved to '{eabss_usecase_diagram_path}'"
+    )
+
+
+def eabss_diagrams_progess(
     eabss_activity_diagram_path,
     eabss_state_transition_diagram_path,
     eabss_interaction_diagram_path,
     eabss_class_diagram_path,
 ):
-    str = "-" * 50 + "\n"
-    str += "You can view EABSS diagrams using mermaid.js"
+    strs = []
     for name, path in zip(
         [
-            "Use case diagram",
             "Activity diagram",
             "State transition diagram",
             "Interaction diagram",
             "Class diagram",
         ],
         [
-            eabss_usecase_diagram_path,
             eabss_activity_diagram_path,
             eabss_state_transition_diagram_path,
             eabss_interaction_diagram_path,
             eabss_class_diagram_path,
         ],
     ):
-        str += "\n  {:<25} {:<30}".format(name, f": saved to '{path}'")
+        strs.append("  {:<25} {:<30}".format(name, f": saved to '{path}'"))
 
-    return str
+    return "\n".join(strs)
 
 
 def archetype_progess(archetype_path):
@@ -103,20 +113,18 @@ def attribute_progess(attribute_path):
 
 def scenario_progess(scenario_questions_path, scenario_choices_path):
     str = "-" * 50 + "\n"
-    str += "Scenario questions:"
-    with open(scenario_questions_path, "r") as f:
-        content = f.read()
-
-    for i, question in enumerate(content.split("\n")):
-        str += f"\n{i+1}. {question}"
-
-    str += "\n" + "-" * 50 + "\n"
     str += "Scenario answer choices:"
     with open(scenario_choices_path, "r") as f:
         content = f.read()
-
     for i, choice in enumerate(content.strip().split("\n")):
         str += f"\n{i+1}. {choice}"
+
+    str += "\n" + "-" * 50 + "\n"
+    str += "Scenario questions:"
+    with open(scenario_questions_path, "r") as f:
+        content = f.read()
+    for i, question in enumerate(content.split("\n")):
+        str += f"\n{i+1}. {question}"
 
     return str
 
@@ -209,7 +217,7 @@ def visualisation_analysis_progess(visualisation_analysis):
 
 
 if __name__ == "__main__":
-    results_path = "results_2"
+    results_path = "results_4"
     problem_statement_path = os.path.join(results_path, "01_objective.txt")
     eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
     eabss_usecase_diagram_path = os.path.join(results_path, "eabss_usecase_diagram.txt")
@@ -223,6 +231,8 @@ if __name__ == "__main__":
     eabss_interaction_diagram_path = os.path.join(
         results_path, "eabss_interaction_diagram.txt"
     )
+    eabss_class_diagram_path = os.path.join(results_path, "eabss_class_diagram.txt")
+
     archetype_path = os.path.join(results_path, "04_archetype.txt")
     attribute_path = os.path.join(results_path, "04_attribute.txt")
     scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
@@ -249,12 +259,19 @@ if __name__ == "__main__":
     display_header()
     print(objective_statement_progress(problem_statement_path))
     print(eabss_components_progress(eabss_components_path))
+    print(diagram_header())
+
+    print(
+        eabss_usecase_diagrams_progess(
+            eabss_usecase_diagram_path,
+        )
+    )
     print(
         eabss_diagrams_progess(
-            eabss_usecase_diagram_path,
             eabss_activity_diagram_path,
             eabss_state_transition_diagram_path,
             eabss_interaction_diagram_path,
+            eabss_class_diagram_path,
         )
     )
     print(archetype_progess(archetype_path))

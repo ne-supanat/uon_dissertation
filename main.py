@@ -28,8 +28,10 @@ import display_progress
 
 
 def get_transcript_file_paths(source_path):
-    return ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
-    # return [f"{source_path}/{filename}" for filename in sorted(os.listdir(source_path))]
+    # return ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    return [
+        f"{source_path}/{filename}" for filename in sorted(os.listdir(source_path))[0:5]
+    ]
 
 
 def ask_proceed(stage_str: str) -> bool:
@@ -41,10 +43,10 @@ def ask_proceed(stage_str: str) -> bool:
 
 def print_end_stage(is_last_stage: bool = False):
     if not is_last_stage:
-        print("\nRun 'python main.py' to continue to the next stage.\n")
+        print("\nRun 'main.py' to continue to the next stage.\n")
     else:
         print("-" * 50 + "\nAll model development stages completed\n" + "=" * 50)
-        print("\nRun 'python main_post.py' to analyse the model output.\n")
+        print("\nRun 'main_post.py' to analyse the model output.\n")
 
 
 def main(source_folder: str, results_folder: str):
@@ -54,7 +56,6 @@ def main(source_folder: str, results_folder: str):
 
     # NOTE: if main file of that stage exists that process already done
     # if not os.path.isfile(problem_statement_path):
-    # TODO: (optional) change to check project name and its stage in json
 
     ## Define Objective, Input, Output
     objective_statement_path = os.path.join(results_path, "01_objective.txt")
@@ -132,7 +133,40 @@ def main(source_folder: str, results_folder: str):
     )
 
     if not os.path.isfile(eabss_usecase_diagram_path):
-        stage_str = "Generate EABSS diagrams"
+        stage_str = "Generate EABSS diagrams - use case diagram"
+        proceed = ask_proceed(stage_str)
+        if proceed:
+            # Generate EABSS usecase diagrams
+            stage_03_generate_eabss_diagram.generate_usecase_diagrams(
+                eabss_components_path,
+                eabss_usecase_diagram_path,
+            )
+
+            print(display_progress.diagram_header())
+            print(
+                display_progress.eabss_usecase_diagrams_progess(
+                    eabss_usecase_diagram_path,
+                )
+            )
+
+            print_end_stage()
+        sys.exit()
+    else:
+        # Display EABSS usecase diagrams result
+        print(display_progress.diagram_header())
+        print(
+            display_progress.eabss_usecase_diagrams_progess(
+                eabss_usecase_diagram_path,
+            )
+        )
+
+    if (
+        not os.path.isfile(eabss_activity_diagram_path)
+        or not os.path.isfile(eabss_state_transition_diagram_path)
+        or not os.path.isfile(eabss_interaction_diagram_path)
+        or not os.path.isfile(eabss_class_diagram_path)
+    ):
+        stage_str = "Generate EABSS diagrams - remaining diagrams"
         proceed = ask_proceed(stage_str)
         if proceed:
             # Generate EABSS diagrams
@@ -144,9 +178,10 @@ def main(source_folder: str, results_folder: str):
                 eabss_interaction_diagram_path,
                 eabss_class_diagram_path,
             )
+
+            print(display_progress.diagram_header())
             print(
                 display_progress.eabss_diagrams_progess(
-                    eabss_usecase_diagram_path,
                     eabss_activity_diagram_path,
                     eabss_state_transition_diagram_path,
                     eabss_interaction_diagram_path,
@@ -157,10 +192,9 @@ def main(source_folder: str, results_folder: str):
             print_end_stage()
         sys.exit()
     else:
-        # Display EABSS diagrams result
+        # Display EABSS remaining diagrams result
         print(
             display_progress.eabss_diagrams_progess(
-                eabss_usecase_diagram_path,
                 eabss_activity_diagram_path,
                 eabss_state_transition_diagram_path,
                 eabss_interaction_diagram_path,
@@ -348,6 +382,6 @@ def main(source_folder: str, results_folder: str):
 
 if __name__ == "__main__":
     source_folder = "data/diary_txt"
-    results_folder = "results_4"
+    results_folder = "results_5"
     # TODO: pick source & project from terminal (optional)
     main(source_folder, results_folder)

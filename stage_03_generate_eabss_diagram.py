@@ -8,6 +8,39 @@ from models.response_models import (
 import display_progress
 
 
+def generate_usecase_diagrams(
+    eabss_components_path,
+    eabss_usecase_diagram_path,
+):
+    # # key activities - UML use case diagram
+    # usecase_diagram = draw_usecase_diagram(eabss_components_path)
+    # with open(eabss_usecase_diagram_path, "w") as f:
+    #     f.write(usecase_diagram)
+
+    print()
+    print(
+        "{:<25} {:<30}".format(
+            "Use case diagram", f": saved to '{eabss_usecase_diagram_path}'"
+        )
+    )
+    print("Please reivew and update the use case diagram if necessary.")
+
+
+def draw_usecase_diagram(key_component_path: str):
+    prompt = f"""
+Following these key components
+{KeyComponents.get_explanation()}
+
+{display_progress.eabss_components_progress(key_component_path)}
+
+
+generate very simple comprehensive UML usecase diagram
+respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
+"""
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
+
+
 def generate_diagrams(
     eabss_components_path,
     eabss_usecase_diagram_path,
@@ -16,12 +49,8 @@ def generate_diagrams(
     eabss_interaction_diagram_path,
     eabss_class_diagram_path,
 ):
-    # key activities - UML use case diagram
-    usecase_diagram = draw_usecase_diagram(
-        eabss_components_path,
-    )
-    with open(eabss_usecase_diagram_path, "w") as f:
-        f.write(usecase_diagram)
+    with open(eabss_usecase_diagram_path, "r") as f:
+        usecase_diagram = f.read()
 
     # actor class - UML class diagram
     class_diagram = draw_class_diagram(
@@ -55,10 +84,9 @@ def generate_diagrams(
     with open(eabss_interaction_diagram_path, "w") as f:
         f.write(interactions_diagram)
 
-    # # # TODO: (optional) consider State condition table
+    # TODO: (optional) consider State condition table
     for name, path in zip(
         [
-            "Use case diagram",
             "Activity diagram",
             "State transition diagram",
             # "State condition"
@@ -66,7 +94,6 @@ def generate_diagrams(
             "Class diagram",
         ],
         [
-            eabss_usecase_diagram_path,
             eabss_activity_diagram_path,
             eabss_state_transition_diagram_path,
             # eabss_state_condition_diagram_path
@@ -75,21 +102,6 @@ def generate_diagrams(
         ],
     ):
         print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
-
-
-def draw_usecase_diagram(key_component_path: str):
-    prompt = f"""
-Following these key components
-{KeyComponents.get_explanation()}
-
-{display_progress.eabss_components_progress(key_component_path)}
-
-
-generate very simple comprehensive UML usecase diagram
-respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
-"""
-    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
-    return response.script
 
 
 def draw_activity_diagram(key_component_path: str, usecase_diagram: str):

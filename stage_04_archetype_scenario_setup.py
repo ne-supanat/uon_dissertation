@@ -1,7 +1,6 @@
 import json
 import os
-
-# TODO: (optional) sanitize name
+import re
 
 
 def setup_archetype_attribute_scenario(
@@ -41,7 +40,7 @@ def setup_archetype(eabss_components_path, archetype_path):
 
     content = "import enum\n\nclass Archetype(enum.Enum):\n"
     for item in scope["archetypes"]:
-        content += f"""\t{"".join([word.lower().capitalize() for word in item["code"].split(" ")])} = "{item["code"]}"\n"""
+        content += f"""\t{"".join([word.lower().capitalize() for word in sanitise_name(item["code"]).split(" ")])} = "{item["code"]}"\n"""
 
     with open(model_archetype_path, "w") as f:
         f.write(content)
@@ -97,19 +96,19 @@ def setup_scenario(questions_path, scenario_choices_path):
     print(
         """
 - Example input -
-Please enter the number of questions: 2
-
-Enter the question 1 text: What is your transport mode in usual days?
-Enter the question 2 text: What is your transport mode when it raining?
-
 Enter number of answer choices: 3
 Choice 1: Walking
 Choice 2: Cycling
 Choice 3: Driving
+
+Please enter the number of questions: 2
+
+Enter the question 1 text: What is your transport mode in usual days?
+Enter the question 2 text: What is your transport mode when it raining?
 """
     )
-    setup_scenario_questions(questions_path)
     setup_scenario_choices(scenario_choices_path)
+    setup_scenario_questions(questions_path)
     print()
 
 
@@ -178,12 +177,16 @@ def setup_scenario_choices(scenario_choices_path):
 
     content = "import enum\n\nclass ScenarioChoice(enum.Enum):\n"
     for item in answers:
-        content += f"""\t{"".join([word.lower().capitalize() for word in item.split(" ")])} = "{item}"\n"""
+        content += f"""\t{"".join([word.lower().capitalize() for word in sanitise_name(item).split(" ")])} = "{item}"\n"""
 
     with open(answer_choices_path, "w") as f:
         f.write(content)
 
     print(f"\nSystem's Scenario choice model updated at: '{answer_choices_path}''")
+
+
+def sanitise_name(str: str):
+    return re.sub("[^a-zA-Z0-9 \n\.]", " ", str)  # remove special character
 
 
 if __name__ == "__main__":
