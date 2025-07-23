@@ -39,21 +39,21 @@ def main(source_folder: str, results_folder: str):
         eval_02_build_eabss_evaluation.evaluate(ta_codes_txt_path)
         # thematic_analysis_extra.analyse(source_paths)
 
-    # ## Evaluate Profiles
-    # profiles_path = os.path.join(results_path, "05_profiles.txt")
-    # if not os.path.isfile(profiles_path):
-    #     eval_05_profile_evaluation.evaluate(profiles_path)
+    ## Evaluate Profiles
+    profiles_path = os.path.join(results_path, "05_profiles.txt")
+    if not os.path.isfile(profiles_path):
+        eval_05_profile_evaluation.evaluate(profiles_path)
 
-    # ## Create Decision probability table
-    # scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
-    # scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
+    ## Create Decision probability table
+    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
 
-    # profile_scenario_answers_path = os.path.join(
-    #     results_path, "06_profile_scenario_answers.csv"
-    # )
-    # decision_probability_path = os.path.join(
-    #     results_path, "06_scenario_probability.csv"
-    # )
+    profile_scenario_answers_path = os.path.join(
+        results_path, "06_profile_scenario_answers.csv"
+    )
+    decision_probability_path = os.path.join(
+        results_path, "06_scenario_probability.csv"
+    )
 
     # if not os.path.isfile(decision_probability_path):
     #     # Generate ground truth

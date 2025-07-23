@@ -191,7 +191,7 @@ def main(source_folder: str, results_folder: str):
     scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
 
     if (
-        not os.path.isfile(archetype_path)
+        os.path.isfile(archetype_path)
         or not os.path.isfile(attribute_path)
         or not os.path.isfile(scenario_questions_path)
         or not os.path.isfile(scenario_choices_path)
@@ -364,6 +364,6 @@ def main(source_folder: str, results_folder: str):
 
 if __name__ == "__main__":
     source_folder = "data/diary_txt"
-    results_folder = "results_5"
+    results_folder = "results_4"
     # TODO: pick source & project from terminal (optional)
     main(source_folder, results_folder)

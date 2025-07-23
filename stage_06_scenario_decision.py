@@ -10,7 +10,7 @@ from models.scenario_choices import ScenarioChoice
 
 def generate_profile_scenario_answers(question_path, profiles_path, answer_path):
     with open(question_path, "r") as f:
-        questions = f.read().strip().split("\n")
+        questions = f.read().strip().splitlines()
 
     with open(profiles_path, "r") as f:
         content = f.read()
@@ -49,7 +49,7 @@ Answer following questions:
 
 def mock_scenario_answer(question_path, answer_path):
     with open(question_path, "r") as f:
-        questions = f.read().strip().split("\n")
+        questions = f.read().strip().splitlines()
 
     with open(answer_path, "w") as f:
         for i in range(100):
@@ -77,7 +77,7 @@ def generate_decision_prob_table(
 ):
     # Fetch scenario questions
     with open(scenario_questions_path, "r") as f:
-        questions = f.read().strip().split("\n")
+        questions = f.read().strip().splitlines()
 
     # Initialize answer and archetype counters
     answer_dict = {

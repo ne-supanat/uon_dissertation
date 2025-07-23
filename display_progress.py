@@ -93,7 +93,7 @@ def archetype_progess(archetype_path):
     with open(archetype_path, "r") as f:
         content = f.read()
 
-    for i, archetype in enumerate(content.strip().split("\n")):
+    for i, archetype in enumerate(content.strip().splitlines()):
         str += f"\n{i+1}. {archetype}"
 
     return str
@@ -105,7 +105,7 @@ def attribute_progess(attribute_path):
     with open(attribute_path, "r") as f:
         content = f.read()
 
-    for i, attribute in enumerate(content.strip().split("\n")):
+    for i, attribute in enumerate(content.strip().splitlines()):
         str += f"\n{i+1}. {attribute}"
 
     return str
@@ -116,14 +116,14 @@ def scenario_progess(scenario_questions_path, scenario_choices_path):
     str += "Scenario answer choices:"
     with open(scenario_choices_path, "r") as f:
         content = f.read()
-    for i, choice in enumerate(content.strip().split("\n")):
+    for i, choice in enumerate(content.strip().splitlines()):
         str += f"\n{i+1}. {choice}"
 
     str += "\n" + "-" * 50 + "\n"
     str += "Scenario questions:"
     with open(scenario_questions_path, "r") as f:
         content = f.read()
-    for i, question in enumerate(content.split("\n")):
+    for i, question in enumerate(content.splitlines()):
         str += f"\n{i+1}. {question}"
 
     return str

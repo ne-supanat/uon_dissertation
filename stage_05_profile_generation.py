@@ -20,7 +20,7 @@ def generate(
         objective = objective_statement["objective"]
 
     with open(attribute_path, "r") as f:
-        profile_attributes = f.read().split("\n")
+        profile_attributes = f.read().splitlines()
 
     # New file
     with open(profiles_path, "w") as f:

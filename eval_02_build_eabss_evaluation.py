@@ -5,7 +5,6 @@ import numpy as np
 
 def evaluate(thematic_analysis_codes_txt_path: str):
     ## Check quotes do exist in file
-
     not_found_dict = {}
     total_quote_dict = {}
     scores = []
@@ -20,12 +19,11 @@ def evaluate(thematic_analysis_codes_txt_path: str):
         document: dict = json.loads(document_raw)
 
         file = document["file"]
-        with open(file, "r") as f:
-            lines = f.read().split("\n")  # transcript lines
-
         not_found_dict[file] = []
         total_quote_dict[file] = 0
-        # print(document.keys())
+
+        with open(file, "r") as f:
+            lines = f.read().splitlines()  # transcript lines
 
         # Check each component (actors, archetypes, physical_components, social_aspect, psychological_aspect, misc, key_activities)
         for key in document.keys():
@@ -43,6 +41,7 @@ def evaluate(thematic_analysis_codes_txt_path: str):
 
                     if not found:
                         not_found_dict[file].append(quote)
+
             total_quote_dict[file] += len(document[key])
 
         scores.append(1 - (len(not_found_dict[file]) / (total_quote_dict[file])))
@@ -82,7 +81,7 @@ def evaluate(thematic_analysis_codes_txt_path: str):
 
 
 if __name__ == "__main__":
-    results_path = "results_5"
+    results_path = "results_4"
     ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
 
     evaluate(ta_codes_txt_path)
