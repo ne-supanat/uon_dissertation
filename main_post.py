@@ -6,6 +6,7 @@ import stage_09_visualisation_template_generation
 import stage_10_visualisation_analysis
 
 import display_progress
+import paths
 
 # TODO: add comments
 
@@ -39,10 +40,10 @@ def main(model_output_path: str, results_folder: str):
 
     ## Visualisation template generation
     visualisation_template_think_path = os.path.join(
-        results_path, "09_visualisation_template_think.txt"
+        results_path, paths.visualisation_template_think_file_path
     )
     visualisation_template_path = os.path.join(
-        results_path, "09_visualisation_template.txt"
+        results_path, paths.visualisation_template_file_path
     )
 
     if not os.path.isfile(visualisation_template_path):
@@ -74,7 +75,7 @@ def main(model_output_path: str, results_folder: str):
 
     ## Visualisations Analysis
     visualisation_analysis_path = os.path.join(
-        results_path, "10_visualisation_analysis.txt"
+        results_path, paths.visualisation_analysis_file_path
     )
 
     if not os.path.isfile(visualisation_analysis_path):

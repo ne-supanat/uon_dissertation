@@ -10,6 +10,7 @@ import stage_06_scenario_decision
 import stage_07_script_generation
 
 import display_progress
+import paths
 
 
 # TODO: resume the process: error at profile 3 > should continue at profile 4
@@ -47,14 +48,16 @@ def main(source_folder: str, results_folder: str):
     # eg. if not os.path.isfile(stage_result_file.txt):
 
     ## Define Objective, Input, Output
-    objective_statement_path = os.path.join(results_path, "01_objective.txt")
+    objective_statement_path = os.path.join(results_path, paths.objective_file_path)
 
     if not os.path.isfile(objective_statement_path):
         # New project
         print("\nNo existing project detected.")
         print("Starting new project...")
         stage_01_objective_setup.define_objective_statement(objective_statement_path)
+
         print(display_progress.objective_statement_progress(objective_statement_path))
+
         print_end_stage()
         sys.exit()
     else:
@@ -63,9 +66,8 @@ def main(source_folder: str, results_folder: str):
         print(display_progress.objective_statement_progress(objective_statement_path))
 
     ## Build EABSS components
-    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
-
-    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
+    ta_codes_txt_path = os.path.join(results_path, paths.thematic_codes_file_path)
+    eabss_components_path = os.path.join(results_path, paths.eabss_scope_file_path)
 
     if not os.path.isfile(eabss_components_path):
         stage_str = "Build EABSS components"
@@ -87,6 +89,7 @@ def main(source_folder: str, results_folder: str):
 
             print()
             print(display_progress.eabss_components_progress(eabss_components_path))
+
             print_end_stage()
 
         sys.exit()
@@ -96,22 +99,20 @@ def main(source_folder: str, results_folder: str):
 
     ## Build EABSS diagrams
     eabss_usecase_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_usecase_diagram.txt"
+        results_path, paths.eabss_usecase_file_path
     )
 
-    eabss_class_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_class_diagram.txt"
-    )
+    eabss_class_diagram_path = os.path.join(results_path, paths.eabss_class_file_path)
     eabss_activity_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_activity_diagram.txt"
+        results_path, paths.eabss_activity_file_path
     )
     eabss_state_transition_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_state_diagram.txt"
+        results_path, paths.eabss_state_file_path
     )
     # TODO: (optional) add transition table
     # eabss_state_transition_table_path = os.path.join(results_path,"eabss_diagram_state_table.txt")
     eabss_interaction_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_interaction_diagram.txt"
+        results_path, paths.eabss_interaction_file_path
     )
 
     if not os.path.isfile(eabss_usecase_diagram_path):
@@ -185,13 +186,15 @@ def main(source_folder: str, results_folder: str):
         )
 
     ## Define archetyp, scenario questions, scenarion answer choices
-    archetype_path = os.path.join(results_path, "04_archetype.txt")
-    attribute_path = os.path.join(results_path, "04_attribute.txt")
-    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
-    scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
+    archetype_path = os.path.join(results_path, paths.archetype_file_path)
+    attribute_path = os.path.join(results_path, paths.attribute_file_path)
+    scenario_questions_path = os.path.join(
+        results_path, paths.scenario_questions_file_path
+    )
+    scenario_choices_path = os.path.join(results_path, paths.scenario_choices_file_path)
 
     if (
-        os.path.isfile(archetype_path)
+        not os.path.isfile(archetype_path)
         or not os.path.isfile(attribute_path)
         or not os.path.isfile(scenario_questions_path)
         or not os.path.isfile(scenario_choices_path)
@@ -210,6 +213,12 @@ def main(source_folder: str, results_folder: str):
                 scenario_choices_path,
             )
 
+            # Generate ground truth
+            stage_04_archetype_scenario_setup.create_ground_truth(
+                scenario_questions_path,
+                scenario_ground_truth_path,
+            )
+
             print(display_progress.archetype_progess(archetype_path))
             print(display_progress.attribute_progess(attribute_path))
             print(
@@ -218,6 +227,12 @@ def main(source_folder: str, results_folder: str):
                     scenario_choices_path,
                 )
             )
+            print(
+                display_progress.ground_truth_progess(
+                    scenario_questions_path, archetype_path, scenario_ground_truth_path
+                )
+            )
+
             print_end_stage()
         sys.exit()
     else:
@@ -230,9 +245,14 @@ def main(source_folder: str, results_folder: str):
                 scenario_choices_path,
             )
         )
+        print(
+            display_progress.ground_truth_progess(
+                scenario_questions_path, archetype_path, scenario_ground_truth_path
+            )
+        )
 
     ## Extract Profiles (& classify profile archetype)
-    profiles_path = os.path.join(results_path, "05_profiles.txt")
+    profiles_path = os.path.join(results_path, paths.profile_file_path)
 
     if not os.path.isfile(profiles_path):
         stage_str = "Extract profiles"
@@ -246,10 +266,8 @@ def main(source_folder: str, results_folder: str):
                 attribute_path,
                 profiles_path,
             )
-            print(display_progress.profile_progess(profiles_path))
 
-            # # Profile Evaluation
-            # profile_evaluation.evaluate(profiles_path)
+            print(display_progress.profile_progess(profiles_path))
 
             print_end_stage()
         sys.exit()
@@ -259,10 +277,10 @@ def main(source_folder: str, results_folder: str):
 
     ## Create Decision probability table
     profile_scenario_answers_path = os.path.join(
-        results_path, "06_profile_scenario_answers.csv"
+        results_path, paths.profile_scenario_answers_file_path
     )
     decision_probability_path = os.path.join(
-        results_path, "06_scenario_probability.csv"
+        results_path, paths.scenario_probability_file_path
     )
 
     if not os.path.isfile(decision_probability_path):
@@ -297,18 +315,6 @@ def main(source_folder: str, results_folder: str):
                 )
             )
 
-            # scenario_ground_truth_path = os.path.join(results_path, "scenario_ground_truth.txt")
-            # scenario_scores_path = os.path.join(results_path, "scenario_scores.csv")
-            # scenario_decision_evaluation.generate_ground_truth(
-            #     scenario_questions_path,
-            #     scenario_ground_truth_path,
-            # )
-            # scenario_decision_evaluation.score_profile_anwsers(
-            #     scenario_ground_truth_path,
-            #     scenario_answers_path,
-            #     scenario_scores_path,
-            # )
-
             print_end_stage()
         sys.exit()
     else:
@@ -326,9 +332,11 @@ def main(source_folder: str, results_folder: str):
 
     ## Generate Simulation script
     simulation_script_think_path = os.path.join(
-        results_path, "07_simulation_script_think.txt"
+        results_path, paths.simulation_script_think_file_path
     )
-    simulation_script_path = os.path.join(results_path, "07_simulation_script.txt")
+    simulation_script_path = os.path.join(
+        results_path, paths.simulation_script_file_path
+    )
 
     if not os.path.isfile(simulation_script_path):
         stage_str = "Generate simulation script"

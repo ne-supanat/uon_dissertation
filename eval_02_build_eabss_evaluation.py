@@ -3,11 +3,11 @@ import json
 import numpy as np
 
 
-def evaluate(thematic_analysis_codes_txt_path: str):
+def evaluate(thematic_analysis_codes_txt_path: str, thematic_analysis_scores_path: str):
     ## Check quotes do exist in file
     not_found_dict = {}
     total_quote_dict = {}
-    scores = []
+    scores = {}
 
     # Read thematic analysis result
     with open(thematic_analysis_codes_txt_path, "r") as f:
@@ -44,7 +44,7 @@ def evaluate(thematic_analysis_codes_txt_path: str):
 
             total_quote_dict[file] += len(document[key])
 
-        scores.append(1 - (len(not_found_dict[file]) / (total_quote_dict[file])))
+        scores[file] = 1 - (len(not_found_dict[file]) / (total_quote_dict[file]))
 
     print("-" * 50)
     print("Thematic Analysis Evaluation")
@@ -75,13 +75,24 @@ def evaluate(thematic_analysis_codes_txt_path: str):
         print()
         print("-" * 50)
 
-    print(f"Thematic Analysis Evaluation - Mean match score: {np.mean(scores):.2f}")
+    print(
+        f"Thematic Analysis Evaluation - Mean match score: {np.mean(list(scores.values())):.2f}"
+    )
     print("-" * 50)
     print()
+
+    with open(thematic_analysis_scores_path, "w") as f:
+        f.write(
+            "\n".join(
+                [f"{document};{score:<.2f}" for document, score in scores.items()]
+            )
+        )
+    print(f"Result saved to: '{thematic_analysis_scores_path}'")
 
 
 if __name__ == "__main__":
     results_path = "results_4"
     ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
+    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
 
-    evaluate(ta_codes_txt_path)
+    evaluate(ta_codes_txt_path, "")

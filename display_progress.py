@@ -7,6 +7,9 @@ from models.response_models import KeyComponents
 from models.scenario_choices import ScenarioChoice
 
 
+# TODO: add example output
+
+
 def display_header():
     print("\nCurrent progress")
 
@@ -129,6 +132,45 @@ def scenario_progess(scenario_questions_path, scenario_choices_path):
     return str
 
 
+def ground_truth_progess(
+    scenario_questions_path, archetype_path, scenario_ground_truth_path
+):
+    # Example output
+    # ---------------------
+    # Scenario ground truth:
+    #
+    # Question1:
+    # archetype1: choice, choice
+    # archetype2: choice, choice
+    #
+    # Question2:
+    # archetype1: choice, choice
+    # archetype2: choice, choice
+
+    str = "-" * 50 + "\n"
+    str += "Scenario ground truth:\n"
+
+    with open(scenario_questions_path, "r") as f:
+        content = f.read()
+        questions = content.strip().splitlines()
+
+    with open(archetype_path, "r") as f:
+        content = f.read()
+        archetypes = content.strip().splitlines()
+
+    with open(scenario_ground_truth_path, "r") as f:
+        content: list = json.loads(f.read())
+
+    max_lenght = len(max(archetypes, key=len))
+
+    for i, question_list in enumerate(content):
+        str += f"\nQuestion: {questions[i]}\n"
+        for j, answer_list in enumerate(question_list):
+            str += f"{archetypes[j]:<{max_lenght+2}}: {", ".join(answer_list)}\n"
+
+    return str
+
+
 def profile_progess(profiles_path):
     str = "-" * 50 + "\n"
     str += "{:<25} {:<30}".format("Profiles", f": saved to '{profiles_path}'")
@@ -237,6 +279,10 @@ if __name__ == "__main__":
     attribute_path = os.path.join(results_path, "04_attribute.txt")
     scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
     scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
+    scenario_ground_truth_path = os.path.join(
+        results_path, "04_scenario_ground_truth.txt"
+    )
+
     profiles_path = os.path.join(results_path, "05_profiles.txt")
     profile_scenario_answers_path = os.path.join(
         results_path, "06_profile_scenario_answers.csv"
@@ -277,15 +323,21 @@ if __name__ == "__main__":
     print(archetype_progess(archetype_path))
     print(attribute_progess(attribute_path))
     print(scenario_progess(scenario_questions_path, scenario_choices_path))
-    print(profile_progess(profiles_path))
-    print(profile_scenario_answer_progess(profile_scenario_answers_path))
-    print(decision_probability_table_progess(decision_probability_path))
-    print(profile_scenario_answer_progess(simulation_script_path))
-    print()
-    print(model_output_progess(model_output_path))
     print(
-        visualisation_template_progess(
-            visualisation_template_think_path, visualisation_template_path
+        ground_truth_progess(
+            scenario_questions_path, archetype_path, scenario_ground_truth_path
         )
     )
-    print(visualisation_analysis_progess(visualisation_analysis))
+
+    # print(profile_progess(profiles_path))
+    # print(profile_scenario_answer_progess(profile_scenario_answers_path))
+    # print(decision_probability_table_progess(decision_probability_path))
+    # print(profile_scenario_answer_progess(simulation_script_path))
+    # print()
+    # print(model_output_progess(model_output_path))
+    # print(
+    #     visualisation_template_progess(
+    #         visualisation_template_think_path, visualisation_template_path
+    #     )
+    # )
+    # print(visualisation_analysis_progess(visualisation_analysis))

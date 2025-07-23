@@ -2,14 +2,12 @@ import os
 import json
 import numpy as np
 
-from models.response_models import Profile
 
-
-def evaluate(profiles_path: str):
+def evaluate(profiles_path: str, profile_quotes_score_path: str):
     ## Check quotes do exist in file
     not_found_dict = {}
     total_quote_dict = {}
-    scores = []
+    scores = {}
 
     # Read profile analysis result
     with open(profiles_path, "r") as f:
@@ -37,7 +35,7 @@ def evaluate(profiles_path: str):
                 not_found_dict[file].append(quote)
 
         total_quote_dict[file] += len(profile["quotes"])
-        scores.append(1 - (len(not_found_dict[file]) / (total_quote_dict[file])))
+        scores[file] = 1 - (len(not_found_dict[file]) / (total_quote_dict[file]))
 
     print("-" * 50)
     print("Profile's Quotes Evaluation")
@@ -68,9 +66,19 @@ def evaluate(profiles_path: str):
         print()
         print("-" * 50)
 
-    print(f"Profile's Quotes  Evaluation - Mean match score: {np.mean(scores):.2f}")
+    print(
+        f"Profile's Quotes  Evaluation - Mean match score: {np.mean(list(scores.values())):.2f}"
+    )
     print("-" * 50)
     print()
+
+    with open(profile_quotes_score_path, "w") as f:
+        f.write(
+            "\n".join(
+                [f"{document};{score:<.2f}" for document, score in scores.items()]
+            )
+        )
+    print(f"Result saved to: '{profile_quotes_score_path}'")
 
 
 if __name__ == "__main__":

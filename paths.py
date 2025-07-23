@@ -20,4 +20,6 @@ visualisation_template_think_file_path = "09_visualisation_template_think.txt"
 visualisation_template_file_path = "09_visualisation_template.txt"
 visualisation_analysis_file_path = "10_visualisation_analysis.txt"
 
+thematic_analysis_score_file_path = "eval_02_thematic_analysis_score.csv"
+profile_quotes_score_file_path = "eval_05_profile_quotes_score.csv"
 scenario_answer_score_file_path = "eval_06_scenario_answer_score.csv"

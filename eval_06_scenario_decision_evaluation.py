@@ -1,80 +1,91 @@
+import os
 import json
+import numpy as np
 
-import llm
-from models.archetypes import Archetype
-from models.scenario_choices import ScenarioChoice
-
-
-def generate_ground_truth(scenario_questions_path, scenario_ground_truth_path):
-    with open(scenario_questions_path, "r") as f:
-        questions = json.loads(f.read())
-
-    prompt = f"""
-Archetypes are {", ".join([type.value for type in Archetype])}
-Choices are {", ".join([type.value for type in ScenarioChoice])}
-
-What archetype each choice belong (choice can be in one, both or none of the archetypes)
-
-Give answers for the following questions:
-{questions}
-
-in this format
-
-{"{"}[
-[[choice1,choice2],[choice3,choice4]],
-[[choice1,choice2],[choice3,choice4]],
-]{"}"}
-
-which is
-
-{"{"}[
-[[Choices belong to Archetype 1 of Question 1], [Choices belong to Archetype 2 of Question 1]],
-[[Choices belong to Archetype 1 of Question 2], [Choices belong to Archetype 2 of Question 2]],
-]{"}"}
-"""
-    response = llm.generate_content(prompt, list[list[list[ScenarioChoice]]])
-    with open(scenario_ground_truth_path, "w") as f:
-        f.write(response.text)
+import paths
 
 
 def score_profile_anwsers(
-    scenario_ground_truth_path, scenario_answers_path, scenario_scores_path
+    archetype_path,
+    scenario_ground_truth_path,
+    scenario_answers_path,
+    scenario_scores_path,
 ):
-    with open(scenario_ground_truth_path, "r") as fr:
-        ground_truth: list[list[list[ScenarioChoice]]] = json.loads(fr.read())
+    scores = {}
 
-    with open(scenario_answers_path, "r") as fr:
-        line = fr.readline()
-        while line:
-            line_split = line.strip().split(";")
+    with open(scenario_ground_truth_path, "r") as f:
+        ground_truth = json.loads(f.read())
+
+    with open(archetype_path, "r") as f:
+        content = f.read()
+        archetypes = content.strip().splitlines()
+
+    with open(scenario_answers_path, "r") as f:
+        content = f.read()
+        rows = content.strip().splitlines()
+
+        # CSV format
+        # --------------------------
+        # file;archetype;answer of question 1;answer of question 2;...
+
+        for row in rows:
+            line_split = row.strip().split(";")
             file = line_split[0]
             archetype = line_split[1]
-            archetype_index = [type.value for type in Archetype].index(archetype)
+            archetype_index = archetypes.index(archetype)
             answers = line_split[2:]
 
-            score = 0
+            match_answer = 0
             for i, answer in enumerate(answers):
+                # Check if profile's answer is in answers of profile's archetype
                 if answer in ground_truth[i][archetype_index]:
-                    score += 1
+                    match_answer += 1
 
-            with open(scenario_scores_path, "a+") as fw:
-                fw.write(f"{file};{score / len(answers)}\n")
+            scores[file] = match_answer / len(answers)
 
-            line = fr.readline()
+    print("-" * 50)
+    print("Profile's Scenario Answers Evaluation")
+    print("-" * 50)
+    for document, score in scores.items():
+        print(f"{document:<{len(file)+2}}: {score:.2f}")
+
+    print("-" * 50)
+    print(
+        f"Profile's Scenario Answers Evaluation - Mean score: {np.mean(list(scores.values())):.2f}"
+    )
+    print("-" * 50)
+    print()
+
+    with open(scenario_scores_path, "w") as f:
+        f.write(
+            "\n".join(
+                [f"{document};{score:<.2f}" for document, score in scores.items()]
+            )
+        )
+
+    print(f"Result saved to: '{scenario_scores_path}'")
 
 
 if __name__ == "__main__":
-    scenario_questions_path = "results/04_scenario_questions.txt"
-    scenario_ground_truth_path = "results/scenario_ground_truth.txt"
+    results_path = "results_4"
 
-    scenario_answers_path = "results/scenario_answers.csv"
-    scenario_scores_path = "results/scenario_scores.csv"
+    archetype_path = os.path.join(results_path, paths.archetype_file_path)
 
-    generate_ground_truth(
-        scenario_questions_path,
-        scenario_ground_truth_path,
+    scenario_ground_truth_path = os.path.join(
+        results_path, paths.scenario_ground_truth_file_path
+    )
+
+    profile_scenario_answers_path = os.path.join(
+        results_path, paths.profile_scenario_answers_file_path
+    )
+
+    scenario_scores_path = os.path.join(
+        results_path, paths.scenario_answer_score_file_path
     )
 
     score_profile_anwsers(
-        scenario_ground_truth_path, scenario_answers_path, scenario_scores_path
+        archetype_path,
+        scenario_ground_truth_path,
+        profile_scenario_answers_path,
+        scenario_scores_path,
     )
