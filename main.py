@@ -1,23 +1,12 @@
 import os
 import sys
-import json
 
 import stage_01_objective_setup
-
 import stage_02_build_eabss
-import stage_02_build_eabss_evaluation
-import stage_02_build_eabss_extra
-
 import stage_03_generate_eabss_diagram
-
 import stage_04_archetype_scenario_setup
-
 import stage_05_profile_generation
-import stage_05_profile_evaluation
-
 import stage_06_scenario_decision
-import stage_06_scenario_decision_evaluation
-
 import stage_07_script_generation
 
 import display_progress
@@ -55,7 +44,7 @@ def main(source_folder: str, results_folder: str):
     os.makedirs(results_path, exist_ok=True)
 
     # NOTE: if main file of that stage exists that process already done
-    # if not os.path.isfile(problem_statement_path):
+    # eg. if not os.path.isfile(stage_result_file.txt):
 
     ## Define Objective, Input, Output
     objective_statement_path = os.path.join(results_path, "01_objective.txt")
@@ -75,7 +64,6 @@ def main(source_folder: str, results_folder: str):
 
     ## Build EABSS components
     ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
-    ta_codes_csv_path = os.path.join(results_path, "02_thematic_analysis_codes.csv")
 
     eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
 
@@ -88,7 +76,6 @@ def main(source_folder: str, results_folder: str):
             stage_02_build_eabss.analyse(
                 source_paths,
                 ta_codes_txt_path,
-                ta_codes_csv_path,
             )
 
             # Finalise EABSS components
@@ -97,11 +84,6 @@ def main(source_folder: str, results_folder: str):
                 ta_codes_txt_path,
                 eabss_components_path,
             )
-
-            # # EABSS components Evaluation
-            # TODO: use only txt file
-            # thematic_analysis_evaluation.evaluate(ta_codes_csv_path)
-            # thematic_analysis_extra.analyse(source_paths)
 
             print()
             print(display_progress.eabss_components_progress(eabss_components_path))

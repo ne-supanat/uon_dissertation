@@ -12,9 +12,7 @@ from models.response_models import (
 )
 
 
-def analyse(
-    document_paths: list[str], destination_path_txt: str, destination_path_csv: str
-):
+def analyse(document_paths: list[str], destination_path_txt: str):
     # New file
     with open(destination_path_txt, "w") as f:
         f.write("")
@@ -30,14 +28,7 @@ def analyse(
             f.write(response.text)
             f.write("\n\n")
 
-        # Save extracted code (csv format)
-        write_codes_csv_from_txt(
-            destination_path_txt,
-            destination_path_csv,
-        )
-
     print(f"Thematic analaysis text json result saved to: '{destination_path_txt}'")
-    print(f"Thematic analaysis csv result saved to: '{destination_path_csv}'")
 
 
 def extract_key_components(
@@ -50,14 +41,14 @@ Based on this transcript
 
 {document}
 
-Focus only participant responses.
+Focus only "Participant" lines.
 Perform thematic analysis and identify key codes and supporting quotes for Agent-Based Modeling system
 
 Following these key components
 {KeyComponents.get_explanation()}
 
 Each component has at least {2} codes
-Each code has maximum of {2} quotes
+Each code has maximum of {2} quotes. Quote must be exactly the same as original text and come from the same line.
 
 file is {document_path}
 """
@@ -173,49 +164,20 @@ Each with justification why you select them
     return response
 
 
-def finalise_eabss_component(
-    component: str,
-    codes_quotes: str,
-    objective: str,
-    input: str,
-    output: str,
-) -> GenerateContentResponse:
-    # Finalise EABSS' given component
-    prompt = f"""
-Following these key components
-{KeyComponents.get_explanation()}
-    
-Based on following codes & quotes of {component}
-
-{codes_quotes}
-
-Select minimum items from the codes & quotes that are the most important to build Agent-based modeling simulation with
-Objective: {objective}
-Experiment factors (inputs): {input}
-Responses (outputs): {output}
-
-The final codes & quotes has at least {2} codes
-Each code has maximum all relevant quotes
-"""
-    response = llm.generate_content(prompt, list[Code])
-
-    return response
-
-
 if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
 
-    results_path = "results_2"
+    results_path = "results_5"
     ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
     ta_codes_csv_path = os.path.join(results_path, "02_thematic_analysis_codes.csv")
 
-    # analyse(
-    #     document_paths,
-    #     "results/02_thematic_analysis_codes.txt",
-    #     "results/02_thematic_analysis_codes.csv",
-    # )
-
-    write_codes_csv_from_txt(
-        "results_2/02_thematic_analysis_codes.txt",
-        "results_2/02_thematic_analysis_codes.csv",
+    analyse(
+        document_paths,
+        ta_codes_txt_path,
+        ta_codes_csv_path,
     )
+
+    # write_codes_csv_from_txt(
+    #     ta_codes_txt_path,
+    #     ta_codes_csv_path,
+    # )
