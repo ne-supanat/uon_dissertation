@@ -189,11 +189,11 @@ def setup_scenario_choices(scenario_choices_path):
 if __name__ == "__main__":
     results_path = "results_3"
 
-    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
-    archetype_path = os.path.join(results_path, "archetype.txt")
-    attribute_path = os.path.join(results_path, "attribute.txt")
-    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
-    scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
+    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
+    archetype_path = os.path.join(results_path, "04_archetype.txt")
+    attribute_path = os.path.join(results_path, "04_attribute.txt")
+    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
 
     setup_archetype_attribute_scenario(
         eabss_components_path,

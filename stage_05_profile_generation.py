@@ -77,10 +77,10 @@ file is {document_path}
 if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
     results_path = "results_3"
-    objective_statement_path = os.path.join(results_path, "objective.txt")
-    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
-    attribute_path = os.path.join(results_path, "attribute.txt")
-    profiles_path = os.path.join(results_path, "profiles.txt")
+    objective_statement_path = os.path.join(results_path, "01_objective.txt")
+    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
+    attribute_path = os.path.join(results_path, "04_attribute.txt")
+    profiles_path = os.path.join(results_path, "05_profiles.txt")
 
     generate(
         document_paths,

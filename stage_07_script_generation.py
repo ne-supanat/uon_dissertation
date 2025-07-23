@@ -167,31 +167,33 @@ This is NetLogo Language not Python. The way writing if-else is different.
 if __name__ == "__main__":
     results_path = "results_2"
 
-    objective_statement_path = os.path.join(results_path, "objective.txt")
+    objective_statement_path = os.path.join(results_path, "01_objective.txt")
 
-    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
     eabss_usecase_diagram_path = os.path.join(
-        results_path, "eabss_diagram_usecase_diagram.txt"
+        results_path, "03_eabss_diagram_usecase_diagram.txt"
     )
     eabss_activity_diagram_path = os.path.join(
-        results_path, "eabss_diagram_activity_diagram.txt"
+        results_path, "03_eabss_diagram_activity_diagram.txt"
     )
     eabss_state_transition_diagram_path = os.path.join(
-        results_path, "eabss_diagram_state_diagram.txt"
+        results_path, "03_eabss_diagram_state_diagram.txt"
     )
     # TODO: (optional) add transition table
     # eabss_state_transition_table_path = os.path.join(results_path,"eabss_diagram_state_table.txt")
     eabss_interaction_diagram_path = os.path.join(
-        results_path, "eabss_diagram_interaction_diagram.txt"
+        results_path, "03_eabss_diagram_interaction_diagram.txt"
     )
-    archetype_path = os.path.join(results_path, "archetype.txt")
-    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
-    scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
-    decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
+    archetype_path = os.path.join(results_path, "04_archetype.txt")
+    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
+    decision_probability_path = os.path.join(
+        results_path, "06_scenario_probability.csv"
+    )
     simulation_script_think_path = os.path.join(
-        results_path, "simulation_script_think.txt"
+        results_path, "07_simulation_script_think.txt"
     )
-    simulation_script_path = os.path.join(results_path, "simulation_script.txt")
+    simulation_script_path = os.path.join(results_path, "07_simulation_script.txt")
 
     generate(
         objective_statement_path,

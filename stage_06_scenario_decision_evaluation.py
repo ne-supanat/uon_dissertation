@@ -64,7 +64,7 @@ def score_profile_anwsers(
 
 
 if __name__ == "__main__":
-    scenario_questions_path = "results/scenario_questions.txt"
+    scenario_questions_path = "results/04_scenario_questions.txt"
     scenario_ground_truth_path = "results/scenario_ground_truth.txt"
 
     scenario_answers_path = "results/scenario_answers.csv"

@@ -206,16 +206,16 @@ if __name__ == "__main__":
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
 
     results_path = "results_2"
-    ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
-    ta_codes_csv_path = os.path.join(results_path, "thematic_analysis_codes.csv")
+    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
+    ta_codes_csv_path = os.path.join(results_path, "02_thematic_analysis_codes.csv")
 
     # analyse(
     #     document_paths,
-    #     "results/thematic_analysis_codes.txt",
-    #     "results/thematic_analysis_codes.csv",
+    #     "results/02_thematic_analysis_codes.txt",
+    #     "results/02_thematic_analysis_codes.csv",
     # )
 
     write_codes_csv_from_txt(
-        "results_2/thematic_analysis_codes.txt",
-        "results_2/thematic_analysis_codes.csv",
+        "results_2/02_thematic_analysis_codes.txt",
+        "results_2/02_thematic_analysis_codes.csv",
     )

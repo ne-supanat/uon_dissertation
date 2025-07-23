@@ -39,10 +39,10 @@ def main(model_output_path: str, results_folder: str):
 
     ## Visualisation template generation
     visualisation_template_think_path = os.path.join(
-        results_path, "visualisation_template_think.txt"
+        results_path, "09_visualisation_template_think.txt"
     )
     visualisation_template_path = os.path.join(
-        results_path, "visualisation_template.txt"
+        results_path, "09_visualisation_template.txt"
     )
 
     if not os.path.isfile(visualisation_template_path):
@@ -74,29 +74,28 @@ def main(model_output_path: str, results_folder: str):
 
     ## Visualisations Analysis
     visualisation_analysis_path = os.path.join(
-        results_path, "visualisation_analysis.txt"
+        results_path, "10_visualisation_analysis.txt"
     )
 
     if not os.path.isfile(visualisation_analysis_path):
         visualisations_path = os.path.join(results_path, "visualisations")
 
         os.makedirs(visualisations_path, exist_ok=True)
-        image_paths = [
-            os.path.join(visualisations_path, path)
-            for path in os.listdir(visualisations_path)
-        ]
 
-        size = len(image_paths)
+        images = [image for image in os.listdir(visualisations_path)]
+
+        size = len(images)
         if size > 0:
             print(
-                f"\nFound {len(image_paths)} item{'s' if size>1 else ''} at '{visualisations_path}'"
+                f"\nFound {len(images)} item{'s' if size>1 else ''} at '{visualisations_path}'"
             )
+            print(" , ".join(images))
         else:
-            print(f"\nNo items found at '{visualisation_analysis_path}'.")
-            print("Please create some visualisations first before the analysis.\n")
+            print(f"\nNo items found at '{visualisations_path}'.")
+            print("Please create some visualisations first.\n")
             sys.exit()
 
-        print(image_paths)
+        image_paths = [os.path.join(visualisations_path, image) for image in images]
 
         stage_str = "Generate visualisations analysis"
         proceed = ask_proceed(stage_str)
@@ -125,7 +124,7 @@ def main(model_output_path: str, results_folder: str):
 
 if __name__ == "__main__":
     model_output_path = "./NetLogo Model/outputs.csv"
-    results_folder = "results_2"
+    results_folder = "results_4"
 
     # TODO: pick source & project from terminal
     main(model_output_path, results_folder)

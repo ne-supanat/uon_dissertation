@@ -83,7 +83,7 @@ def generate_content_from_images(
 if __name__ == "__main__":
     # response = generate_content("write a poem about cat and dog. only 4 lines")
     results_path = "results_2"
-    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
 
     prompt = f"""
 Based on this EABSS components

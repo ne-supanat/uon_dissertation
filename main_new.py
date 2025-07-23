@@ -57,7 +57,7 @@ def main(source_folder: str, results_folder: str):
     # TODO: (optional) change to check project name and its stage in json
 
     ## Define Objective, Input, Output
-    objective_statement_path = os.path.join(results_path, "objective.txt")
+    objective_statement_path = os.path.join(results_path, "01_objective.txt")
 
     if not os.path.isfile(objective_statement_path):
         # New project
@@ -73,10 +73,10 @@ def main(source_folder: str, results_folder: str):
         print(display_progress.objective_statement_progress(objective_statement_path))
 
     ## Build EABSS components
-    ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
-    ta_codes_csv_path = os.path.join(results_path, "thematic_analysis_codes.csv")
+    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
+    ta_codes_csv_path = os.path.join(results_path, "02_thematic_analysis_codes.csv")
 
-    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
 
     if not os.path.isfile(eabss_components_path):
         stage_str = "Build EABSS components"
@@ -113,22 +113,22 @@ def main(source_folder: str, results_folder: str):
 
     ## Build EABSS diagrams
     eabss_usecase_diagram_path = os.path.join(
-        results_path, "eabss_diagram_usecase_diagram.txt"
+        results_path, "03_eabss_diagram_usecase_diagram.txt"
     )
 
     eabss_class_diagram_path = os.path.join(
-        results_path, "eabss_diagram_class_diagram.txt"
+        results_path, "03_eabss_diagram_class_diagram.txt"
     )
     eabss_activity_diagram_path = os.path.join(
-        results_path, "eabss_diagram_activity_diagram.txt"
+        results_path, "03_eabss_diagram_activity_diagram.txt"
     )
     eabss_state_transition_diagram_path = os.path.join(
-        results_path, "eabss_diagram_state_diagram.txt"
+        results_path, "03_eabss_diagram_state_diagram.txt"
     )
     # TODO: (optional) add transition table
     # eabss_state_transition_table_path = os.path.join(results_path,"eabss_diagram_state_table.txt")
     eabss_interaction_diagram_path = os.path.join(
-        results_path, "eabss_diagram_interaction_diagram.txt"
+        results_path, "03_eabss_diagram_interaction_diagram.txt"
     )
 
     if not os.path.isfile(eabss_usecase_diagram_path):
@@ -169,10 +169,10 @@ def main(source_folder: str, results_folder: str):
         )
 
     ## Define archetyp, scenario questions, scenarion answer choices
-    archetype_path = os.path.join(results_path, "archetype.txt")
-    attribute_path = os.path.join(results_path, "attribute.txt")
-    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
-    scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
+    archetype_path = os.path.join(results_path, "04_archetype.txt")
+    attribute_path = os.path.join(results_path, "04_attribute.txt")
+    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
 
     if (
         not os.path.isfile(archetype_path)
@@ -216,10 +216,7 @@ def main(source_folder: str, results_folder: str):
         )
 
     ## Extract Profiles (& classify profile archetype)
-    profiles_path = os.path.join(results_path, "profiles.txt")
-    profile_scenario_answers_path = os.path.join(
-        results_path, "profile_scenario_answers.csv"
-    )
+    profiles_path = os.path.join(results_path, "05_profiles.txt")
 
     if not os.path.isfile(profiles_path):
         stage_str = "Extract profiles"
@@ -245,7 +242,12 @@ def main(source_folder: str, results_folder: str):
         print(display_progress.profile_progess(profiles_path))
 
     ## Create Decision probability table
-    decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
+    profile_scenario_answers_path = os.path.join(
+        results_path, "06_profile_scenario_answers.csv"
+    )
+    decision_probability_path = os.path.join(
+        results_path, "06_scenario_probability.csv"
+    )
 
     if not os.path.isfile(decision_probability_path):
         stage_str = "Decision probability table"
@@ -267,7 +269,7 @@ def main(source_folder: str, results_folder: str):
                 )
 
             # Create decision probability table
-            stage_07_decision_table.generate(
+            stage_06_scenario_decision.generate_decision_prob_table(
                 scenario_questions_path,
                 profile_scenario_answers_path,
                 decision_probability_path,
@@ -308,9 +310,9 @@ def main(source_folder: str, results_folder: str):
 
     ## Generate Simulation script
     simulation_script_think_path = os.path.join(
-        results_path, "simulation_script_think.txt"
+        results_path, "07_simulation_script_think.txt"
     )
-    simulation_script_path = os.path.join(results_path, "simulation_script.txt")
+    simulation_script_path = os.path.join(results_path, "07_simulation_script.txt")
 
     if not os.path.isfile(simulation_script_path):
         stage_str = "Generate simulation script"
@@ -346,6 +348,6 @@ def main(source_folder: str, results_folder: str):
 
 if __name__ == "__main__":
     source_folder = "data/diary_txt"
-    results_folder = "results_2"
-    # TODO: pick source & project from terminal
+    results_folder = "results_4"
+    # TODO: pick source & project from terminal (optional)
     main(source_folder, results_folder)

@@ -210,8 +210,8 @@ def visualisation_analysis_progess(visualisation_analysis):
 
 if __name__ == "__main__":
     results_path = "results_2"
-    problem_statement_path = os.path.join(results_path, "objective.txt")
-    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    problem_statement_path = os.path.join(results_path, "01_objective.txt")
+    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
     eabss_usecase_diagram_path = os.path.join(results_path, "eabss_usecase_diagram.txt")
     eabss_activity_diagram_path = os.path.join(
         results_path, "eabss_activity_diagram.txt"
@@ -223,26 +223,28 @@ if __name__ == "__main__":
     eabss_interaction_diagram_path = os.path.join(
         results_path, "eabss_interaction_diagram.txt"
     )
-    archetype_path = os.path.join(results_path, "archetype.txt")
-    attribute_path = os.path.join(results_path, "attribute.txt")
-    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
-    scenario_choices_path = os.path.join(results_path, "scenario_choices.txt")
-    profiles_path = os.path.join(results_path, "profiles.txt")
+    archetype_path = os.path.join(results_path, "04_archetype.txt")
+    attribute_path = os.path.join(results_path, "04_attribute.txt")
+    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
+    scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
+    profiles_path = os.path.join(results_path, "05_profiles.txt")
     profile_scenario_answers_path = os.path.join(
-        results_path, "profile_scenario_answers.csv"
+        results_path, "06_profile_scenario_answers.csv"
     )
-    decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
-    simulation_script_path = os.path.join(results_path, "simulation_script.txt")
+    decision_probability_path = os.path.join(
+        results_path, "06_scenario_probability.csv"
+    )
+    simulation_script_path = os.path.join(results_path, "07_simulation_script.txt")
 
     # Output analysis
     model_output_path = "./output.csv"
     visualisation_template_think_path = os.path.join(
-        results_path, "visualisation_template_think.txt"
+        results_path, "09_visualisation_template_think.txt"
     )
     visualisation_template_path = os.path.join(
-        results_path, "visualisation_template.txt"
+        results_path, "09_visualisation_template.txt"
     )
-    visualisation_analysis = os.path.join(results_path, "visualisation_analysis.txt")
+    visualisation_analysis = os.path.join(results_path, "10_visualisation_analysis.txt")
 
     display_header()
     print(objective_statement_progress(problem_statement_path))

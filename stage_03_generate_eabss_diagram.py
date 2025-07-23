@@ -162,23 +162,23 @@ respond in mermaid.js format
 
 if __name__ == "__main__":
     results_path = "results_2"
-    objective_statement_path = os.path.join(results_path, "objective.txt")
-    ta_codes_txt_path = os.path.join(results_path, "thematic_analysis_codes.txt")
-    eabss_components_path = os.path.join(results_path, "eabss_scope.txt")
+    objective_statement_path = os.path.join(results_path, "01_objective.txt")
+    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
+    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
     eabss_usecase_diagram_path = os.path.join(
-        results_path, "eabss_diagram_usecase_diagram.txt"
+        results_path, "03_eabss_diagram_usecase_diagram.txt"
     )
     eabss_activity_diagram_path = os.path.join(
-        results_path, "eabss_diagram_activity_diagram.txt"
+        results_path, "03_eabss_diagram_activity_diagram.txt"
     )
     eabss_state_transition_diagram_path = os.path.join(
-        results_path, "eabss_diagram_state_diagram.txt"
+        results_path, "03_eabss_diagram_state_diagram.txt"
     )
     eabss_interaction_diagram_path = os.path.join(
-        results_path, "eabss_diagram_interaction_diagram.txt"
+        results_path, "03_eabss_diagram_interaction_diagram.txt"
     )
     eabss_class_diagram_path = os.path.join(
-        results_path, "eabss_diagram_class_diagram.txt"
+        results_path, "03_eabss_diagram_class_diagram.txt"
     )
 
     # generate_components(

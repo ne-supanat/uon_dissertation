@@ -126,10 +126,10 @@ def generate_decision_prob_table(
 
 if __name__ == "__main__":
     results_path = "results_3"
-    scenario_questions_path = os.path.join(results_path, "scenario_questions.txt")
-    profiles_path = os.path.join(results_path, "profiles.txt")
+    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
+    profiles_path = os.path.join(results_path, "05_profiles.txt")
     profile_scenario_answers_path = os.path.join(
-        results_path, "profile_scenario_answers.csv"
+        results_path, "06_profile_scenario_answers.csv"
     )
 
     generate_profile_scenario_answers(
@@ -141,7 +141,9 @@ if __name__ == "__main__":
     # # NOTE: this is only for testing & development purpose
     # mock_scenario_answer(scenario_questions_path, profile_scenario_answers_path)
 
-    decision_probability_path = os.path.join(results_path, "scenario_probability.csv")
+    decision_probability_path = os.path.join(
+        results_path, "06_scenario_probability.csv"
+    )
 
     generate_decision_prob_table(
         scenario_questions_path,

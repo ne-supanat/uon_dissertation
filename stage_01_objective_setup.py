@@ -27,6 +27,6 @@ def define_objective_statement(objective_statement_path):
 
 if __name__ == "__main__":
     results_path = "results_2"
-    objective_statement_path = os.path.join(results_path, "objective.txt")
+    objective_statement_path = os.path.join(results_path, "01_objective.txt")
 
     define_objective_statement(objective_statement_path)
