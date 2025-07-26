@@ -1,4 +1,3 @@
-import os
 import random
 import csv
 
@@ -7,25 +6,27 @@ from models.response_models import Profile
 from models.archetypes import Archetype
 from models.scenario_choices import ScenarioChoice
 
+from system_path import SystemPath
 
-def generate_profile_scenario_answers(question_path, profiles_path, answer_path):
-    with open(question_path, "r") as f:
+
+def create_profile_scenario_answers(path: SystemPath):
+    with open(path.get_04_scenario_questions_path(), "r") as f:
         questions = f.read().strip().splitlines()
 
-    with open(profiles_path, "r") as f:
+    with open(path.get_05_profiles_path(), "r") as f:
         content = f.read()
     profiles = [profile for profile in content.strip().split("\n\n")]
 
-    with open(answer_path, "w") as f:
+    with open(path.get_06_profile_scenario_answers_path(), "w") as f:
         for profile_str in profiles:
             profile: Profile = Profile.model_validate_json(profile_str)
-            answers = answer_scenario_questions(profile, questions)
+            answers = generate_profile_scenario_answers(profile, questions)
             f.write(f"{profile.file};{profile.archetype.value};")
             f.write(";".join([a.value for a in answers]))
             f.write("\n")
 
 
-def answer_scenario_questions(
+def generate_profile_scenario_answers(
     profile: Profile,
     questions: list[str],
 ) -> list[ScenarioChoice]:
@@ -47,11 +48,11 @@ Answer following questions:
     return result
 
 
-def mock_scenario_answer(question_path, answer_path):
-    with open(question_path, "r") as f:
+def mock_profile_scenario_answer(path: SystemPath):
+    with open(path.get_04_scenario_questions_path(), "r") as f:
         questions = f.read().strip().splitlines()
 
-    with open(answer_path, "w") as f:
+    with open(path.get_06_profile_scenario_answers_path(), "w") as f:
         for i in range(100):
             archetype = random.choice([archetype.value for archetype in Archetype])
             answers = [
@@ -59,7 +60,7 @@ def mock_scenario_answer(question_path, answer_path):
                     [choice._value_ for choice in ScenarioChoice],
                     weights=(
                         [1, 1, 8]
-                        if archetype == Archetype.PragmaticAdopter.value
+                        if archetype == [a.value for a in Archetype][0]
                         else [4, 4, 2]
                     ),
                     k=1,
@@ -67,16 +68,12 @@ def mock_scenario_answer(question_path, answer_path):
                 for _ in range(len(questions))
             ]
             f.write(f"{i};{archetype};" + ";".join(answers) + "\n")
-    print("saved at " + answer_path)
+    print("saved at " + path.get_06_profile_scenario_answers_path())
 
 
-def generate_decision_prob_table(
-    scenario_questions_path,
-    profile_scenario_answers_path,
-    decision_probability_path,
-):
+def create_decision_probability_table(path: SystemPath):
     # Fetch scenario questions
-    with open(scenario_questions_path, "r") as f:
+    with open(path.get_04_scenario_questions_path(), "r") as f:
         questions = f.read().strip().splitlines()
 
     # Initialize answer and archetype counters
@@ -90,7 +87,7 @@ def generate_decision_prob_table(
     archetype_counts = {archetype.value: 0 for archetype in Archetype}
 
     # Read scenario answers
-    with open(profile_scenario_answers_path, newline="") as f:
+    with open(path.get_06_profile_scenario_answers_path(), newline="") as f:
         reader = csv.reader(f, delimiter=";")
         for row in reader:
             if not row or len(row) < 2 + len(questions):
@@ -102,7 +99,7 @@ def generate_decision_prob_table(
                 answer_dict[question][archetype][choice] += 1
 
     # Write probabilities to output file
-    with open(decision_probability_path, "w") as f:
+    with open(path.get_06_decision_probability_path(), "w") as f:
         for question in questions:
             for archetype in Archetype:
                 count = archetype_counts[archetype.value]
@@ -124,32 +121,17 @@ def generate_decision_prob_table(
 
     print()
     print("-" * 50)
-    print(f"Decision probability table saved to: '{decision_probability_path}'\n")
+    print(
+        f"Decision probability table saved to: '{path.get_06_decision_probability_path()}'\n"
+    )
 
 
 if __name__ == "__main__":
-    results_path = "results_3"
-    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
-    profiles_path = os.path.join(results_path, "05_profiles.txt")
-    profile_scenario_answers_path = os.path.join(
-        results_path, "06_profile_scenario_answers.csv"
-    )
+    path = SystemPath("results_3")
 
-    generate_profile_scenario_answers(
-        scenario_questions_path,
-        profiles_path,
-        profile_scenario_answers_path,
-    )
+    create_profile_scenario_answers(path)
+    create_decision_probability_table(path)
 
     # # NOTE: this is only for testing & development purpose
-    # mock_scenario_answer(scenario_questions_path, profile_scenario_answers_path)
-
-    decision_probability_path = os.path.join(
-        results_path, "06_scenario_probability.csv"
-    )
-
-    generate_decision_prob_table(
-        scenario_questions_path,
-        profile_scenario_answers_path,
-        decision_probability_path,
-    )
+    # mock_scenario_answer(path)
+    # generate_decision_prob_table(path)

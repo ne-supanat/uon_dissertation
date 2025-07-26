@@ -1,8 +1,9 @@
-import os
 import json
 
+from system_path import SystemPath
 
-def define_objective_statement(objective_statement_path):
+
+def setup_objective(path: SystemPath):
     print("\nPlease answer the following setup questions:\n")
 
     print("What is the simulation's Objective?")
@@ -14,7 +15,7 @@ def define_objective_statement(objective_statement_path):
     print("\nWhat is the simulation's Output / Response?")
     input_response = input()
 
-    with open(objective_statement_path, "w") as f:
+    with open(path.get_01_objective_path(), "w") as f:
         dict = {
             "objective": input_objective,
             "input": input_experiment_factor,
@@ -24,11 +25,9 @@ def define_objective_statement(objective_statement_path):
 
     print()
     print("-" * 50)
-    print(f"Result saved to: '{objective_statement_path}'")
+    print(f"Result saved to: '{path.get_01_objective_path()}'")
 
 
 if __name__ == "__main__":
-    results_path = "results_2"
-    objective_statement_path = os.path.join(results_path, "01_objective.txt")
-
-    define_objective_statement(objective_statement_path)
+    path = SystemPath("results_4")
+    setup_objective(path)

@@ -2,15 +2,17 @@ import os
 import json
 import numpy as np
 
+from system_path import SystemPath
 
-def evaluate(profiles_path: str, profile_quotes_score_path: str):
+
+def evaluate(path: SystemPath):
     ## Check quotes do exist in file
     not_found_dict = {}
     total_quote_dict = {}
     scores = {}
 
     # Read profile analysis result
-    with open(profiles_path, "r") as f:
+    with open(path.get_05_profiles_path(), "r") as f:
         text = f.read()
 
     # Check each document (transcript)
@@ -72,16 +74,15 @@ def evaluate(profiles_path: str, profile_quotes_score_path: str):
     print("-" * 50)
     print()
 
-    with open(profile_quotes_score_path, "w") as f:
+    with open(path.get_eval_05_profile_score_path(), "w") as f:
         f.write(
             "\n".join(
                 [f"{document};{score:<.2f}" for document, score in scores.items()]
             )
         )
-    print(f"Result saved to: '{profile_quotes_score_path}'")
+    print(f"Result saved to: '{path.get_eval_05_profile_score_path()}'")
 
 
 if __name__ == "__main__":
-    results_path = "results_4"
-    profiles_path = os.path.join(results_path, "05_profiles.txt")
-    evaluate(profiles_path)
+    path = SystemPath("results_4")
+    evaluate(path)

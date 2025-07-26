@@ -1,37 +1,28 @@
 import json
-import os
 import re
 
-import llm
-from models.archetypes import Archetype
-from models.scenario_choices import ScenarioChoice
+from system_path import SystemPath
 
 
-def setup_archetype_attribute_scenario(
-    eabss_components_path,
-    archetype_path,
-    attribute_path,
-    scenario_questions_path,
-    scenario_choices_path,
-):
-    setup_archetype(eabss_components_path, archetype_path)
-    setup_profile_attribute(attribute_path)
-    setup_scenario(scenario_questions_path, scenario_choices_path)
+def design_profile_n_scenario(path: SystemPath):
+    setup_archetype(path)
+    setup_profile_attribute(path)
+    setup_scenario(path)
 
 
-def setup_archetype(eabss_components_path, archetype_path):
+def setup_archetype(path: SystemPath):
     print("\nDefine Archetypes.")
-    with open(eabss_components_path, "r") as f:
+    with open(path.get_02_eabss_scope_path(), "r") as f:
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)
 
     ## Save updated archetypes
-    with open(archetype_path, "w") as f:
+    with open(path.get_04_archetypes_path(), "w") as f:
         f.write("\n".join(item["code"] for item in scope["archetypes"]))
 
     print()
     print("-" * 50)
-    print(f"Archetype saved at: '{archetype_path}'")
+    print(f"Archetype saved at: '{path.get_04_archetypes_path()}'")
 
     ## Update Archeype model
     model_archetype_path = "models/archetypes.py"
@@ -54,7 +45,7 @@ def setup_archetype(eabss_components_path, archetype_path):
     print(f"System's Archetype model updated at: '{model_archetype_path}'")
 
 
-def setup_profile_attribute(attribute_path):
+def setup_profile_attribute(path: SystemPath):
     print("-" * 50)
     print("Define profile attributes.")
     print(
@@ -87,20 +78,27 @@ Enter the attribute 2 text: Occupation
     # Age
     # Occupation
 
-    with open(attribute_path, "w") as f:
+    with open(path.get_04_attributes_path(), "w") as f:
         f.write(f'{'\n'.join(attributes)}')
 
     print()
     print("-" * 50)
-    print(f"Profile attributes saved to: '{attribute_path}'\n")
+    print(f"Profile attributes saved to: '{path.get_04_attributes_path()}'\n")
 
 
-def setup_scenario(questions_path, scenario_choices_path):
+def setup_scenario(path: SystemPath):
     print("-" * 50)
     print("Define scenario questions and answers choices.")
     print(
         "For simplicity of the model, please use questions that can answer with the same set of choices."
     )
+    setup_scenario_choices(path)
+    setup_scenario_questions(path)
+    print()
+
+
+def setup_scenario_choices(path: SystemPath):
+
     print(
         f"""
 - Example input -
@@ -111,51 +109,7 @@ Choice 3: Driving
 {"-"*50}
 """
     )
-    setup_scenario_choices(scenario_choices_path)
 
-    print(
-        f"""
-- Example input -
-Please enter the number of questions: 2
-Enter the question 1 text: What is your transport mode in usual days?
-Enter the question 2 text: What is your transport mode when it raining?
-{"-"*50}
-"""
-    )
-    setup_scenario_questions(questions_path)
-    print()
-
-
-def setup_scenario_questions(questions_path):
-    while True:
-        try:
-            questions_size = int(input("Please enter the number of questions: "))
-            break
-        except:
-            pass
-
-    questions = []
-    for i in range(questions_size):
-        while True:
-            questions_text = input(f"Enter the question {i+1} text: ")
-            if questions_text.strip() != "":
-                break
-        questions.append(questions_text.strip())
-
-    # Example output
-    # ----------------
-    # What is your transport mode in usual days?
-    # What is your transport mode when it raining?
-
-    with open(questions_path, "w") as f:
-        f.write(f'{'\n'.join(questions)}')
-
-    print()
-    print("-" * 50)
-    print(f"Scenario questions saved to: '{questions_path}'\n")
-
-
-def setup_scenario_choices(scenario_choices_path):
     while True:
         try:
             answer_size = int(
@@ -174,12 +128,12 @@ def setup_scenario_choices(scenario_choices_path):
         answers.append(answers_text)
 
     ## Save scenario choices
-    with open(scenario_choices_path, "w") as f:
+    with open(path.get_04_scenario_choices_path(), "w") as f:
         f.write("\n".join(answers))
 
     print()
     print("-" * 50)
-    print(f"Scenario choices saved to: '{scenario_choices_path}''")
+    print(f"Scenario choices saved to: '{path.get_04_scenario_choices_path()}''")
 
     ## Update Scenario choice model
     answer_choices_path = "models/scenario_choices.py"
@@ -207,69 +161,44 @@ def sanitise_name(str: str):
     return re.sub("[^a-zA-Z0-9 \n.]", " ", str)  # remove special character
 
 
-def create_ground_truth(scenario_questions_path, scenario_ground_truth_path):
-    response = generate_synthetic_answer(scenario_questions_path)
-    with open(scenario_ground_truth_path, "w") as f:
-        f.write(response.text)
+def setup_scenario_questions(path: SystemPath):
+    print(
+        f"""
+- Example input -
+Please enter the number of questions: 2
+Enter the question 1 text: What is your transport mode in usual days?
+Enter the question 2 text: What is your transport mode when it raining?
+{"-"*50}
+"""
+    )
+    while True:
+        try:
+            questions_size = int(input("Please enter the number of questions: "))
+            break
+        except:
+            pass
+
+    questions = []
+    for i in range(questions_size):
+        while True:
+            questions_text = input(f"Enter the question {i+1} text: ")
+            if questions_text.strip() != "":
+                break
+        questions.append(questions_text.strip())
+
+    # Example output
+    # ----------------
+    # What is your transport mode in usual days?
+    # What is your transport mode when it raining?
+
+    with open(path.get_04_scenario_questions_path(), "w") as f:
+        f.write(f'{'\n'.join(questions)}')
 
     print()
     print("-" * 50)
-    print(f"Scenario ground truths saved to: '{scenario_ground_truth_path}'\n")
-
-
-def generate_synthetic_answer(
-    scenario_questions_path,
-):
-    with open(scenario_questions_path, "r") as f:
-        content = f.read()
-        questions = content.strip().splitlines()
-
-    prompt = f"""
-Archetypes are {", ".join([type.value for type in Archetype])}
-Choices are {", ".join([type.value for type in ScenarioChoice])}
-
-What archetype each choice belong (choice can be in one, some, all or none of the archetypes)
-
-Give answers for the following questions:
-{questions}
-
-Respond in this format
-
-{"{"}[
-[[choice1,choice2],[choice3,choice4]],
-[[choice1,choice2],[choice3,choice4]],
-]{"}"}
-
-which is
-
-{"{"}[
-[[Choices belong to Archetype 1 of Question 1], [Choices belong to Archetype 2 of Question 1]],
-[[Choices belong to Archetype 1 of Question 2], [Choices belong to Archetype 2 of Question 2]],
-]{"}"}
-"""
-
-    response = llm.generate_content(prompt, list[list[list[ScenarioChoice]]])
-    return response
+    print(f"Scenario questions saved to: '{path.get_04_scenario_questions_path()}'\n")
 
 
 if __name__ == "__main__":
-    results_path = "results_4"
-
-    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
-    archetype_path = os.path.join(results_path, "04_archetype.txt")
-    attribute_path = os.path.join(results_path, "04_attribute.txt")
-    scenario_questions_path = os.path.join(results_path, "04_scenario_questions.txt")
-    scenario_choices_path = os.path.join(results_path, "04_scenario_choices.txt")
-
-    # setup_archetype_attribute_scenario(
-    #     eabss_components_path,
-    #     archetype_path,
-    #     attribute_path,
-    #     scenario_questions_path,
-    #     scenario_choices_path,
-    # )
-
-    scenario_ground_truth_path = os.path.join(
-        results_path, "04_scenario_ground_truth.txt"
-    )
-    create_ground_truth(scenario_questions_path, scenario_ground_truth_path)
+    path = SystemPath("results_4")
+    design_profile_n_scenario(path)

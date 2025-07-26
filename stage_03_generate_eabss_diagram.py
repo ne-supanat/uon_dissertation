@@ -1,5 +1,3 @@
-import os
-
 import llm
 from models.response_models import (
     KeyComponents,
@@ -7,33 +5,32 @@ from models.response_models import (
 )
 import display_progress
 
+from system_path import SystemPath
 
-def generate_usecase_diagrams(
-    eabss_components_path,
-    eabss_usecase_diagram_path,
-):
+
+def build_eabss_usecase_diagrams(path: SystemPath):
     # key activities - UML use case diagram
-    usecase_diagram = draw_usecase_diagram(eabss_components_path)
-    with open(eabss_usecase_diagram_path, "w") as f:
+    usecase_diagram = generate_eabss_usecase_diagram(path)
+    with open(path.get_03_eabss_usecase_diagram_path(), "w") as f:
         f.write(usecase_diagram)
 
     print()
     print("-" * 50)
     print(
         "{:<25} {:<30}".format(
-            "Use case diagram", f": saved to '{eabss_usecase_diagram_path}'"
+            "Use case diagram",
+            f": saved to '{path.get_03_eabss_usecase_diagram_path()}'",
         )
     )
     print("\nPlease reivew and update the use case diagram if necessary.")
 
 
-def draw_usecase_diagram(key_component_path: str):
+def generate_eabss_usecase_diagram(path: SystemPath):
     prompt = f"""
 Following these key components
 {KeyComponents.get_explanation()}
 
-{display_progress.eabss_components_progress(key_component_path)}
-
+{display_progress.eabss_components_progress(path)}
 
 generate very simple comprehensive UML usecase diagram
 respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
@@ -42,47 +39,30 @@ respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML 
     return response.script
 
 
-def generate_diagrams(
-    eabss_components_path,
-    eabss_usecase_diagram_path,
-    eabss_activity_diagram_path,
-    eabss_state_transition_diagram_path,
-    eabss_interaction_diagram_path,
-    eabss_class_diagram_path,
-):
-    with open(eabss_usecase_diagram_path, "r") as f:
+def buidl_eabss_remaining_diagrams(path: SystemPath):
+    with open(path.get_03_eabss_usecase_diagram_path(), "r") as f:
         usecase_diagram = f.read()
 
     # actor class - UML class diagram
-    class_diagram = draw_class_diagram(
-        eabss_components_path,
-        usecase_diagram,
-    )
-    with open(eabss_class_diagram_path, "w") as f:
+    class_diagram = generate_eabss_class_diagram(path, usecase_diagram)
+    with open(path.get_03_eabss_class_diagram_path(), "w") as f:
         f.write(class_diagram)
 
     # key activities - UML activity diagram
-    activity_diagram = draw_activity_diagram(
-        eabss_components_path,
-        usecase_diagram,
-    )
-    with open(eabss_activity_diagram_path, "w") as f:
+    activity_diagram = generate_eabss_activity_diagram(path, usecase_diagram)
+    with open(path.get_03_eabss_activity_diagram_path(), "w") as f:
         f.write(activity_diagram)
 
-    # user state machine - UML state diagram (optional)
-    state_transition_diagram = draw_state_transition_diagram(
-        eabss_components_path,
-        usecase_diagram,
+    # user state transition - UML state diagram (optional)
+    state_transition_diagram = generate_eabss_state_transition_diagram(
+        path, usecase_diagram
     )
-    with open(eabss_state_transition_diagram_path, "w") as f:
+    with open(path.get_03_eabss_state_diagram_path(), "w") as f:
         f.write(state_transition_diagram)
 
     # interactions - UML sequence diagram
-    interactions_diagram = draw_interaction_diagram(
-        eabss_components_path,
-        usecase_diagram,
-    )
-    with open(eabss_interaction_diagram_path, "w") as f:
+    interactions_diagram = generate_eabss_interaction_diagram(path, usecase_diagram)
+    with open(path.get_03_eabss_interaction_diagram_path(), "w") as f:
         f.write(interactions_diagram)
 
     # TODO: (optional) consider State condition table
@@ -97,74 +77,23 @@ def generate_diagrams(
             "Class diagram",
         ],
         [
-            eabss_activity_diagram_path,
-            eabss_state_transition_diagram_path,
+            path.get_03_eabss_class_diagram_path(),
+            path.get_03_eabss_activity_diagram_path(),
+            path.get_03_eabss_state_diagram_path(),
             # eabss_state_condition_diagram_path
-            eabss_interaction_diagram_path,
-            eabss_class_diagram_path,
+            path.get_03_eabss_interaction_diagram_path(),
         ],
     ):
         print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
     print("\nPlease reivew and update the EABSS components if necessary.")
 
 
-def draw_activity_diagram(key_component_path: str, usecase_diagram: str):
+def generate_eabss_class_diagram(path: SystemPath, usecase_diagram: str):
     prompt = f"""
 Following these key components
 {KeyComponents.get_explanation()}
 
-{display_progress.eabss_components_progress(key_component_path)}
-
-And use case diagram
-{usecase_diagram}
-
-generate very simple comprehensive UML activity diagram
-respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML uactivity diagram)
-"""
-    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
-    return response.script
-
-
-def draw_state_transition_diagram(key_component_path: str, usecase_diagram: str):
-    prompt = f"""
-Following these key components
-{KeyComponents.get_explanation()}
-
-{display_progress.eabss_components_progress(key_component_path)}
-
-And use case diagram
-{usecase_diagram}
-
-generate very simple comprehensive state machine diagram of Actors and Key activities
-respond in mermaid.js format
-"""
-    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
-    return response.script
-
-
-def draw_interaction_diagram(key_component_path: str, usecase_diagram: str):
-    prompt = f"""
-Following these key components
-{KeyComponents.get_explanation()}
-
-{display_progress.eabss_components_progress(key_component_path)}
-
-And use case diagram
-{usecase_diagram}
-
-generate very simple comprehensive UML sequence diagram of Actors
-respond in mermaid.js format
-"""
-    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
-    return response.script
-
-
-def draw_class_diagram(key_component_path: str, usecase_diagram: str):
-    prompt = f"""
-Following these key components
-{KeyComponents.get_explanation()}
-
-{display_progress.eabss_components_progress(key_component_path)}
+{display_progress.eabss_components_progress(path)}
 
 And use case diagram
 {usecase_diagram}
@@ -176,38 +105,59 @@ respond in mermaid.js format
     return response.script
 
 
+def generate_eabss_activity_diagram(path: SystemPath, usecase_diagram: str):
+    prompt = f"""
+Following these key components
+{KeyComponents.get_explanation()}
+
+{display_progress.eabss_components_progress(path)}
+
+And use case diagram
+{usecase_diagram}
+
+generate very simple comprehensive UML activity diagram
+respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML uactivity diagram)
+"""
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
+
+
+def generate_eabss_state_transition_diagram(path: SystemPath, usecase_diagram: str):
+    prompt = f"""
+Following these key components
+{KeyComponents.get_explanation()}
+
+{display_progress.eabss_components_progress(path)}
+
+And use case diagram
+{usecase_diagram}
+
+generate very simple comprehensive state machine diagram of Actors and Key activities
+respond in mermaid.js format
+"""
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
+
+
+def generate_eabss_interaction_diagram(path: SystemPath, usecase_diagram: str):
+    prompt = f"""
+Following these key components
+{KeyComponents.get_explanation()}
+
+{display_progress.eabss_components_progress(path)}
+
+And use case diagram
+{usecase_diagram}
+
+generate very simple comprehensive UML sequence diagram of Actors
+respond in mermaid.js format
+"""
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
+
+
 if __name__ == "__main__":
-    results_path = "results_2"
-    objective_statement_path = os.path.join(results_path, "01_objective.txt")
-    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
-    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
-    eabss_usecase_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_usecase_diagram.txt"
-    )
-    eabss_activity_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_activity_diagram.txt"
-    )
-    eabss_state_transition_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_state_diagram.txt"
-    )
-    eabss_interaction_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_interaction_diagram.txt"
-    )
-    eabss_class_diagram_path = os.path.join(
-        results_path, "03_eabss_diagram_class_diagram.txt"
-    )
+    path = SystemPath("results_2")
 
-    # generate_components(
-    #     objective_statement_path,
-    #     ta_codes_txt_path,
-    #     eabss_components_path,
-    # )
-
-    generate_diagrams(
-        eabss_components_path,
-        eabss_usecase_diagram_path,
-        eabss_activity_diagram_path,
-        eabss_state_transition_diagram_path,
-        eabss_interaction_diagram_path,
-        eabss_class_diagram_path,
-    )
+    build_eabss_usecase_diagrams(path)
+    buidl_eabss_remaining_diagrams(path)

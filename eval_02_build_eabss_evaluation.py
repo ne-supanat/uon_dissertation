@@ -2,15 +2,17 @@ import os
 import json
 import numpy as np
 
+from system_path import SystemPath
 
-def evaluate(thematic_analysis_codes_txt_path: str, thematic_analysis_scores_path: str):
+
+def evaluate(path: SystemPath):
     ## Check quotes do exist in file
     not_found_dict = {}
     total_quote_dict = {}
     scores = {}
 
     # Read thematic analysis result
-    with open(thematic_analysis_codes_txt_path, "r") as f:
+    with open(path.get_02_thematic_analysis_path(), "r") as f:
         text = f.read()
 
     # Check each document (transcript)
@@ -81,18 +83,15 @@ def evaluate(thematic_analysis_codes_txt_path: str, thematic_analysis_scores_pat
     print("-" * 50)
     print()
 
-    with open(thematic_analysis_scores_path, "w") as f:
+    with open(path.get_eval_02_thematic_analysis_score_path(), "w") as f:
         f.write(
             "\n".join(
                 [f"{document};{score:<.2f}" for document, score in scores.items()]
             )
         )
-    print(f"Result saved to: '{thematic_analysis_scores_path}'")
+    print(f"Result saved to: '{path.get_eval_02_thematic_analysis_score_path()}'")
 
 
 if __name__ == "__main__":
-    results_path = "results_4"
-    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
-    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
-
-    evaluate(ta_codes_txt_path, "")
+    path = SystemPath("results_4")
+    evaluate(path)

@@ -1,26 +1,69 @@
-import os
 import json
 import numpy as np
 
-import paths
+import llm
+from models.archetypes import Archetype
+from models.scenario_choices import ScenarioChoice
+
+from system_path import SystemPath
 
 
-def score_profile_anwsers(
-    archetype_path,
-    scenario_ground_truth_path,
-    scenario_answers_path,
-    scenario_scores_path,
-):
+def create_ground_truth(path: SystemPath):
+    response = generate_ground_truth(path)
+    with open(path.get_eval_06_scenario_ground_truth_path(), "w") as f:
+        f.write(response.text)
+
+    print()
+    print("-" * 50)
+    print(
+        f"Scenario ground truths saved to: '{path.get_eval_06_scenario_ground_truth_path()}'\n"
+    )
+
+
+def generate_ground_truth(path: SystemPath):
+    with open(path.get_04_scenario_questions_path(), "r") as f:
+        content = f.read()
+        questions = content.strip().splitlines()
+
+    prompt = f"""
+Archetypes are {", ".join([type.value for type in Archetype])}
+Choices are {", ".join([type.value for type in ScenarioChoice])}
+
+What archetype each choice belong (choice can be in one, some, all or none of the archetypes)
+
+Give answers for the following questions:
+{questions}
+
+Respond in this format
+
+{"{"}[
+[[choice1,choice2],[choice3,choice4]],
+[[choice1,choice2],[choice3,choice4]],
+]{"}"}
+
+which is
+
+{"{"}[
+[[Choices belong to Archetype 1 of Question 1], [Choices belong to Archetype 2 of Question 1]],
+[[Choices belong to Archetype 1 of Question 2], [Choices belong to Archetype 2 of Question 2]],
+]{"}"}
+"""
+
+    response = llm.generate_content(prompt, list[list[list[ScenarioChoice]]])
+    return response
+
+
+def score_profile_anwsers(path: SystemPath):
     scores = {}
 
-    with open(scenario_ground_truth_path, "r") as f:
+    with open(path.get_eval_06_scenario_ground_truth_path(), "r") as f:
         ground_truth = json.loads(f.read())
 
-    with open(archetype_path, "r") as f:
+    with open(path.get_04_archetypes_path(), "r") as f:
         content = f.read()
         archetypes = content.strip().splitlines()
 
-    with open(scenario_answers_path, "r") as f:
+    with open(path.get_06_profile_scenario_answers_path(), "r") as f:
         content = f.read()
         rows = content.strip().splitlines()
 
@@ -47,7 +90,9 @@ def score_profile_anwsers(
     print("Profile's Scenario Answers Evaluation")
     print("-" * 50)
     for document, score in scores.items():
+        print()
         print(f"{document:<{len(file)+2}}: {score:.2f}")
+        print()
 
     print("-" * 50)
     print(
@@ -56,36 +101,17 @@ def score_profile_anwsers(
     print("-" * 50)
     print()
 
-    with open(scenario_scores_path, "w") as f:
+    with open(path.get_eval_06_profile_scenario_answer_score_path(), "w") as f:
         f.write(
             "\n".join(
                 [f"{document};{score:<.2f}" for document, score in scores.items()]
             )
         )
 
-    print(f"Result saved to: '{scenario_scores_path}'")
+    print(f"Result saved to: '{path.get_eval_06_profile_scenario_answer_score_path()}'")
 
 
 if __name__ == "__main__":
-    results_path = "results_4"
-
-    archetype_path = os.path.join(results_path, paths.archetype_file_path)
-
-    scenario_ground_truth_path = os.path.join(
-        results_path, paths.scenario_ground_truth_file_path
-    )
-
-    profile_scenario_answers_path = os.path.join(
-        results_path, paths.profile_scenario_answers_file_path
-    )
-
-    scenario_scores_path = os.path.join(
-        results_path, paths.scenario_answer_score_file_path
-    )
-
-    score_profile_anwsers(
-        archetype_path,
-        scenario_ground_truth_path,
-        profile_scenario_answers_path,
-        scenario_scores_path,
-    )
+    path = SystemPath("results_4")
+    create_ground_truth(path)
+    score_profile_anwsers(path)

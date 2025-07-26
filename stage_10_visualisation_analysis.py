@@ -1,41 +1,36 @@
 import os
 import llm
 
+from system_path import SystemPath
 
-def analyse(
-    images_paths,
-    visualisation_analysis_path,
-):
-    response = generate_explanation(images_paths)
-    with open(visualisation_analysis_path, "w") as f:
+
+def analyse_visualisations(path: SystemPath, images: list[str]):
+    image_paths = [
+        os.path.join(path.get_visualisations_directory_path(), image)
+        for image in images
+    ]
+
+    response = generate_visualisations_explanation(image_paths)
+    with open(path.get_10_visualisation_analysis_path(), "w") as f:
         f.write(response.text)
 
     print()
     print("-" * 50)
-    print(f"Visualisation analysis result saved to: '{visualisation_analysis_path}'\n")
+    print(
+        f"Visualisation analysis result saved to: '{path.get_10_visualisation_analysis_path()}'\n"
+    )
 
 
-def generate_explanation(images_paths):
+def generate_visualisations_explanation(image_paths):
     prompt = f"""
 These images are result from simulation experiments.
 What are the findings of these images? Can you summarise the explanation?
 """
 
-    response = llm.generate_content_from_images(images_paths, prompt)
+    response = llm.generate_content_from_images(image_paths, prompt)
     return response
 
 
 if __name__ == "__main__":
-    results_path = "results_2"
-
-    images_paths = [
-        os.path.join(results_path, path) for path in ["plot_25.png", "plot_75.png"]
-    ]
-
-    visualisation_analysis_path = os.path.join(
-        results_path, "final_analysis_explanation.txt"
-    )
-    analyse(
-        images_paths,
-        visualisation_analysis_path,
-    )
+    path = SystemPath("results_2")
+    analyse_visualisations(path, ["plot_25.png", "plot_75.png"])

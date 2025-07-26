@@ -1,4 +1,3 @@
-import os
 import json
 import pandas as pd
 from google.genai.types import GenerateContentResponse
@@ -10,38 +9,42 @@ from models.response_models import (
     Code,
     CodeJustification,
 )
+from system_path import SystemPath
 
 
-def analyse(document_paths: list[str], destination_path_txt: str):
+def run_thematic_analysis(path: SystemPath, document_paths: list[str]):
     # New file
-    with open(destination_path_txt, "w") as f:
+    with open(path.get_02_thematic_analysis_path(), "w") as f:
         f.write("")
 
     for document_path in document_paths:
-        document = ""
+        content = ""
         with open(document_path, "r") as f:
-            document = f.read()
-        response = extract_key_components(document, document_path)
+            content = f.read()
+
+        response = generate_thematic_analysis(content, document_path)
 
         # Save extracted code (json text)
-        with open(destination_path_txt, "a+") as f:
+        with open(path.get_02_thematic_analysis_path(), "a+") as f:
             f.write(response.text)
             f.write("\n\n")
 
     print()
     print("-" * 50)
-    print(f"Thematic analaysis text json result saved to: '{destination_path_txt}'")
+    print(
+        f"Thematic analaysis text json result saved to: '{path.get_02_thematic_analysis_path()}'"
+    )
 
 
-def extract_key_components(
-    document: str,
+def generate_thematic_analysis(
+    content: str,
     document_path: str,
 ) -> GenerateContentResponse:
 
     prompt = f"""
 Based on this transcript
 
-{document}
+{content}
 
 Focus only "Participant" lines.
 Perform thematic analysis and identify key codes and supporting quotes for Agent-Based Modeling system
@@ -61,12 +64,13 @@ file is {document_path}
     return response
 
 
-def write_codes_csv_from_txt(codes_txt_path, codes_csv_path: str):
+def write_codes_csv_from_txt(path: SystemPath):
     # Read final raw codes
-    with open(codes_txt_path, "r") as f:
+    with open(path.get_02_thematic_analysis_path(), "r") as f:
         content = f.read()
 
     # Write head of table
+    codes_csv_path = path.get_02_thematic_analysis_csv_path()
     with open(codes_csv_path, "w") as f:
         f.write("File;Component;Code;Quote\n")
 
@@ -88,12 +92,8 @@ def write_codes_csv_from_txt(codes_txt_path, codes_csv_path: str):
     df_sorted.to_csv(codes_csv_path, index=False)  # index=False : no row name
 
 
-def generate_final_components(
-    objective_statement_path,
-    thematic_analysis_codes_txt_path,
-    eabss_components_path,
-):
-    with open(objective_statement_path, "r") as f:
+def run_eabss_scope_finalisation(path: SystemPath):
+    with open(path.get_01_objective_path(), "r") as f:
         objective_statement = f.read()
         objective_statement: dict = json.loads(objective_statement)
         objective = objective_statement["objective"]
@@ -101,7 +101,7 @@ def generate_final_components(
         output = objective_statement["output"]
 
     # Finalise key components
-    with open(thematic_analysis_codes_txt_path, "r") as f:
+    with open(path.get_02_thematic_analysis_path(), "r") as f:
         text = f.read()
 
     component_dict = {}
@@ -119,7 +119,7 @@ def generate_final_components(
     final_component_dict = {}
     for component in list(component_dict.keys()):
         if component != "file":
-            response = finalise_eabss_component_justification(
+            response = generate_eabss_scope(
                 component,
                 component_dict[component],
                 objective,
@@ -130,16 +130,16 @@ def generate_final_components(
             final_component_dict[component] = ast.literal_eval(response.text)
 
     # Save key component
-    with open(eabss_components_path, "w") as f:
+    with open(path.get_02_eabss_scope_path(), "w") as f:
         f.write(json.dumps(final_component_dict, indent=4))
 
     print()
     print("-" * 50)
-    print(f"EABSS components result saved to: '{eabss_components_path}'")
+    print(f"EABSS components result saved to: '{path.get_02_eabss_scope_path()}'")
     print("\nPlease reivew and update the EABSS components if necessary.")
 
 
-def finalise_eabss_component_justification(
+def generate_eabss_scope(
     component: str,
     codes_quotes: str,
     objective: str,
@@ -169,19 +169,8 @@ Each with justification why you select them
 
 
 if __name__ == "__main__":
+    path = SystemPath("results_4")
     document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
 
-    results_path = "results_5"
-    ta_codes_txt_path = os.path.join(results_path, "02_thematic_analysis_codes.txt")
-    ta_codes_csv_path = os.path.join(results_path, "02_thematic_analysis_codes.csv")
-
-    analyse(
-        document_paths,
-        ta_codes_txt_path,
-        ta_codes_csv_path,
-    )
-
-    # write_codes_csv_from_txt(
-    #     ta_codes_txt_path,
-    #     ta_codes_csv_path,
-    # )
+    run_thematic_analysis(path, document_paths)
+    write_codes_csv_from_txt(path)
