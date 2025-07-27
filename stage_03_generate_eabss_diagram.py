@@ -32,7 +32,7 @@ Following these key components
 
 {display_progress.eabss_components_progress(path)}
 
-generate very simple comprehensive UML usecase diagram
+generate very simple comprehensive UML use case diagram of actor and key activities
 respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed

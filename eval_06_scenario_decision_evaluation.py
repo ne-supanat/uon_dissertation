@@ -9,9 +9,19 @@ from system_path import SystemPath
 
 
 def create_ground_truth(path: SystemPath):
-    response = generate_ground_truth(path)
+    with open(path.get_04_scenario_questions_path(), "r") as f:
+        content = f.read()
+        questions = content.strip().splitlines()
+
     with open(path.get_eval_06_scenario_ground_truth_path(), "w") as f:
-        f.write(response.text)
+        responses = []
+        for question in questions:
+            response = generate_ground_truth(question)
+            responses.append(response.text)
+
+        f.write("[\n")
+        f.write((",\n").join(responses))
+        f.write("\n]")
 
     print()
     print("-" * 50)
@@ -20,36 +30,27 @@ def create_ground_truth(path: SystemPath):
     )
 
 
-def generate_ground_truth(path: SystemPath):
-    with open(path.get_04_scenario_questions_path(), "r") as f:
-        content = f.read()
-        questions = content.strip().splitlines()
+def generate_ground_truth(question: str):
 
     prompt = f"""
 Archetypes are {", ".join([type.value for type in Archetype])}
+
+For each archetype what are answers of the following question:
+{question}
+
 Choices are {", ".join([type.value for type in ScenarioChoice])}
-
-What archetype each choice belong (choice can be in one, some, all or none of the archetypes)
-
-Give answers for the following questions:
-{questions}
+answer can be in one, some, all or none of the choices
 
 Respond in this format
 
 {"{"}[
-[[choice1,choice2],[choice3,choice4]],
-[[choice1,choice2],[choice3,choice4]],
-]{"}"}
-
-which is
-
-{"{"}[
-[[Choices belong to Archetype 1 of Question 1], [Choices belong to Archetype 2 of Question 1]],
-[[Choices belong to Archetype 1 of Question 2], [Choices belong to Archetype 2 of Question 2]],
+[choices archetype 1 would pick],
+[choices archetype 2 would pick],
+...
 ]{"}"}
 """
 
-    response = llm.generate_content(prompt, list[list[list[ScenarioChoice]]])
+    response = llm.generate_content(prompt, list[list[ScenarioChoice]])
     return response
 
 
@@ -112,6 +113,6 @@ def score_profile_anwsers(path: SystemPath):
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_4")
+    path = SystemPath("travel2")
     create_ground_truth(path)
     score_profile_anwsers(path)

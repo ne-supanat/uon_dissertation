@@ -59,9 +59,9 @@ def mock_profile_scenario_answer(path: SystemPath):
                 random.choices(
                     [choice._value_ for choice in ScenarioChoice],
                     weights=(
-                        [1, 1, 8]
+                        [1, 9]
                         if archetype == [a.value for a in Archetype][0]
-                        else [4, 4, 2]
+                        else [9, 1]
                     ),
                     k=1,
                 )[0]
@@ -127,11 +127,11 @@ def create_decision_probability_table(path: SystemPath):
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_3")
+    path = SystemPath("travel")
 
-    create_profile_scenario_answers(path)
-    create_decision_probability_table(path)
+    # create_profile_scenario_answers(path)
+    # create_decision_probability_table(path)
 
     # # NOTE: this is only for testing & development purpose
-    # mock_scenario_answer(path)
-    # generate_decision_prob_table(path)
+    mock_profile_scenario_answer(path)
+    create_decision_probability_table(path)

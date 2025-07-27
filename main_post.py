@@ -39,7 +39,7 @@ def run_analysis_warning(model_output_path: str):
 
 def run_build_visualisation_template(path: SystemPath):
     if not os.path.isfile(path.get_09_visualisation_template_path()):
-        stage_str = "Generate visualisation template script"
+        stage_str = "Build visualisation template"
         proceed = ask_proceed(stage_str)
         if proceed:
             stage_09_visualisation_template_generation.build_visualisation_template(
@@ -71,7 +71,7 @@ def run_analyse_visualisations(path: SystemPath):
             print("Please create some visualisations first.\n")
             sys.exit()
 
-        stage_str = "Generate visualisations analysis"
+        stage_str = "Analyse visualisations"
         proceed = ask_proceed(stage_str)
         if proceed:
 
@@ -83,7 +83,7 @@ def run_analyse_visualisations(path: SystemPath):
         print_end_stage(True)
 
 
-def main(model_output_path: str, project_name: str):
+def main(project_name: str, model_output_path: str):
     os.makedirs(project_name, exist_ok=True)
 
     path = SystemPath(project_name)
@@ -102,7 +102,8 @@ def main(model_output_path: str, project_name: str):
 
 if __name__ == "__main__":
     model_output_path = "./NetLogo Model/outputs.csv"
-    project_name = "test"
+
+    project_name = "travel2"
 
     # TODO: pick source & project from terminal
-    main(model_output_path, project_name)
+    main(project_name, model_output_path)

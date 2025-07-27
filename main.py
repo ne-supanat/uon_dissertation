@@ -18,9 +18,11 @@ from system_path import SystemPath
 # TODO: criteria table
 
 
-def get_transcript_file_paths(source_path):
+def get_transcript_file_paths(source_directory):
     return [
-        f"{source_path}/{filename}" for filename in sorted(os.listdir(source_path))[0:1]
+        f"{os.path.join( source_directory,filename)}"
+        for filename in sorted(os.listdir(source_directory))[:]
+        if filename.endswith(".txt")
     ]
 
 
@@ -57,14 +59,14 @@ def run_setup_objective(path: SystemPath):
         print(display_progress.setup_objective_progress(path))
 
 
-def run_build_eabss(path: SystemPath, document_paths: list[str]):
+def run_build_eabss(path: SystemPath, scope_document_paths: list[str]):
     if not os.path.isfile(path.get_02_eabss_scope_path()):
         stage_str = "Build EABSS components"
         proceed = ask_proceed(stage_str)
 
         if proceed:
             # Thematic analysis
-            stage_02_build_eabss.run_thematic_analysis(path, document_paths)
+            stage_02_build_eabss.run_thematic_analysis(path, scope_document_paths)
             print()
 
             # Finalise EABSS components
@@ -147,13 +149,13 @@ def run_design_profile_n_scenario(path: SystemPath):
         display_progress.display_stage04(path)
 
 
-def run_extract_profiles(path: SystemPath, document_paths: list[str]):
+def run_extract_profiles(path: SystemPath, profile_document_paths: list[str]):
     if not os.path.isfile(path.get_05_profiles_path()):
         stage_str = "Extract profiles"
         proceed = ask_proceed(stage_str)
         if proceed:
             # Extract profile
-            stage_05_profile_extraction.extract_profile(path, document_paths)
+            stage_05_profile_extraction.extract_profile(path, profile_document_paths)
 
             print_end_stage()
         sys.exit()
@@ -196,8 +198,12 @@ def run_generate_simulation_script(path: SystemPath):
         print_end_stage(True)
 
 
-def main(source_folder: str, project_name: str):
-    document_paths = get_transcript_file_paths(source_folder)
+def main(
+    project_name: str,
+    source_scope_directory: str,
+    source_profile_directory: str,
+):
+
     os.makedirs(project_name, exist_ok=True)
 
     path = SystemPath(project_name)
@@ -209,7 +215,8 @@ def main(source_folder: str, project_name: str):
     run_setup_objective(path)
 
     # Build EABSS scope
-    run_build_eabss(path, document_paths)
+    focus_group_paths = get_transcript_file_paths(source_scope_directory)
+    run_build_eabss(path, focus_group_paths)
 
     # Build EABSS diagrams
     run_build_eabss_usecase_diagramm(path)
@@ -219,7 +226,8 @@ def main(source_folder: str, project_name: str):
     run_design_profile_n_scenario(path)
 
     # Extract Profiles (& classify profile archetype)
-    run_extract_profiles(path, document_paths)
+    interview_paths = get_transcript_file_paths(source_profile_directory)
+    run_extract_profiles(path, interview_paths)
 
     # Create Decision probability table
     run_create_decision_probability_table(path)
@@ -231,8 +239,16 @@ def main(source_folder: str, project_name: str):
 
 
 if __name__ == "__main__":
-    # source_folder = "data/diary_txt"
-    source_folder = "data/mvp"
-    project_name = "test"
+    # project_name = "virus"
+    # source_folder = "data/virus"
+
+    project_name = "travel2"
+    source_scope_directory = "data/travel_scope_txt"
+    source_profile_directory = "data/travel_interview_txt"
+
     # TODO: pick source & project from terminal (optional)
-    main(source_folder, project_name)
+    main(
+        project_name,
+        source_scope_directory,
+        source_profile_directory,
+    )

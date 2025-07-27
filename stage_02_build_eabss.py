@@ -160,7 +160,7 @@ Objective: {objective}
 Experiment factors (inputs): {input}
 Responses (outputs): {output}
 
-The final codes & quotes has at least {2} codes
+The final codes & quotes has at least {1} codes
 Each with justification why you select them
 """
     response = llm.generate_content(prompt, list[CodeJustification])
@@ -169,8 +169,9 @@ Each with justification why you select them
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_4")
-    document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    path = SystemPath("travel2")
+    document_paths = ["data/travel_scope_txt/Stage1_CreditonStLawrence1.txt"]
+    # document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
 
     run_thematic_analysis(path, document_paths)
-    write_codes_csv_from_txt(path)
+    # write_codes_csv_from_txt(path)

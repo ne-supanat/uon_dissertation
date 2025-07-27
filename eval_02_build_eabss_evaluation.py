@@ -36,9 +36,7 @@ def evaluate(path: SystemPath):
                     found = False
                     for line in lines:
                         # Check if can find quote speak by Participant
-                        if quote.lower() in line.lower() and line.startswith(
-                            "Participant: "
-                        ):
+                        if quote.lower() in line.lower():
                             found = True
 
                     if not found:
@@ -63,7 +61,7 @@ def evaluate(path: SystemPath):
             [
                 document,
                 f"{1 - (len(not_found_dict[document]) / (total_quote_dict[document])):.2f}",
-                total_quote_dict[file],
+                total_quote_dict[document],
                 len(not_found_dict[document]),
             ],
         ):

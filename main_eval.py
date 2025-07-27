@@ -12,6 +12,7 @@ from system_path import SystemPath
 import display_progress
 
 # TODO: add comments
+# TODO: use BERTScore for summary result
 
 
 def ask_continue() -> bool:
@@ -21,7 +22,7 @@ def ask_continue() -> bool:
     return approve == "y"
 
 
-def run_evaluate_thematic_analusis(path: SystemPath):
+def run_evaluate_thematic_analysis(path: SystemPath):
     if os.path.isfile(path.get_02_thematic_analysis_path()):
         eval_02_build_eabss_evaluation.evaluate(path)
         # thematic_analysis_extra.analyse(source_paths)
@@ -29,6 +30,9 @@ def run_evaluate_thematic_analusis(path: SystemPath):
         is_continue = ask_continue()
         if not is_continue:
             sys.exit()
+    else:
+        print(f"File not found: '{path.get_02_thematic_analysis_path()}'")
+        sys.exit()
 
 
 def run_evaluate_extract_profile(path: SystemPath):
@@ -38,6 +42,9 @@ def run_evaluate_extract_profile(path: SystemPath):
         is_continue = ask_continue()
         if not is_continue:
             sys.exit()
+    else:
+        print(f"File not found: '{path.get_05_profiles_path()}'")
+        sys.exit()
 
 
 def run_evaluate_create_decision_probability_table(path: SystemPath):
@@ -50,6 +57,9 @@ def run_evaluate_create_decision_probability_table(path: SystemPath):
 
         # Evaluate profile's answer
         eval_06_scenario_decision_evaluation.score_profile_anwsers(path)
+    else:
+        print(f"File not found: '{path.get_06_profile_scenario_answers_path()}'")
+        sys.exit()
 
 
 def main(project_name: str):
@@ -59,7 +69,7 @@ def main(project_name: str):
         sys.exit()
 
     # Evaluate thematic analysis
-    run_evaluate_thematic_analusis(path)
+    run_evaluate_thematic_analysis(path)
 
     # Evaluate Profiles
     run_evaluate_extract_profile(path)
@@ -72,5 +82,5 @@ def main(project_name: str):
 
 if __name__ == "__main__":
     # TODO: pick source & project from terminal (optional)
-    project_name = "test"
+    project_name = "travel2"
     main(project_name)

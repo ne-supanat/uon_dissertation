@@ -81,8 +81,6 @@ Interaction diagram:
 {eabss_interaction_diagram}
 {"-"*50}
 Archetype action probability
-{display_progress.archetype_progess(path)}
-{display_progress.scenario_progess(path)}
 {display_progress.decision_probability_table_progess(path)}
 
 Generate a very simple NetLogo simulation script that can represent system based on UML diagrams
@@ -94,6 +92,11 @@ Follow this NetLogo template:
 
 turtles-own [
   archetype
+  ; physical-object
+]
+
+globals [
+  ; misc elements
 ]
 
 to setup
@@ -124,6 +127,10 @@ to go
 
     save
     if ticks = {500} [stop]
+end
+
+to activity
+    ; actions
 end
  
 to save
