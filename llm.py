@@ -8,6 +8,7 @@ import requests
 
 import display_progress
 from models.response_models import ThinkResponse
+from system_path import SystemPath
 
 
 def generate_content(prompt: str, response_schema=None) -> GenerateContentResponse:
@@ -35,6 +36,8 @@ def generate_content(prompt: str, response_schema=None) -> GenerateContentRespon
 
     print(response.text)
     print(response.usage_metadata.total_token_count)
+    with open("total_token.txt", "+a") as f:
+        f.write(f"{response.usage_metadata.total_token_count}\n")
     return response
 
 
@@ -95,18 +98,31 @@ def generate_content_from_images(
 
     print(response.text)
     print(response.usage_metadata.total_token_count)
+
+    with open("total_token.txt", "+a") as f:
+        f.write(f"{response.usage_metadata.total_token_count}\n")
     return response
 
 
 if __name__ == "__main__":
+    pass
     # response = generate_content("write a poem about cat and dog. only 4 lines")
-    results_path = "results_2"
-    eabss_components_path = os.path.join(results_path, "02_eabss_scope.txt")
 
-    prompt = f"""
-Based on this EABSS components
-{display_progress.eabss_components_progress(eabss_components_path)}
+#     source_directory = "data/virus"
+#     path = SystemPath("results_2")
 
-generate NetLogo simulation script
-"""
-    response = generate_content(prompt, ThinkResponse)
+#     file = [
+#         f"{os.path.join( source_directory,filename)}"
+#         for filename in sorted(os.listdir(source_directory))
+#     ][0]
+
+#     with open(file, "r") as f:
+#         content = f.read()
+
+#     prompt = f"""
+# what agent-based modelling simulation can I build from this interview. answer me with just some ideas
+
+# {file}
+# """
+
+#     response = generate_content(prompt)
