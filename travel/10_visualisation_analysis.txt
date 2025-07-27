@@ -1,0 +1,18 @@
+Here's a summary of the findings from the image you provided:
+
+**Overall Trend:**
+
+*   The graph shows the number of people using different modes of transport (Walking, Cycling, and Driving) over a series of time steps.
+*   The simulation is based on a scenario where 25% of commuters are environmentally conscious.
+
+**Specific Observations:**
+
+*   **Driving:** Driving consistently has the highest number of users throughout the simulation. The number of people driving fluctuates around an average of approximately 60.
+*   **Cycling:** Cycling has a moderate number of users, fluctuating around an average of approximately 25.
+*   **Walking:** Walking has the lowest number of users, fluctuating around an average of approximately 15.
+
+**Interpretation:**
+
+*   Even with 25% of commuters being environmentally conscious, driving remains the most popular mode of transport in this simulation.
+*   Cycling is more popular than walking, but both are significantly less used than driving.
+*   The fluctuations in each mode of transport suggest some level of variability or change in commuter behavior over time, but the overall ranking of popularity remains consistent.

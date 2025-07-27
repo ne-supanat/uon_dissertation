@@ -1,0 +1,25 @@
+classDiagram
+    class Actor {
+        +String name
+        +String type
+        +String location
+        +chooseModeOfTransport()
+        +planTravel()
+    }
+    class Resident extends Actor{
+        +String residence
+        +shop()
+    }
+    class Commuter extends Actor{
+        +String workLocation
+        +commute()
+    }
+    class IndividualTraveller extends Actor{
+        +String purposeOfTravel
+        +travelForLeisure()
+        +travelForHoliday()
+    }
+
+    Actor <|-- Resident
+    Actor <|-- Commuter
+    Actor <|-- IndividualTraveller

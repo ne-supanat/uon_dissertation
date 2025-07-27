@@ -1,0 +1,59 @@
+[
+[
+  [
+    "Cars"
+  ],
+  [
+    "Buses"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ],
+  [
+    "Buses",
+    "Trains",
+    "Cars"
+  ],
+  [
+    "Cars"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ]
+],
+[
+  [
+    "Buses",
+    "Trains"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ],
+  [
+    "Cars"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ],
+  [
+    "Buses",
+    "Trains"
+  ]
+]
+]

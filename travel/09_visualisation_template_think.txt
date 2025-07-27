@@ -1,0 +1,1 @@
+The user wants a python script that reads a csv file into a pandas dataframe and then visualizes the data using plotly. The script should also save the visualization to a folder named 'visualisations'.

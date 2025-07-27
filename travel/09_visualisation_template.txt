@@ -1,0 +1,23 @@
+import pandas as pd
+import plotly.graph_objects as go
+import os
+
+df = pd.read_csv('./NetLogo Model/outputs.csv')
+
+# Create traces for each mode of transport
+trace_walking = go.Scatter(x=df.index, y=df['Walking'], mode='lines+markers', name='Walking')
+trace_cycling = go.Scatter(x=df.index, y=df['Cycling'], mode='lines+markers', name='Cycling')
+trace_driving = go.Scatter(x=df.index, y=df['Driving'], mode='lines+markers', name='Driving')
+
+# Create layout
+layout = go.Layout(title='Mode of Transport Usage', xaxis_title='Time', yaxis_title='Percentage')
+
+# Create figure
+fig = go.Figure(data=[trace_walking, trace_cycling, trace_driving], layout=layout)
+
+# Save visualisation image in folder visualisations
+os.makedirs("travel2/visualisations", exist_ok=True)
+fig.write_image("travel2/visualisations/mode_of_transport.png")
+
+#Optionally show the figure
+#fig.show()

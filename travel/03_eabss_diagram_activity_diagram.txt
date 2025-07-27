@@ -1,0 +1,16 @@
+graph TD
+    subgraph "Travel Scenario in Crediton"
+    A[Start] --> B{Consider Travel Options}
+    B -- Yes --> C[Evaluate Factors (Cost, Time, Convenience)]
+    C --> D{Choose Mode of Transport}
+    D -- Bus --> E[Travel by Bus]
+    D -- Car --> F[Travel by Car]
+    D -- Cycle --> G[Travel by Cycle]
+    D -- Walk --> H[Travel by Walk]
+    E --> I[Reach Destination]
+    F --> I
+    G --> I
+    H --> I
+    B -- No --> I
+    I --> J[End]
+    end

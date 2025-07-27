@@ -1,0 +1,32 @@
+stateDiagram
+    state Actors {
+        Resident
+        Commuter
+        IndividualTraveller
+    }
+    state KeyActivities {
+        ChoosingModeOfTransport
+        TravelPlanning
+        Commuting
+        Shopping
+        TravelForLeisure
+        TravelForWork
+        HolidayTravel
+    }
+
+    Resident --> ChoosingModeOfTransport: Chooses mode
+    Commuter --> ChoosingModeOfTransport: Chooses mode
+    IndividualTraveller --> ChoosingModeOfTransport: Chooses mode
+
+    Resident --> TravelPlanning: Plans travel
+    Commuter --> TravelPlanning: Plans travel
+    IndividualTraveller --> TravelPlanning: Plans travel
+
+    Resident --> Commuting: Commutes
+    Commuter --> Commuting: Commutes
+
+    Resident --> Shopping: Shops
+
+    Commuter --> TravelForWork: Travels for work
+    IndividualTraveller --> TravelForLeisure: Travels for leisure
+    IndividualTraveller --> HolidayTravel: Travels for holiday

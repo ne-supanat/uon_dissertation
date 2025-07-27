@@ -1,0 +1,32 @@
+graph LR
+    actor Resident
+    actor Commuter
+    actor IndividualTraveller
+    
+    Resident -->> ChoosingModeOfTransport
+    Commuter -->> ChoosingModeOfTransport
+    IndividualTraveller -->> ChoosingModeOfTransport
+    
+    Resident -->> TravelPlanning
+    Commuter -->> TravelPlanning
+    IndividualTraveller -->> TravelPlanning
+    
+    Resident -->> Commuting
+    Commuter -->> Commuting
+    IndividualTraveller -->> TravelForLeisure
+    
+    Resident -->> Shopping
+    Commuter -->> TravelForWork
+    IndividualTraveller -->> HolidayTravel
+    
+    subgraph KeyActivities [Key Activities]
+    ChoosingModeOfTransport((Choosing Mode of Transport))
+    TravelPlanning((Travel Planning))
+    Commuting((Commuting))
+    Shopping((Shopping))
+    TravelForLeisure((Travel for Leisure))
+    TravelForWork((Travel for Work))
+    HolidayTravel((Holiday Travel))
+    end
+
+    style KeyActivities fill:#f9f,stroke:#333,stroke-width:2px
