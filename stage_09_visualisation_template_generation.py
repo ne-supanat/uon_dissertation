@@ -62,7 +62,7 @@ os.makedirs("{path.get_visualisations_directory_path()}", exist_ok=True)
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_4")
-    model_output_path = "./NetLogo Model/outputs_25.csv"
+    path = SystemPath("travel")
+    model_output_path = "./NetLogo Model/outputs.csv"
 
     build_visualisation_template(path, model_output_path)

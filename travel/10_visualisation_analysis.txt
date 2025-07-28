@@ -1,18 +1,21 @@
-Here's a summary of the findings from the image you provided:
+Here's a summary of the findings from the simulation experiment, based on the provided image:
 
 **Overall Trend:**
 
-*   The graph shows the number of people using different modes of transport (Walking, Cycling, and Driving) over a series of time steps.
-*   The simulation is based on a scenario where 25% of commuters are environmentally conscious.
+The graph shows the number of agents using different transport types (Bus, Train, Car) over time (ticks).  A significant event occurs at tick 500, where traffic congestion is introduced.
 
-**Specific Observations:**
+**Before Congestion (Ticks 0-500):**
 
-*   **Driving:** Driving consistently has the highest number of users throughout the simulation. The number of people driving fluctuates around an average of approximately 60.
-*   **Cycling:** Cycling has a moderate number of users, fluctuating around an average of approximately 25.
-*   **Walking:** Walking has the lowest number of users, fluctuating around an average of approximately 15.
+*   **Bus:**  The number of agents using the bus is relatively stable, fluctuating around 50.
+*   **Train:** The number of agents using the train is also relatively stable, fluctuating around 15-20.
+*   **Car:** The number of agents using cars is relatively stable, fluctuating around 30-40.
 
-**Interpretation:**
+**After Congestion (Ticks 500 onwards):**
 
-*   Even with 25% of commuters being environmentally conscious, driving remains the most popular mode of transport in this simulation.
-*   Cycling is more popular than walking, but both are significantly less used than driving.
-*   The fluctuations in each mode of transport suggest some level of variability or change in commuter behavior over time, but the overall ranking of popularity remains consistent.
+*   **Bus:** The number of agents using the bus *increases* significantly and stabilizes at a higher level, around 60-65.
+*   **Train:** The number of agents using the train remains relatively stable, fluctuating around 15-20.
+*   **Car:** The number of agents using cars *decreases* significantly and stabilizes at a lower level, around 20-25.
+
+**Explanation:**
+
+The introduction of traffic congestion at tick 500 causes a shift in transport usage.  People likely switch from using cars to using buses to avoid the congestion.  This is reflected in the increase in bus usage and the decrease in car usage after tick 500. Train usage remains relatively unaffected by the congestion, suggesting it might be a separate transport network.

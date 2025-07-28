@@ -237,12 +237,12 @@ def visualisation_template_progess(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "{:<35} {:<30}".format(
         "Visualisation template reasoning",
-        f": saved to '{path.get_07_simulation_script_think_path()}'",
+        f": saved to '{path.get_09_visualisation_template_think_path()}'",
     )
     str += "\n"
     str += "{:<35} {:<30}".format(
         "Visualisation template script",
-        f": saved to '{path.get_07_simulation_script_path()}'",
+        f": saved to '{path.get_09_visualisation_template_path()}'",
     )
 
     return str

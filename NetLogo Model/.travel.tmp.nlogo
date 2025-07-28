@@ -1,80 +1,146 @@
 turtles-own [
   archetype
   ; physical-object
+  travel-mode ; Add a variable to store the chosen travel mode
 ]
 
 globals [
-  ; misc elements
-  car-users
-  public-transport-users
+  ;traffic-congestion ; 0 (no congestion) to 1 (severe congestion)
 ]
 
 to setup
-    clear-all
+  clear-all
 
-    set car-users 0
-    set public-transport-users 0
+  ;set traffic-congestion 0.5 ; Initialize traffic congestion
 
-    create-turtles 100 [
-        setxy random-xcor random-ycor
-        set shape "person"
+  create-turtles 100 [ ;number of people in the system
+    setxy random-xcor random-ycor
+    set shape "person"
 
-        ; Randomly assign an archetype
-        let archetype-index random 100
-        ifelse archetype-index < car-dependent [
-            set color 5
-            set archetype "Car dependent commuters"
+    ; Randomly assign an archetype
+    let archetype-index random 7
+    ifelse archetype-index = 0 [
+      set color 5
+      set archetype "Car owner"
+    ] [
+      ifelse archetype-index = 1 [
+        set color 15
+        set archetype "Bus pass holder"
+      ] [
+        ifelse archetype-index = 2 [
+          set color 25
+          set archetype "Students"
         ] [
-            set color 15
-            set archetype "Environmentally conscious citizens"
+          ifelse archetype-index = 3 [
+            set color 35
+            set archetype "Commuter"
+          ] [
+            ifelse archetype-index = 4 [
+              set color 45
+              set archetype "Car dependent"
+            ] [
+              ifelse archetype-index = 5 [
+                set color 55
+                set archetype "Public transport user"
+              ] [
+                set color 65
+                set archetype "Environmentally Conscious Commuter"
+              ]
+            ]
+          ]
         ]
+      ]
     ]
-    reset-ticks
+  ]
+  reset-ticks
 end
 
 to go
-    tick
-
-    ask turtles [ activity ]
-
-    ;
-    ;if ticks = 500 [ stop ]
-
-  if ticks mod 30 = 0 [
-    print(car-users)
-    print(public-transport-users)
-
-    set car-users 0
-    set public-transport-users 0
+  tick
+  ask turtles [
+    activity ; Each turtle chooses a travel mode based on its archetype and traffic conditions
   ]
+
+  save ; Save the travel choices ratio
+  if ticks mod 500 = 0 [ stop ]
 end
 
-to activity
-  ; Determine transport mode based on archetype and probabilities
+to activity ; Mode choice decision
+  ; Determine travel mode based on archetype and traffic congestion
   let rand random-float 1
-  ifelse archetype = "Car dependent commuters" [
-    ; Car dependent commuters: 0.1 cars, 0.9 public transport
-    ifelse rand < 0.1 [
-      set car-users car-users + 1
+  ifelse archetype = "Car owner" [
+    ifelse traffic-congestion > 0.5 [ ; If traffic is congested
+      if rand < 0.1 [set travel-mode "Bus"] ; 10% chance to take the bus
+      if rand > 0.1 and rand < 0.2 [set travel-mode "Train"] ; 10% chance to take the train
+      if rand > 0.2 [set travel-mode "Car"] ; 80% chance to take the car
     ] [
-      set public-transport-users public-transport-users + 1
+      set travel-mode "Car" ; Otherwise, always take the car
     ]
   ] [
-    ; Environmentally conscious citizens: 0.87 cars, 0.13 public transport
-    ifelse rand < 0.87 [
-      set car-users car-users + 1
+    ifelse archetype = "Bus pass holder" [
+      ifelse traffic-congestion > 0.5 [
+        set travel-mode "Bus" ; Always take the bus if congested
+      ] [
+        if rand < 0.9 [set travel-mode "Bus"] ; 90% chance to take the bus
+        if rand > 0.9 [set travel-mode "Car"] ; 10% chance to take the car
+      ]
     ] [
-      set public-transport-users public-transport-users + 1
+      ifelse archetype = "Students" [
+        if rand < 0.4 [set travel-mode "Bus"]
+        if rand > 0.4 and rand < 0.8 [set travel-mode "Train"]
+        if rand > 0.8 [set travel-mode "Car"]
+      ] [
+        ifelse archetype = "Commuter" [
+          if rand < 0.3 [set travel-mode "Bus"]
+          if rand > 0.3 and rand < 0.6 [set travel-mode "Train"]
+          if rand > 0.6 [set travel-mode "Car"]
+        ] [
+          ifelse archetype = "Car dependent" [
+            ifelse traffic-congestion > 0.5 [
+              if rand < 0.5 [set travel-mode "Bus"]
+              if rand > 0.5 [set travel-mode "Train"]
+            ] [
+              set travel-mode "Car"
+            ]
+          ] [
+            ifelse archetype = "Public transport user" [
+              if rand < 0.8 [set travel-mode "Bus"]
+              if rand > 0.8 [set travel-mode "Train"]
+            ] [
+              ifelse archetype = "Environmentally Conscious Commuter" [
+                ifelse traffic-congestion > 0.5 [
+                  set travel-mode "Bus"
+                ] [
+                  if rand < 0.8 [set travel-mode "Bus"]
+                  if rand > 0.8 [set travel-mode "Train"]
+                ]
+              ] [
+                set travel-mode "Car" ; Default to car if no archetype matches
+              ]
+            ]
+          ]
+        ]
+      ]
     ]
   ]
 end
 
 to save
   file-open "outputs.csv"
-  if file-exists? "outputs.csv" [
-    if ticks = 1 [file-print (word "Tick" "," "Car Users" "," "Public Transport Users")]
-    file-print (word ticks "," car-users "," public-transport-users)
-  ]
+
+  ; Calculate travel mode ratios
+  let num-turtles count turtles
+  let bus-users count turtles with [ travel-mode = "Bus" ]
+  let train-users count turtles with [ travel-mode = "Train" ]
+  let car-users count turtles with [ travel-mode = "Car" ]
+
+  let bus-ratio (bus-users / num-turtles)
+  let train-ratio (train-users / num-turtles)
+  let car-ratio (car-users / num-turtles)
+
+  ; Output the ratios to the file
+  file-print (word bus-users " , " train-users " , " car-users)
+
   file-close
 end
 @#$#@#$#@
@@ -153,21 +219,22 @@ total use
 100.0
 true
 true
-"" "set-plot-x-range ticks - 50 ticks"
+"" ";set-plot-x-range ticks - 50 ticks"
 PENS
-"Car" 1.0 0 -13840069 true "" "plot car-users"
-"Public Transport" 1.0 0 -13791810 true "" "plot public-transport-users"
+"Bus" 1.0 0 -13840069 true "" "plot count turtles with [ travel-mode = \"Bus\" ]"
+"Train" 1.0 0 -13791810 true "" "plot count turtles with [ travel-mode = \"Train\" ]"
+"Car" 1.0 0 -2674135 true "" "plot count turtles with [ travel-mode = \"Car\" ]"
 
 SLIDER
 127
 32
 340
 65
-car-dependent
-car-dependent
+traffic-congestion
+traffic-congestion
 0
-100
-67.0
+1
+1.0
 1
 1
 NIL
