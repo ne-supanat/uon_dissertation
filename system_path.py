@@ -1,10 +1,24 @@
 import os
+import json
 
 
 class SystemPath:
 
     def __init__(self, name: str):
         self.project_name = name
+
+    def get_00_project_path(self):
+        return os.path.join(self.project_name, "00_project.json")
+
+    def get_scope_data_directory_path(self):
+        with open(self.get_00_project_path()) as f:
+            data = json.loads(f.read())
+        return data["scope"]
+
+    def get_profile_data_directory_path(self):
+        with open(self.get_00_project_path()) as f:
+            data = json.loads(f.read())
+        return data["profile"]
 
     def get_01_objective_path(self):
         return os.path.join(self.project_name, "01_objective.txt")
@@ -85,3 +99,9 @@ class SystemPath:
 
     def get_eval_06_profile_scenario_answer_score_path(self):
         return os.path.join(self.project_name, "eval_06_scenario_answer_score.csv")
+
+
+if __name__ == "__main__":
+    path = SystemPath("travel2")
+    print(path.get_scope_data_directory_path())
+    print(path.get_profile_data_directory_path())

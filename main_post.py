@@ -1,3 +1,4 @@
+import argparse
 import os
 import sys
 
@@ -88,13 +89,13 @@ def main(project_name: str, model_output_path: str):
 
     path = SystemPath(project_name)
 
-    # Ask to run experiment
+    # Stage 08 Ask to run experiment
     run_analysis_warning(model_output_path)
 
-    # Visualisation template generation
+    # Stage 09 Visualisation template generation
     run_build_visualisation_template(path)
 
-    # Visualisations Analysis
+    # Stage 10 Visualisations Analysis
     run_analyse_visualisations(path)
 
     print()
@@ -103,7 +104,8 @@ def main(project_name: str, model_output_path: str):
 if __name__ == "__main__":
     model_output_path = "./NetLogo Model/outputs.csv"
 
-    project_name = "travel2"
+    parser = argparse.ArgumentParser("Main System")
+    parser.add_argument("project_name", help="A project name", type=str)
 
-    # TODO: pick source & project from terminal
-    main(project_name, model_output_path)
+    args = parser.parse_args()
+    main(args.project_name, model_output_path)

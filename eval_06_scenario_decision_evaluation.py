@@ -90,11 +90,12 @@ def score_profile_anwsers(path: SystemPath):
     print("-" * 50)
     print("Profile's Scenario Answers Evaluation")
     print("-" * 50)
-    for document, score in scores.items():
-        print()
-        print(f"{document:<{len(file)+2}}: {score:.2f}")
-        print()
+    print()
 
+    for document, score in scores.items():
+        print(f"{document:<{len(file)+2}}: {score:.2f}")
+
+    print()
     print("-" * 50)
     print(
         f"Profile's Scenario Answers Evaluation - Mean score: {np.mean(list(scores.values())):.2f}"

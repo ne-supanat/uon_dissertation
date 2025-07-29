@@ -24,6 +24,7 @@ class Code(BaseModel):
 
 class CodeJustification(BaseModel):
     code: str
+    description: str
     justification: str
 
 

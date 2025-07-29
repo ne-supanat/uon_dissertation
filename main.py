@@ -1,6 +1,8 @@
+import argparse
 import os
 import sys
 
+import stage_00_project_setup
 import stage_01_objective_setup
 import stage_02_build_eabss
 import stage_03_generate_eabss_diagram
@@ -20,9 +22,11 @@ from system_path import SystemPath
 
 def get_transcript_file_paths(source_directory):
     return [
-        f"{os.path.join( source_directory,filename)}"
-        for filename in sorted(os.listdir(source_directory))[:]
+        f"{os.path.join(source_directory, filename)}"
+        for filename in sorted(os.listdir(source_directory))
         if filename.endswith(".txt")
+    ][
+        :1  # TODO: change back to all docs
     ]
 
 
@@ -42,11 +46,19 @@ def print_end_stage(is_last_stage: bool = False):
         print("Run 'main_post.py' to analyse the model output.")
 
 
-def run_setup_objective(path: SystemPath):
-    if not os.path.isfile(path.get_01_objective_path()):
-        # New project
+def run_setup_project(path: SystemPath):
+    if not os.path.isdir(path.project_name):
+        # Start new project
         print("\nNo existing project detected.")
         print("Starting new project...")
+
+        stage_00_project_setup.run_setup_project(path)
+    else:
+        display_progress.display_header()
+
+
+def run_setup_objective(path: SystemPath):
+    if not os.path.isfile(path.get_01_objective_path()):
         stage_01_objective_setup.setup_objective(path)
 
         print(display_progress.setup_objective_progress(path))
@@ -55,17 +67,19 @@ def run_setup_objective(path: SystemPath):
         sys.exit()
     else:
         # Display objective result
-        display_progress.display_header()
         print(display_progress.setup_objective_progress(path))
 
 
-def run_build_eabss(path: SystemPath, scope_document_paths: list[str]):
+def run_build_eabss(path: SystemPath):
     if not os.path.isfile(path.get_02_eabss_scope_path()):
         stage_str = "Build EABSS components"
         proceed = ask_proceed(stage_str)
 
         if proceed:
             # Thematic analysis
+            scope_document_paths = get_transcript_file_paths(
+                path.get_scope_data_directory_path()
+            )
             stage_02_build_eabss.run_thematic_analysis(path, scope_document_paths)
             print()
 
@@ -149,12 +163,15 @@ def run_design_profile_n_scenario(path: SystemPath):
         display_progress.display_stage04(path)
 
 
-def run_extract_profiles(path: SystemPath, profile_document_paths: list[str]):
+def run_extract_profiles(path: SystemPath):
     if not os.path.isfile(path.get_05_profiles_path()):
         stage_str = "Extract profiles"
         proceed = ask_proceed(stage_str)
         if proceed:
             # Extract profile
+            profile_document_paths = get_transcript_file_paths(
+                path.get_profile_data_directory_path()
+            )
             stage_05_profile_extraction.extract_profile(path, profile_document_paths)
 
             print_end_stage()
@@ -200,55 +217,53 @@ def run_generate_simulation_script(path: SystemPath):
 
 def main(
     project_name: str,
-    source_scope_directory: str,
-    source_profile_directory: str,
 ):
-
-    os.makedirs(project_name, exist_ok=True)
-
     path = SystemPath(project_name)
 
     # NOTE: If result file(s) of a stage exist that means that stage is completed.
     # each run stage function (eg. run_setup_objective), check their result file(s) before run the stage.
 
+    # Stage 00 Setup Project
+    run_setup_project(path)
+
     # Stage 01 Setup Objective
     run_setup_objective(path)
 
-    # Build EABSS scope
-    focus_group_paths = get_transcript_file_paths(source_scope_directory)
-    run_build_eabss(path, focus_group_paths)
+    # Stage 02 Build EABSS scope
+    run_build_eabss(path)
 
-    # Build EABSS diagrams
+    # Stage 03 Build EABSS diagrams
     run_build_eabss_usecase_diagramm(path)
     run_build_remaining_eabss_diagrams(path)
 
-    # Define archetyp, scenario questions, scenarion answer choices
+    # Stage 04 Define archetyp, scenario questions, scenarion answer choices
     run_design_profile_n_scenario(path)
 
-    # Extract Profiles (& classify profile archetype)
-    interview_paths = get_transcript_file_paths(source_profile_directory)
-    run_extract_profiles(path, interview_paths)
+    # Stage 05 Extract Profiles (& classify profile archetype)
+    run_extract_profiles(path)
 
-    # Create Decision probability table
+    # Stage 06 Create Decision probability table
     run_create_decision_probability_table(path)
 
-    ## Generate Simulation script
+    # Stage 07 Generate Simulation script
     run_generate_simulation_script(path)
 
     print()
 
 
 if __name__ == "__main__":
-    # project_name = "virus"
-    # source_folder = "data/virus"
+    # NOTE: As Reminder - A List of Datasets
 
-    project_name = "travel2"
-    source_scope_directory = "data/travel_scope_txt"
-    source_profile_directory = "data/travel_interview_txt"
+    # Sustanable Travel
+    # Scope: "data/travel_scope_txt"
+    # Profile: "data/travel_profile_txt"
 
-    # TODO: pick source & project from terminal (optional)
-    main(
-        project_name,
-        source_scope_directory,
-        source_profile_directory,
-    )
+    # Plastic Bag Charge
+    # Scope: "data/diary_txt"
+    # Profile: "data/diary_txt"
+
+    parser = argparse.ArgumentParser("Main System")
+    parser.add_argument("project_name", help="A project name", type=str)
+
+    args = parser.parse_args()
+    main(args.project_name)
