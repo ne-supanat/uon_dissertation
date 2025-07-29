@@ -52,12 +52,6 @@ def run_evaluate_extract_profile(path: SystemPath, show_all: bool):
 
 def run_evaluate_create_decision_probability_table(path: SystemPath):
     if os.path.isfile(path.get_06_profile_scenario_answers_path()):
-        # Generate ground truth (For evaluation)
-        if not os.path.isfile(path.get_eval_06_scenario_ground_truth_path()):
-            eval_06_scenario_decision_evaluation.create_ground_truth(path)
-
-        print(display_progress.ground_truth_progess(path))
-
         # Evaluate profile's answer
         eval_06_scenario_decision_evaluation.score_profile_anwsers(path)
     else:

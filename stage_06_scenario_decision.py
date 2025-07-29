@@ -8,6 +8,100 @@ from models.scenario_choices import ScenarioChoice
 
 from system_path import SystemPath
 
+import json
+
+
+def create_ground_truth(path: SystemPath):
+    with open(path.get_04_scenario_questions_path(), "r") as f:
+        content = f.read()
+        scenario_questions = content.strip().splitlines()
+
+    with open(path.get_06_scenario_ground_truth_path(), "w") as f:
+        responses = []
+        for scenario_question in scenario_questions:
+            response = generate_ground_truth(scenario_question)
+            responses.append(response.parsed)
+
+        # Save ground truth
+        # Example output
+        # [
+        #   {
+        #     "qeustion": "question1?",
+        #     "answer": {
+        #         "archetype1": ["choice1", "choice2"],
+        #         "archetype2": ["choice1", "choice2"],
+        #         "archetype3": ["choice1", "choice2"],
+        #     },
+        #   },
+        # ...
+        # ]
+
+        question_dict = []
+        for i, question_block in enumerate(responses):
+            q = {}
+            q["question"] = scenario_questions[i]
+            q["answer"] = {}
+
+            for content, archetype in enumerate([a.value for a in Archetype]):
+                q["answer"][archetype] = [c.value for c in question_block[content]]
+
+            question_dict.append(q)
+
+        content = json.dumps(question_dict, indent=4)
+        f.write(content)
+
+    print()
+    print("-" * 50)
+    print(
+        f"Scenario ground truths saved to: '{path.get_06_scenario_ground_truth_path()}'\n"
+    )
+
+
+def generate_ground_truth(question: str):
+
+    prompt = f"""
+Archetypes are {", ".join([type.value for type in Archetype])}
+
+For each archetype what are answers of the following question:
+{question}
+
+Choices are {", ".join([type.value for type in ScenarioChoice])}
+answer can be in one, some, all or none of the choices
+
+Respond in this format
+
+{"{"}[
+[choices archetype 1 would pick],
+[choices archetype 2 would pick],
+...
+]{"}"}
+"""
+
+    response = llm.generate_content(prompt, list[list[ScenarioChoice]])
+    return response
+
+
+def create_profile_scenario_answer_from_ground_truth(path: SystemPath):
+    with open(path.get_04_scenario_questions_path(), "r") as f:
+        questions = f.read().strip().splitlines()
+
+    with open(path.get_06_scenario_ground_truth_path(), "r") as f:
+        content = f.read()
+        ground_truth = json.loads(content)
+
+    with open(path.get_06_profile_scenario_answers_path(), "w") as f:
+        for i in range(100):
+            archetype = random.choice([archetype.value for archetype in Archetype])
+
+            answers = []
+            for j in range(len(questions)):
+                potential_answers = ground_truth[j]["answer"][archetype]
+                answer = random.choice(potential_answers)
+                answers.append(answer)
+
+            f.write(f"{i};{archetype};" + ";".join(answers) + "\n")
+    print("saved at " + path.get_06_profile_scenario_answers_path())
+
 
 def create_profile_scenario_answers(path: SystemPath):
     with open(path.get_04_scenario_questions_path(), "r") as f:
@@ -46,29 +140,6 @@ Answer following questions:
     response = llm.generate_content(prompt, list[ScenarioChoice])
     result: list[ScenarioChoice] = response.parsed
     return result
-
-
-def mock_profile_scenario_answer(path: SystemPath):
-    with open(path.get_04_scenario_questions_path(), "r") as f:
-        questions = f.read().strip().splitlines()
-
-    with open(path.get_06_profile_scenario_answers_path(), "w") as f:
-        for i in range(100):
-            archetype = random.choice([archetype.value for archetype in Archetype])
-            answers = [
-                random.choices(
-                    [choice._value_ for choice in ScenarioChoice],
-                    weights=(
-                        [1, 9]
-                        if archetype == [a.value for a in Archetype][0]
-                        else [9, 1]
-                    ),
-                    k=1,
-                )[0]
-                for _ in range(len(questions))
-            ]
-            f.write(f"{i};{archetype};" + ";".join(answers) + "\n")
-    print("saved at " + path.get_06_profile_scenario_answers_path())
 
 
 def create_decision_probability_table(path: SystemPath):
@@ -129,9 +200,11 @@ def create_decision_probability_table(path: SystemPath):
 if __name__ == "__main__":
     path = SystemPath("travel")
 
+    # Create decision probability using ground truth (roleplay as archetype)
+    # create_ground_truth(path)
+    # mock_profile_scenario_answer_from_ground_truth(path)
+    create_decision_probability_table(path)
+
+    # Create decision probability using roleplay as profile
     # create_profile_scenario_answers(path)
     # create_decision_probability_table(path)
-
-    # # NOTE: this is only for testing & development purpose
-    mock_profile_scenario_answer(path)
-    create_decision_probability_table(path)

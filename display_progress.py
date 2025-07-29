@@ -145,25 +145,21 @@ def ground_truth_progess(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "Scenario ground truth:\n\n"
 
-    with open(path.get_04_scenario_questions_path(), "r") as f:
-        content = f.read()
-        questions = content.strip().splitlines()
-
     with open(path.get_04_archetypes_path(), "r") as f:
         content = f.read()
         archetypes = content.strip().splitlines()
 
-    with open(path.get_eval_06_scenario_ground_truth_path(), "r") as f:
-        content: list = json.loads(f.read())
+    with open(path.get_06_scenario_ground_truth_path(), "r") as f:
+        ground_truth_list: list = json.loads(f.read())
 
     max_lenght = len(max(archetypes, key=len))
 
     blocks = []
-    for i, question_list in enumerate(content):
+    for i, ground_truth in enumerate(ground_truth_list):
         rows = []
-        rows.append(f"Question {i+1}: {questions[i]}")
-        for j, answer_list in enumerate(question_list):
-            rows.append(f"  {archetypes[j]:<{max_lenght+2}}: {", ".join(answer_list)}")
+        rows.append(f"Question {i+1}: {ground_truth['question']}")
+        for key, item in ground_truth["answer"].items():
+            rows.append(f"  {key:<{max_lenght+2}}: {", ".join(item)}")
         blocks.append("\n".join(rows))
     str += "\n\n".join(blocks)
 
@@ -259,7 +255,7 @@ def visualisation_analysis_progess(path: SystemPath):
 
 
 if __name__ == "__main__":
-    path = SystemPath("test")
+    path = SystemPath("travel")
 
     # display_header()
     # print(setup_objective_progress(path))

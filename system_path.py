@@ -94,8 +94,8 @@ class SystemPath:
     def get_eval_05_profile_score_path(self):
         return os.path.join(self.project_name, "eval_05_profile_quotes_score.csv")
 
-    def get_eval_06_scenario_ground_truth_path(self):
-        return os.path.join(self.project_name, "eval_06_scenario_ground_truth.txt")
+    def get_06_scenario_ground_truth_path(self):
+        return os.path.join(self.project_name, "06_scenario_ground_truth.txt")
 
     def get_eval_06_profile_scenario_answer_score_path(self):
         return os.path.join(self.project_name, "eval_06_scenario_answer_score.csv")

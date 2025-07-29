@@ -1,0 +1,14 @@
+choose your usual transport mode;Car owner;0.00;0.00;1.00
+choose your usual transport mode;Bus pass holder;1.00;0.00;0.00
+choose your usual transport mode;Students;0.50;0.50;0.00
+choose your usual transport mode;Commuter;0.33;0.27;0.40
+choose your usual transport mode;Car dependent;0.00;0.00;1.00
+choose your usual transport mode;Public transport user;0.69;0.31;0.00
+choose your usual transport mode;Environmentally Conscious Commuter;0.67;0.33;0.00
+choose a transport mode when it is traffic congestion;Car owner;0.39;0.61;0.00
+choose a transport mode when it is traffic congestion;Bus pass holder;0.55;0.45;0.00
+choose a transport mode when it is traffic congestion;Students;0.50;0.50;0.00
+choose a transport mode when it is traffic congestion;Commuter;0.53;0.47;0.00
+choose a transport mode when it is traffic congestion;Car dependent;0.00;0.00;1.00
+choose a transport mode when it is traffic congestion;Public transport user;0.50;0.50;0.00
+choose a transport mode when it is traffic congestion;Environmentally Conscious Commuter;0.25;0.75;0.00

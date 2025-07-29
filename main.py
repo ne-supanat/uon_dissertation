@@ -186,9 +186,45 @@ def run_create_decision_probability_table(path: SystemPath):
         stage_str = "Decision probability table"
         proceed = ask_proceed(stage_str)
         if proceed:
-            # Answer scenario-questions
-            if not os.path.isfile(path.get_06_profile_scenario_answers_path()):
+            # Create ground truth
+            if not os.path.isfile(path.get_06_scenario_ground_truth_path()):
+                stage_06_scenario_decision.create_ground_truth(path)
+
+            print(display_progress.ground_truth_progess(path))
+
+            # Ask user to use extracted profiles or generated ground truth
+            # to create scenario answers
+            with open(path.get_04_scenario_questions_path(), "r") as f:
+                questions = f.read().strip().splitlines()
+
+            with open(path.get_05_profiles_path(), "r") as f:
+                content = f.read()
+            profiles = [profile for profile in content.strip().split("\n\n")]
+            profile_size = len(profiles)
+
+            print()
+            print(
+                f"Select the method to answer the scenario question{"s" if len(questions) > 1 else ""}"
+            )
+            profile_str = "profile" + "s" if profile_size > 1 else ""
+            print(
+                f"1. Use {profile_str} based on extracted {profile_str} ({profile_size} result{"s" if profile_size>1 else ""})"
+            )
+            print(f"2. Use profiles based on ground truth ({100} results)")
+
+            method = None
+            while method not in ["1", "2"]:
+                method = input(f"\nEnter the method number (1 or 2): ").lower()
+
+            # Answer scenario questions
+            if method == "1":
+                # Based on extracted profile(s)
                 stage_06_scenario_decision.create_profile_scenario_answers(path)
+            elif method == "2":
+                # Based on ground truth
+                stage_06_scenario_decision.create_profile_scenario_answer_from_ground_truth(
+                    path
+                )
 
             # Create decision probability table
             stage_06_scenario_decision.create_decision_probability_table(path)

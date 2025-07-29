@@ -8,56 +8,10 @@ from models.scenario_choices import ScenarioChoice
 from system_path import SystemPath
 
 
-def create_ground_truth(path: SystemPath):
-    with open(path.get_04_scenario_questions_path(), "r") as f:
-        content = f.read()
-        questions = content.strip().splitlines()
-
-    with open(path.get_eval_06_scenario_ground_truth_path(), "w") as f:
-        responses = []
-        for question in questions:
-            response = generate_ground_truth(question)
-            responses.append(response.text)
-
-        f.write("[\n")
-        f.write((",\n").join(responses))
-        f.write("\n]")
-
-    print()
-    print("-" * 50)
-    print(
-        f"Scenario ground truths saved to: '{path.get_eval_06_scenario_ground_truth_path()}'\n"
-    )
-
-
-def generate_ground_truth(question: str):
-
-    prompt = f"""
-Archetypes are {", ".join([type.value for type in Archetype])}
-
-For each archetype what are answers of the following question:
-{question}
-
-Choices are {", ".join([type.value for type in ScenarioChoice])}
-answer can be in one, some, all or none of the choices
-
-Respond in this format
-
-{"{"}[
-[choices archetype 1 would pick],
-[choices archetype 2 would pick],
-...
-]{"}"}
-"""
-
-    response = llm.generate_content(prompt, list[list[ScenarioChoice]])
-    return response
-
-
 def score_profile_anwsers(path: SystemPath):
     scores = {}
 
-    with open(path.get_eval_06_scenario_ground_truth_path(), "r") as f:
+    with open(path.get_06_scenario_ground_truth_path(), "r") as f:
         ground_truth = json.loads(f.read())
 
     with open(path.get_04_archetypes_path(), "r") as f:
@@ -115,5 +69,4 @@ def score_profile_anwsers(path: SystemPath):
 
 if __name__ == "__main__":
     path = SystemPath("travel2")
-    create_ground_truth(path)
     score_profile_anwsers(path)
