@@ -5,9 +5,9 @@ import ast
 
 import llm
 from models.response_models import (
-    KeyComponents,
-    Code,
-    CodeJustification,
+    ScopeThemeCode,
+    ScopeComponent,
+    ScopeElement,
 )
 from system_path import SystemPath
 
@@ -46,24 +46,24 @@ Based on this transcript
 
 {content}
 
-Focus only "Participant" lines.
-Perform thematic analysis and identify key codes and supporting quotes for Agent-Based Modeling system
+Perform thematic analysis and identify key theme codes and supporting quotes for Agent-Based Modeling system
 
 Following these key components
-{KeyComponents.get_explanation()}
+{ScopeComponent.get_explanation()}
 
 Each component has at least {2} codes
-Each code has maximum of {2} quotes. Quote must be exactly the same as original text and come from the same line.
+Each theme code has maximum of {2} quotes. Quote must be exactly the same as original text and come from the same line.
 
 file is {document_path}
 """
     response = llm.generate_content(
         prompt,
-        response_schema=KeyComponents,
+        response_schema=ScopeThemeCode,
     )
     return response
 
 
+# TODO: remove if not used
 def write_codes_csv_from_txt(path: SystemPath):
     # Read final raw codes
     with open(path.get_02_thematic_analysis_path(), "r") as f:
@@ -78,10 +78,10 @@ def write_codes_csv_from_txt(path: SystemPath):
     for c in content.strip().split("\n\n"):
         document: dict = json.loads(c)
 
-        for i, key in enumerate(KeyComponents.get_component_keys()):
+        for i, key in enumerate(ScopeThemeCode.get_component_keys()):
             for code in document[key]:
                 for quote in code["quotes"]:
-                    component_name = KeyComponents.get_component_names()[i]
+                    component_name = ScopeThemeCode.get_component_names()[i]
                     with open(codes_csv_path, "a+") as f:
                         f.write(
                             f"{document['file']};{component_name};{code['code']};{quote}\n"
@@ -93,7 +93,7 @@ def write_codes_csv_from_txt(path: SystemPath):
 
 
 def run_eabss_scope_finalisation(path: SystemPath):
-    with open(path.get_01_objective_path(), "r") as f:
+    with open(path.get_01_outline_path(), "r") as f:
         objective_statement = f.read()
         objective_statement: dict = json.loads(objective_statement)
         objective = objective_statement["objective"]
@@ -141,37 +141,46 @@ def run_eabss_scope_finalisation(path: SystemPath):
 
 def generate_eabss_scope(
     component: str,
-    codes_quotes: str,
+    codes_quotes: list[dict],
     objective: str,
     input: str,
     output: str,
 ) -> GenerateContentResponse:
+    theme_codes_str = ""
+    for theme_code in codes_quotes:
+        theme_codes_str += theme_code["code"] + "\n"
+        theme_codes_str += "".join([f"- {quote}\n" for quote in theme_code["quotes"]])
+        theme_codes_str += "\n"
+
     # Finalise EABSS' given component
     prompt = f"""
 Following these key components
-{KeyComponents.get_explanation()}
+{ScopeThemeCode.get_explanation()}
     
-Based on following codes & quotes of {component}
 
-{codes_quotes}
+Based on following theme codes & quotes of {ScopeThemeCode.get_component_names()[
+                ScopeThemeCode.get_component_keys().index(component)
+            ]}
 
-Select minimum items from the codes & quotes that are the most important to build Agent-based modeling simulation with
+{theme_codes_str}
+Select minimum items from the theme codes & quotes that are the most important to build Agent-based modelling simulation with
 Objective: {objective}
 Experiment factors (inputs): {input}
 Responses (outputs): {output}
 
-The final codes & quotes has at least {1} codes
-Each with justification why you select them
+The final theme codes & quotes has at least {1} code
+Each with theme codes description and justification why you select them
 """
-    response = llm.generate_content(prompt, list[CodeJustification])
+    response = llm.generate_content(prompt, list[ScopeElement])
 
     return response
 
 
 if __name__ == "__main__":
-    path = SystemPath("travel2")
+    path = SystemPath("travel")
     document_paths = ["data/travel_scope_txt/Stage1_CreditonStLawrence1.txt"]
     # document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
 
-    run_thematic_analysis(path, document_paths)
+    # run_thematic_analysis(path, document_paths)
+    run_eabss_scope_finalisation(path)
     # write_codes_csv_from_txt(path)
