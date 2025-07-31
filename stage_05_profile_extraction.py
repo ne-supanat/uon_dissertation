@@ -12,7 +12,7 @@ def extract_profile(
     path: SystemPath,
     document_paths: list[str],
 ):
-    with open(path.get_01_objective_path(), "r") as f:
+    with open(path.get_01_outline_path(), "r") as f:
         objective_statement = f.read()
         objective_statement: dict = json.loads(objective_statement)
         objective = objective_statement["objective"]
@@ -64,7 +64,7 @@ Summarise profile within 100 words that related to objective: {objective}
 Find supporting evidence (quotes) that related to objective and key components
 
 Using information from profile summary and quotes, 
-Identify attributes of this profile.
+Identify {1} answer from transcript for each attribute of this profile.
 {"\n".join([f'{i+1}. {attr}' for i,attr in enumerate(profile_attributes)])}
 
 Using information from profile summary and quotes, 

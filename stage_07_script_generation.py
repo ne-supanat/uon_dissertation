@@ -1,5 +1,5 @@
 import llm
-from models.response_models import KeyComponents, ScriptResponse, ThinkScriptResponse
+from models.response_models import ScopeThemeCode, ThinkScriptResponse
 import display_progress
 from models.archetypes import Archetype
 
@@ -60,10 +60,10 @@ def generate_simulation_script(
 ) -> ThinkScriptResponse:
     prompt = f"""
 Based on these EABSS key components:
-{KeyComponents.get_explanation()}
+{ScopeThemeCode.get_explanation()}
 
 And following model detail:
-{display_progress.setup_objective_progress(path)}
+{display_progress.display_topic_outline_progress(path)}
 {display_progress.eabss_components_progress(path)}
 Use case diagram:
 {eabss_usecase_diagram}
