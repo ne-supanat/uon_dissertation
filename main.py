@@ -44,6 +44,7 @@ def print_end_stage(is_last_stage: bool = False):
         print("-" * 50 + "\nAll model development stages completed\n" + "=" * 50)
         print("\nRun 'main.py' to review the progress.")
         print("Run 'main_post.py' to analyse the model output.")
+        print("Run 'main_eval.py' to evaluate the system outputs.")
 
 
 def run_setup_project(path: SystemPath):
@@ -57,17 +58,23 @@ def run_setup_project(path: SystemPath):
         display_progress.display_header()
 
 
-def run_setup_objective(path: SystemPath):
-    if not os.path.isfile(path.get_01_objective_path()):
-        stage_01_objective_setup.setup_objective(path)
+def run_setup_topic_outline(path: SystemPath):
+    if not os.path.isfile(path.get_01_topic_path()) or not os.path.isfile(
+        path.get_01_outline_path()
+    ):
+        # Setup topic and outline of the model
+        stage_01_objective_setup.setup_topic(path)
+        print()
+        stage_01_objective_setup.setup_outline(path)
 
-        print(display_progress.setup_objective_progress(path))
+        # Display topic & outline of the model
+        display_progress.display_topic_outline_progress(path)
 
         print_end_stage()
         sys.exit()
     else:
-        # Display objective result
-        print(display_progress.setup_objective_progress(path))
+        # Display topic & outline of the model
+        display_progress.display_topic_outline_progress(path)
 
 
 def run_build_eabss(path: SystemPath):
@@ -263,7 +270,7 @@ def main(
     run_setup_project(path)
 
     # Stage 01 Setup Objective
-    run_setup_objective(path)
+    run_setup_topic_outline(path)
 
     # Stage 02 Build EABSS scope
     run_build_eabss(path)

@@ -3,7 +3,7 @@ import json
 import csv
 from tabulate import tabulate, SEPARATING_LINE
 
-from models.response_models import KeyComponents
+from models.response_models import ScopeThemeCode
 from models.scenario_choices import ScenarioChoice
 
 from system_path import SystemPath
@@ -15,16 +15,26 @@ def display_header():
     print("\nCurrent progress")
 
 
-def setup_objective_progress(path: SystemPath):
-    str = "-" * 50 + "\n"
-    with open(path.get_01_objective_path(), "r") as f:
+def display_topic_outline_progress(path: SystemPath):
+    print("-" * 50)
+    with open(path.get_01_topic_path(), "r") as f:
+        content = f.read()
+        print(f"Model's Topic:")
+        print(content)
+        print()
+
+    with open(path.get_01_outline_path(), "r") as f:
         problem_statement_raw = f.read()
         problem_statement: dict = json.loads(problem_statement_raw)
-        str += f'Objective: {problem_statement["objective"]}\n'
-        str += f'Input/Experimental factor: {problem_statement["input"]}\n'
-        str += f'Output/Response: {problem_statement["output"]}'
-
-    return str
+        print(f"Model's Objective:")
+        print(problem_statement["objective"])
+        print()
+        print(f"Model's Experimental Factors(Input):")
+        print(problem_statement["input"])
+        print()
+        print(f"Model's Response:")
+        print(problem_statement["output"])
+        print()
 
 
 def eabss_components_progress(path: SystemPath):
@@ -34,15 +44,36 @@ def eabss_components_progress(path: SystemPath):
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)
 
+        for key in scope.keys():
+            component_name = ScopeThemeCode.get_component_names()[
+                ScopeThemeCode.get_component_keys().index(key)
+            ]
+
+            str += f"Component: {component_name}"
+
+            for item in scope[key]:
+                str += f"\n - Element: {item["element"]}"
+                str += f"\n   Description: {item["description"]}"
+            str += "\n\n"
+    return str
+
+
+def eabss_components_progress_table(path: SystemPath):
+    str = "-" * 50 + "\n"
+    str += "EABSS Components:\n"
+    with open(path.get_02_eabss_scope_path(), "r") as f:
+        scope_raw = f.read()
+        scope: dict = json.loads(scope_raw)
+
         table = []
         for key in scope.keys():
-            component = KeyComponents.get_component_names()[
-                KeyComponents.get_component_keys().index(key)
+            component_name = ScopeThemeCode.get_component_names()[
+                ScopeThemeCode.get_component_keys().index(key)
             ]
 
             for item in scope[key]:
-                elemenet = item["code"]
-                table.append([component, elemenet])
+                elemenet = item["element"]
+                table.append([component_name, elemenet])
 
     str += tabulate(table, headers=["Component", "Element"], tablefmt="rst")
     return str
@@ -258,8 +289,9 @@ if __name__ == "__main__":
     path = SystemPath("travel")
 
     # display_header()
-    # print(setup_objective_progress(path))
+    print(display_topic_outline_progress(path))
     # print(eabss_components_progress(path))
+    # print(eabss_components_progress_table(path))
     # print(diagram_header())
 
     # print(eabss_usecase_diagrams_progess(path))
@@ -277,4 +309,4 @@ if __name__ == "__main__":
     # print(visualisation_template_progess(path))
     # print(visualisation_analysis_progess(path))
     # print()
-    print(ground_truth_progess(path))
+    # print(ground_truth_progess(path))
