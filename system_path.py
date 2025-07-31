@@ -20,8 +20,14 @@ class SystemPath:
             data = json.loads(f.read())
         return data["profile"]
 
-    def get_01_objective_path(self):
-        return os.path.join(self.project_name, "01_objective.txt")
+    def get_01_topic_path(self):
+        return os.path.join(self.project_name, "01_topic.txt")
+
+    def get_01_potential_outline_path(self):
+        return os.path.join(self.project_name, "01_potential_outline.txt")
+
+    def get_01_outline_path(self):
+        return os.path.join(self.project_name, "01_outline.txt")
 
     def get_02_thematic_analysis_path(self):
         return os.path.join(self.project_name, "02_thematic_analysis_codes.txt")
