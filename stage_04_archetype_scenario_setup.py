@@ -1,4 +1,3 @@
-import json
 import re
 from google.genai.types import GenerateContentResponse
 
@@ -12,6 +11,72 @@ def design_profile_n_scenario(path: SystemPath):
     setup_profile_attribute(path)
     setup_archetype(path)
     setup_scenario(path)
+
+
+def setup_profile_attribute(path: SystemPath):
+    response = generate_potential_profile_attributes()
+
+    print("-" * 50)
+    print("Define profile attributes.")
+    print("-" * 50)
+    print()
+    print("Suggestions:")
+    for e in response.parsed:
+        print(f"    - {e}")
+
+    print(
+        f"""
+Example:
+    Please enter the number of attributes: 2
+    Enter Attribute 1 text: Age
+    Enter Attribute 2 text: Occupation
+
+{"-"*50}
+"""
+    )
+
+    while True:
+        try:
+            attributes_size = int(input("Please enter the number of attributes: "))
+            break
+        except:
+            pass
+
+    attributes = []
+    for i in range(attributes_size):
+        while True:
+            attributes_text = input(f"Enter Attribute {i+1} text: ")
+            if attributes_text.strip() != "":
+                break
+        attributes.append(attributes_text.strip())
+
+    # Example output
+    # ----------------
+    # Age
+    # Occupation
+
+    with open(path.get_04_attributes_path(), "w") as f:
+        f.write(f'{'\n'.join(attributes)}')
+
+    print()
+    print("-" * 50)
+    print(f"Profile attributes saved to: '{path.get_04_attributes_path()}'")
+
+
+def generate_potential_profile_attributes() -> GenerateContentResponse:
+    prompt = f"""
+Based on the scope
+{display_progress.eabss_scope_progress(path)}
+
+Please suggest {3} potential profile attributes.
+
+For example: Race, Age, Occupation
+"""
+    response = llm.generate_content(
+        prompt,
+        response_schema=list[str],
+    )
+    return response
 
 
 def setup_archetype(path: SystemPath):
@@ -93,72 +158,6 @@ And attribute
 
 Please suggest {3} potential archetypes.
 For example: Early Bird, Night Owl, Mixed
-"""
-    response = llm.generate_content(
-        prompt,
-        response_schema=list[str],
-    )
-    return response
-
-
-def setup_profile_attribute(path: SystemPath):
-    response = generate_potential_profile_attributes()
-
-    print("-" * 50)
-    print("Define profile attributes.")
-    print("-" * 50)
-    print()
-    print("Suggestions:")
-    for e in response.parsed:
-        print(f"    - {e}")
-
-    print(
-        f"""
-Example:
-    Please enter the number of attributes: 2
-    Enter Attribute 1 text: Age
-    Enter Attribute 2 text: Occupation
-
-{"-"*50}
-"""
-    )
-
-    while True:
-        try:
-            attributes_size = int(input("Please enter the number of attributes: "))
-            break
-        except:
-            pass
-
-    attributes = []
-    for i in range(attributes_size):
-        while True:
-            attributes_text = input(f"Enter Attribute {i+1} text: ")
-            if attributes_text.strip() != "":
-                break
-        attributes.append(attributes_text.strip())
-
-    # Example output
-    # ----------------
-    # Age
-    # Occupation
-
-    with open(path.get_04_attributes_path(), "w") as f:
-        f.write(f'{'\n'.join(attributes)}')
-
-    print()
-    print("-" * 50)
-    print(f"Profile attributes saved to: '{path.get_04_attributes_path()}'")
-
-
-def generate_potential_profile_attributes() -> GenerateContentResponse:
-    prompt = f"""
-Based on the scope
-{display_progress.eabss_scope_progress(path)}
-
-Please suggest {3} potential profile attributes.
-
-For example: Race, Age, Occupation
 """
     response = llm.generate_content(
         prompt,
