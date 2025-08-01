@@ -2,6 +2,7 @@ import json
 import pandas as pd
 from google.genai.types import GenerateContentResponse
 import ast
+import display_progress
 
 import llm
 from models.response_models import (
@@ -93,13 +94,6 @@ def write_codes_csv_from_txt(path: SystemPath):
 
 
 def run_eabss_scope_finalisation(path: SystemPath):
-    with open(path.get_01_outline_path(), "r") as f:
-        objective_statement = f.read()
-        objective_statement: dict = json.loads(objective_statement)
-        objective = objective_statement["objective"]
-        input = objective_statement["input"]
-        output = objective_statement["output"]
-
     # Finalise key components
     with open(path.get_02_thematic_analysis_path(), "r") as f:
         text = f.read()
@@ -120,11 +114,9 @@ def run_eabss_scope_finalisation(path: SystemPath):
     for component in list(component_dict.keys()):
         if component != "file":
             response = generate_eabss_scope(
+                path,
                 component,
                 component_dict[component],
-                objective,
-                input,
-                output,
             )
 
             final_component_dict[component] = ast.literal_eval(response.text)
@@ -140,12 +132,14 @@ def run_eabss_scope_finalisation(path: SystemPath):
 
 
 def generate_eabss_scope(
+    path: str,
     component: str,
     codes_quotes: list[dict],
-    objective: str,
-    input: str,
-    output: str,
 ) -> GenerateContentResponse:
+    component_name = ScopeThemeCode.get_component_names()[
+        ScopeThemeCode.get_component_keys().index(component)
+    ]
+
     theme_codes_str = ""
     for theme_code in codes_quotes:
         theme_codes_str += theme_code["code"] + "\n"
@@ -154,22 +148,20 @@ def generate_eabss_scope(
 
     # Finalise EABSS' given component
     prompt = f"""
-Following these key components
+Based on EABSS scope components
 {ScopeThemeCode.get_explanation()}
-    
 
-Based on following theme codes & quotes of {ScopeThemeCode.get_component_names()[
-                ScopeThemeCode.get_component_keys().index(component)
-            ]}
+Using following Theme codes & quotes of "{component_name}"
 
 {theme_codes_str}
-Select minimum items from the theme codes & quotes that are the most important to build Agent-based modelling simulation with
-Objective: {objective}
-Experiment factors (inputs): {input}
-Responses (outputs): {output}
 
-The final theme codes & quotes has at least {1} code
-Each with theme codes description and justification why you select them
+and Model's outline
+{display_progress.topic_outline_progress(path)}
+
+Select minimum items from the theme codes & quotes that are the most important to build Agent-based modelling simulation
+
+The final theme codes & quotes must have at least {1} code
+Each with theme codes short description and brief justification of why you select them
 """
     response = llm.generate_content(prompt, list[ScopeElement])
 

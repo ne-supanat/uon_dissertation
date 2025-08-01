@@ -26,7 +26,7 @@ def get_transcript_file_paths(source_directory):
         for filename in sorted(os.listdir(source_directory))
         if filename.endswith(".txt")
     ][
-        :1  # TODO: change back to all docs
+        :  # TODO: change back to all docs
     ]
 
 
@@ -68,13 +68,13 @@ def run_setup_topic_outline(path: SystemPath):
         stage_01_objective_setup.setup_outline(path)
 
         # Display topic & outline of the model
-        display_progress.display_topic_outline_progress(path)
+        print(display_progress.topic_outline_progress(path))
 
         print_end_stage()
         sys.exit()
     else:
         # Display topic & outline of the model
-        display_progress.display_topic_outline_progress(path)
+        print(display_progress.topic_outline_progress(path))
 
 
 def run_build_eabss(path: SystemPath):

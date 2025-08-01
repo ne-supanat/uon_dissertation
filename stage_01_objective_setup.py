@@ -43,7 +43,7 @@ def setup_outline(path: SystemPath):
         print(f" - {outline_input}")
     print()
 
-    input_experiment_factor = input("Enter model's Experimental Factors (Inputs)")
+    input_experiment_factor = input("Enter model's Experimental Factors (Inputs): ")
 
     print()
     print("Potential model's Responses (Outputs):")
@@ -51,7 +51,7 @@ def setup_outline(path: SystemPath):
         print(f" - {output}")
     print()
 
-    input_response = input("Enter model's Responses (Outputs)")
+    input_response = input("Enter model's Responses (Outputs): ")
 
     with open(path.get_01_outline_path(), "w") as f:
         dict = {

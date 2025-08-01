@@ -63,7 +63,7 @@ Based on these EABSS key components:
 {ScopeThemeCode.get_explanation()}
 
 And following model detail:
-{display_progress.display_topic_outline_progress(path)}
+{display_progress.topic_outline_progress(path)}
 {display_progress.eabss_scope_progress(path)}
 Use case diagram:
 {eabss_usecase_diagram}

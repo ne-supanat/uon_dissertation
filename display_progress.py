@@ -15,26 +15,27 @@ def display_header():
     print("\nCurrent progress")
 
 
-def display_topic_outline_progress(path: SystemPath):
-    print("-" * 50)
+def topic_outline_progress(path: SystemPath):
+    str = "-" * 50 + "\n"
     with open(path.get_01_topic_path(), "r") as f:
         content = f.read()
-        print(f"Model's Topic:")
-        print(content)
-        print()
+        str += f"Model's Topic:\n"
+        str += content
+        str += "\n\n"
 
     with open(path.get_01_outline_path(), "r") as f:
         problem_statement_raw = f.read()
         problem_statement: dict = json.loads(problem_statement_raw)
-        print(f"Model's Objective:")
-        print(problem_statement["objective"])
-        print()
-        print(f"Model's Experimental Factors(Input):")
-        print(problem_statement["input"])
-        print()
-        print(f"Model's Response:")
-        print(problem_statement["output"])
-        print()
+        str += f"Model's Objective:" + "\n"
+        str += problem_statement["objective"] + "\n"
+        str += "\n"
+        str += f"Model's Experimental Factors(Input):" + "\n"
+        str += problem_statement["input"] + "\n"
+        str += "\n"
+        str += f"Model's Response:" + "\n"
+        str += problem_statement["output"] + "\n"
+
+    return str
 
 
 def eabss_scope_progress(path: SystemPath):
@@ -289,7 +290,7 @@ if __name__ == "__main__":
     path = SystemPath("travel")
 
     # display_header()
-    print(display_topic_outline_progress(path))
+    print(topic_outline_progress(path))
     # print(eabss_components_progress(path))
     # print(eabss_components_progress_table(path))
     # print(diagram_header())
