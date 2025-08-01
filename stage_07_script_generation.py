@@ -64,7 +64,7 @@ Based on these EABSS key components:
 
 And following model detail:
 {display_progress.display_topic_outline_progress(path)}
-{display_progress.eabss_components_progress(path)}
+{display_progress.eabss_scope_progress(path)}
 Use case diagram:
 {eabss_usecase_diagram}
 {"-"*50}

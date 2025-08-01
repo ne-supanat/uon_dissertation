@@ -37,9 +37,9 @@ def display_topic_outline_progress(path: SystemPath):
         print()
 
 
-def eabss_components_progress(path: SystemPath):
+def eabss_scope_progress(path: SystemPath):
     str = "-" * 50 + "\n"
-    str += "EABSS Components:\n"
+    str += "EABSS Scope model:\n"
     with open(path.get_02_eabss_scope_path(), "r") as f:
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)

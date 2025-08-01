@@ -83,6 +83,11 @@ class ScopeThemeCode(ScopeComponent):
     key_activities: list[ThemeCode]
 
 
+class Scenario(BaseModel):
+    choices: list[str]
+    questions: list[str]
+
+
 class Profile(BaseModel):
     file: str
     summary: str

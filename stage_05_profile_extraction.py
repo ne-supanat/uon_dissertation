@@ -58,7 +58,7 @@ Base on this transcript
 {document}
 
 And EABSS component
-{display_progress.eabss_components_progress(path)}
+{display_progress.eabss_scope_progress(path)}
 
 Summarise profile within 100 words that related to objective: {objective}
 Find supporting evidence (quotes) that related to objective and key components

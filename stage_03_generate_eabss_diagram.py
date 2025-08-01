@@ -32,7 +32,7 @@ def generate_eabss_usecase_diagram(path: SystemPath):
 Following these key components
 {ScopeComponent.get_explanation()}
 
-{display_progress.eabss_components_progress(path)}
+{display_progress.eabss_scope_progress(path)}
 
 generate very simple comprehensive UML use case diagram of actor and key activities
 respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
@@ -125,7 +125,7 @@ def generate_eabss_class_diagram(
 Following these key components
 {ScopeComponent.get_explanation()}
 
-{display_progress.eabss_components_progress(path)}
+{display_progress.eabss_scope_progress(path)}
 
 And use case diagram
 {usecase_diagram}
@@ -144,7 +144,7 @@ def generate_eabss_activity_diagram(
 Following these key components
 {ScopeComponent.get_explanation()}
 
-{display_progress.eabss_components_progress(path)}
+{display_progress.eabss_scope_progress(path)}
 
 And use case diagram
 {usecase_diagram}
@@ -163,7 +163,7 @@ def generate_eabss_state_transition_diagram(
 Following these key components
 {ScopeComponent.get_explanation()}
 
-{display_progress.eabss_components_progress(path)}
+{display_progress.eabss_scope_progress(path)}
 
 And use case diagram
 {usecase_diagram}
@@ -182,7 +182,7 @@ def generate_eabss_interaction_diagram(
 Following these key components
 {ScopeComponent.get_explanation()}
 
-{display_progress.eabss_components_progress(path)}
+{display_progress.eabss_scope_progress(path)}
 
 And use case diagram
 {usecase_diagram}
