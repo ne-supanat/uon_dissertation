@@ -1,5 +1,0 @@
-{
-    "objective": "to observe travel habits of different lifestyle group",
-    "input": "number of people in the system",
-    "output": "travel choices ratio"
-}

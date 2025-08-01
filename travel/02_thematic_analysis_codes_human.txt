@@ -1,0 +1,543 @@
+-   Actors are agents which can be a person or groups or organisation inside the system
+-   Archetypes are categories of Actors defines what they are allowed or expected to do
+-   Physical components are objects or tools or systems that actors use
+-   Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-   Key activities are interactions between actors and actors or actors and system environment
+
+
+times: 
+
+{
+  "file": "data/travel_scope_txt/Stage3_Pennsylvania.txt",
+  "actors": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "physical_components": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "social_aspect": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "psychological_aspect": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "misc": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "key_activities": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+times: 16:40-18.21 ~ 1.40 hr
+
+{
+  "file": "data/travel_scope_txt/ Stage3_Cullompton North.txt",
+  "actors": [
+    {
+      "code": "resident",
+      "quotes": [
+        "I first came to Exeter"
+      ]
+    },
+    {
+      "code": "big businesses",
+      "quotes": [
+        "the other aspect is big businesses geared, they have always tried to stay one jump in front"
+      ]
+    },
+    {
+      "code": "public transport system",
+      "quotes": [
+        "this wouldn’t work because you need a functioning public transport system."
+      ]
+    },
+    {
+      "code": "government",
+      "quotes": [
+        "a government that tomorrow could change their mind and say alright we don’t want to spend the money they will save on a good public service"
+      ]
+    },
+  ],
+  "physical_components": [
+    {
+      "code": "cycling",
+      "quotes": [
+        "So therefore that brings in cycling and walking."
+      ]
+    },
+    {
+      "code": "walking",
+      "quotes": [
+        "So therefore that brings in cycling and walking."
+      ]
+    },
+    {
+      "code": "train",
+      "quotes": [
+        "I would also be in favour of better transport by train, rather than bus."
+      ]
+    },
+    {
+      "code": "bus",
+      "quotes": [
+        "I would also be in favour of better transport by train, rather than bus."
+      ]
+    },
+    {
+      "code": "car",
+      "quotes": [
+        "we are all very aware of the harm that can do with the sort of energy that cars use",
+        "Course moving slowly in that way because they used to have big cars now we have small cars"
+      ]
+    }
+  ],
+  "social_aspect": [
+    {
+      "code": "Big business action & policy",
+      "quotes": [
+        "Cities became congested when they brought in parking regulations to discourage people from bringing their cars in.  ",
+        "So what do big business do they move Tesco and everyone all to the outside and they make massive big car parks and they encourage people to use cars, and it just keeps doing that, not only that now the supermarkets are giving you discounted petrol to encourage you to carry on using."
+      ]
+    },
+    {
+      "code": "depend on car",
+      "quotes": [
+        "I find it very difficult to be optimistic about introducing things to encourage people to give up cars, I think society has got so dependant on the convenience and everything else that even if things were improved and other forms of transport were improved I think there still would be a lot of people that who would cling to that car because it means so much to them now",
+        "I think we’ve all become far too focused around the car now."
+      ]
+    },
+    {
+      "code": "car sharing",
+      "quotes": [
+        "they ran car clubs, because they all worked at the same place and they all started at the same time"
+      ]
+    },
+    {
+      "code": "individualism",
+      "quotes": [
+        "Far more individualism isn’t there, yes."
+      ]
+    }
+  ],
+  "psychological_aspect": [
+    {
+      "code": "Environmental awareness",
+      "quotes": [
+        "I think most people are buying into the idea that it’s healthier for the environment and for us as people if we were more active in our ways of travel, physically active. ",
+        "Non polluting, cheap."
+      ]
+    },
+    {
+      "code": "convenience",
+      "quotes": [
+        "Be nice just everyone downsizing to accommodate them, still to hang onto the convenience to get to and from and doing it when you want, is what I really want",
+        "people are prepared to pay a lot of money for convenience, especially those that are working."
+      ]
+    },
+    {
+      "code": "efficiency",
+      "quotes": [
+        "they just slap it against the board and it goes ‘ping’ and the driver hears the ping and if he doesn’t hear the ping that’s the only time he pays attention.  And you just go and sit down, on and off.",
+        "Efficient and the ticket also works on a train system, that goes round the city"
+      ]
+    },
+    {
+      "code": "reliability",
+      "quotes": [
+        "because of the reliability in the car, buses don’t go to certain villages because there’s nobody there to use the bus, everyone has got a car."
+      ]
+    },
+    {
+      "code": "cost",
+      "quotes": [
+        "the cost factor of train, rail travel that would appeal to people, and I think that’s the general consensus on rail travel",
+        "if you had cheap rail travel people would use the train."
+      ]
+    },
+    {
+      "code": "responsible",
+      "quotes": [
+        "if the public social, sense of social responsibility for their kids and grand kids in the future realise that unless things change those future generations are going to have problems"
+      ]
+    },
+  ],
+  "misc": [
+    {
+      "code": "congestion",
+      "quotes": [
+        "I mean one of the things which I think Thomas leaded to really, influencing people away from using cars would be certainly congestion"
+      ]
+    },
+    {
+      "code": "policy",
+      "quotes": [
+        "I think the policy is really not there to support people to start using public transport really.  "
+      ]
+    },
+    {
+      "code": "price",
+      "quotes": [
+        "I think rail is a great way to travel except for the price",
+        "they are still expensive (11.25) for the cost of one train ticket."
+      ]
+    },
+    {
+      "code": "destination distance",
+      "quotes": [
+        "you know long distances you can eliminate some things like walking and cycling"
+      ]
+    },
+    {
+      "code": "climate",
+      "quotes": [
+        "the thing that puts me off more than anything is our climate.  On good days I use my bike fairly often and on other days you know",
+        "I mean things like air quality"
+      ]
+    },
+  ],
+  "key_activities": [
+    {
+      "code": "travel to meet friend",
+      "quotes": [
+        "I mean you have already mentioned you would rather use the train for visiting friends rather the train instead of the car."
+      ]
+    },
+    {
+      "code": "holiday travel",
+      "quotes": [
+        "This time it’s related to holiday travel"
+      ]
+    },
+    {
+      "code": "promote ideas",
+      "quotes": [
+        "at some stage we have to start giving people the message that things have to change"
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+times: 13:36-14:41, 14:55-16:17 ~ 2 hrs
+
+{
+  "file": "data/travel_scope_txt/Stage3_St Loyes.txt",
+  "actors": [
+    {
+      "code": "Residents",
+      "quotes": [
+        "I also live on the edge of Exeter, on the east side of Exeter"
+      ]
+    },
+    {
+      "code": "Student",
+      "quotes": [
+        "I mean we were referring to students earlier on and I quite often see students"
+      ]
+    },
+    {
+      "code": "Government",
+      "quotes": [
+        "the Government wants more and more cars to be sold, and on the other hand they are saying they want people to use public transport, not cars"
+      ]
+    },
+    {
+      "code": "pedestrians",
+      "quotes": [
+        "I mean pedestrians and cyclists"
+      ]
+    },
+    {
+      "code": "cyclists",
+      "quotes": [
+        "I mean pedestrians and cyclists"
+      ]
+    }
+  ],
+  "physical_components": [
+    {
+      "code": "Walking",
+      "quotes": [
+        "but I also like walking to get from A to B healthily."
+      ]
+    },
+    {
+      "code": "Bus",
+      "quotes": [
+        "I mean for instance picking up the bus in the centre of Exeter",
+        "they are using the buses presumably because congestion is so bad"
+      ]
+    },
+    {
+      "code": "Free Bus Pass",
+      "quotes": [
+        "Now I’ve got a free bus pass I’ll use the bus!  So I’ve actually lost some of the exercise!"
+      ]
+    },
+    {
+      "code": "Bus Fares",
+      "quotes": [
+        "I mean bus fares I think are quite high."
+      ]
+    },
+    {
+      "code": "Tram",
+      "quotes": [
+        "it’s almost a continuous tram or something where they are coming along almost all the time"
+      ]
+    },
+    {
+      "code": "coaches",
+      "quotes": [
+        "we use coaches a lot, rather than the trains, but that’s choice"
+      ]
+    },
+    {
+      "code": "trains",
+      "quotes": [
+        "we use coaches a lot, rather than the trains, but that’s choice",
+        "I think they give you at least one or two more days if you travel by train instead of flying to some places."
+      ]
+    },
+    {
+      "code": "cars",
+      "quotes": [
+        "I don’t have a car, but I think they are taxed enough."
+      ]
+    },
+    {
+      "code": "electric cars",
+      "quotes": [
+        "I think I would certainly go along that, to encourage people to move towards electric cars or, dual fuel cars, that kind of thing"
+      ]
+    },
+    {
+      "code": "plane",
+      "quotes": [
+        "I think they give you at least one or two more days if you travel by train instead of flying to some places."
+      ]
+    },
+    {
+      "code": "tax",
+      "quotes": [
+        "but taxing individuals, not really so happy about."
+      ]
+    }
+  ],
+  "social_aspect": [
+    {
+      "code": "Parents took their kids to school",
+      "quotes": [
+        "I often think about is all the children that go in their parent’s car to school"
+      ]
+    },
+    {
+      "code": "environmental impacts",
+      "quotes": [
+        "when it comes to environmental impacts and congestions and these things you are already doing quite well, both using public transport and walking"
+      ]
+    },
+    {
+      "code": "company policy",
+      "quotes": [
+        "most firms or businesses have a car sharing day where they take in turns, colleagues take in turns picking up another member of staff or something.",
+        "Yes, some cycle to work days or something like that?"
+      ]
+    }
+  ],
+  "psychological_aspect": [
+    {
+      "code": "Motivation",
+      "quotes": [
+        "I’m thinking in terms of shorter distances within the city, then I mean it goes along with our aims to encourage people to become fitter and more active",
+        "And it benefits them that way, and it saves them money as well"
+      ]
+    },
+    {
+      "code": "convenience",
+      "quotes": [
+        "they would argue that they need the convenience, they haven’t got the time to use public transport"
+      ]
+    },
+    {
+      "code": "comfortable ",
+      "quotes": [
+        "a lot of people just, aren’t using public transport partly convenience but also I mean they are not that comfortable are they"
+      ]
+    },
+    {
+      "code": "climate awareness ",
+      "quotes": [
+        "Not because they felt that it was going to be not very good with regard to carbon omissions and that sort of thing."
+      ]
+    },
+    {
+      "code": "benefit",
+      "quotes": [
+        "I think they give you at least one or two more days if you travel by train instead of flying to some places."
+      ]
+    },
+    {
+      "code": "personal habit",
+      "quotes": [
+        "Personally I go abroad because I like architecture, historical facts"
+      ]
+    },
+    {
+      "code": "stuborness in older generation",
+      "quotes": [
+        "the older generation who smoke and say oh well I’ve gone this far I might just as well carry on I don’t want to give up, I’m going to carry on."
+      ]
+    },
+    
+  ],
+  "misc": [
+    {
+      "code": "Pollution of the air",
+      "quotes": [
+        "They did a survey and that was to do also with the pollution of the air as well as congestion"
+      ]
+    },
+    {
+      "code": "Congestion",
+      "quotes": [
+        "They did a survey and that was to do also with the pollution of the air as well as congestion"
+      ]
+    },
+    {
+      "code": "carbon omissions",
+      "quotes": [
+        "Not because they felt that it was going to be not very good with regard to carbon omissions and that sort of thing."
+      ]
+    }
+  ],
+  "key_activities": [
+    {
+      "code": "daily travel",
+      "quotes": [
+        "I mean on daily travel I mean I think people actually could walk more than they do"
+      ]
+    },
+    {
+      "code": "holiday travel",
+      "quotes": [
+        "I mean unfortunately holiday travel is a little bit responsible for the environment damages we are experiencing and flying is pretty much related to some negative effects"
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+{
+  "file": "data/travel_scope_txt/Stage3_St Loyes.txt",
+  "actors": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "archetypes": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "physical_components": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "social_aspect": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "psychological_aspect": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "misc": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ],
+  "key_activities": [
+    {
+      "code": "",
+      "quotes": [
+        ""
+      ]
+    }
+  ]
+}

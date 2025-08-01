@@ -1,1 +1,0 @@
-The NetLogo code should simulate travel mode choices based on archetypes and traffic conditions. The simulation will create turtles representing individuals with different archetypes. The 'go' procedure will simulate their daily travel choices, influenced by traffic congestion. The 'save' procedure will output the travel choices ratio to a CSV file.
