@@ -46,9 +46,7 @@ def eabss_scope_progress(path: SystemPath):
         scope: dict = json.loads(scope_raw)
 
         for key in scope.keys():
-            component_name = ScopeThemeCode.get_component_names()[
-                ScopeThemeCode.get_component_keys().index(key)
-            ]
+            component_name = ScopeThemeCode.get_component_name_from_key(key)
 
             str += f"Component: {component_name}"
 
@@ -59,7 +57,7 @@ def eabss_scope_progress(path: SystemPath):
     return str
 
 
-def eabss_components_progress_table(path: SystemPath):
+def eabss_scope_progress_table(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "EABSS Components:\n"
     with open(path.get_02_eabss_scope_path(), "r") as f:
@@ -68,9 +66,7 @@ def eabss_components_progress_table(path: SystemPath):
 
         table = []
         for key in scope.keys():
-            component_name = ScopeThemeCode.get_component_names()[
-                ScopeThemeCode.get_component_keys().index(key)
-            ]
+            component_name = ScopeThemeCode.get_component_name_from_key(key)
 
             for item in scope[key]:
                 elemenet = item["element"]
@@ -291,8 +287,8 @@ if __name__ == "__main__":
 
     # display_header()
     print(topic_outline_progress(path))
-    # print(eabss_components_progress(path))
-    # print(eabss_components_progress_table(path))
+    print(eabss_scope_progress(path))
+    print(eabss_scope_progress_table(path))
     # print(diagram_header())
 
     # print(eabss_usecase_diagrams_progess(path))

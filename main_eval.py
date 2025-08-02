@@ -12,6 +12,8 @@ import eval_06_scenario_decision_evaluation
 from system_path import SystemPath
 import display_progress
 
+from bert_score import BERTScorer
+
 # TODO: add comments
 # TODO: use BERTScore for summary result
 

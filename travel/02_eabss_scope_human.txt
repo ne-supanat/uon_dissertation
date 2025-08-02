@@ -1,0 +1,79 @@
+{
+    "actors": [
+        {
+            "element": "Residents",
+            "description": "People who live and travel in the system model",
+            "justification": "Main agent of the simulation model"
+        }
+    ],
+    "physical_components": [
+        {
+            "element": "Walking",
+            "description": "The most environmental friendly method, great for short distance travelling",
+            "justification": "One common methods for travelling"
+        },
+        {
+            "element": "Cycling",
+            "description": "The most environmental friendly method, great for short-medium distance travelling",
+            "justification": "One common methods for travelling"
+        },
+        {
+            "element": "Cars",
+            "description": "The most popular method for travelling",
+            "justification": "One common methods for travelling"
+        },
+        {
+            "element": "Public transport",
+            "description": "An option of public transport for travelling in the city, this element includes buses, trains and trams",
+            "justification": "One common methods for travelling"
+        }
+    ],
+    "social_aspect": [
+        {
+            "element": "Car dependency",
+            "description": "People dependent on cars because of its convenience and society push",
+            "justification": "Majority of people choose car as primary transport mode"
+        },
+        {
+            "element": "Reduce carbon emission",
+            "description": "A policy from government or company to reduce carbon emission and environmental impact of the city",
+            "justification": "This is the effect of intervention policy"
+        }
+    ],
+    "psychological_aspect": [
+        {
+            "element": "Ready to change behaviour if it reasonable",
+            "description": "Some people want to change their behaviour but environment or society not support",
+            "justification": "this element can reflect change in agent's behaviour"
+        },
+        {
+            "element": "Choose best transport mode best on personal view",
+            "description": "People consider convenience, efficiency, reliability and cost before decide which transportation method suit them best",
+            "justification": "This element directly affect decision of commuter"
+        },
+        {
+            "element": "Climate awareness",
+            "description": "Awareness and knowledge about climate and environment",
+            "justification": "A strong awareness can change person's behaviour"
+        }
+    ],
+    "misc": [
+        {
+            "element": "Carbon emissions level",
+            "description": "Level of CO2 the system omit from transport mode such as cars",
+            "justification": "This is the main measurement of sustainability improvement from intervention policy"
+        },
+        {
+            "element": "Commuter satisfaction",
+            "description": "This element represent level of positive oppinion of commuters to intervention policy",
+            "justification": "This element add complexity to the model by measure public opinion in the system model"
+        }
+    ],
+    "key_activities": [
+        {
+            "element": "Daily travel",
+            "description": "An action of agent moving from one place to another such as to work to school and shopping",
+            "justification": "This is the main action of agent in the system to observe transport mode choices and carbon emission from agent activity"
+        }
+    ]
+}

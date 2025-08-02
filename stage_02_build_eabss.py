@@ -52,6 +52,7 @@ Perform thematic analysis and identify key theme codes and supporting quotes for
 Following these key components
 {ScopeComponent.get_explanation()}
 
+The codes must be in this format Theme Code NOT ThemeCode
 Each component has at least {2} codes
 Each theme code has maximum of {2} quotes. Quote must be exactly the same as original text and come from the same line.
 
@@ -133,12 +134,10 @@ def run_eabss_scope_finalisation(path: SystemPath):
 
 def generate_eabss_scope(
     path: str,
-    component: str,
+    component_key: str,
     codes_quotes: list[dict],
 ) -> GenerateContentResponse:
-    component_name = ScopeThemeCode.get_component_names()[
-        ScopeThemeCode.get_component_keys().index(component)
-    ]
+    component_name = ScopeThemeCode.get_component_name_from_key(component_key)
 
     theme_codes_str = ""
     for theme_code in codes_quotes:
@@ -160,6 +159,7 @@ and Model's outline
 
 Select minimum items from the theme codes & quotes that are the most important to build Agent-based modelling simulation
 
+The codes (element) must be in this format Theme Code NOT ThemeCode
 The final theme codes & quotes must have at least {1} code
 Each with theme codes short description and brief justification of why you select them
 """

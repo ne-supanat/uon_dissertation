@@ -43,25 +43,14 @@ class ScopeComponent(BaseModel):
     misc: list[ScopeElement]
     key_activities: list[ScopeElement]
 
-    def get_component_names():
-        return [
-            "Actors",
-            "Physical Components",
-            "Social Aspect",
-            "Psychological Aspect",
-            "Misc",
-            "Key Activities",
-        ]
-
     def get_component_keys():
-        return [
-            "actors",
-            "physical_components",
-            "social_aspect",
-            "psychological_aspect",
-            "misc",
-            "key_activities",
-        ]
+        return ScopeInfo().keys
+
+    def get_component_names():
+        return ScopeInfo().names
+
+    def get_component_name_from_key(key):
+        return ScopeInfo().names[ScopeInfo().keys.index(key)]
 
     def get_explanation():
         return """-   Actors are agents which can be a person or groups or organisation inside the system
@@ -94,3 +83,23 @@ class Profile(BaseModel):
     quotes: list[str]
     attributes: list[str]
     archetype: Archetype
+
+
+class ScopeInfo:
+    keys = [
+        "actors",
+        "physical_components",
+        "social_aspect",
+        "psychological_aspect",
+        "misc",
+        "key_activities",
+    ]
+
+    names = [
+        "Actors",
+        "Physical Components",
+        "Social Aspect",
+        "Psychological Aspect",
+        "Misc",
+        "Key Activities",
+    ]

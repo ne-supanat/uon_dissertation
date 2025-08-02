@@ -27,7 +27,6 @@
         "It’s the same as pedestrians, pedestrians have got the right to cross the road as well."
       ]
     }
-     
   ],
   "physical_components": [
     {
@@ -71,7 +70,7 @@
       "quotes": [
         "I was going to say about motorcycles, we haven’t mentioned them"
       ]
-    },
+    }
   ],
   "social_aspect": [
     {
@@ -113,7 +112,7 @@
       "quotes": [
         "But the vast majority of people probably want to get from A to B, in the most efficient way."
       ]
-    },
+    }
   ],
   "misc": [
     {
@@ -133,7 +132,7 @@
       "quotes": [
         "All the buses and trains at rush hour are crazy but there are ways around it."
       ]
-    },
+    }
   ],
   "key_activities": [
     {
@@ -177,7 +176,7 @@
       "quotes": [
         "a government that tomorrow could change their mind and say alright we don’t want to spend the money they will save on a good public service"
       ]
-    },
+    }
   ],
   "physical_components": [
     {
@@ -280,7 +279,7 @@
       "quotes": [
         "if the public social, sense of social responsibility for their kids and grand kids in the future realise that unless things change those future generations are going to have problems"
       ]
-    },
+    }
   ],
   "misc": [
     {
@@ -314,7 +313,7 @@
         "the thing that puts me off more than anything is our climate.  On good days I use my bike fairly often and on other days you know",
         "I mean things like air quality"
       ]
-    },
+    }
   ],
   "key_activities": [
     {
@@ -375,8 +374,7 @@
         "That’s how they do it on the underground in London, you can see exactly how long before a train.",
         "The trains are very good.  I think here in the south west, not far from the beach and I have used trains in the past."
       ]
-    },
-    
+    }
   ],
   "social_aspect": [
     {
@@ -402,7 +400,7 @@
       "quotes": [
         "I assume you’re not married?  No encumbrants."
       ]
-    },
+    }
   ],
   "psychological_aspect": [
     {
@@ -417,8 +415,7 @@
         "it’s so easy just to pop it in the car, if you’ve got to carry it it’s very different.",
         "a car is it will probably take you from a to b, but if you go by public transport it will only get you so far to b, or so far away from a."
       ]
-    },
-    
+    }
   ],
   "misc": [
     {
@@ -426,7 +423,7 @@
       "quotes": [
         "I find the thing that puts me off public transport is its infrequency and also it’s cost"
       ]
-    }
+    },
     {
       "code": "the traffic jams",
       "quotes": [
@@ -445,6 +442,104 @@
       "code": "holiday travel",
       "quotes": [
         "Unfortunately holiday travel is pretty much related to environmental effects and carbon emissions at the moment"
+      ]
+    }
+  ]
+}
+
+
+{
+  "file": "data/travel_scope_txt/Stage3_Polsloe.txt",
+  "actors": [
+    {
+      "code": "residents",
+      "quotes": [
+        "I’m Matt, I live in Exeter, I teach. I’m married with kids.",
+        "I’m Derek, I live in Mount Pleasant, married with a daughter."
+      ]
+    }
+  ],
+  "physical_components": [
+    {
+      "code": "cars",
+      "quotes": [
+        "I think we have developed to a point where we’re very dependent on cars"
+      ]
+    },
+    {
+      "code": "bicycle",
+      "quotes": [
+        "bicycles being feeling dangerous to cycle on the roads "
+      ]
+    },
+    {
+      "code": "bus",
+      "quotes": [
+        "buses being too expensive and I think it kind of reflects a general issue with transport that we are being told to use public transport more "
+      ]
+    }
+  ],
+  "social_aspect": [
+    {
+      "code": "car dependency",
+      "quotes": [
+        "I think we have developed to a point where we’re very dependent on cars"
+      ]
+    },
+    {
+      "code": "car sharing",
+      "quotes": [
+        "at the hospital they use the car share scheme a lot, and that’s working really well actually."
+      ]
+    }
+  ],
+  "psychological_aspect": [
+    {
+      "code": "safety",
+      "quotes": [
+        "I’d like it to be a bit safer for the bicycles.  It’s really dangerous with the cars, it makes people not want to go out on bikes, I know lots of people say they just don’t want to cycle because it’s just too dangerous",
+        "If it was safer and there was better cycle lanes then I would do that.  "
+      ]
+    },
+    {
+      "code": "not happy with current public transport cost",
+      "quotes": [
+        "I think the other thing is nobody has mentioned buses and the cost of them, I mean buses in Exeter are ridiculous",
+        "5 buses come by and not one of them are you allowed to catch at certain times of the day because they are coming from Cullompton, it’s park and ride, it’s another park and ride you know.  That’s so annoying.  That doesn’t help matters does it really."
+      ]
+    },
+    {
+      "code": "convenience",
+      "quotes": [
+        "Well it’s a great idea not to use cars and everything, but they are terribly convenient to get from A to B, it’s sad really but I can’t cycle miles and miles and miles."
+      ]
+    }
+  ],
+  "misc": [
+    {
+      "code": "Congestion",
+      "quotes": [
+        "Too many cars on the road in Exeter.  That’s simple isn’t it.  Congestion in Exeter is pretty crazy at certain times of the day."
+      ]
+    },
+    {
+      "code": "cost",
+      "quotes": [
+        ".  I especially think buses but more than buses trains are ridiculously expensive"
+      ]
+    }
+  ],
+  "key_activities": [
+    {
+      "code": "daily travel",
+      "quotes": [
+        "General, holiday, daily travel anything you can think of."
+      ]
+    },
+    {
+      "code": "holiday travel",
+      "quotes": [
+        "General, holiday, daily travel anything you can think of."
       ]
     }
   ]
@@ -618,8 +713,7 @@
       "quotes": [
         "the older generation who smoke and say oh well I’ve gone this far I might just as well carry on I don’t want to give up, I’m going to carry on."
       ]
-    },
-    
+    }
   ],
   "misc": [
     {
@@ -652,103 +746,6 @@
       "code": "holiday travel",
       "quotes": [
         "I mean unfortunately holiday travel is a little bit responsible for the environment damages we are experiencing and flying is pretty much related to some negative effects"
-      ]
-    }
-  ]
-}
-
-{
-  "file": "data/travel_scope_txt/Stage3_Polsloe.txt",
-  "actors": [
-    {
-      "code": "residents",
-      "quotes": [
-        "I’m Matt, I live in Exeter, I teach. I’m married with kids.",
-        "I’m Derek, I live in Mount Pleasant, married with a daughter."
-      ]
-    }
-  ],
-  "physical_components": [
-    {
-      "code": "cars",
-      "quotes": [
-        "I think we have developed to a point where we’re very dependent on cars"
-      ]
-    },
-    {
-      "code": "bicycle",
-      "quotes": [
-        "bicycles being feeling dangerous to cycle on the roads "
-      ]
-    },
-    {
-      "code": "bus",
-      "quotes": [
-        "buses being too expensive and I think it kind of reflects a general issue with transport that we are being told to use public transport more "
-      ]
-    }
-  ],
-  "social_aspect": [
-    {
-      "code": "car dependency",
-      "quotes": [
-        "I think we have developed to a point where we’re very dependent on cars"
-      ]
-    },
-    {
-      "code": "car sharing",
-      "quotes": [
-        "at the hospital they use the car share scheme a lot, and that’s working really well actually."
-      ]
-    },
-  ],
-  "psychological_aspect": [
-    {
-      "code": "safety",
-      "quotes": [
-        "I’d like it to be a bit safer for the bicycles.  It’s really dangerous with the cars, it makes people not want to go out on bikes, I know lots of people say they just don’t want to cycle because it’s just too dangerous",
-        "If it was safer and there was better cycle lanes then I would do that.  "
-      ]
-    },
-    {
-      "code": "not happy with current public transport cost",
-      "quotes": [
-        "I think the other thing is nobody has mentioned buses and the cost of them, I mean buses in Exeter are ridiculous",
-        "5 buses come by and not one of them are you allowed to catch at certain times of the day because they are coming from Cullompton, it’s park and ride, it’s another park and ride you know.  That’s so annoying.  That doesn’t help matters does it really."
-      ]
-    },
-    {
-      "code": "convenience",
-      "quotes": [
-        "Well it’s a great idea not to use cars and everything, but they are terribly convenient to get from A to B, it’s sad really but I can’t cycle miles and miles and miles."
-      ]
-    },
-  ],
-  "misc": [
-    {
-      "code": "Congestion",
-      "quotes": [
-        "Too many cars on the road in Exeter.  That’s simple isn’t it.  Congestion in Exeter is pretty crazy at certain times of the day."
-      ]
-    },
-    {
-      "code": "cost",
-      "quotes": [
-        ".  I especially think buses but more than buses trains are ridiculously expensive"
-      ]
-    }
-  ],
-  "key_activities": [
-    {
-      "code": "daily travel",
-      "quotes": [
-        "General, holiday, daily travel anything you can think of."
-      ]
-    },
-    {
-      "code": "holiday travel",
-      "quotes": [
-        "General, holiday, daily travel anything you can think of."
       ]
     }
   ]

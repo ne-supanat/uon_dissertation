@@ -58,19 +58,19 @@ Based on following theme codes & quotes of {component_name}
 Select minimum items from the theme codes & quotes that are the most important to build Agent-based modelling simulation with
 
 Objective: 
-{objective}
+To observe the adoption rate of sustainable travel modes under different policy scenarios.
 
 Experiment factors (inputs): 
-{input}
+Intervention strategies
 
 Responses (outputs): 
-{output}
+Carbon emissions level, Commuter satisfaction
 
 The final theme codes & quotes has at least 1 code
 Each with theme codes description and justification of why you select them
 //
 
 == note ==
-total times: 
+total times: 11:10-11:50 ~ 40 mins
 
 --- 03 diagrams ---

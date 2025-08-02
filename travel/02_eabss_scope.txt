@@ -1,199 +1,79 @@
 {
     "actors": [
         {
-            "element": "Cyclists",
-            "description": "Cyclists' perspectives on road safety and taxation.",
-            "justification": "Important for modelling cyclist behavior and their interaction with other road users. Safety concerns directly impact their mode choice."
-        },
-        {
-            "element": "Car Drivers",
-            "description": "Car drivers' motivations based on convenience and perceived road congestion.",
-            "justification": "Captures the primary driver for car usage, which is crucial for understanding mode choice decisions and the impact of congestion."
-        },
-        {
-            "element": "Travelers",
-            "description": "General travel patterns for various purposes (shopping, leisure).",
-            "justification": "Provides a broad overview of travel behavior, essential for simulating overall travel demand and mode distribution."
-        },
-        {
-            "element": "Government",
-            "description": "Government policies related to carbon emission reduction and their perceived impact on travel habits.",
-            "justification": "Crucial for modelling the influence of policy interventions on travel behavior and their effectiveness in achieving sustainability goals."
-        },
-        {
-            "element": "Public Transport Users",
-            "description": "Public transport users' affordability concerns and issues with bus services.",
-            "justification": "Highlights the importance of cost and service quality in influencing public transport adoption, which is vital for modelling mode shift."
-        },
-        {
-            "element": "Council",
-            "description": "Council's role in traffic management and infrastructure development, and public perception of their effectiveness.",
-            "justification": "Captures the influence of local infrastructure and traffic management policies on travel behavior and overall system efficiency."
-        },
-        {
-            "element": "IndividualTravellers",
-            "description": "Individual travellers' perception on changing travel habits",
-            "justification": "Captures the influence of individual perception on travel behavior and overall system efficiency."
+            "element": "Residents Commuters",
+            "description": "Individuals who live in the area and travel to work.",
+            "justification": "Crucial for modelling daily travel patterns and the impact of interventions on commuting habits. The quote highlights the importance of convenience in mode choice."
         }
     ],
     "physical_components": [
         {
-            "element": "Public Transport",
-            "description": "Accessibility, cost, and efficiency of public transport options.",
-            "justification": "Crucial for modelling mode choice, as it directly impacts the attractiveness of sustainable alternatives to private vehicles. Quotes highlight the need for better, cheaper public transport."
+            "element": "Cycling",
+            "description": "The most environmental friendly method, great for short-medium distance travelling",
+            "justification": "One common methods for travelling"
         },
         {
             "element": "Cars",
-            "description": "Dominance and convenience of car usage.",
-            "justification": "Reflects the entrenched reliance on cars for various activities, influencing travel behavior. Quotes emphasize the convenience factor despite environmental concerns."
+            "description": "Interrelated arguments surrounding car use.",
+            "justification": "Acknowledges the complex and interconnected factors influencing car use, emphasizing the need for a holistic approach to promoting sustainable travel. This is important for modelling the interplay of different factors influencing travel behavior."
         },
         {
-            "element": "Cycle Paths",
-            "description": "Availability and safety of cycling infrastructure.",
-            "justification": "Impacts the feasibility and attractiveness of cycling as a sustainable mode. Quotes point out issues with cycle path continuity and safety."
-        },
-        {
-            "element": "Buses",
-            "description": "Cost and accessibility of bus services.",
-            "justification": "Buses are a key component of public transport and their cost and accessibility directly influence their usage. Quotes highlight concerns about expense and the need for better integration with other transport modes."
-        },
-        {
-            "element": "Traffic Lights",
-            "description": "Traffic management infrastructure affecting travel times.",
-            "justification": "Traffic lights can influence congestion and travel times, impacting mode choice decisions. Quotes suggest that poorly placed traffic lights can discourage car use, but also increase travel time."
+            "element": "Public Transport",
+            "description": "Limitations of public transport for family holidays.",
+            "justification": "Identifies a specific context (family holidays) where public transport may not be a viable alternative, highlighting the need for tailored solutions. This is important for modelling travel behavior in different lifestyle contexts."
         }
     ],
     "social_aspect": [
         {
+            "element": "Public Transport Reliability",
+            "description": "The reliability and frequency of public transport services.",
+            "justification": "Crucial for modelling commuter choices. If public transport is unreliable, individuals are less likely to adopt it, directly impacting carbon emissions and commuter satisfaction."
+        },
+        {
             "element": "Car Dependency Norms",
-            "description": "People are very dependent on cars for work and travel, making it difficult to shift to other modes.",
-            "justification": "This is a fundamental aspect influencing travel behavior and needs to be represented to understand the resistance to change."
-        },
-        {
-            "element": "Cycling Safety Norms",
-            "description": "Perceptions and realities of cycling safety influence mode choice.",
-            "justification": "Safety concerns are a significant barrier to cycling adoption and must be included to accurately model mode shift."
-        },
-        {
-            "element": "Convenience",
-            "description": "The convenience of cars is a major factor in their continued use.",
-            "justification": "Convenience often outweighs other considerations, making it crucial for understanding mode choice decisions."
-        },
-        {
-            "element": "Cost of travel",
-            "description": "The cost of public transport influences mode choice.",
-            "justification": "Cost is a key factor, especially when comparing different travel options."
-        },
-        {
-            "element": "PolicyRegulations",
-            "description": "Government policies and regulations impact travel behavior.",
-            "justification": "Policies are key intervention strategies and must be included to model their effects on travel behavior."
+            "description": "The societal norms and habits that promote car usage.",
+            "justification": "This captures the ingrained reliance on cars for work and travel, which is a significant barrier to sustainable travel adoption. It influences how people respond to intervention strategies."
         }
     ],
     "psychological_aspect": [
         {
-            "element": "Reluctance to Change",
-            "description": "Individuals are resistant to altering their travel habits, even when presented with the need for more sustainable options.",
-            "justification": "This is a key psychological barrier that directly impacts the adoption rate of sustainable travel modes. Understanding the strength of this reluctance is crucial for designing effective intervention strategies."
+            "element": "Behavioral Inertia",
+            "description": "Reluctance to change travel habits despite awareness of the need for sustainable options.",
+            "justification": "Captures the resistance to adopting new travel behaviors, a crucial factor in modeling adoption rates of sustainable travel modes. It highlights the importance of understanding the status quo bias."
         },
         {
-            "element": "Appreciating Positives",
-            "description": "The extent to which individuals recognize and value the benefits (e.g., health, cost savings) associated with sustainable travel options.",
-            "justification": "Highlighting the positives can counteract the reluctance to change. The model needs to account for how effectively individuals perceive and internalize these benefits."
+            "element": "Perceived Convenience",
+            "description": "The belief that current travel methods (primarily car use) are more convenient than sustainable alternatives.",
+            "justification": "Convenience is a major driver of travel choices.  Modeling how individuals weigh convenience against environmental concerns is essential for predicting the impact of interventions."
         },
         {
-            "element": "Habit",
-            "description": "Travel choices are often driven by ingrained habits, making it difficult to switch to alternative modes.",
-            "justification": "Habitual behavior is a significant factor in travel decisions. The model should consider how interventions can disrupt existing habits and promote the formation of new, sustainable ones."
+            "element": "Frustration with Public Transport",
+            "description": "Negative experiences and perceptions of public transport, such as infrequency and cost.",
+            "justification": "This directly impacts the willingness to switch to public transport.  The model needs to account for these negative perceptions and how they influence mode choice."
         },
         {
-            "element": "Mindset",
-            "description": "The general attitude and beliefs individuals hold towards sustainable travel and its importance.",
-            "justification": "A fundamental shift in mindset is often necessary for widespread adoption of sustainable travel. The model should explore how interventions can influence this mindset and its subsequent impact on travel behavior."
-        },
-        {
-            "element": "Inconvenience of public transport",
-            "description": "Perceived or actual inconvenience associated with using public transport compared to private vehicles.",
-            "justification": "This is a practical and psychological barrier. The model needs to account for how individuals weigh the convenience of different modes and how this influences their choices."
-        },
-        {
-            "element": "Attitudes Towards Public Transport",
-            "description": "Preconceived notions and biases individuals hold about public transport, including perceptions of social status, comfort, and safety.",
-            "justification": "Negative attitudes can significantly hinder the adoption of public transport. The model should consider how interventions can address these attitudes and improve the perceived image of public transport."
-        },
-        {
-            "element": "Perception of Safety",
-            "description": "Concerns about personal safety when using certain sustainable travel modes, such as cycling or walking.",
-            "justification": "Safety perceptions are a critical factor, especially for vulnerable road users. The model should account for how safety improvements and awareness campaigns can influence mode choice."
-        },
-        {
-            "element": "PerceivedConvenience",
-            "description": "Subjective assessment of the ease and efficiency of using sustainable travel options compared to private vehicles.",
-            "justification": "Even if objectively convenient, if individuals perceive sustainable options as inconvenient, they are less likely to adopt them. The model needs to capture this subjective perception."
+            "element": "Climate awareness",
+            "description": "Awareness and knowledge about climate and environment",
+            "justification": "A strong awareness can change person's behaviour"
         }
     ],
     "misc": [
         {
-            "element": "Climate Change",
-            "description": "The existence and impact of climate change.",
-            "justification": "Climate change is a primary driver for promoting sustainable travel, directly influencing the model's objective of reducing carbon emissions."
+            "element": "Carbon emissions level",
+            "description": "Level of CO2 the system omit from transport mode such as cars",
+            "justification": "This is the main measurement of sustainability improvement from intervention policy"
         },
         {
-            "element": "Cost of Public Transport",
-            "description": "The expense associated with using public transportation.",
-            "justification": "Cost is a significant barrier to adopting sustainable travel modes, affecting commuter satisfaction and influencing mode choice decisions within the ABM."
-        },
-        {
-            "element": "Congestion",
-            "description": "Traffic congestion levels in urban areas.",
-            "justification": "Congestion influences travel times and mode choices, impacting both carbon emissions and commuter satisfaction, making it a crucial factor in the simulation."
-        },
-        {
-            "element": "Carbon Emissions Targets",
-            "description": "Governmental goals for reducing carbon emissions.",
-            "justification": "These targets provide a benchmark for evaluating the effectiveness of intervention strategies and directly relate to the model's response variable of carbon emissions level."
-        },
-        {
-            "element": "Environment",
-            "description": "The general health and state of the environment.",
-            "justification": "Highlights the importance of sustainable travel for environmental well-being, reinforcing the need to model behaviors that minimize environmental impact."
-        },
-        {
-            "element": "GeographicalFactors",
-            "description": "The impact of geographical elements",
-            "justification": "Highlights the importance of geographical elements such as cycling facilities"
-        },
-        {
-            "element": "EconomicConsiderations",
-            "description": "The impact of economic elements",
-            "justification": "Highlights the importance of economic elements such as affordability"
+            "element": "Commuter satisfaction",
+            "description": "This element represent level of positive oppinion of commuters to intervention policy",
+            "justification": "This element add complexity to the model by measure public opinion in the system model"
         }
     ],
     "key_activities": [
         {
             "element": "Commuting",
-            "description": "Individuals' daily travel to and from work.",
-            "justification": "A core activity that significantly impacts carbon emissions and commuter satisfaction, directly relevant to the model's response variables."
-        },
-        {
-            "element": "Policy Making",
-            "description": "The creation of transport policies at local or national levels.",
-            "justification": "Policies influence travel behavior and the adoption of sustainable modes, making it a key input (experimental factor) for the ABM simulation."
-        },
-        {
-            "element": "Policy Implementation",
-            "description": "The practical application of transport policies, such as workplace parking charges.",
-            "justification": "Implementation affects the effectiveness of interventions and influences commuter choices, linking policy to behavior."
-        },
-        {
-            "element": "ModeChoice",
-            "description": "The decision-making process individuals undergo when selecting a travel method.",
-            "justification": "Understanding mode choice is crucial for predicting how individuals will respond to different policies and interventions, impacting both carbon emissions and satisfaction."
-        },
-        {
-            "element": "PolicyEvaluation",
-            "description": "Assessing the effectiveness and consistency of transport policies.",
-            "justification": "Policy evaluation provides feedback on the success of interventions and informs future policy adjustments within the simulation."
+            "description": "Daily travel to and from work or other regular activities.",
+            "justification": "Crucial for modelling daily travel patterns and understanding the impact of interventions on regular travel behaviour, directly affecting carbon emissions and commuter satisfaction."
         }
     ]
 }
