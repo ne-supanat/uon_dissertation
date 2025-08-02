@@ -34,8 +34,11 @@ Following these key components
 
 {display_progress.eabss_scope_progress(path)}
 
-generate very simple comprehensive UML use case diagram of actor and key activities
-respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
+Generate UML use case diagram of actor and key activities
+Respond in mermaid.js format
+Use flowchart LR
+For actor and use case use box element. For example, Actor1["Actor Title"]
+To link them with arrow use -->
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -68,6 +71,9 @@ def buidl_eabss_remaining_diagrams(path: SystemPath):
         choice = 1
 
     main_actor = actors[choice - 1]
+
+    with open(path.get_03_eabss_main_actor_path(), "w") as f:
+        f.write(main_actor)
 
     with open(path.get_03_eabss_usecase_diagram_path(), "r") as f:
         usecase_diagram = f.read()
@@ -127,11 +133,11 @@ Following these key components
 
 {display_progress.eabss_scope_progress(path)}
 
-And use case diagram
+Use case diagram:
 {usecase_diagram}
 
-Generate very simple comprehensive UML class diagram of "{main_actor}" that have relevant attributes and actions they might perform.
-respond in mermaid.js format
+Generate UML class diagram of "{main_actor}" that have relevant attributes and actions they might perform.
+Respond in mermaid.js format
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -149,8 +155,13 @@ Following these key components
 And use case diagram
 {usecase_diagram}
 
-Generate very simple comprehensive UML activity diagram of "{main_actor}"
-respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML uactivity diagram)
+Generate UML activity diagram of "{main_actor}"
+Respond in mermaid.js format
+Use flowchart TD
+For action use box element. For example, Action["Action"]
+For decision node use diamond shape. For example, Decision{"{Decision}"}
+To link them with arrow use -->
+To have text in link use -- Text --> 
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -169,7 +180,15 @@ And use case diagram
 {usecase_diagram}
 
 Generate very simple comprehensive state machine diagram of "{main_actor}" and Key activities
-respond in mermaid.js format
+Respond in mermaid.js format
+Use stateDiagram
+For entry point use [*]
+For state transition use -->
+
+Example state transition wake up and sleeping:
+[*] --> Sleeping
+Sleeping --> WakeUp: is morning 
+WakeUp --> Sleeping: is night 
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
@@ -188,14 +207,19 @@ And use case diagram
 {usecase_diagram}
 
 Generate very simple comprehensive UML sequence diagram of "{main_actor}"
-respond in mermaid.js format
+Respond in mermaid.js format
+Use sequenceDiagram
+For "{main_actor}" use actor {main_actor}
+For other objects use participant Object
+To show interaction link use ->> for solid line and -->> for dotted line
+To add text in link use Actor->>Object: Action
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_travel_1")
+    path = SystemPath("travel")
 
     # build_eabss_usecase_diagrams(path)
     buidl_eabss_remaining_diagrams(path)

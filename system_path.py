@@ -38,6 +38,9 @@ class SystemPath:
     def get_02_eabss_scope_path(self):
         return os.path.join(self.project_name, "02_eabss_scope.txt")
 
+    def get_03_eabss_main_actor_path(self):
+        return os.path.join(self.project_name, "03_main_actor.txt")
+
     def get_03_eabss_usecase_diagram_path(self):
         return os.path.join(self.project_name, "03_eabss_diagram_usecase_diagram.txt")
 
