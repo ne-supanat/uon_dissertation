@@ -14,7 +14,7 @@ def design_profile_n_scenario(path: SystemPath):
 
 
 def setup_profile_attribute(path: SystemPath):
-    response = generate_potential_profile_attributes()
+    response = generate_potential_profile_attributes(path)
 
     print("-" * 50)
     print("Define profile attributes.")
@@ -63,12 +63,15 @@ Example:
     print(f"Profile attributes saved to: '{path.get_04_attributes_path()}'")
 
 
-def generate_potential_profile_attributes() -> GenerateContentResponse:
+def generate_potential_profile_attributes(path: SystemPath) -> GenerateContentResponse:
+    with open(path.get_03_eabss_main_actor_path(), "r") as f:
+        main_actor = f.read()
+
     prompt = f"""
 Based on the scope
 {display_progress.eabss_scope_progress(path)}
 
-Please suggest {3} potential profile attributes.
+Please suggest {3} potential {main_actor} attributes.
 
 For example: Race, Age, Occupation
 """
@@ -83,7 +86,7 @@ def setup_archetype(path: SystemPath):
     with open(path.get_04_attributes_path()) as f:
         attributes = f.read().strip().splitlines()
 
-    response = generate_potential_archetype(attributes)
+    response = generate_potential_archetype(path, attributes)
 
     print("-" * 50)
     print("Define Agent Archetypes")
@@ -148,7 +151,12 @@ Example:
     print(f"System's Archetype model updated at: '{model_archetype_path}'")
 
 
-def generate_potential_archetype(attributes: list[str]) -> GenerateContentResponse:
+def generate_potential_archetype(
+    path: SystemPath, attributes: list[str]
+) -> GenerateContentResponse:
+    with open(path.get_03_eabss_main_actor_path(), "r") as f:
+        main_actor = f.read()
+
     prompt = f"""
 Based on the scope
 {display_progress.eabss_scope_progress(path)}
@@ -156,7 +164,7 @@ Based on the scope
 And attribute
 {", ".join(attributes)}
 
-Please suggest {3} potential archetypes.
+Please suggest {3} potential {main_actor} archetypes.
 For example: Early Bird, Night Owl, Mixed
 """
     response = llm.generate_content(
@@ -167,7 +175,7 @@ For example: Early Bird, Night Owl, Mixed
 
 
 def setup_scenario(path: SystemPath):
-    response = generate_potential_scenario()
+    response = generate_potential_scenario(path)
     scenario: Scenario = response.parsed
 
     print("-" * 50)
@@ -202,7 +210,8 @@ def setup_scenario(path: SystemPath):
     print()
 
 
-def generate_potential_scenario() -> GenerateContentResponse:
+def generate_potential_scenario(path: SystemPath) -> GenerateContentResponse:
+
     prompt = f"""
 Based on the scope
 {display_progress.eabss_scope_progress(path)}

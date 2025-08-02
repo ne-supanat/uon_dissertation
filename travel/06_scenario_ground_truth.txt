@@ -1,0 +1,66 @@
+[
+    {
+        "question": "Which choice best reflects your current commuting behavior?",
+        "answer": {
+            "Eco-Conscious Commuter": [
+                "Cycling",
+                "Public transport"
+            ],
+            "Convenience-Driven Commuter": [
+                "Cars"
+            ],
+            "Cost-Sensitive Commuter": [
+                "Cars",
+                "Public transport",
+                "Cycling"
+            ]
+        }
+    },
+    {
+        "question": "Which choice would you be most likely to make if public transport reliability significantly improved?",
+        "answer": {
+            "Eco-Conscious Commuter": [
+                "Public transport",
+                "Cycling"
+            ],
+            "Convenience-Driven Commuter": [
+                "Public transport"
+            ],
+            "Cost-Sensitive Commuter": [
+                "Public transport"
+            ]
+        }
+    },
+    {
+        "question": "Which choice would you be most likely to make if parking charge in urban areas, fuel taxes and car taxes increased?",
+        "answer": {
+            "Eco-Conscious Commuter": [
+                "Cycling",
+                "Public transport"
+            ],
+            "Convenience-Driven Commuter": [
+                "Public transport"
+            ],
+            "Cost-Sensitive Commuter": [
+                "Cycling",
+                "Public transport"
+            ]
+        }
+    },
+    {
+        "question": "Which choice would you be most likely to make if there are no car day?",
+        "answer": {
+            "Eco-Conscious Commuter": [
+                "Cycling",
+                "Public transport"
+            ],
+            "Convenience-Driven Commuter": [
+                "Public transport"
+            ],
+            "Cost-Sensitive Commuter": [
+                "Cycling",
+                "Public transport"
+            ]
+        }
+    }
+]

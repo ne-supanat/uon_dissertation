@@ -1,5 +1,6 @@
 import enum
 
 class Archetype(enum.Enum):
-	Environmentalists = "environmentalists"
-	NonEnvironmentalists = "non-environmentalists"
+	EcoConsciousCommuter = "Eco-Conscious Commuter"
+	ConvenienceDrivenCommuter = "Convenience-Driven Commuter"
+	CostSensitiveCommuter = "Cost-Sensitive Commuter"

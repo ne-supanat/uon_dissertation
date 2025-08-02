@@ -1,0 +1,107 @@
+turtles-own [
+  archetype
+  preferred-transport-mode ; Add this line
+]
+
+globals [
+  carbon-emissions-level
+  intervention-strategy ; 1 = improved public transport, 2 = increased car costs, 3 = no car day
+]
+
+to setup
+  clear-all
+  set carbon-emissions-level 0
+  set intervention-strategy 0 ; Initialize to no intervention
+
+  create-turtles 100 [
+    setxy random-xcor random-ycor
+    set shape "person"
+
+    ; Randomly assign an archetype
+    let archetype-index random 3
+    ifelse archetype-index = 0 [
+      set color 5
+      set archetype "Eco-Conscious Commuter"
+    ] [
+      ifelse archetype-index = 1 [
+        set color 15
+        set archetype "Convenience-Driven Commuter"
+      ] [
+        set color 25
+        set archetype "Cost-Sensitive Commuter"
+      ]
+    ]
+    set preferred-transport-mode ""
+  ]
+  reset-ticks
+end
+
+to go
+  tick
+
+  ; Set intervention strategy (example: change every 100 ticks)
+  if ticks mod 200 = 0 [ set intervention-strategy 1 ] ; Improved public transport
+  if ticks mod 200 = 100 [ set intervention-strategy 2 ] ; Increased car costs
+  ;if ticks mod 300 = 200 [ set intervention-strategy 3 ] ; No car day
+  if ticks mod 200 = 150 [ set intervention-strategy 0 ] ; No intervention
+
+  ask turtles [
+    activity
+  ]
+
+  calculate-emissions
+  save
+  if ticks = 500 [ stop ]
+end
+
+to activity
+  ; Determine transport mode based on archetype and intervention
+  let rand random-float 1
+  ifelse archetype = "Eco-Conscious Commuter" [
+    ifelse intervention-strategy = 1 [ ; Improved public transport
+      ifelse rand < 0.53 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+    ] [
+      ifelse intervention-strategy = 2 [ ; Increased car costs
+        ifelse rand < 0.5 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+      ] [
+        ;ifelse intervention-strategy = 3 [ ; No car day
+        ;  ifelse rand < 0.37 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+        ;] [
+          ifelse rand < 0.6 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+        ;]
+      ]
+    ]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      ifelse intervention-strategy = 1 [ set preferred-transport-mode "Public Transport" ] [ ifelse intervention-strategy = 2 [ set preferred-transport-mode "Public Transport" ] [ set preferred-transport-mode "Cars" ] ]
+    ] [
+      ; Cost-Sensitive Commuter
+      ifelse intervention-strategy = 1 [ set preferred-transport-mode "Public Transport" ] [
+        ifelse intervention-strategy = 2 [
+          ifelse rand < 0.45 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+        ] [
+          ;ifelse intervention-strategy = 3 [
+          ;  ifelse rand < 0.55 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+          ;] [
+            ifelse rand < 0.45 [ set preferred-transport-mode "Cycling" ] [ ifelse rand < 0.66 [set preferred-transport-mode "Cars"] [set preferred-transport-mode "Public Transport"]]
+          ;]
+        ]
+      ]
+    ]
+  ]
+end
+
+to calculate-emissions
+  ; Simplified emission calculation (adjust as needed)
+  let cycling-emission 0
+  let car-emission 10 ; Higher emission
+  let public-transport-emission 5
+
+  set carbon-emissions-level sum [ifelse preferred-transport-mode = "Cycling" [cycling-emission] [ifelse preferred-transport-mode = "Cars" [car-emission] [public-transport-emission]]] of turtles
+end
+
+to save
+  file-open "outputs.csv"
+  file-print carbon-emissions-level ; Output carbon emissions
+  file-close
+end

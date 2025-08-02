@@ -1,94 +1,123 @@
 turtles-own [
   archetype
-  preferred-transport-mode ; Add this line
+  ; physical-object
+  travel-mode ; Add a variable to store the chosen travel mode
 ]
 
 globals [
-  carbon-emissions-level
-  selected-stategy
-  ;intervention-strategy ; 1 = improved public transport, 2 = increased car costs, 3 = no car day
+  ;traffic-congestion ; 0 (no congestion) to 1 (severe congestion)
 ]
 
 to setup
   clear-all
-  set carbon-emissions-level 0
-  ;set intervention-strategy 0 ; Initialize to no intervention
 
-  create-turtles 100 [
+  ;set traffic-congestion 0.5 ; Initialize traffic congestion
+
+  create-turtles 100 [ ;number of people in the system
     setxy random-xcor random-ycor
     set shape "person"
 
     ; Randomly assign an archetype
-    let archetype-index random 3
+    let archetype-index random 7
     ifelse archetype-index = 0 [
       set color 5
-      set archetype "Eco-Conscious Commuter"
+      set archetype "Car owner"
     ] [
       ifelse archetype-index = 1 [
         set color 15
-        set archetype "Convenience-Driven Commuter"
+        set archetype "Bus pass holder"
       ] [
-        set color 25
-        set archetype "Cost-Sensitive Commuter"
+        ifelse archetype-index = 2 [
+          set color 25
+          set archetype "Students"
+        ] [
+          ifelse archetype-index = 3 [
+            set color 35
+            set archetype "Commuter"
+          ] [
+            ifelse archetype-index = 4 [
+              set color 45
+              set archetype "Car dependent"
+            ] [
+              ifelse archetype-index = 5 [
+                set color 55
+                set archetype "Public transport user"
+              ] [
+                set color 65
+                set archetype "Environmentally Conscious Commuter"
+              ]
+            ]
+          ]
+        ]
       ]
     ]
-    set preferred-transport-mode ""
   ]
   reset-ticks
 end
 
 to go
   tick
-
-  ; Set intervention strategy (example: change every 100 ticks)
-  ;if ticks mod 200 = 0 [ set intervention-strategy 1 ] ; Improved public transport
-  ;if ticks mod 200 = 100 [ set intervention-strategy 2 ] ; Increased car costs
-  ;;if ticks mod 300 = 200 [ set intervention-strategy 3 ] ; No car day
-  ;if ticks mod 200 = 150 [ set intervention-strategy 0 ] ; No intervention
-
-
-  set selected-stategy position intervention-strategy ["No intervention" "Improved public transport" "Increased car costs" "No car day"]
-
   ask turtles [
-    activity
+    activity ; Each turtle chooses a travel mode based on its archetype and traffic conditions
   ]
 
-  calculate-emissions
-  ;save
-  ;if ticks = 500 [ stop ]
+  save ; Save the travel choices ratio
+  if ticks mod 500 = 0 [ stop ]
 end
 
-to activity
-  ; Determine transport mode based on archetype and intervention
+to activity ; Mode choice decision
+  ; Determine travel mode based on archetype and traffic congestion
   let rand random-float 1
-
-  ifelse archetype = "Eco-Conscious Commuter" [
-    ifelse selected-stategy = 1 [ ; Improved public transport
-      ifelse rand < 0.53 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+  ifelse archetype = "Car owner" [
+    ifelse traffic-congestion > 0.5 [ ; If traffic is congested
+      if rand < 0.1 [set travel-mode "Bus"] ; 10% chance to take the bus
+      if rand > 0.1 and rand < 0.2 [set travel-mode "Train"] ; 10% chance to take the train
+      if rand > 0.2 [set travel-mode "Car"] ; 80% chance to take the car
     ] [
-      ifelse selected-stategy = 2 [ ; Increased car costs
-        ifelse rand < 0.5 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
-      ] [
-        ifelse selected-stategy = 3 and ticks mod 7 = 0 [ ; No car day
-          ifelse rand < 0.37 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
-        ] [
-          ifelse rand < 0.6 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
-        ]
-      ]
+      set travel-mode "Car" ; Otherwise, always take the car
     ]
   ] [
-    ifelse archetype = "Convenience-Driven Commuter" [
-      ifelse selected-stategy = 0 [ set preferred-transport-mode "Cars" ] [ set preferred-transport-mode "Public Transport" ]
+    ifelse archetype = "Bus pass holder" [
+      ifelse traffic-congestion > 0.5 [
+        set travel-mode "Bus" ; Always take the bus if congested
+      ] [
+        if rand < 0.9 [set travel-mode "Bus"] ; 90% chance to take the bus
+        if rand > 0.9 [set travel-mode "Car"] ; 10% chance to take the car
+      ]
     ] [
-      ; Cost-Sensitive Commuter
-      ifelse selected-stategy = 1 [ set preferred-transport-mode "Public Transport" ] [
-        ifelse selected-stategy = 2 [
-          ifelse rand < 0.45 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+      ifelse archetype = "Students" [
+        if rand < 0.4 [set travel-mode "Bus"]
+        if rand > 0.4 and rand < 0.8 [set travel-mode "Train"]
+        if rand > 0.8 [set travel-mode "Car"]
+      ] [
+        ifelse archetype = "Commuter" [
+          if rand < 0.3 [set travel-mode "Bus"]
+          if rand > 0.3 and rand < 0.6 [set travel-mode "Train"]
+          if rand > 0.6 [set travel-mode "Car"]
         ] [
-          ifelse selected-stategy = 3 and ticks mod 7 = 0 [
-            ifelse rand < 0.55 [ set preferred-transport-mode "Cycling" ] [ set preferred-transport-mode "Public Transport" ]
+          ifelse archetype = "Car dependent" [
+            ifelse traffic-congestion > 0.5 [
+              if rand < 0.5 [set travel-mode "Bus"]
+              if rand > 0.5 [set travel-mode "Train"]
+            ] [
+              set travel-mode "Car"
+            ]
           ] [
-            ifelse rand < 0.45 [ set preferred-transport-mode "Cycling" ] [ ifelse rand < 0.66 [set preferred-transport-mode "Cars"] [set preferred-transport-mode "Public Transport"]]
+            ifelse archetype = "Public transport user" [
+              if rand < 0.8 [set travel-mode "Bus"]
+              if rand > 0.8 [set travel-mode "Train"]
+            ] [
+              ifelse archetype = "Environmentally Conscious Commuter" [
+                ifelse traffic-congestion > 0.5 [
+                  set travel-mode "Bus"
+                ] [
+                  if rand < 0.8 [set travel-mode "Bus"]
+                  if rand > 0.8 [set travel-mode "Train"]
+                ]
+              ] [
+                set travel-mode "Car" ; Default to car if no archetype matches
+              ]
+            ]
           ]
         ]
       ]
@@ -96,35 +125,33 @@ to activity
   ]
 end
 
-to calculate-emissions
-  ; Simplified emission calculation (adjust as needed)
-  let cycling-emission 0
-  let car-emission 10 ; Higher emission
-  let public-transport-emission 5
-
-  let total-cycling-emission count turtles with [preferred-transport-mode = "Cycling"] * cycling-emission
-  let total-car-emission count turtles with [preferred-transport-mode = "Cars"] * car-emission
-  let total-public-transport-emission count turtles with [preferred-transport-mode = "Public Transport"] * public-transport-emission
-
-  set carbon-emissions-level total-cycling-emission + total-car-emission + total-public-transport-emission
-
-  ;set carbon-emissions-level sum [ifelse preferred-transport-mode = "Cycling" [cycling-emission] [ifelse preferred-transport-mode = "Cars" [car-emission] [public-transport-emission]]] of turtles
-end
-
 to save
   file-open "outputs.csv"
-  file-print carbon-emissions-level ; Output carbon emissions
+
+  ; Calculate travel mode ratios
+  let num-turtles count turtles
+  let bus-users count turtles with [ travel-mode = "Bus" ]
+  let train-users count turtles with [ travel-mode = "Train" ]
+  let car-users count turtles with [ travel-mode = "Car" ]
+
+  let bus-ratio (bus-users / num-turtles)
+  let train-ratio (train-users / num-turtles)
+  let car-ratio (car-users / num-turtles)
+
+  ; Output the ratios to the file
+  file-print (word bus-users " , " train-users " , " car-users)
+
   file-close
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-378
+387
 10
-673
-306
+824
+448
 -1
 -1
-8.7
+13.0
 1
 10
 1
@@ -145,10 +172,10 @@ ticks
 30.0
 
 BUTTON
-10
-50
-76
-83
+19
+32
+85
+65
 NIL
 setup
 NIL
@@ -162,10 +189,10 @@ NIL
 1
 
 BUTTON
-88
-50
-151
-83
+21
+91
+84
+124
 NIL
 go
 T
@@ -179,86 +206,39 @@ NIL
 1
 
 PLOT
-11
-319
-219
-460
-Cycling users
+24
+159
+374
+391
+Transportation Mode Usage
 day
-users
+total use
 0.0
 50.0
 0.0
 100.0
 true
 true
-"set-plot-y-range 0 count turtles" ""
+"" ";set-plot-x-range ticks - 50 ticks"
 PENS
-"Bus" 1.0 0 -13840069 true "" "plot count turtles with [ preferred-transport-mode = \"Cycling\" ]"
+"Bus" 1.0 0 -13840069 true "" "plot count turtles with [ travel-mode = \"Bus\" ]"
+"Train" 1.0 0 -13791810 true "" "plot count turtles with [ travel-mode = \"Train\" ]"
+"Car" 1.0 0 -2674135 true "" "plot count turtles with [ travel-mode = \"Car\" ]"
 
-CHOOSER
-10
-93
-221
-138
-intervention-strategy
-intervention-strategy
-"No intervention" "Improved public transport" "Increased car costs" "No car day"
-3
-
-PLOT
-10
-149
-365
-310
-Carbon Emission Level
+SLIDER
+127
+32
+340
+65
+traffic-congestion
+traffic-congestion
+0
+1
+1.0
+1
+1
 NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot carbon-emissions-level"
-
-PLOT
-226
-317
-433
-460
-Car users
-day
-users
-0.0
-10.0
-0.0
-10.0
-true
-false
-"set-plot-y-range 0 count turtles" ""
-PENS
-"default" 1.0 0 -2674135 true "" "plot count turtles with [ preferred-transport-mode = \"Cars\" ]"
-
-PLOT
-441
-316
-649
-460
-Public transport users
-day
-users
-0.0
-10.0
-0.0
-10.0
-true
-false
-"set-plot-y-range 0 count turtles" ""
-PENS
-"default" 1.0 0 -13791810 true "" "plot count turtles with [ preferred-transport-mode = \"Public Transport\" ]"
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

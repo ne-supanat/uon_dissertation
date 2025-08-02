@@ -64,8 +64,12 @@ Summarise profile within 100 words that related to objective: {objective}
 Find supporting evidence (quotes) that related to objective and key components
 
 Using information from profile summary and quotes, 
-Identify {1} answer from transcript for each attribute of this profile.
-{"\n".join([f'{i+1}. {attr}' for i,attr in enumerate(profile_attributes)])}
+Identify {1} answer from transcript for all {len(profile_attributes)} attribute of this profile.
+Respond in this format
+[
+    "attribute1: answer",
+    "attribute2: answer"
+]
 
 Using information from profile summary and quotes, 
 Classify this profile archetype from archetype in EABSS component

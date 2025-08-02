@@ -62,11 +62,6 @@
             "element": "Carbon emissions level",
             "description": "Level of CO2 the system omit from transport mode such as cars",
             "justification": "This is the main measurement of sustainability improvement from intervention policy"
-        },
-        {
-            "element": "Commuter satisfaction",
-            "description": "This element represent level of positive oppinion of commuters to intervention policy",
-            "justification": "This element add complexity to the model by measure public opinion in the system model"
         }
     ],
     "key_activities": [

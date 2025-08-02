@@ -1,2 +1,3 @@
-environmentalists
-non-environmentalists
+Eco-Conscious Commuter
+Convenience-Driven Commuter
+Cost-Sensitive Commuter

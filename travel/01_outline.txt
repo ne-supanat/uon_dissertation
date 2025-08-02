@@ -1,5 +1,5 @@
 {
     "objective": "To observe the adoption rate of sustainable travel modes under different policy scenarios.",
     "input": "Intervention strategies",
-    "output": "Carbon emissions level, Commuter satisfaction"
+    "output": "Carbon emissions level"
 }

@@ -17,7 +17,6 @@ from system_path import SystemPath
 
 # TODO: resume the process: error at profile 3 > should continue at profile 4
 # TODO: add comments
-# TODO: criteria table
 
 
 def get_transcript_file_paths(source_directory):
@@ -213,7 +212,7 @@ def run_create_decision_probability_table(path: SystemPath):
             print(
                 f"Select the method to answer the scenario question{"s" if len(questions) > 1 else ""}"
             )
-            profile_str = "profile" + "s" if profile_size > 1 else ""
+            profile_str = "profile" + ("s" if profile_size > 1 else "")
             print(
                 f"1. Use {profile_str} based on extracted {profile_str} ({profile_size} result{"s" if profile_size>1 else ""})"
             )

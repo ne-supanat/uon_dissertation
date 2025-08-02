@@ -1,0 +1,10 @@
+flowchart LR
+    subgraph Actors
+        Commuters["Commuters"]
+    end
+
+    subgraph Key_Activities
+        Commuting["Commuting"]
+    end
+
+    Commuters --> Commuting
