@@ -328,8 +328,72 @@ Generate very simple comprehensive UML activity diagram of "Commuters"
 Respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML uactivity diagram)
 //
 
-
-
 == note ==
-times: 13.06
+
 ---
+// Prompt Example
+Base on this transcript
+
+{transcript}
+
+Model's outline:
+--------------------------------------------------
+Model's Topic:
+This research explores the motivations and barriers encountered by individuals for adopting more ‘sustainable’ forms of travel behaviour in a range of lifestyle contexts, including travel for work, leisure and holidays. the research seeks to uncover the factors that influence a highly complex set of behaviors related to travel in the UK and explores practical measures for changing current practices amongst different lifestyle groups.
+
+Model's Objective:
+To observe the adoption rate of sustainable travel modes under different policy scenarios.
+
+Model's Experimental Factors(Input):
+Intervention strategies
+
+Model's Response:
+Carbon emissions level
+
+
+Scenario detail:
+--------------------------------------------------
+Scenario answer choices:
+1. Cycling
+2. Cars
+3. Public transport
+--------------------------------------------------
+Scenario questions:
+1. Which choice best reflects your current commuting behavior?
+2. Which choice would you be most likely to make if public transport reliability significantly improved?
+3. Which choice would you be most likely to make if parking charge in urban areas, fuel taxes and car taxes increased?
+4. Which choice would you be most likely to make if there are no car day?
+
+Summarise profile within 100 words that relevant to model's outline and scenario detail
+Find supporting evidence (quotes) that related to model's outline and scenario detail
+
+Using information from transcript to identify attributes:
+environmental awareness level
+
+Identify an answer for each attribute in total of 1 attributes.
+Respond in this format
+[
+    "attribute1: answer",
+    "attribute2: answer"
+]
+
+Using information from profile summary and quotes, 
+Classify this profile archetype
+
+file is {document path}
+//
+== note ==
+file: "data/travel_profile_txt/CreditonStLawrence.txt",
+time: 9:30-10:25, 10:42-11:25 ~ 1:40 hrs (skim part1, skip part3)
+
+file: "data/travel_profile_txt/CullomptonNorth.txt",
+time: 13:11-13:28, 13:33-13:44 ~ 30 minutes (only focus on scenario questions)
+
+file: "data/travel_profile_txt/Pennsylvania1.txt",
+time: 14:46-15:24 ~ 40 minutes
+
+file: "data/travel_profile_txt/Pennsylvania2.txt",
+time: 15:32-16:06
+
+file: "data/travel_profile_txt/StLoyes.txt",
+times: 16.53-17:26 ~ 30 minutes
