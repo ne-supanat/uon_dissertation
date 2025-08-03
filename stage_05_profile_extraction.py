@@ -57,14 +57,19 @@ Base on this transcript
 
 {document}
 
-And EABSS component
-{display_progress.eabss_scope_progress(path)}
+Model's outline:
+{display_progress.topic_outline_progress(path)}
 
-Summarise profile within 100 words that related to objective: {objective}
-Find supporting evidence (quotes) that related to objective and key components
+Scenario detail:
+{display_progress.scenario_progess(path)}
 
-Using information from profile summary and quotes, 
-Identify {1} answer from transcript for all {len(profile_attributes)} attribute of this profile.
+Summarise profile within 100 words that relevant to model's outline and scenario detail
+Find supporting evidence (quotes) that related to model's outline and scenario detail
+
+Using information from transcript to identify attributes:
+{", ".join(profile_attributes)}
+
+Identify an answer for each attribute in total of {len(profile_attributes)} attributes.
 Respond in this format
 [
     "attribute1: answer",
@@ -72,7 +77,7 @@ Respond in this format
 ]
 
 Using information from profile summary and quotes, 
-Classify this profile archetype from archetype in EABSS component
+Classify this profile archetype
 
 file is {document_path}
 """
@@ -81,6 +86,6 @@ file is {document_path}
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_4")
-    document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
+    path = SystemPath("travel")
+    document_paths = ["data/mvp/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"][:1]
     extract_profile(path, document_paths)
