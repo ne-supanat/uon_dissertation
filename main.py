@@ -15,7 +15,7 @@ import display_progress
 from system_path import SystemPath
 
 
-# TODO: resume the process: error at profile 3 > should continue at profile 4
+# TODO: (optional) resume the process: error at profile 3 > should continue at profile 4
 # TODO: add comments
 
 
@@ -24,8 +24,6 @@ def get_transcript_file_paths(source_directory):
         f"{os.path.join(source_directory, filename)}"
         for filename in sorted(os.listdir(source_directory))
         if filename.endswith(".txt")
-    ][
-        :  # TODO: change back to all docs
     ]
 
 

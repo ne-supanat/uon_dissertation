@@ -16,6 +16,10 @@ from bert_score import BERTScorer
 
 # TODO: add comments
 
+# TODO: result reflect form (for better structure review)
+# TODO: compare ground truth and profile's decision probs
+# TODO: visualisation analysis
+
 
 def ask_continue() -> bool:
     approve = None
@@ -68,18 +72,19 @@ def main(project_name: str, show_all: bool):
 
     # Evaluate thematic analysis
     run_evaluate_thematic_analysis(path, show_all)
+    print()
 
     # Evaluate Profiles
     run_evaluate_extract_profile(path, show_all)
+    print()
 
-    # Create Decision probability table
-    run_evaluate_create_decision_probability_table(path)
+    # # Create Decision probability table
+    # run_evaluate_create_decision_probability_table(path)
 
     print()
 
 
 if __name__ == "__main__":
-    # TODO: pick source & project from terminal (optional)
     parser = argparse.ArgumentParser("Main Evaluation")
     parser.add_argument("project_name", help="A project name", type=str)
     parser.add_argument(

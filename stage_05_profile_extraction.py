@@ -64,7 +64,7 @@ Scenario detail:
 {display_progress.scenario_progess(path)}
 
 Summarise profile within 100 words that relevant to model's outline and scenario detail
-Find supporting evidence (quotes) that related to model's outline and scenario detail
+Find supporting evidence (quotes) that related to model's outline and scenario detail. Quote must be exactly the same as original text and come from the same line.
 
 Using information from transcript to identify attributes:
 {", ".join(profile_attributes)}
@@ -76,7 +76,7 @@ Respond in this format
     "attribute2: answer"
 ]
 
-Using information from profile summary and quotes, 
+Using information from profile summary and quotes,
 Classify this profile archetype
 
 file is {document_path}
