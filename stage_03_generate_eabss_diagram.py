@@ -1,5 +1,3 @@
-import json
-
 import llm
 from models.response_models import (
     ScopeComponent,

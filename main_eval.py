@@ -15,7 +15,6 @@ import display_progress
 from bert_score import BERTScorer
 
 # TODO: add comments
-# TODO: use BERTScore for summary result
 
 
 def ask_continue() -> bool:

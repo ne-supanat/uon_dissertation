@@ -1,10 +1,6 @@
 import json
 import numpy as np
 
-import llm
-from models.archetypes import Archetype
-from models.scenario_choices import ScenarioChoice
-
 from system_path import SystemPath
 
 
