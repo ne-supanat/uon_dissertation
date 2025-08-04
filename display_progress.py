@@ -189,6 +189,7 @@ def profile_scenario_answer_progess(path: SystemPath):
 
 def decision_probability_table_progess(path: SystemPath):
     str = "-" * 50 + "\n"
+    str += "Decision probability table:\n"
 
     # Example output
     # ---------------------
