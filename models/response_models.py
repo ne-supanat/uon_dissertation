@@ -73,8 +73,16 @@ class ScopeThemeCode(ScopeComponent):
 
 
 class Scenario(BaseModel):
-    choices: list[str]
-    questions: list[str]
+    scenario: str
+    actions: list[str]
+
+
+class ScenarioList(BaseModel):
+    scenarios: list[Scenario]
+
+
+class ActionProbability(BaseModel):
+    probs: list[float]
 
 
 class Profile(BaseModel):

@@ -1,10 +1,7 @@
-import os
 import json
-import csv
 from tabulate import tabulate, SEPARATING_LINE
 
-from models.response_models import ScopeThemeCode
-from models.scenario_choices import ScenarioChoice
+from models.response_models import ScopeThemeCode, Scenario
 
 from system_path import SystemPath
 
@@ -140,56 +137,25 @@ def attribute_progess(path: SystemPath):
 
 
 def scenario_progess(path: SystemPath):
-    str = "-" * 50 + "\n"
-    str += "Scenario answer choices:"
-    with open(path.get_04_scenario_choices_path(), "r") as f:
-        content = f.read()
-    for i, choice in enumerate(content.strip().splitlines()):
-        str += f"\n{i+1}. {choice}"
-
-    str += "\n" + "-" * 50 + "\n"
-    str += "Scenario questions:"
-    with open(path.get_04_scenario_questions_path(), "r") as f:
-        content = f.read()
-    for i, question in enumerate(content.splitlines()):
-        str += f"\n{i+1}. {question}"
-
-    return str
-
-
-def ground_truth_progess(path: SystemPath):
     # Example output
     # ---------------------
-    # Scenario ground truth:
-    #
-    # Question1:
-    # archetype1: choice, choice
-    # archetype2: choice, choice
-    #
-    # Question2:
-    # archetype1: choice, choice
-    # archetype2: choice, choice
+    # Scenarios:
+    # Scenario 1: It is friday night. How likely are you to...
+    # Actions: Stay at home, Go to party, Go to restaurant
 
     str = "-" * 50 + "\n"
-    str += "Scenario ground truth:\n\n"
-
-    with open(path.get_04_archetypes_path(), "r") as f:
+    str += "Scenarios:"
+    with open(path.get_04_scenario_path(), "r") as f:
         content = f.read()
-        archetypes = content.strip().splitlines()
+        scenarios: list[Scenario] = [
+            Scenario.model_validate_json(json.dumps(scenario_raw))
+            for scenario_raw in json.loads(content)
+        ]
 
-    with open(path.get_06_scenario_ground_truth_path(), "r") as f:
-        ground_truth_list: list = json.loads(f.read())
-
-    max_lenght = len(max(archetypes, key=len))
-
-    blocks = []
-    for i, ground_truth in enumerate(ground_truth_list):
-        rows = []
-        rows.append(f"Question {i+1}: {ground_truth['question']}")
-        for key, item in ground_truth["answer"].items():
-            rows.append(f"  {key:<{max_lenght+2}}: {", ".join(item)}")
-        blocks.append("\n".join(rows))
-    str += "\n\n".join(blocks)
+    for i, scenario in enumerate(scenarios):
+        str += f"\nScenario {i+1}: {scenario.scenario}"
+        str += f"\nActions: {', '.join([action for action in scenario.actions])}"
+        str += "\n"
 
     return str
 
@@ -200,6 +166,14 @@ def profile_progess(path: SystemPath):
         "Profiles", f": saved to '{path.get_05_profiles_path()}'"
     )
 
+    return str
+
+
+def ground_truth_progess(path: SystemPath):
+    str = "-" * 50 + "\n"
+    str += "{:<25} {:<30}".format(
+        "Ground truth", f": saved to '{path.get_06_scenario_ground_truth_path()}'"
+    )
     return str
 
 
@@ -215,25 +189,35 @@ def profile_scenario_answer_progess(path: SystemPath):
 
 def decision_probability_table_progess(path: SystemPath):
     str = "-" * 50 + "\n"
+
+    # Example output
+    # ---------------------
+    # Scenario 1: scenario1's text
+    # ==========  =======  =========  =========
+    # Archetype   Action1   Action2   Action3
+    # ==========  =======  =========  =========
+    # Archetype1    0.3       0.3       0.4
+    # Archetype2    0.3       0.3       0.4
+    # Archetype3    0.3       0.3       0.4
+    # ==========  =======  =========  =========
+
     with open(path.get_06_decision_probability_path()) as f:
-        reader = csv.reader(f, delimiter=";")
+        content = f.read()
+        decision_probability = json.loads(content)
 
-        headers = ["Question", "Archetype"]
-        headers += [choice.value for choice in ScenarioChoice]
-
+    for i, scenario in enumerate(decision_probability):
         rows = []
-        current_question = ""
-        for row in reader:
-            if current_question == row[0]:
-                row[0] = ""  # Hide repeated question
-            else:
-                if current_question != "":
-                    rows.append(SEPARATING_LINE)
-                current_question = row[0]
 
-            rows.append(row)
+        for archetype, action_probs in scenario["archetype_action_probs"].items():
+            rows.append([archetype] + action_probs)
 
-        str += tabulate(rows, headers=headers, tablefmt="rst")
+        table = tabulate(
+            rows, headers=["Archetype"] + scenario["actions"], tablefmt="rst"
+        )
+
+        str += f"Scenario {int(i)+1}: {scenario['scenario']}\n"
+        str += f"{table}\n"
+        str += f"\n"
 
     return str
 
@@ -286,24 +270,24 @@ if __name__ == "__main__":
     path = SystemPath("travel")
 
     # display_header()
-    print(topic_outline_progress(path))
-    print(eabss_scope_progress(path))
-    print(eabss_scope_progress_table(path))
+    # print(topic_outline_progress(path))
+    # print(eabss_scope_progress(path))
+    # print(eabss_scope_progress_table(path))
     # print(diagram_header())
 
     # print(eabss_usecase_diagrams_progess(path))
     # print(eabss_diagrams_progess(path))
     # print(archetype_progess(path))
     # print(attribute_progess(path))
-    # print(scenario_progess(path))
+    print(scenario_progess(path))
 
-    # print(profile_progess(path))
-    # print(profile_scenario_answer_progess(path))
-    # print(decision_probability_table_progess(path))
+    print(profile_progess(path))
+    print(profile_scenario_answer_progess(path))
+    print(ground_truth_progess(path))
+    print(decision_probability_table_progess(path))
     # print(simulation_script_progess(path))
     # print()
     # print(model_output_progess(path))
     # print(visualisation_template_progess(path))
     # print(visualisation_analysis_progess(path))
     # print()
-    # print(ground_truth_progess(path))

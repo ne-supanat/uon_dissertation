@@ -148,8 +148,7 @@ def should_design_profile_n_scenario(path: SystemPath):
     return (
         not os.path.isfile(path.get_04_archetypes_path())
         or not os.path.isfile(path.get_04_attributes_path())
-        or not os.path.isfile(path.get_04_scenario_questions_path())
-        or not os.path.isfile(path.get_04_scenario_choices_path())
+        or not os.path.isfile(path.get_04_scenario_path())
     )
 
 
@@ -165,7 +164,7 @@ def run_design_profile_n_scenario(path: SystemPath):
             print_end_stage()
         sys.exit()
     else:
-        # Display Archetype, Attributes, Scenario questions, Scenario answer choices saved locations
+        # Display Archetype, Attributes, Scenario saved locations
         display_progress.display_stage04(path)
 
 
@@ -200,7 +199,7 @@ def run_create_decision_probability_table(path: SystemPath):
 
             # Ask user to use extracted profiles or generated ground truth
             # to create scenario answers
-            with open(path.get_04_scenario_questions_path(), "r") as f:
+            with open(path.get_04_scenario_path(), "r") as f:
                 questions = f.read().strip().splitlines()
 
             with open(path.get_05_profiles_path(), "r") as f:
@@ -233,7 +232,7 @@ def run_create_decision_probability_table(path: SystemPath):
                 )
 
             # Create decision probability table
-            stage_06_scenario_decision.create_decision_probability_table(path)
+            stage_06_scenario_decision.create_scenario_action_probability_table(path)
 
             print(display_progress.decision_probability_table_progess(path))
             print_end_stage()
@@ -278,7 +277,7 @@ def main(
     run_build_eabss_usecase_diagramm(path)
     run_build_remaining_eabss_diagrams(path)
 
-    # Stage 04 Define archetyp, scenario questions, scenarion answer choices
+    # Stage 04 Design profile, scenario
     run_design_profile_n_scenario(path)
 
     # Stage 05 Extract Profiles (& classify profile archetype)

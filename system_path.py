@@ -64,20 +64,17 @@ class SystemPath:
     def get_04_attributes_path(self):
         return os.path.join(self.project_name, "04_attribute.txt")
 
-    def get_04_scenario_questions_path(self):
-        return os.path.join(self.project_name, "04_scenario_questions.txt")
-
-    def get_04_scenario_choices_path(self):
-        return os.path.join(self.project_name, "04_scenario_choices.txt")
+    def get_04_scenario_path(self):
+        return os.path.join(self.project_name, "04_scenario.txt")
 
     def get_05_profiles_path(self):
         return os.path.join(self.project_name, "05_profiles.txt")
 
     def get_06_profile_scenario_answers_path(self):
-        return os.path.join(self.project_name, "06_profile_scenario_answers.csv")
+        return os.path.join(self.project_name, "06_profile_scenario_answers.txt")
 
     def get_06_decision_probability_path(self):
-        return os.path.join(self.project_name, "06_scenario_probability.csv")
+        return os.path.join(self.project_name, "06_scenario_probability.txt")
 
     def get_07_simulation_script_think_path(self):
         return os.path.join(self.project_name, "07_simulation_script_think.txt")

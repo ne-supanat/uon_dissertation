@@ -1,0 +1,55 @@
+[
+    {
+        "scenario": "It is a regular workday. How likely are you to...",
+        "actions": [
+            "cycling",
+            "use cars",
+            "use public transport"
+        ]
+    },
+    {
+        "scenario": "after significantly improve public transport reliability. How likely are you to... ",
+        "actions": [
+            "cycling",
+            "use cars",
+            "use public transport"
+        ]
+    },
+    {
+        "scenario": "after increase parking charge in urban areas, fuel taxes, car taxes. How likely are you to...",
+        "actions": [
+            "cycling",
+            "use cars",
+            "use public transport"
+        ]
+    },
+    {
+        "scenario": "after car restriction policy that apply no car day, limit number of cars each household. How likely are you to...",
+        "actions": [
+            "cycling",
+            "use cars",
+            "use public transport"
+        ]
+    },
+    {
+        "scenario": "Are you happy with the public transport reliability improvement policy?",
+        "actions": [
+            "happy",
+            "unhappy"
+        ]
+    },
+    {
+        "scenario": "Are you happy with the increasing parking charge in urban areas, fuel taxes, and car taxes?",
+        "actions": [
+            "happy",
+            "unhappy"
+        ]
+    },
+    {
+        "scenario": "Are you happy with the car restriction policy that apply no car day, limit number of cars each household?",
+        "actions": [
+            "happy",
+            "unhappy"
+        ]
+    }
+]
