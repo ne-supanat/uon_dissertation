@@ -33,7 +33,7 @@ def process_docx_to_txt(source_path, destination_path):
             # Write content with speaker on txt file
             name = filename.split(".")[0]
             with open(f"{destination_path}/{name}.txt", "w") as f:
-                f.writelines("\n".join(speaker_rows))
+                f.writelines("\n".join(speaker_rows).replace("  ", " "))
 
 
 def process_docx_table_to_txt(source_path, destination_path):
@@ -52,7 +52,7 @@ def process_docx_table_to_txt(source_path, destination_path):
 
             name = filename.split(".")[0]
             with open(f"{os.path.join(destination_path,name)}.txt", "w") as f:
-                f.writelines("\n".join(speaker_rows))
+                f.writelines("\n".join(speaker_rows).replace("  ", " "))
 
 
 if __name__ == "__main__":
@@ -60,8 +60,8 @@ if __name__ == "__main__":
     # txt_path = "data/diary_txt"
     # process_docx_to_txt(doc_path, txt_path)
 
-    doc_path = "data/travel_interview"
-    txt_path = "data/travel_interview_txt"
+    doc_path = "data/travel_profile"
+    txt_path = "data/travel_profile_txt"
     process_docx_table_to_txt(doc_path, txt_path)
 
     doc_path = "data/travel_scope"
