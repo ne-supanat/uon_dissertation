@@ -32,36 +32,22 @@ def run_evaluate_thematic_analysis(path: SystemPath, show_all: bool):
     if os.path.isfile(path.get_02_thematic_analysis_path()):
         eval_02_build_eabss_evaluation.evaluate(path)
         # thematic_analysis_extra.analyse(source_paths)
-
-        if not show_all:
-            is_continue = ask_continue()
-            if not is_continue:
-                sys.exit()
     else:
         print(f"File not found: '{path.get_02_thematic_analysis_path()}'")
-        sys.exit()
 
 
 def run_evaluate_extract_profile(path: SystemPath, show_all: bool):
     if os.path.isfile(path.get_05_profiles_path()):
         eval_05_profile_evaluation.evaluate(path)
-
-        if not show_all:
-            is_continue = ask_continue()
-            if not is_continue:
-                sys.exit()
     else:
         print(f"File not found: '{path.get_05_profiles_path()}'")
-        sys.exit()
 
 
 def run_evaluate_create_decision_probability_table(path: SystemPath):
     if os.path.isfile(path.get_06_profile_scenario_answers_path()):
-        # Evaluate profile's answer
         eval_06_scenario_decision_evaluation.score_profile_anwsers(path)
     else:
         print(f"File not found: '{path.get_06_profile_scenario_answers_path()}'")
-        sys.exit()
 
 
 def main(project_name: str, show_all: bool):
@@ -70,16 +56,16 @@ def main(project_name: str, show_all: bool):
         print(f'No project name {project_name}. Please run "main.py" first.')
         sys.exit()
 
-    # Evaluate thematic analysis
-    run_evaluate_thematic_analysis(path, show_all)
-    print()
+    # # Evaluate thematic analysis
+    # run_evaluate_thematic_analysis(path, show_all)
+    # print()
 
-    # Evaluate Profiles
-    run_evaluate_extract_profile(path, show_all)
-    print()
+    # # Evaluate Profiles
+    # run_evaluate_extract_profile(path, show_all)
+    # print()
 
-    # # Create Decision probability table
-    # run_evaluate_create_decision_probability_table(path)
+    # Create Decision probability table
+    run_evaluate_create_decision_probability_table(path)
 
     print()
 

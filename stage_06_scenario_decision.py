@@ -174,6 +174,40 @@ def create_scenario_action_probability_table(path: SystemPath):
             for scenario_raw in json.loads(content)
         ]
 
+    scenario_answer_dict = convert_profile_answer_to_scenario_archetype_dict(path)
+
+    scenario_probs = []
+    for scenario in scenarios:
+        scenario_prob = {
+            "scenario": scenario.scenario,
+            "actions": scenario.actions,
+            "archetype_action_probs": {},
+        }
+
+        for archetype in archetypes:
+            if archetype in scenario_answer_dict[scenario.scenario]:
+                avg_probs = np.mean(
+                    np.array(scenario_answer_dict[scenario.scenario][archetype]),
+                    axis=0,
+                )
+                scenario_prob["archetype_action_probs"][archetype] = [
+                    round(prob, 4) for prob in list(avg_probs)  # 4 decimal points
+                ]
+
+        scenario_probs.append(scenario_prob)
+
+    print(scenario_probs)
+    with open(path.get_06_decision_probability_path(), "w") as f:
+        f.write(json.dumps(scenario_probs, indent=4))
+
+    print()
+    print("-" * 50)
+    print(
+        f"Decision probability table saved to: '{path.get_06_decision_probability_path()}'\n"
+    )
+
+
+def convert_profile_answer_to_scenario_archetype_dict(path: SystemPath):
     with open(path.get_06_profile_scenario_answers_path(), "r") as f:
         content = f.read()
         all_profile_scenario_answers = json.loads(content)
@@ -211,35 +245,7 @@ def create_scenario_action_probability_table(path: SystemPath):
                 answer_sceanario["action_probs"]
             )
 
-    scenario_probs = []
-    for scenario in scenarios:
-        scenario_prob = {
-            "scenario": scenario.scenario,
-            "actions": scenario.actions,
-            "archetype_action_probs": {},
-        }
-
-        for archetype in archetypes:
-            if archetype in scenario_answer_dict[scenario.scenario]:
-                avg_probs = np.mean(
-                    np.array(scenario_answer_dict[scenario.scenario][archetype]),
-                    axis=0,
-                )
-                scenario_prob["archetype_action_probs"][archetype] = [
-                    round(prob, 4) for prob in list(avg_probs)  # 4 decimal points
-                ]
-
-        scenario_probs.append(scenario_prob)
-
-    print(scenario_probs)
-    with open(path.get_06_decision_probability_path(), "w") as f:
-        f.write(json.dumps(scenario_probs, indent=4))
-
-    print()
-    print("-" * 50)
-    print(
-        f"Decision probability table saved to: '{path.get_06_decision_probability_path()}'\n"
-    )
+    return scenario_answer_dict
 
 
 def create_decision_probability_table_from_ground_truth(path: SystemPath):
