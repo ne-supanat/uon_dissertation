@@ -17,7 +17,6 @@ from bert_score import BERTScorer
 # TODO: add comments
 
 # TODO: result reflect form (for better structure review)
-# TODO: compare ground truth and profile's decision probs
 # TODO: visualisation analysis
 
 

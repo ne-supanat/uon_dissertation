@@ -83,5 +83,5 @@ def evaluate(path: SystemPath):
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_4")
+    path = SystemPath("travel")
     evaluate(path)
