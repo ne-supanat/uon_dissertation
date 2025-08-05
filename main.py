@@ -13,18 +13,11 @@ import stage_07_script_generation
 
 import display_progress
 from system_path import SystemPath
+import utils
 
 
 # TODO: (optional) resume the process: error at profile 3 > should continue at profile 4
 # TODO: add comments
-
-
-def get_transcript_file_paths(source_directory):
-    return [
-        f"{os.path.join(source_directory, filename)}"
-        for filename in sorted(os.listdir(source_directory))
-        if filename.endswith(".txt")
-    ]
 
 
 def ask_proceed(stage_str: str) -> bool:
@@ -81,7 +74,7 @@ def run_build_eabss(path: SystemPath):
 
         if proceed:
             # Thematic analysis
-            scope_document_paths = get_transcript_file_paths(
+            scope_document_paths = utils.get_transcript_file_paths(
                 path.get_scope_data_directory_path()
             )
             stage_02_build_eabss.run_thematic_analysis(path, scope_document_paths)
@@ -172,7 +165,7 @@ def run_extract_profiles(path: SystemPath):
         proceed = ask_proceed(stage_str)
         if proceed:
             # Extract profile
-            profile_document_paths = get_transcript_file_paths(
+            profile_document_paths = utils.get_transcript_file_paths(
                 path.get_profile_data_directory_path()
             )
             stage_05_profile_extraction.extract_profile(path, profile_document_paths)

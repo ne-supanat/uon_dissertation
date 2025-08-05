@@ -32,10 +32,10 @@ Following these key components
 
 {display_progress.eabss_scope_progress(path)}
 
-Generate UML use case diagram of actor and key activities
+Generate UML use case diagram of actors and key activities
 Respond in mermaid.js format
 Use flowchart LR
-For actor and use case use box element. For example, Actor1["Actor Title"]
+For actors and use cases use box element. For example, Actor1["Actor Title"]
 To link them with arrow use -->
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
@@ -81,19 +81,19 @@ def buidl_eabss_remaining_diagrams(path: SystemPath):
     with open(path.get_03_eabss_class_diagram_path(), "w") as f:
         f.write(class_diagram)
 
-    # key activities - UML activity diagram
-    activity_diagram = generate_eabss_activity_diagram(
-        path, usecase_diagram, main_actor
-    )
-    with open(path.get_03_eabss_activity_diagram_path(), "w") as f:
-        f.write(activity_diagram)
-
     # user state transition - UML state diagram (optional)
     state_transition_diagram = generate_eabss_state_transition_diagram(
         path, usecase_diagram, main_actor
     )
     with open(path.get_03_eabss_state_diagram_path(), "w") as f:
         f.write(state_transition_diagram)
+
+    # key activities - UML activity diagram
+    activity_diagram = generate_eabss_activity_diagram(
+        path, usecase_diagram, main_actor
+    )
+    with open(path.get_03_eabss_activity_diagram_path(), "w") as f:
+        f.write(activity_diagram)
 
     # interactions - UML sequence diagram
     interactions_diagram = generate_eabss_interaction_diagram(
@@ -106,16 +106,15 @@ def buidl_eabss_remaining_diagrams(path: SystemPath):
     print("-" * 50)
     for name, path in zip(
         [
-            "Activity diagram",
-            "State transition diagram",
-            "Interaction diagram",
             "Class diagram",
+            "State transition diagram",
+            "Activity diagram",
+            "Interaction diagram",
         ],
         [
             path.get_03_eabss_class_diagram_path(),
-            path.get_03_eabss_activity_diagram_path(),
             path.get_03_eabss_state_diagram_path(),
-            path.get_03_eabss_interaction_diagram_path(),
+            path.get_03_eabss_activity_diagram_path(),
         ],
     ):
         print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
@@ -177,13 +176,13 @@ Following these key components
 And use case diagram
 {usecase_diagram}
 
-Generate very simple comprehensive state machine diagram of "{main_actor}" and Key activities
+Generate state machine diagram of "{main_actor}" and Key activities
 Respond in mermaid.js format
 Use stateDiagram
 For entry point use [*]
 For state transition use -->
 
-Example state transition wake up and sleeping:
+Example state transition of wake up and sleeping:
 [*] --> Sleeping
 Sleeping --> WakeUp: is morning 
 WakeUp --> Sleeping: is night 
@@ -204,13 +203,13 @@ Following these key components
 And use case diagram
 {usecase_diagram}
 
-Generate very simple comprehensive UML sequence diagram of "{main_actor}"
+Generate UML sequence diagram of "{main_actor}"
 Respond in mermaid.js format
 Use sequenceDiagram
 For "{main_actor}" use actor {main_actor}
 For other objects use participant Object
 To show interaction link use ->> for solid line and -->> for dotted line
-To add text in link use Actor->>Object: Action
+To add text in link use Actor->>Object: Text
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script

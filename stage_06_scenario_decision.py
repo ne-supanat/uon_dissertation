@@ -158,8 +158,7 @@ The total probability across all actions must equal to {1}
 {display_progress.scenario_progess(path)}
 """
     response = llm.generate_content(prompt, list[ActionProbability])
-    result: list[ActionProbability] = response.parsed
-    return result
+    return response.parsed
 
 
 def create_scenario_action_probability_table(path: SystemPath):

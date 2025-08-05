@@ -21,10 +21,6 @@ def setup_profile_attribute(path: SystemPath):
     print("-" * 50)
     print("Define profile attributes.")
     print("-" * 50)
-    print()
-    print("Suggestions:")
-    for e in response.parsed:
-        print(f"    - {e}")
 
     print(
         f"""
@@ -36,6 +32,11 @@ Example:
 {"-"*50}
 """
     )
+
+    print()
+    print("Suggestions:")
+    for e in response.parsed:
+        print(f"    - {e}")
 
     while True:
         try:
@@ -75,12 +76,10 @@ Based on the scope
 
 Please suggest {3} potential {main_actor} attributes.
 
-For example: Race, Age, Prefession
+For example: Race, Age, Occupation
 """
-    response = llm.generate_content(
-        prompt,
-        response_schema=list[str],
-    )
+
+    response = llm.generate_content(prompt, response_schema=list[str])
     return response
 
 
@@ -93,10 +92,6 @@ def setup_archetype(path: SystemPath):
     print("-" * 50)
     print("Define Agent Archetypes")
     print("-" * 50)
-    print()
-    print("Suggestions:")
-    for e in response.parsed:
-        print(f"    - {e}")
 
     print(
         f"""
@@ -109,6 +104,11 @@ Example:
 {"-"*50}
 """
     )
+
+    print()
+    print("Suggestions:")
+    for e in response.parsed:
+        print(f"    - {e}")
 
     while True:
         try:
@@ -170,10 +170,8 @@ And attribute
 Please suggest {3} potential {main_actor} archetypes.
 For example: Introvert, Ambivert, Extrovert
 """
-    response = llm.generate_content(
-        prompt,
-        response_schema=list[str],
-    )
+
+    response = llm.generate_content(prompt, response_schema=list[str])
     return response
 
 
@@ -279,17 +277,14 @@ def generate_scenario_suggestion(path: SystemPath) -> GenerateContentResponse:
 Based on the model's scope
 {display_progress.eabss_scope_progress(path)}
 
-Please suggest {3} scenarios with no more than {3} actions that help identify how each acrhetype behaves.
+Please suggest {3} scenarios with no more than {3} actions that help identify how each archetype behaves.
 Each scenario should designed to capture action preferences.
 
 Example:
-    Scenario: It is friday night. How likely are you to...
+    Scenario: It is Friday night. How likely are you to...
     Actions: Stay at home, Go to party, Go to restaurant
 """
-    response = llm.generate_content(
-        prompt,
-        response_schema=ScenarioList,
-    )
+    response = llm.generate_content(prompt, response_schema=ScenarioList)
     return response
 
 

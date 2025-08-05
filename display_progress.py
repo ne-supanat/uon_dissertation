@@ -26,10 +26,10 @@ def topic_outline_progress(path: SystemPath):
         str += f"Model's Objective:" + "\n"
         str += problem_statement["objective"] + "\n"
         str += "\n"
-        str += f"Model's Experimental Factors(Input):" + "\n"
+        str += f"Model's Experimental Factors (Input):" + "\n"
         str += problem_statement["input"] + "\n"
         str += "\n"
-        str += f"Model's Response:" + "\n"
+        str += f"Model's Response (Output):" + "\n"
         str += problem_statement["output"] + "\n"
 
     return str
@@ -187,6 +187,39 @@ def profile_scenario_answer_progess(path: SystemPath):
     return str
 
 
+def profile_answer_table_progess(path: SystemPath):
+    str = "-" * 50 + "\n"
+    str += "Profile answer table:\n"
+
+    # Example output
+    # ---------------------
+    # File: data/travel_profile_txt/Pennsylvania2.txt
+    # Archetype: Eco-Conscious Commuter
+    # Scenario 1: scenario1's text
+    # =======  =========  =========
+    # Action1   Action2   Action3
+    # =======  =========  =========
+    #   0.3       0.3       0.4
+    # =======  =========  =========
+
+    with open(path.get_06_profile_scenario_answers_path()) as f:
+        content = f.read()
+        all_profile_answer = json.loads(content)
+
+    for profile_answer in all_profile_answer:
+        str += f"File: {profile_answer["file"]}\n"
+        str += f"Archetype: {profile_answer["archetype"]}\n"
+
+        for i, scenario in enumerate(profile_answer["scenarios"]):
+            str += f'Scenario {i+1}: {scenario["scenario"]}\n'
+            str += tabulate(
+                [scenario["action_probs"]], scenario["actions"], tablefmt="rst"
+            )
+            str += "\n\n"
+
+    return str
+
+
 def decision_probability_table_progess(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "Decision probability table:\n"
@@ -280,12 +313,13 @@ if __name__ == "__main__":
     # print(eabss_diagrams_progess(path))
     # print(archetype_progess(path))
     # print(attribute_progess(path))
-    print(scenario_progess(path))
+    # print(scenario_progess(path))
 
-    print(profile_progess(path))
-    print(profile_scenario_answer_progess(path))
-    print(ground_truth_progess(path))
-    print(decision_probability_table_progess(path))
+    # print(profile_progess(path))
+    # print(profile_scenario_answer_progess(path))
+    # print(ground_truth_progess(path))
+    print(profile_answer_table_progess(path))
+    # print(decision_probability_table_progess(path))
     # print(simulation_script_progess(path))
     # print()
     # print(model_output_progess(path))

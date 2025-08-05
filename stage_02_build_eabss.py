@@ -4,6 +4,7 @@ from google.genai.types import GenerateContentResponse
 import ast
 import display_progress
 
+import utils
 import llm
 from models.response_models import (
     ScopeThemeCode,
@@ -54,7 +55,8 @@ Following these key components
 
 The codes must be in this format "Theme Code" NOT "ThemeCode"
 Each component has at least {2} codes
-Each theme code has maximum of {2} quotes. Quote must be exactly the same as original text and come from the same line.
+Each theme code has maximum of {2} quotes. 
+Each quote must be a sentence or sentences that exactly the same and in one speaking line from the original transcript.
 
 file is {document_path}
 """
@@ -163,17 +165,17 @@ The codes (element) must be in this format "Theme Code" NOT "ThemeCode"
 The final theme codes & quotes must have at least {1} code
 Each with theme codes short description and brief justification of why you select them
 """
-    print(prompt)
-    # response = llm.generate_content(prompt, list[ScopeElement])
-    # return response
+    response = llm.generate_content(prompt, list[ScopeElement])
+    return response
 
 
 if __name__ == "__main__":
     path = SystemPath("travel")
-    # document_paths = ["data/travel_scope_txt/Stage3_Crediton St Lwrence.txt"]
-    # document_paths = ["data/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"]
-    document_paths = ["data/travel_scope_txt/Stage3_St Loyes.txt"]
+
+    document_paths = utils.get_transcript_file_paths(
+        path.get_scope_data_directory_path()
+    )
 
     run_thematic_analysis(path, document_paths)
-    # run_eabss_scope_finalisation(path)
+    run_eabss_scope_finalisation(path)
     # write_codes_csv_from_txt(path)

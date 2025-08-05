@@ -37,14 +37,14 @@ def generate_visualisation_template_script(
     example_df,
 ) -> ThinkScriptResponse:
     prompt = f"""
-And example data from './NetLogo Model/outputs.csv':
+An example data from './NetLogo Model/outputs.csv':
 
 {example_df}
 
 Generate python script for visualisation using plotly.
 
 {"-"*50}
-Follow this NetLogo template:
+Follow this template:
 
 import pandas as pd
 

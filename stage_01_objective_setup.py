@@ -71,7 +71,7 @@ def generate_potential_outline(
 ) -> GenerateContentResponse:
 
     prompt = f"""
-Based simulation Topic, Context, Goal is
+Simulation model's Topic, Context, Goal:
 {topic}
 
 Please suggest potential Objective, Experiment factor (input), Response (output) of the model.
@@ -85,6 +85,6 @@ Give me {3} potential element each.
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_4")
+    path = SystemPath("travel")
     setup_topic(path)
     setup_outline(path)

@@ -152,5 +152,5 @@ This is NetLogo Language not Python. The way writing if-else is different.
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_4")
+    path = SystemPath("travel")
     build_simulation_script(path)

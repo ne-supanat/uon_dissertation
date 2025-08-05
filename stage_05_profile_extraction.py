@@ -1,4 +1,3 @@
-import json
 from google.genai.types import GenerateContentResponse
 
 import llm
@@ -6,23 +5,18 @@ from models.response_models import Profile
 import display_progress
 
 from system_path import SystemPath
+import utils
 
 
 def extract_profile(
     path: SystemPath,
     document_paths: list[str],
 ):
-    with open(path.get_01_outline_path(), "r") as f:
-        objective_statement = f.read()
-        objective_statement: dict = json.loads(objective_statement)
-        objective = objective_statement["objective"]
-
     with open(path.get_04_attributes_path(), "r") as f:
         profile_attributes = f.read().splitlines()
 
-    # New file
     with open(path.get_05_profiles_path(), "w") as f:
-        f.write("")
+        f.write("")  # New file
 
     for document_path in document_paths:
         document = ""
@@ -31,7 +25,6 @@ def extract_profile(
         response = generate_profile(
             document,
             profile_attributes,
-            objective,
             path,
             document_path,
         )
@@ -48,7 +41,6 @@ def extract_profile(
 def generate_profile(
     document: str,
     profile_attributes: list[str],
-    objective: str,
     path: SystemPath,
     document_path: str,
 ) -> GenerateContentResponse:
@@ -63,13 +55,14 @@ Model's outline:
 Scenario detail:
 {display_progress.scenario_progess(path)}
 
-Summarise profile within 100 words that relevant to model's outline and scenario detail
-Find supporting evidence (quotes) that related to model's outline and scenario detail. Quote must be exactly the same as original text and come from the same line.
+Summarise profile within 100 words that relevant to model's outline and scenario detail.
+Find supporting evidence (quotes) that related to model's outline and scenario detail. 
+Each quote must be a sentence or sentences that exactly the same and in one speaking line from the original transcript.
 
 Using information from transcript to identify attributes:
 {", ".join(profile_attributes)}
 
-Identify an answer for each attribute in total of {len(profile_attributes)} attributes.
+Identify an answer for each attribute in total of {len(profile_attributes)} attribute{"s" if len(profile_attributes)>1 else ""}.
 Respond in this format
 [
     "attribute1: answer",
@@ -87,5 +80,7 @@ file is {document_path}
 
 if __name__ == "__main__":
     path = SystemPath("travel")
-    document_paths = ["data/mvp/mvp_1.txt", "data/mvp_2.txt", "data/mvp_3.txt"][:1]
+    document_paths = utils.get_transcript_file_paths(
+        path.get_profile_data_directory_path()
+    )
     extract_profile(path, document_paths)

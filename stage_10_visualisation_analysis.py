@@ -24,7 +24,7 @@ def analyse_visualisations(path: SystemPath, images: list[str]):
 
 def generate_visualisations_explanation(image_paths):
     prompt = f"""
-These images are result from simulation experiments.
+These images are results from simulation experiments.
 What are the findings of these images? Can you summarise the explanation?
 """
 

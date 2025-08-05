@@ -30,10 +30,10 @@ class SystemPath:
         return os.path.join(self.project_name, "01_outline.txt")
 
     def get_02_thematic_analysis_path(self):
-        return os.path.join(self.project_name, "02_thematic_analysis_codes.txt")
+        return os.path.join(self.project_name, "02_theme_codes.txt")
 
     def get_02_thematic_analysis_csv_path(self):
-        return os.path.join(self.project_name, "02_thematic_analysis_codes.csv")
+        return os.path.join(self.project_name, "02_theme_codes.csv")
 
     def get_02_eabss_scope_path(self):
         return os.path.join(self.project_name, "02_eabss_scope.txt")
@@ -42,21 +42,19 @@ class SystemPath:
         return os.path.join(self.project_name, "03_main_actor.txt")
 
     def get_03_eabss_usecase_diagram_path(self):
-        return os.path.join(self.project_name, "03_eabss_diagram_usecase_diagram.txt")
+        return os.path.join(self.project_name, "03_diagram_usecase.txt")
 
     def get_03_eabss_class_diagram_path(self):
-        return os.path.join(self.project_name, "03_eabss_diagram_class_diagram.txt")
+        return os.path.join(self.project_name, "03_diagram_class.txt")
 
     def get_03_eabss_activity_diagram_path(self):
-        return os.path.join(self.project_name, "03_eabss_diagram_activity_diagram.txt")
+        return os.path.join(self.project_name, "03_diagram_activity.txt")
 
     def get_03_eabss_state_diagram_path(self):
-        return os.path.join(self.project_name, "03_eabss_diagram_state_diagram.txt")
+        return os.path.join(self.project_name, "03_diagram_state.txt")
 
     def get_03_eabss_interaction_diagram_path(self):
-        return os.path.join(
-            self.project_name, "03_eabss_diagram_interaction_diagram.txt"
-        )
+        return os.path.join(self.project_name, "03_diagram_interaction.txt")
 
     def get_04_archetypes_path(self):
         return os.path.join(self.project_name, "04_archetype.txt")
@@ -71,7 +69,7 @@ class SystemPath:
         return os.path.join(self.project_name, "05_profiles.txt")
 
     def get_06_profile_scenario_answers_path(self):
-        return os.path.join(self.project_name, "06_profile_scenario_answers.txt")
+        return os.path.join(self.project_name, "06_profile_answers.txt")
 
     def get_06_decision_probability_path(self):
         return os.path.join(self.project_name, "06_scenario_probability.txt")
