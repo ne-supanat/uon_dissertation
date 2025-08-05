@@ -2,6 +2,7 @@ import os
 import llm
 
 from system_path import SystemPath
+from models.response_models import VisualisationAnalysisResponse
 
 
 def analyse_visualisations(path: SystemPath, images: list[str]):
@@ -27,10 +28,12 @@ These images are result from simulation experiments.
 What are the findings of these images? Can you summarise the explanation?
 """
 
-    response = llm.generate_content_from_images(image_paths, prompt)
+    response = llm.generate_content_from_images(
+        image_paths, prompt, VisualisationAnalysisResponse
+    )
     return response
 
 
 if __name__ == "__main__":
-    path = SystemPath("results_2")
-    analyse_visualisations(path, ["plot_25.png", "plot_75.png"])
+    path = SystemPath("results_travel_1")
+    analyse_visualisations(path, ["transport_usage.png"])

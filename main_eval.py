@@ -17,7 +17,6 @@ from bert_score import BERTScorer
 # TODO: add comments
 
 # TODO: result reflect form (for better structure review)
-# TODO: visualisation analysis
 
 
 def ask_continue() -> bool:

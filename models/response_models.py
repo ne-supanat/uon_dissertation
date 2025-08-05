@@ -10,6 +10,12 @@ class OutlineResponse(BaseModel):
     output: list[str]
 
 
+class VisualisationAnalysisResponse(BaseModel):
+    think: str
+    description: str
+    findings: str
+
+
 class ThinkResponse(BaseModel):
     think: str
     response: str
