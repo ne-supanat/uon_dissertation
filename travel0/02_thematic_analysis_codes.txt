@@ -1,0 +1,100 @@
+{
+  "actors": [
+    {
+      "code": "Individual Travellers",
+      "quotes": [
+        "I mean I just don’t think people are going to change their transport habits, or any other habits actually.",
+        "I mean I think many would argue well they just haven’t got time, because if you are walking it generally takes a bit longer, not a lot longer actually, but!"
+      ]
+    },
+    {
+      "code": "Government and Policymakers",
+      "quotes": [
+        "But in general I mean I just don’t think people are going to change their transport habits, or any other habits actually.",
+        "Which is why encouraging people to move to cleaner energy in the way of, as I say electric cars maybe, but I think all the arguments in relation to alternative energy sources, you know like wind farms I mean it’s interesting or disappointing in a way that, how selfish people can become about that."
+      ]
+    }
+  ],
+  "physical_components": [
+    {
+      "code": "Public Transport Infrastructure",
+      "quotes": [
+        "Major public transport infrastructure improvements and obviously there is a need for increased taxation to pay directly for public transport measures if you want to achieve that.",
+        "But even then you get involved with having to change because you you’ve got to change direction, I mean It comes back to personal injury and personal journeys from A to B if that’s where you want to go rather than from A to C to D."
+      ]
+    },
+    {
+      "code": "Vehicles and Transportation Modes",
+      "quotes": [
+        "I mean the increase in service relates to what I was suggesting, you want something you can jump on quick, but on the other hand, I mean there is obviously a real cost in providing something as frequent as that.",
+        "I mean I would certainly like to see them separated into different means of transport, I mean pedestrians and cyclists."
+      ]
+    }
+  ],
+  "social_aspect": [
+    {
+      "code": "Community Norms and Expectations",
+      "quotes": [
+        "I mean I think it’s good to see the county is actually encouraging people to share cars, how successful that is I have no idea.",
+        "But I mean the concept I mean because it was for older cars wasn’t it?"
+      ]
+    },
+    {
+      "code": "Accessibility and Equity",
+      "quotes": [
+        "Yes expensive when I can get free travel!",
+        "Yes and I think, I think people’s feelings about that are going to reflect to some extent how they feel about society I mean personally I feel that, that is going to allow richer people to do what they want!"
+      ]
+    }
+  ],
+  "psychological_aspect": [
+    {
+      "code": "Perceived Convenience and Time Constraints",
+      "quotes": [
+        "I mean I think many would argue well they just haven’t got time, because if you are walking it generally takes a bit longer, not a lot longer actually, but!",
+        "I mean, that’s maybe concentrating on local travelling really."
+      ]
+    },
+    {
+      "code": "Environmental Awareness and Concern",
+      "quotes": [
+        "It doesn’t actually, I feel completely neutral about it.",
+        "But in general I mean I just don’t think people are going to change their transport habits, or any other habits actually."
+      ]
+    }
+  ],
+  "misc": [
+    {
+      "code": "Geographic and Infrastructure Constraints",
+      "quotes": [
+        "But to achieve that in the existing city I mean is, is so expensive, so radical, that I mean somewhere like Exeter you could only do it, like I say, by pulling down houses, well almost rebuilding the city.",
+        "I mean where you’ve got a city like Exeter which had 2 main roads that met in the city, apart from making really enormous changes, pulling properties down and doing fundamental changes it’s hard to see."
+      ]
+    },
+    {
+      "code": "Economic Factors and Affordability",
+      "quotes": [
+        "I mean on daily travel I mean I think people actually could walk more than they do, I have no idea how you encourage people to do that, well accept making alternatives very expensive, they would walk because they can’t afford to get anything else.",
+        "I mean I think I sympathise with them a bit because you almost can’t win in some of these arguments, because it is so interrelated."
+      ]
+    }
+  ],
+  "key_activities": [
+    {
+      "code": "Mode Choice Decision",
+      "quotes": [
+        "Do you feel that we need to change the way we travel today in general?",
+        "I mean I think many would argue well they just haven’t got time, because if you are walking it generally takes a bit longer, not a lot longer actually, but!"
+      ]
+    },
+    {
+      "code": "Policy Implementation and Enforcement",
+      "quotes": [
+        "I mean I don’t think the Government has a consistent policy, particularly going through the economic situation we are, where on one hand the Government wants more and more cars to be sold, and on the other hand they are saying they want people to use public transport, not cars.",
+        "But in terms of congestion, I mean, yes I think some of the things that are being done, or seem to have had some effect in places like London, Exeter I’m not so sure about!"
+      ]
+    }
+  ],
+  "file": "data/travel_scope_txt/Stage3_St Loyes.txt"
+}
+

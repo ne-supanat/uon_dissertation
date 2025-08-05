@@ -1,0 +1,9 @@
+stateDiagram
+    [*] --> ConsideringOptions
+    ConsideringOptions --> Car: Perceived Convenience
+    ConsideringOptions --> PublicTransport: Public Transport Reliability
+    ConsideringOptions --> Cycling: Environmental Awareness
+    Car --> Commuting: Drive Car
+    PublicTransport --> Commuting: Use Public Transport
+    Cycling --> Commuting: Cycle
+    Commuting --> ConsideringOptions: Arrived at Destination

@@ -1,0 +1,13 @@
+flowchart TD
+    subgraph Actors
+        Commuters["Commuters"]
+    end
+
+    subgraph Key Activities
+        Commuting["Commuting"]
+    end
+
+    Commuters --> Commuting
+
+    style Actors fill:#f9f,stroke:#333,stroke-width:2px
+    style Key Activities fill:#ccf,stroke:#333,stroke-width:2px

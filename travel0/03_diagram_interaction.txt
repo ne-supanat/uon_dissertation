@@ -1,0 +1,16 @@
+sequenceDiagram
+    actor Commuters
+    participant Bikes
+    participant Cars
+    participant Public Transport
+
+    alt cycling
+        Commuters->>Bikes: Use
+        Bikes-->>Commuters: Respond back
+    else use cars
+         Commuters->>Cars: Use
+         Cars-->>Commuters: Respond back
+    else use public transport
+         Commuters->>Public Transport: Use
+         Public Transport-->>Commuters: Respond back
+    end

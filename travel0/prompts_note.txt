@@ -1,0 +1,399 @@
+--- stage 02 thematic analysis ---
+// Prompt template
+Based on this transcript
+
+{transcript}
+
+Perform thematic analysis and identify key theme codes and supporting quotes for Agent-Based Modeling system
+
+Following these key components
+-   Actors are agents which can be a person or groups or organisation inside the system
+-   Physical components are objects or tools or systems that actors use
+-   Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-   Key activities are interactions between actors and actors or actors and system environment
+
+Each component has at least 2 codes
+Each theme code has maximum of 2 quotes. Quote must be exactly the same as original text and come from the same line.
+
+file is {document path}
+//
+
+== note ==
+file: "data/travel_scope_txt/Stage3_Crediton St Lwrence.txt",
+times: 9:15-10:22 ~1 hr (skim most at 3rd part)
+
+file: "data/travel_scope_txt/ Stage3_Cullompton North.txt",
+times: 16:40-18.21 ~ 1.40 hr
+
+file: "data/travel_scope_txt/Stage3_Pennsylvania.txt",
+times: 11:30-12:18 ~ 1hr (skip 2nd & 3rd)
+
+
+file: "data/travel_scope_txt/Stage3_St Loyes.txt",
+times: 13:36-14:41, 14:55-16:17 ~ 2 hrs
+
+file: "data/travel_scope_txt/Stage3_Polsloe.txt",
+times: 12.41-13:07 ~ 30 mins (skip most)
+
+
+--- stage 02 final eabss scope ---
+// Prompt template
+Following these key components
+-   Actors are agents which can be a person or groups or organisation inside the system
+-   Physical components are objects or tools or systems that actors use
+-   Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-   Key activities are interactions between actors and actors or actors and system environment
+    
+
+Based on following theme codes & quotes of {component_name}
+
+{list of theme codes}
+
+Select minimum items from the theme codes & quotes that are the most important to build Agent-based modelling simulation with
+
+Objective: 
+To observe the adoption rate of sustainable travel modes under different policy scenarios.
+
+Experiment factors (inputs): 
+Intervention strategies
+
+Responses (outputs): 
+Carbon emissions level, Commuter satisfaction
+
+The final theme codes & quotes has at least 1 code
+Each with theme codes description and justification of why you select them
+//
+
+== note ==
+total times: 11:10-11:50 ~ 40 mins
+
+--- 03 diagrams ---
+// Prompt Example: use case diagram
+Following these key components
+-   Actors are agents which can be a person or groups or organisation inside the system
+-   Physical components are objects or tools or systems that actors use
+-   Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-   Key activities are interactions between actors and actors or actors and system environment
+
+--------------------------------------------------
+EABSS Scope model:
+Component: Actors
+ - Element: Residents Commuters
+   Description: Individuals who live in the area and travel to work.
+
+Component: Physical Components
+ - Element: Cycling
+   Description: The most environmental friendly method, great for short-medium distance travelling
+ - Element: Cars
+   Description: Interrelated arguments surrounding car use.
+ - Element: Public Transport
+   Description: Limitations of public transport for family holidays.
+
+Component: Social Aspect
+ - Element: Public Transport Reliability
+   Description: The reliability and frequency of public transport services.
+ - Element: Car Dependency Norms
+   Description: The societal norms and habits that promote car usage.
+
+Component: Psychological Aspect
+ - Element: Behavioral Inertia
+   Description: Reluctance to change travel habits despite awareness of the need for sustainable options.
+ - Element: Perceived Convenience
+   Description: The belief that current travel methods (primarily car use) are more convenient than sustainable alternatives.
+ - Element: Frustration with Public Transport
+   Description: Negative experiences and perceptions of public transport, such as infrequency and cost.
+ - Element: Climate awareness
+   Description: Awareness and knowledge about climate and environment
+
+Component: Misc
+ - Element: Carbon emissions level
+   Description: Level of CO2 the system omit from transport mode such as cars
+
+Component: Key Activities
+ - Element: Commuting
+   Description: Daily travel to and from work or other regular activities.
+
+
+generate very simple comprehensive UML use case diagram of actor and key activities
+respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML use case diagram)
+//
+
+// Prompt Example: class diagram
+Following these key components
+-   Actors are agents which can be a person or groups or organisation inside the system
+-   Physical components are objects or tools or systems that actors use
+-   Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-   Key activities are interactions between actors and actors or actors and system environment
+
+--------------------------------------------------
+EABSS Scope model:
+Component: Actors
+ - Element: Commuters
+   Description: Individuals who live in the area and travel to work.
+
+Component: Physical Components
+ - Element: Cycling
+   Description: The most environmental friendly method, great for short-medium distance travelling
+ - Element: Cars
+   Description: Interrelated arguments surrounding car use.
+ - Element: Public Transport
+   Description: Limitations of public transport for family holidays.
+
+Component: Social Aspect
+ - Element: Public Transport Reliability
+   Description: The reliability and frequency of public transport services.
+ - Element: Car Dependency Norms
+   Description: The societal norms and habits that promote car usage.
+
+Component: Psychological Aspect
+ - Element: Behavioral Inertia
+   Description: Reluctance to change travel habits despite awareness of the need for sustainable options.
+ - Element: Perceived Convenience
+   Description: The belief that current travel methods (primarily car use) are more convenient than sustainable alternatives.
+ - Element: Frustration with Public Transport
+   Description: Negative experiences and perceptions of public transport, such as infrequency and cost.
+ - Element: Climate awareness
+   Description: Awareness and knowledge about climate and environment
+
+Component: Misc
+ - Element: Carbon emissions level
+   Description: Level of CO2 the system omit from transport mode such as cars
+
+Component: Key Activities
+ - Element: Commuting
+   Description: Daily travel to and from work or other regular activities.
+
+
+
+Use case diagram:
+flowchart LR
+    subgraph Actors
+        Commuters["Commuters"]
+    end
+
+    subgraph Key Activities
+        Commuting["Commuting"]
+    end
+
+    Commuters --> Commuting
+
+
+Generate very simple comprehensive UML class diagram of "Commuters" that have relevant attributes and actions they might perform.
+Respond in mermaid.js format
+//
+
+// Prompt Example: state machine diagram
+Following these key components
+-   Actors are agents which can be a person or groups or organisation inside the system
+-   Physical components are objects or tools or systems that actors use
+-   Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-   Key activities are interactions between actors and actors or actors and system environment
+
+--------------------------------------------------
+EABSS Scope model:
+Component: Actors
+ - Element: Commuters
+   Description: Individuals who live in the area and travel to work.
+
+Component: Physical Components
+ - Element: Cycling
+   Description: The most environmental friendly method, great for short-medium distance travelling
+ - Element: Cars
+   Description: Interrelated arguments surrounding car use.
+ - Element: Public Transport
+   Description: Limitations of public transport for family holidays.
+
+Component: Social Aspect
+ - Element: Public Transport Reliability
+   Description: The reliability and frequency of public transport services.
+ - Element: Car Dependency Norms
+   Description: The societal norms and habits that promote car usage.
+
+Component: Psychological Aspect
+ - Element: Behavioral Inertia
+   Description: Reluctance to change travel habits despite awareness of the need for sustainable options.
+ - Element: Perceived Convenience
+   Description: The belief that current travel methods (primarily car use) are more convenient than sustainable alternatives.
+ - Element: Frustration with Public Transport
+   Description: Negative experiences and perceptions of public transport, such as infrequency and cost.
+ - Element: Climate awareness
+   Description: Awareness and knowledge about climate and environment
+
+Component: Misc
+ - Element: Carbon emissions level
+   Description: Level of CO2 the system omit from transport mode such as cars
+
+Component: Key Activities
+ - Element: Commuting
+   Description: Daily travel to and from work or other regular activities.
+
+
+
+Use case diagram:
+flowchart LR
+    subgraph Actors
+        Commuters["Commuters"]
+    end
+
+    subgraph Key Activities
+        Commuting["Commuting"]
+    end
+
+    Commuters --> Commuting
+
+
+Generate very simple comprehensive state machine diagram of "Commuters" and Key activities
+Respond in mermaid.js format
+//
+
+// Prompt Example: activity diagram
+Following these key components
+-   Actors are agents which can be a person or groups or organisation inside the system
+-   Physical components are objects or tools or systems that actors use
+-   Social aspect is rules or norms about social behaviour
+-   Psychological aspect is rules or norms about psychological behaviour
+-   Misc are real world elements that do not fall in any component
+
+-   Key activities are interactions between actors and actors or actors and system environment
+
+--------------------------------------------------
+EABSS Scope model:
+Component: Actors
+ - Element: Commuters
+   Description: Individuals who live in the area and travel to work.
+
+Component: Physical Components
+ - Element: Cycling
+   Description: The most environmental friendly method, great for short-medium distance travelling
+ - Element: Cars
+   Description: Interrelated arguments surrounding car use.
+ - Element: Public Transport
+   Description: Limitations of public transport for family holidays.
+
+Component: Social Aspect
+ - Element: Public Transport Reliability
+   Description: The reliability and frequency of public transport services.
+ - Element: Car Dependency Norms
+   Description: The societal norms and habits that promote car usage.
+
+Component: Psychological Aspect
+ - Element: Behavioral Inertia
+   Description: Reluctance to change travel habits despite awareness of the need for sustainable options.
+ - Element: Perceived Convenience
+   Description: The belief that current travel methods (primarily car use) are more convenient than sustainable alternatives.
+ - Element: Frustration with Public Transport
+   Description: Negative experiences and perceptions of public transport, such as infrequency and cost.
+ - Element: Climate awareness
+   Description: Awareness and knowledge about climate and environment
+
+Component: Misc
+ - Element: Carbon emissions level
+   Description: Level of CO2 the system omit from transport mode such as cars
+
+Component: Key Activities
+ - Element: Commuting
+   Description: Daily travel to and from work or other regular activities.
+
+
+
+Use case diagram:
+flowchart LR
+    subgraph Actors
+        Commuters["Commuters"]
+    end
+
+    subgraph Key Activities
+        Commuting["Commuting"]
+    end
+
+    Commuters --> Commuting
+
+
+Generate very simple comprehensive UML activity diagram of "Commuters"
+Respond in mermaid.js format (use mermaid.js flowchart diagram to represent UML uactivity diagram)
+//
+
+== note ==
+
+---
+// Prompt Example
+Base on this transcript
+
+{transcript}
+
+Model's outline:
+--------------------------------------------------
+Model's Topic:
+This research explores the motivations and barriers encountered by individuals for adopting more ‘sustainable’ forms of travel behaviour in a range of lifestyle contexts, including travel for work, leisure and holidays. the research seeks to uncover the factors that influence a highly complex set of behaviors related to travel in the UK and explores practical measures for changing current practices amongst different lifestyle groups.
+
+Model's Objective:
+To observe the adoption rate of sustainable travel modes under different policy scenarios.
+
+Model's Experimental Factors(Input):
+Intervention strategies
+
+Model's Response:
+Carbon emissions level
+
+
+Scenario detail:
+--------------------------------------------------
+Scenario answer choices:
+1. Cycling
+2. Cars
+3. Public transport
+--------------------------------------------------
+Scenario questions:
+1. Which choice best reflects your current commuting behavior?
+2. Which choice would you be most likely to make if public transport reliability significantly improved?
+3. Which choice would you be most likely to make if parking charge in urban areas, fuel taxes and car taxes increased?
+4. Which choice would you be most likely to make if there are no car day?
+
+Summarise profile within 100 words that relevant to model's outline and scenario detail
+Find supporting evidence (quotes) that related to model's outline and scenario detail
+
+Using information from transcript to identify attributes:
+environmental awareness level
+
+Identify an answer for each attribute in total of 1 attributes.
+Respond in this format
+[
+    "attribute1: answer",
+    "attribute2: answer"
+]
+
+Using information from profile summary and quotes, 
+Classify this profile archetype
+
+file is {document path}
+//
+== note ==
+file: "data/travel_profile_txt/CreditonStLawrence.txt",
+time: 9:30-10:25, 10:42-11:25 ~ 1:40 hrs (skim part1, skip part3)
+
+file: "data/travel_profile_txt/CullomptonNorth.txt",
+time: 13:11-13:28, 13:33-13:44 ~ 30 minutes (only focus on scenario questions)
+
+file: "data/travel_profile_txt/Pennsylvania1.txt",
+time: 14:46-15:24 ~ 40 minutes
+
+file: "data/travel_profile_txt/Pennsylvania2.txt",
+time: 15:32-16:06
+
+file: "data/travel_profile_txt/StLoyes.txt",
+times: 16.53-17:26 ~ 30 minutes
