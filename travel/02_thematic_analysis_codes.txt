@@ -1,97 +1,163 @@
 {
   "actors": [
     {
-      "code": "Residents Commuters",
+      "code": "Citizens",
       "quotes": [
-        "I mean I use my car to go backwards and forwards to work because it’s not convenient to get up an hour earlier to get a bus to be hanging around at work before I need to start, and then at the end of the day exactly the same.",
-        "Personally I mean to my mind I don’t necessarily agree with cyclist being allowed to ride on the road without paying any sort of cycle tax or road tax or insurance or anything like that."
+        "I think we do need to change the way we travel but I think I don’t know that we are all a bit reluctant to do it, I mean it’s all very well to say they must change, but what are the alternatives, are they palatable alternatives."
       ]
     },
     {
-      "code": "Government Policy Makers",
+      "code": "Government",
       "quotes": [
         "Yes, compulsory purchase, our government have got rights to do that.",
-        "I thought that would happen under a labour government and it hasn’t."
+        "Well I thought that would happen under a labour government and it hasn’t."
+      ]
+    },
+    {
+      "code": "Cyclists",
+      "quotes": [
+        "Personally I mean to my mind I don’t necessarily agree with cyclist being allowed to ride on the road without paying any sort of cycle tax or road tax or insurance or anything like that.",
+        "I have seen cyclists cause so more accidents, not just involving themselves, but involving other people."
+      ]
+    },
+    {
+      "code": "Petrol Companies",
+      "quotes": [
+        "That’s because the fuel fraternity don’t want them to disturb their presence in the field. Some of them.",
+        "Stop the petrol companies buying out the compressed air engine."
       ]
     }
   ],
   "physical_components": [
     {
-      "code": "Transportation Infrastructure",
+      "code": "Public Transport Infrastructure",
       "quotes": [
-        "The problem is public transport is already virtually maximised, you look at the trains, they can’t put the bigger trains on already...",
-        "Well I have just said about the two motor, bicycles going on rail tracks that are totally in efficient"
+        "Yes, I think we need to change it hugely, and use cars much less and if public transport could be just a bit more and better and cheaper then I think we would, the sooner we do it the better."
       ]
     },
     {
-      "code": "Alternative Vehicles",
+      "code": "Compressed Air Engine",
       "quotes": [
-        "One that’s, most people have not paid much attention, I am sure you will know about it and it’s called the compressed air engine.",
-        "Everyone’s talking about electrical engines and energy, but compressed air engines are particularly brilliant for Denmark."
+        "Everyone’s talking about electrical engines and energy, but compressed air engines are particularly brilliant for Denmark.",
+        "Well if you put your cars are on small compressor, they have got a car now, they are building it, that will do 100, 120 km on one charge, pressure charge, okay."
+      ]
+    },
+    {
+      "code": "Wind Turbines",
+      "quotes": [
+        "Even China are importing huge amounts of wind turbines.",
+        "Again they are open to coal fired, generating power station every week at the moment, which is appalling but they are."
+      ]
+    },
+    {
+      "code": "Cycle Ways",
+      "quotes": [
+        "I think most, a lot of the routes could be used for cycle ways and you would get a huge amount of people off the road if you had a designated route for the cyclists, and they are there, they are existing, all you have to do is put some tarmac down, it’s really cheap."
       ]
     }
   ],
   "social_aspect": [
     {
-      "code": "Community Safety",
+      "code": "Convenience of Cars",
       "quotes": [
-        "If you want to cycle in this country, it’s a cycle track only otherwise you are taking your life in your hands.",
-        "I mean I would use public transport more, but I actually think at night I would be quite wary of it really."
+        "Well I think at the end of the day it’s about convenience isn’t it.",
+        "I mean I use my car to go backwards and forwards to work because it’s not convenient to get up an hour earlier to get a bus to be hanging around at work before I need to start, and then at the end of the day exactly the same."
       ]
     },
     {
-      "code": "Public Awareness Education",
+      "code": "Safety Concerns",
       "quotes": [
-        "No well I think what we probably need is people to be more aware, educated, whatever you would like to say.",
-        "But I also think that people don’t, can also look for alternatives because the car is so convenient, you know there are other things to, ways to get to work and if you just look and  there are positives for them obviously might take a little bit longer, they always usually do us but you might get fitter or you might read your book on the train, or you might be able to do something else, whereas in your car is actually dead time and you’ve got to kind of appreciate the positives of as well."
+        "I would use public transport more, but I actually think at night I would be quite wary of it really.",
+        "I mean if you are in the centre of Exeter, and going to that bus station, which is so grotty…"
+      ]
+    },
+    {
+      "code": "Public Transport Inefficiency",
+      "quotes": [
+        "I mean I would certainly stop using my car so much if the bus service was reliable, if the train service sort of, I didn’t have to drive the car to park at the station or whatever, you know.",
+        "I mean at the end of the day who wants to add another hour to their working day."
+      ]
+    },
+    {
+      "code": "Lack of Courtesy to Cyclists",
+      "quotes": [
+        "You know there is a real courtesy to cyclists, I mean a courtesy they are first, cars are flippant to cyclists.",
+        "And what that does is that you see huge amounts of people on the roads with bicycles."
       ]
     }
   ],
   "psychological_aspect": [
     {
-      "code": "Behavioral Inertia",
+      "code": "Resistance to Change",
       "quotes": [
-        "Yes I think we do need to change the way we travel but I think I don’t know that we are all a bit reluctant to do it, I mean it’s all very well to say they must change, but what are the alternatives, are they palatable alternatives.",
-        "Well I think at the end of the day it’s about convenience isn’t it."
+        "Yes I think we do need to change the way we travel but I think I don’t know that we are all a bit reluctant to do it, I mean it’s all very well to say they must change, but what are the alternatives, are they palatable alternatives."
       ]
     },
     {
-      "code": "Perceived Freedom",
+      "code": "Individual Freedom vs Collective Good",
       "quotes": [
-        "But it is convenience, the bus doesn’t go when I want the bus to go and it doesn’t take me all the way, door to door does it.",
-        "Yes I mean people have started working in more distant places…"
+        "everybody has got a mind of their own haven’t they you know, at the end of the day it’s freedom of choice, I mean we’d all probably like to reduce the emissions that our cars are push out, I agree with that, you know, if there’s a way of producing vehicles with this idea…"
+      ]
+    },
+    {
+      "code": "Psychological Attitudes",
+      "quotes": [
+        "I think it’s got to be something, it’s a kind of psychological thing, that if we all do it it’s fine but why should I do it in my little thing, because they’re not.",
+        "So it’s a change in the psychological attitudes."
       ]
     }
   ],
   "misc": [
     {
-      "code": "Environmental Concerns",
+      "code": "Climate Change",
       "quotes": [
         "Yes climate change and not destroy all nature.",
-        "There is climate change."
+        "That’s quite a good reason."
       ]
     },
     {
-      "code": "Economic Factors",
+      "code": "Congestion",
       "quotes": [
-        "Well on-shore wind is a lot cheaper than off shore wind, and off shore wind, obviously at the moment the start up costs are large compared to fossil fuels, so obviously the easier option.",
-        "But if you can charge your compressed engine up and apparently it is something like 50 pence for a 150 km so that’s 70 miles."
+        "Okay, Keith what do you think is maybe congestion really a reason to change peoples travel behaviour?"
+      ]
+    },
+    {
+      "code": "Running out of Petrol",
+      "quotes": [
+        "You said maybe we are running out of petrol, would this be a reason?"
+      ]
+    },
+    {
+      "code": "Pollution",
+      "quotes": [
+        "At least mostly it only kills you.",
+        "But pollution is going to kill everybody."
       ]
     }
   ],
   "key_activities": [
     {
-      "code": "Commuting",
+      "code": "Daily Commuting",
       "quotes": [
-        "I mean I use my car to go backwards and forwards to work because it’s not convenient to get up an hour earlier to get a bus to be hanging around at work before I need to start, and then at the end of the day exactly the same.",
-        "I bought one thinking I would be able to cycling backwards and forwards to Exeter to work."
+        "That’s including daily travel, what you use to go shopping to go to work and visiting your grandchildren or whatever, or also including holidays, so who wants to go first?"
       ]
     },
     {
-      "code": "Policy Implementation",
+      "code": "Policy Making",
       "quotes": [
-        "I think national express is quite good.",
-        "I mean the fact that they privatised the buses and they don’t connect with the train, you can’t use the same ticket on a bus and a train you know…"
+        "But mostly to know, very interesting point on my list, again a very general question, what is your view of current transport policy and you can think of local or even national level if you want to?"
+      ]
+    },
+    {
+      "code": "Holiday Travel",
+      "quotes": [
+        "Next thing I want you to think about, unfortunately holiday travel is a little bit contributing to some of the problems we are discussing."
+      ]
+    },
+    {
+      "code": "Car Sharing",
+      "quotes": [
+        "I don’t suppose you have anything about car sharing or something in there."
       ]
     }
   ],
@@ -103,55 +169,63 @@
     {
       "code": "Travelers",
       "quotes": [
-        "But the problem in this country, because I’m an old codger now so I can gripe, is that the cost of travel is too expensive, public transport."
+        "how people move from A to B and what they use for going shopping or leisure trips or whatever.",
+        "I would love to go by train, but I’m a pensioner, limited income, you must therefore look at what’s the cheapest way to go from A to B, that’s the governing question it’s often down to cash."
       ]
     },
     {
       "code": "Government and Policy Makers",
       "quotes": [
-        "Well policy is, policy dictating by a parliament that are to busy trying to hang on to quotas and (9.49) that’s the problem."
+        "Well policy is, policy dictating by a parliament that are to busy trying to hang on to quotas and (9.49) that’s the problem.",
+        "Because if you can stick your little croft up at the top of the helm, have your own solar panels and wind turbine and produce your own electricity and have your own internet and broadband connection you can say yahoo sucks to the rest of the world because you can do what you like!"
       ]
     }
   ],
   "physical_components": [
     {
-      "code": "Public Transport Infrastructure",
+      "code": "Transportation Infrastructure",
       "quotes": [
-        "I would also be in favour of better transport by train, rather than bus."
+        "I would also be in favour of better transport by train, rather than bus.",
+        "But I’ve suffered through generations with a poor public transport infrastructure, that’s when you compare it to Holland, Germany, Switzerland, any of these places, Spain, how much cheaper it is and how efficient the trains run on time, but this country has suffered from, you know, really up down travel, it just doesn’t work, nothing’s coordinated."
       ]
     },
     {
-      "code": "Roads and Cycling Facilities",
+      "code": "Vehicles",
       "quotes": [
-        "So I would be all for more cycling, but that would mean restructuring your roads in someway or another."
+        "Yes I mean one of the things which I think Thomas leaded to really, influencing people away from using cars would be certainly congestion, but then of course when you live in a kind of rural area like we do it’s not as much of an issue, so that will take a bit longer I think to change in those kind of areas, but certainly in the cities,",
+        "Course moving slowly in that way because they used to have big cars now we have small cars."
       ]
     }
   ],
   "social_aspect": [
     {
-      "code": "Convenience and Lifestyle",
+      "code": "Community and Social Norms",
       "quotes": [
-        "And it ends up that people are forced into buying cars and that keeps the market going and they say oh well if the factory shuts down and stops making cars people would be unemployed blah, blah, blah, the same stories."
+        "It is, there is two types of things, one is a status symbol that comes from owning a car, you know the man down the roads got a car what’s wrong with us!",
+        "So what I would say is for travel to change is to introduce it in such a way that to keep up with the Jones’ means giving the car up."
       ]
     },
     {
-      "code": "Community and Social Norms",
+      "code": "Accessibility and Equity",
       "quotes": [
-        "When we were not such a insulate society in this country because, for example, people who work at Dagenham, Fords of Dagenham or somewhere like that, they ran car clubs, because they all worked at the same place and they all started at the same time, or whatever shift there was, the cars were then loaded with guys ‘it’s your turn to drive’ that doesn’t work."
+        "And of course it is prejudice heavily against people who don’t have cars.",
+        "There where of life is coming to terms by having a car with money they don’t have."
       ]
     }
   ],
   "psychological_aspect": [
     {
-      "code": "Fear and Safety",
+      "code": "Perception of Convenience",
       "quotes": [
-        "The problem is that people are afraid to cycle because there is too much traffic on the road."
+        "I still think, probably the one thing that would be stopping people from changing from using cars as much as we all do, would be convenience, because people are prepared to pay a lot of money for convenience, especially those that are working.",
+        "But I find it very difficult to be optimistic about introducing things to encourage people to give up cars, I think society has got so dependant on the convenience and everything else that even if things were improved and other forms of transport were improved I think there still would be a lot of people that who would cling to that car because it means so much to them now, you know it’s something that they’ve become very used to the convenience."
       ]
     },
     {
       "code": "Habit and Mindset",
       "quotes": [
-        "It’s a mindset that has to changed and that’s a difficult thing to do to a nation, you know change a mindset, you can only use something dramatic."
+        "It’s a mindset that has to changed and that’s a difficult thing to do to a nation, you know change a mindset, you can only use something dramatic.",
+        "I am a car user and I am a car user because I grew into being a car user."
       ]
     }
   ],
@@ -159,13 +233,15 @@
     {
       "code": "Economic Factors",
       "quotes": [
+        "But the problem in this country, because I’m an old codger now so I can gripe, is that the cost of travel is too expensive, public transport.",
         "Particularly trains, it’s ridiculous when you can fly cheaper than you can go by train."
       ]
     },
     {
       "code": "Environmental Concerns",
       "quotes": [
-        "Well there’s a few different ways because I think most people are buying into the idea that it’s healthier for the environment and for us as people if we were more active in our ways of travel, physically active."
+        "Well there’s a few different ways because I think most people are buying into the idea that it’s healthier for the environment and for us as people if we were more active in our ways of travel, physically active.",
+        "But those are holiday trips you know so we try to in this first section we want to include all travel related things and the first question is a really general one."
       ]
     }
   ],
@@ -173,13 +249,15 @@
     {
       "code": "Commuting",
       "quotes": [
-        "But again in the cities or the surrounding suburbs, usually the public transport would be available and probably more geared to people using it to get into and out of the cities, but again I guess for a lot of people cost is always going to be a big factor and but despite the cost I still think, probably the one thing that would be stopping people from changing from using cars as much as we all do, would be convenience, because people are prepared to pay a lot of money for convenience, especially those that are working."
+        "especially the majority of population that still work to get to and from work every day, without using cars as much, then that’s go to be a way to go, but as Thomas said it’s got to be economically viable for those people and the convenience element is always the thing that’s going to swing it for the car.",
+        "The thing is I am a pensioner so if you’ve got a travel pass right, but you are not allowed to go on the bus until 9.30, see now that’s absolutely silly, because that’s fine when everyone else has to be in the office at 9 o’clock or something, but there’s nothing, people are in their offices, they are at their job, their at their places of employment by 9 o’clock, so elderly people can go on at 9 o’clock, I mean that stops a lot of old people going in, because they want to do their shopping, to have it by first thing in the morning, it’s just the way we’ve been brought up."
       ]
     },
     {
-      "code": "Policy Implementation",
+      "code": "Policy Implementation and Enforcement",
       "quotes": [
-        "Maybe you should think to radical, an idea to bring this congestion charge in London, which worked, you know, people started using the buses."
+        "But they have a good structure there, they have got underground system, and you can go across London in minutes.",
+        "You couldn’t do that in Exeter! In Exeter it is now grid locked, when I first came to Exeter it wasn’t as grid locked, and that was nice, it only got grid locked in the summer times when tourists came through, then you expected your journey to take an extra half an hour. Maybe that’s my opinion of what happened."
       ]
     }
   ],
@@ -189,49 +267,43 @@
 {
   "actors": [
     {
-      "code": "Individual Travellers",
+      "code": "Car Users",
       "quotes": [
-        "Well my name’s Guy and I’m retired, but I live in Exeter.",
-        "My name is Sharon, I live and work in Exeter, I use a car all the time, because it’s more convenient."
+        "I use a car all the time, because it’s more convenient."
       ]
     },
     {
-      "code": "Government and Planners",
+      "code": "Public Transport Users",
       "quotes": [
-        "My name is Moderator, I am a researcher here at Exeter University in the department of Geography and the first thing I want you to do is maybe a short introduction, if you could say your first name and if you want, what you’re doing at the moment and if not just pass on to the next person, starting to my left.",
-        "I come across the national planning policy a lot in the work I do, where I try and help the farmers diversify or try and develop some alternative enterprises."
+        "I’m Stuart, I’ve just finished studying and I use buses because I can’t afford a car."
       ]
     }
   ],
   "physical_components": [
     {
-      "code": "Cars and Scooters",
+      "code": "Cars",
       "quotes": [
-        "I use a blue badge as I’m a fairly extensive car user.",
         "I’ve just changed my motor from a car to a scooter which gets me through all the traffic jams, I can certainly notice."
       ]
     },
     {
       "code": "Public Transport Infrastructure",
       "quotes": [
-        "I’m Stuart, I’ve just finished studying and I use buses because I can’t afford a car.",
-        "The trains are very good.  I think here in the south west, not far from the beach and I have used trains in the past."
+        "Well I don’t know, I’m a frequent bus user and I can get a weekly bus pass in Exeter for £12 and I never need to worry about transport at all, because I’m always fifteen minutes away from a bus stop and as long as I know what time the bus is there, then I’m ok."
       ]
     }
   ],
   "social_aspect": [
     {
-      "code": "Public Transport Reliability",
+      "code": "Social Equity in Transport",
       "quotes": [
-        "But I think more people would use public transport a) if the fares were more reasonable and b) if they were more reliable and frequent.",
-        "If you haven’t got a reliable public transport service people aren’t going to use it."
+        "I mean taxing things is fair enough as long as tax goes to the right place, but it never does, so I wouldn’t agree with taxing everything."
       ]
     },
     {
-      "code": "Car Dependency Norms",
+      "code": "Hitchhiking Norms",
       "quotes": [
-        "I feel that my work and travel habits have grown up around the use of a car and it would be very difficult to carry on working the way I do, relying on any other form of public transport because there is no alternative.",
-        "I would definitely choose a car."
+        "Well I must admit, before the troubles in Northern Ireland particularly, if I saw any service men thumbing a lift I always used to give them a lift."
       ]
     }
   ],
@@ -239,31 +311,27 @@
     {
       "code": "Perceived Convenience",
       "quotes": [
-        "My name is Sharon, I live and work in Exeter, I use a car all the time, because it’s more convenient.",
-        "Because being in your own air conditioned car in traffic is going to be far better then being in a bus."
+        "My view is that question is so difficult to answer because there are so many different reasons why you need to travel."
       ]
     },
     {
-      "code": "Frustration with Public Transport",
+      "code": "Resistance to Change",
       "quotes": [
-        "I find the thing that puts me off public transport is its infrequency and also it’s cost.",
-        "I mean it’s just a ridiculous cost."
+        "I think that as long as there’s petrol, those that have access to cars will continue to use them and it’s quite simplistic to think that you can change the way people will behave."
       ]
     }
   ],
   "misc": [
     {
-      "code": "Cost of Travel",
+      "code": "Government Policies",
       "quotes": [
-        "I find the thing that puts me off public transport is its infrequency and also it’s cost.",
-        "I mean it’s just a ridiculous cost."
+        "In view of transport policies I want to mention something here, the British government want to reduce carbon emissions till 2050 by 80% do you see that this is maybe reflected in some policy or what do you think about that?"
       ]
     },
     {
-      "code": "Environmental Concerns",
+      "code": "Congestion Issues",
       "quotes": [
-        "In view of transport policies I want to mention something here, the British government want to reduce carbon emissions till 2050 by 80% do you see that this is maybe reflected in some policy or what do you think about that?",
-        "I just mentioned the 80% in carbon emissions that the government wants to achieve."
+        "It’s been dreadful round Exeter recently, all the road works which is why I bought the scooter, because now I can get from one end of the city to the other in twenty minutes, where it would take me double that with all the road works going on."
       ]
     }
   ],
@@ -271,15 +339,13 @@
     {
       "code": "Commuting",
       "quotes": [
-        "I’m Mark, I work as an Agricultural Surveyor, travelling around the West Country, mainly visiting farmers, so a car’s fairly essential for me.",
-        "But we live right at the edge of Exeter, so getting in and out of town’s a problem."
+        "So I don’t know how they’re going to do that, 2050? The thing is like I keep hearing everyone saying that they’re making it harder for cars basically, but not very much easier for public transport."
       ]
     },
     {
-      "code": "Policy Implementation",
+      "code": "Holiday Travel",
       "quotes": [
-        "Well the only things that I see happening are that local government places are bringing in pay to park at your place of work.",
-        "And within Devon County they are reducing the number of times you are allowed to bring your car into work to try and make you use public transport."
+        "I’d like to actually perhaps, if I had the patience, try and take the family for a day at the seaside, with all the paraphernalia that you like that you to take, your picnic box and everything, on public transport and just see who’s killed who first by the end of the day."
       ]
     }
   ],
@@ -296,90 +362,90 @@
       ]
     },
     {
-      "code": "Council Inefficiency",
+      "code": "Bus Passengers Frustration",
       "quotes": [
-        "one of them would be to get rid of the Council because they are deliberately slowing the traffic down more and more and more by putting in lights where you don’t really need them.",
-        "Even when you’ve got side roads and you need to that (0:09:46.0) you can have a moan about the mini roundabout in some places, countless mini roundabouts are a prime example of where they can put and made things worse"
+        "That’s not really, you know",
+        "It doesn’t encourage people, especially if there’s more than a couple of you then you are going to go in town and pay parking fees."
       ]
     }
   ],
   "physical_components": [
     {
-      "code": "Traffic Lights Inefficiency",
+      "code": "Road Infrastructure Inadequacy",
       "quotes": [
         "Too many cars on the road in Exeter.",
-        "one of them would be to get rid of the Council because they are deliberately slowing the traffic down more and more and more by putting in lights where you don’t really need them."
+        "Congestion in Exeter is pretty crazy at certain times of the day."
       ]
     },
     {
       "code": "Cycle Path Limitations",
       "quotes": [
         "I think the ones that are off road, the cycle paths that are off road, down by the quay and things are all really good, but on the road, sometimes you are cycling along and suddenly it just says end and the cycle path ends.",
-        "You are in the cycle lane and there is always somebody parked in it."
+        "And then suddenly you are back into the traffic"
       ]
     }
   ],
   "social_aspect": [
     {
-      "code": "Cycling Rule Breaking",
+      "code": "Traffic Policy Dissatisfaction",
       "quotes": [
-        "Education is perhaps required for cyclists, I don’t know.",
-        "It does annoy me, because we get a bad reputation and people think it’s dangerous because a lot of cyclists have accidents, but half of the time it is because cyclists are doing stupid things and not following the road rules."
+        "If you are talking about Exeter specifically, then there is a lot of changes that you can do, one of them would be to get rid of the Council because they are deliberately slowing the traffic down more and more and more by putting in lights where you don’t really need them.",
+        "So they spent the money and put these traffic lights in, quite unnecessarily."
       ]
     },
     {
-      "code": "Car Dependency Norm",
+      "code": "Public Transport Cost Concerns",
       "quotes": [
-        "I think one of the other things is peoples attitude to cars and public transport needs to change, which I think it’s starting to do as people are more aware of environmental issues, but a lot of people still very much have the attitude that the car is somehow, I don’t know a mark of various things like independence, money, you know all that sort of thing and they wouldn’t want to get on the bus with everyone else they want to sit in their little air conditioned box and drive to work or into town or whatever, but I’m not sure exactly how you go about changing that.",
-        "I think we have developed to a point where we’re very dependent on cars, the way people work, the way people travel, that to simply try and get people out of their cars is not going to be that effective and it seems that a lot of their approach in that involves increasing taxes which, I don’t think really has that effect because people do need their cars so they are prepared to pay a bit extra"
+        "I especially think buses but more than buses trains are ridiculously expensive and I am tempted to say I think trains should be nationalised again, which is not a very popular point of view at the moment, but if there is no effective competition to drive prices down because you’ve only got on operator running on one bit of track so you don’t have choice to use a different train company and prices as a result are ridiculously high I think.",
+        "You also need to know where you are going in three weeks time to get a cheaper ticket."
       ]
     }
   ],
   "psychological_aspect": [
     {
-      "code": "Fear of Cycling",
+      "code": "Car Dependency Mindset",
       "quotes": [
-        "I’d like to cycle more, I’d like to feel that it was an option to cycle more.",
-        "If it was safer and there was better cycle lanes then I would do that."
+        "I think we have developed to a point where we’re very dependent on cars, the way people work, the way people travel, that to simply try and get people out of their cars is not going to be that effective and it seems that a lot of their approach in that involves increasing taxes which, I don’t think really has that effect because people do need their cars so they are prepared to pay a bit extra and I guess I would have thought it made more sense to focus more on trying to make cars ‘quote greener’ than to be trying to sort of force people out of them.",
+        "Well it’s a great idea not to use cars and everything, but they are terribly convenient to get from A to B, it’s sad really but I can’t cycle miles and miles and miles."
       ]
     },
     {
-      "code": "Inconvenience of Public Transport",
+      "code": "Walking Preference",
       "quotes": [
-        "It’s not so much the expense it’s the inconvenience of having to get to the park and ride so very early in the morning and then get on the bus and you arrive sort of half and hour before work.",
-        "Selling the idea of stop here and get on the bus when you can just continue your journey in the car."
+        "I love walking everywhere, I actually really like that.",
+        "At the moment it is convenient for me I know it depends where you work."
       ]
     }
   ],
   "misc": [
     {
-      "code": "Bus Cost",
+      "code": "Holiday Travel Considerations",
       "quotes": [
-        "I think Exeter generally is very friendly for walking because it’s quite a small town and you’ve got access to a lot of things in a smaller area but I agree with the comments about buses and bicycles, bicycles being feeling dangerous to cycle on the roads and buses being too expensive",
-        "I think the other thing is nobody has mentioned buses and the cost of them, I mean buses in Exeter are ridiculous, to go from the High Street to Mount Pleasant costs me, I don’t know £1.30 or something and it’s like a 5 minute trip."
+        "Well it’s a great idea not to use cars and everything, but they are terribly convenient to get from A to B, it’s sad really but I can’t cycle miles and miles and miles.",
+        "I like to think I can, but I can’t."
       ]
     },
     {
-      "code": "Congestion Problems",
+      "code": "Environmental Awareness",
       "quotes": [
-        "Too many cars on the road in Exeter.",
-        "Congestion in Exeter is pretty crazy at certain times of the day."
+        "I think one of the other things is peoples attitude to cars and public transport needs to change, which I think it’s starting to do as people are more aware of environmental issues, but a lot of people still very much have the attitude that the car is somehow, I don’t know a mark of various things like independence, money, you know all that sort of thing and they wouldn’t want to get on the bus with everyone else they want to sit in their little air conditioned box and drive to work or into town or whatever, but I’m not sure exactly how you go about changing that.",
+        "I think this whole issue though does tie in a lot with the Toys R Us scenario doesn’t it."
       ]
     }
   ],
   "key_activities": [
     {
-      "code": "Commuting",
+      "code": "Commuting Challenges",
       "quotes": [
         "I walk to work in the morning going against the traffic coming into Exeter and the vast majority of cars that are going into the City Centre there is one person in that car and presumably they are probably all, a lot of them, parking very near to each other in a small space.",
-        "I used to commute an hour to work in one direction and an hour back."
+        "It would be interesting to take a survey wouldn’t it?"
       ]
     },
     {
-      "code": "Holiday Travel",
+      "code": "Policy Implementation Debate",
       "quotes": [
-        "Policy, planning measures, what you can think of and we are focussing on daily travel so how you travel for different purposes, for shopping, going to work and other things and also including holiday travel",
-        "General, holiday, daily travel anything you can think of."
+        "You’ve got to provide a convenient cheap alternative if you are going to say no cars.",
+        "Any of these things that say ban this don’t do that there has got to be something that’s you know an incentive to people to change and to do that."
       ]
     }
   ],
@@ -389,85 +455,97 @@
 {
   "actors": [
     {
-      "code": "Travelers",
+      "code": "Travelers NOT Travelers",
       "quotes": [
-        "I mean I think people travel far too much to see things that they could actually experience more locally, it’s a general feeling."
+        "I mean I just don’t think people are going to change their transport habits, or any other habits actually.",
+        "I mean I think many would argue well they just haven’t got time, because if you are walking it generally takes a bit longer, not a lot longer actually, but!"
       ]
     },
     {
-      "code": "Government",
+      "code": "Government NOT Government",
       "quotes": [
-        "But in general I mean I just don’t think people are going to change their transport habits, or any other habits actually."
+        "But in general I mean I just don’t think people are going to change their transport habits, or any other habits actually.",
+        "Which is why encouraging people to move to cleaner energy in the way of, as I say electric cars maybe, but I think all the arguments in relation to alternative energy sources, you know like wind farms I mean it’s interesting or disappointing in a way that, how selfish people can become about that."
       ]
     }
   ],
   "physical_components": [
     {
-      "code": "Public Transport",
+      "code": "Public Transport NOT PublicTransport",
       "quotes": [
-        "I am not sure that we can offer any alternative to people who want to take that family fun holiday on public transport."
+        "I am retired and I don’t drive, and so I mainly use public transport, buses, trains etc, but I also like walking to get from A to B healthily.",
+        "I mean something I’ve been using a lot recently is walking around London, there is a circular route that goes all round London and which links with public transport and this was one of the ideas of it."
       ]
     },
     {
-      "code": "Private Cars",
+      "code": "Private Cars NOT PrivateCars",
       "quotes": [
-        "I mean I think I sympathise with them a bit because you almost can’t win in some of these arguments, because it is so interrelated."
+        "I mean, that’s maybe concentrating on local travelling really.",
+        "I mean I think the government is going to issue one of these meters so you can measure how much energy devices are consumed."
       ]
     }
   ],
   "social_aspect": [
     {
-      "code": "Community Norms",
+      "code": "Community Norms NOT CommunityNorms",
       "quotes": [
+        "I mean I think it’s good to see the county is actually encouraging people to share cars, how successful that is I have no idea.",
         "I mean I think you have this whole problem of if I go, if I fly to go on holiday somewhere, is that worse than somebody who keeps driving somewhere all the time."
       ]
     },
     {
-      "code": "Accessibility",
+      "code": "Policy NOT Policy",
       "quotes": [
-        "But even then you get involved with having to change because you you’ve got to change direction,  I mean It comes back to personal injury and personal journeys from A to B if that’s where you want to go rather than from A to C to D."
+        "But in terms of congestion, I mean, yes I think some of the things that are being done, or seem to have had some effect in places like London, Exeter I’m not so sure about!",
+        "Yes I mean, now I have a bus pass, but you begin to feel a bit guilty when you see people paying quite a fair bit of money on fares."
       ]
     }
   ],
   "psychological_aspect": [
     {
-      "code": "Perceived Convenience",
+      "code": "Personal Choice NOT PersonalChoice",
       "quotes": [
-        "And I can sympathise with people who say well you know you’ve got three kids we’ve got to have the car to take all our bits and pieces."
+        "I mean I think many would argue well they just haven’t got time, because if you are walking it generally takes a bit longer, not a lot longer actually, but!",
+        "I mean I think you have this whole problem of if I go, if I fly to go on holiday somewhere, is that worse than somebody who keeps driving somewhere all the time."
       ]
     },
     {
-      "code": "Environmental Concern",
+      "code": "Environmental Awareness NOT EnvironmentalAwareness",
       "quotes": [
+        "Well, again I’m thinking in terms of shorter distances within the city, then I mean it goes along with our aims to encourage people to become fitter and more active.",
         "It doesn’t actually, I feel completely neutral about it."
       ]
     }
   ],
   "misc": [
     {
-      "code": "Economic Factors",
+      "code": "Location NOT Location",
       "quotes": [
-        "Yes expensive when I can get free travel!"
+        "My name is Gill, I also live on the edge of Exeter, on the east side of Exeter.",
+        "But in terms of congestion, I mean, yes I think some of the things that are being done, or seem to have had some effect in places like London, Exeter I’m not so sure about!"
       ]
     },
     {
-      "code": "Geographic Constraints",
+      "code": "Economic Factors NOT EconomicFactors",
       "quotes": [
-        "We both live on our knees to the city now.  Wherever you go from there you are going to have a hill!"
+        "Yes expensive when I can get free travel!",
+        "I think it’s totally confused actually, I mean I don’t think the Government has a consistent policy, particularly going through the economic situation we are, where on one hand the Government wants more and more cars to be sold, and on the other hand they are saying they want people to use public transport, not cars."
       ]
     }
   ],
   "key_activities": [
     {
-      "code": "Policy Implementation",
+      "code": "Commuting NOT Commuting",
       "quotes": [
-        "I mean I think the government is going to issue one of these meters so you can measure how much energy devices are consumed."
+        "But for people who are working within the city I’m quite sure some of them could easily walk to work.",
+        "One thing that I often think about is all the children that go in their parent’s car to school; I do think that sometimes the parents then drive on to their work, their place of work especially if it’s a mum."
       ]
     },
     {
-      "code": "Travel Mode Choice",
+      "code": "Recreational Travel NOT RecreationalTravel",
       "quotes": [
-        "But even then you get involved with having to change because you you’ve got to change direction,  I mean It comes back to personal injury and personal journeys from A to B if that’s where you want to go rather than from A to C to D."
+        "As you say you are also involved in holiday travelling.",
+        "I mean something I’ve been using a lot recently is walking around London, there is a circular route that goes all round London and which links with public transport and this was one of the ideas of it."
       ]
     }
   ],

@@ -1,0 +1,74 @@
+{
+    "actors": [
+        {
+            "element": "Commuters",
+            "description": "Individuals who live in the area and travel to work.",
+            "justification": "Crucial for modelling daily travel patterns and the impact of interventions on commuting habits. The quote highlights the importance of convenience in mode choice."
+        }
+    ],
+    "physical_components": [
+        {
+            "element": "Cycling",
+            "description": "The most environmental friendly method, great for short-medium distance travelling",
+            "justification": "One common methods for travelling"
+        },
+        {
+            "element": "Cars",
+            "description": "Interrelated arguments surrounding car use.",
+            "justification": "Acknowledges the complex and interconnected factors influencing car use, emphasizing the need for a holistic approach to promoting sustainable travel. This is important for modelling the interplay of different factors influencing travel behavior."
+        },
+        {
+            "element": "Public Transport",
+            "description": "Limitations of public transport for family holidays.",
+            "justification": "Identifies a specific context (family holidays) where public transport may not be a viable alternative, highlighting the need for tailored solutions. This is important for modelling travel behavior in different lifestyle contexts."
+        }
+    ],
+    "social_aspect": [
+        {
+            "element": "Public Transport Reliability",
+            "description": "The reliability and frequency of public transport services.",
+            "justification": "Crucial for modelling commuter choices. If public transport is unreliable, individuals are less likely to adopt it, directly impacting carbon emissions and commuter satisfaction."
+        },
+        {
+            "element": "Car Dependency Norms",
+            "description": "The societal norms and habits that promote car usage.",
+            "justification": "This captures the ingrained reliance on cars for work and travel, which is a significant barrier to sustainable travel adoption. It influences how people respond to intervention strategies."
+        }
+    ],
+    "psychological_aspect": [
+        {
+            "element": "Behavioral Inertia",
+            "description": "Reluctance to change travel habits despite awareness of the need for sustainable options.",
+            "justification": "Captures the resistance to adopting new travel behaviors, a crucial factor in modeling adoption rates of sustainable travel modes. It highlights the importance of understanding the status quo bias."
+        },
+        {
+            "element": "Perceived Convenience",
+            "description": "The belief that current travel methods (primarily car use) are more convenient than sustainable alternatives.",
+            "justification": "Convenience is a major driver of travel choices.  Modeling how individuals weigh convenience against environmental concerns is essential for predicting the impact of interventions."
+        },
+        {
+            "element": "Frustration with Public Transport",
+            "description": "Negative experiences and perceptions of public transport, such as infrequency and cost.",
+            "justification": "This directly impacts the willingness to switch to public transport.  The model needs to account for these negative perceptions and how they influence mode choice."
+        },
+        {
+            "element": "Climate awareness",
+            "description": "Awareness and knowledge about climate and environment",
+            "justification": "A strong awareness can change person's behaviour"
+        }
+    ],
+    "misc": [
+        {
+            "element": "Carbon emissions level",
+            "description": "Level of CO2 the system omit from transport mode such as cars",
+            "justification": "This is the main measurement of sustainability improvement from intervention policy"
+        }
+    ],
+    "key_activities": [
+        {
+            "element": "Commuting",
+            "description": "Daily travel to and from work or other regular activities.",
+            "justification": "Crucial for modelling daily travel patterns and understanding the impact of interventions on regular travel behaviour, directly affecting carbon emissions and commuter satisfaction."
+        }
+    ]
+}
