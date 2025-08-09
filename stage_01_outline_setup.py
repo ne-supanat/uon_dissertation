@@ -75,7 +75,7 @@ Simulation model's Topic, Context, Goal:
 {topic}
 
 Please suggest potential Objective, Experiment factor (input), Response (output) of the model.
-Give me {3} potential element each.
+Give me {3} potential elements each.
 """
     response = llm.generate_content(
         prompt,
