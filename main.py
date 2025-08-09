@@ -33,7 +33,6 @@ def print_end_stage(is_last_stage: bool = False):
     else:
         print("-" * 50 + "\nAll model development stages completed\n" + "=" * 50)
         print("\nRun 'main.py' to review the progress.")
-        print("Run 'main_post.py' to analyse the model output.")
         print("Run 'main_eval.py' to evaluate the system outputs.")
 
 
