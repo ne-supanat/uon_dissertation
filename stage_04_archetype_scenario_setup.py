@@ -27,7 +27,7 @@ def setup_profile_attribute(path: SystemPath):
 Example:
     Please enter the number of attributes: 2
     Enter Attribute 1 text: Age
-    Enter Attribute 2 text: Profession
+    Enter Attribute 2 text: Occupation
 
 {"-"*50}
 """

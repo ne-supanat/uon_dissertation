@@ -92,7 +92,6 @@ Follow this NetLogo template:
 
 turtles-own [
   archetype
-  ; physical-object
 ]
 
 globals [

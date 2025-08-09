@@ -140,30 +140,6 @@ Respond in mermaid.js format
     return response.script
 
 
-def generate_eabss_activity_diagram(
-    path: SystemPath, usecase_diagram: str, main_actor: str
-):
-    prompt = f"""
-Following these key components
-{ScopeComponent.get_explanation()}
-
-{display_progress.eabss_scope_progress(path)}
-
-And use case diagram
-{usecase_diagram}
-
-Generate UML activity diagram of "{main_actor}"
-Respond in mermaid.js format
-Use flowchart TD
-For action use box element. For example, Action["Action"]
-For decision node use diamond shape. For example, Decision{"{Decision}"}
-To link them with arrow use -->
-To have text in link use -- Text --> 
-"""
-    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
-    return response.script
-
-
 def generate_eabss_state_transition_diagram(
     path: SystemPath, usecase_diagram: str, main_actor: str
 ):
@@ -186,6 +162,30 @@ Example state transition of wake up and sleeping:
 [*] --> Sleeping
 Sleeping --> WakeUp: is morning 
 WakeUp --> Sleeping: is night 
+"""
+    response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
+    return response.script
+
+
+def generate_eabss_activity_diagram(
+    path: SystemPath, usecase_diagram: str, main_actor: str
+):
+    prompt = f"""
+Following these key components
+{ScopeComponent.get_explanation()}
+
+{display_progress.eabss_scope_progress(path)}
+
+And use case diagram
+{usecase_diagram}
+
+Generate UML activity diagram of "{main_actor}"
+Respond in mermaid.js format
+Use flowchart TD
+For action use box element. For example, Action["Action"]
+For decision node use diamond shape. For example, Decision{"{Decision}"}
+To link them with arrow use -->
+To have text in link use -- Text --> 
 """
     response: ScriptResponse = llm.generate_content(prompt, ScriptResponse).parsed
     return response.script

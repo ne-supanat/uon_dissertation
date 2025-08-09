@@ -3,7 +3,7 @@ import os
 import sys
 
 import stage_00_project_setup
-import stage_01_objective_setup
+import stage_01_outline_setup
 import stage_02_build_eabss
 import stage_03_generate_eabss_diagram
 import stage_04_archetype_scenario_setup
@@ -53,9 +53,9 @@ def run_setup_topic_outline(path: SystemPath):
         path.get_01_outline_path()
     ):
         # Setup topic and outline of the model
-        stage_01_objective_setup.setup_topic(path)
+        stage_01_outline_setup.setup_topic(path)
         print()
-        stage_01_objective_setup.setup_outline(path)
+        stage_01_outline_setup.setup_outline(path)
 
         # Display topic & outline of the model
         print(display_progress.topic_outline_progress(path))
@@ -216,14 +216,15 @@ def run_create_decision_probability_table(path: SystemPath):
             if method == "1":
                 # Based on extracted profile(s)
                 stage_06_scenario_decision.create_profile_scenario_answers(path)
-            elif method == "2":
-                # Based on ground truth
-                stage_06_scenario_decision.create_profile_scenario_answer_from_ground_truth(
+                # Create decision probability table
+                stage_06_scenario_decision.create_scenario_action_probability_table(
                     path
                 )
-
-            # Create decision probability table
-            stage_06_scenario_decision.create_scenario_action_probability_table(path)
+            elif method == "2":
+                # Based on ground truth
+                stage_06_scenario_decision.create_decision_probability_table_from_ground_truth(
+                    path
+                )
 
             print(display_progress.decision_probability_table_progess(path))
             print_end_stage()

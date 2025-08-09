@@ -29,4 +29,4 @@ def run_setup_project(path: SystemPath):
 
 
 if __name__ == "__main__":
-    run_setup_project("travel2")
+    run_setup_project("travel")
