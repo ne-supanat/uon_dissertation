@@ -1,0 +1,21 @@
+sequenceDiagram
+    actor Commuters
+    participant Walking
+    participant Cycling
+    participant PublicTransport
+    participant Cars
+    participant ConvenienceCulture
+    participant ResistanceToChange
+    participant PerceivedConvenience
+    participant EnvironmentalConcerns
+    participant CarbonEmissions
+
+    Commuters->>Walking: Chooses mode of transport
+    Commuters->>Cycling: Chooses mode of transport
+    Commuters->>PublicTransport: Chooses mode of transport
+    Commuters->>Cars: Chooses mode of transport
+    Commuters->>ConvenienceCulture: Influenced by convenience
+    Commuters->>ResistanceToChange: Faces reluctance to change
+    Commuters->>PerceivedConvenience: Considers perceived convenience
+    Commuters->>EnvironmentalConcerns: Aware of environmental issues
+    Commuters->>CarbonEmissions: Contributes to carbon emissions

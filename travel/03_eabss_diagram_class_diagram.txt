@@ -1,8 +1,0 @@
-classDiagram
-    class Commuters {
-        -string preferredTransportMode
-        -float dailyCommuteDistance
-        +void setPreferredTransportMode(string transportMode)
-        +void calculateCarbonFootprint(): void
-        +void commute(): void
-    }

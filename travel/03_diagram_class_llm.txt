@@ -1,0 +1,16 @@
+classDiagram
+    class Commuters {
+        -string name
+        -string commuteMethod
+        -float commuteDistance
+        -float commuteTime
+        -bool environmentalAwareness
+        -bool conveniencePreference
+        -bool resistanceToChange
+        +Commuters(string name, string commuteMethod, float commuteDistance, float commuteTime, bool environmentalAwareness, bool conveniencePreference, bool resistanceToChange)
+        +void changeCommuteMethod(string newMethod)
+        +float calculateCarbonFootprint()
+        +void expressEnvironmentalConcerns()
+        +bool evaluateConvenience(string commuteOption)
+        +bool adoptSustainableCommute()
+    }

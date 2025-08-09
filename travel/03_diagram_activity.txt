@@ -1,0 +1,9 @@
+flowchart TD
+    subgraph Commuters
+        Start(Start) --> DecideMode{Decide Travel Mode}
+        DecideMode -- Walking --> Commuting[Commuting]
+        DecideMode -- Cycling --> Commuting
+        DecideMode -- Public Transport --> Commuting
+        DecideMode -- Car --> Commuting
+        Commuting --> End(End)
+    end

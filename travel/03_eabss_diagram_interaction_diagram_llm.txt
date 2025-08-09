@@ -1,5 +1,0 @@
-sequenceDiagram
-    actor Commuters
-    participant Commuting
-
-    Commuters->>Commuting: Perform Commuting

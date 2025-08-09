@@ -1,0 +1,7 @@
+classDiagram
+    class Commuters {
+        -string commuteMethod
+        -bool environmentalAwareness
+        +float calculateCarbonFootprint()
+        +void commuting(): void
+    }

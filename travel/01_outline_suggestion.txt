@@ -1,18 +1,18 @@
 {
-  "think": "Simulate travel behavior change towards sustainability in the UK, considering motivations, barriers, and lifestyle contexts.",
+  "think": "To model the adoption of sustainable travel behaviors in the UK, considering various lifestyle contexts and identifying key influencing factors.",
   "objective": [
-    "Maximize the adoption rate of sustainable travel modes across different lifestyle groups.",
-    "Minimize the carbon footprint associated with travel behavior in the UK.",
-    "Identify the most effective interventions for promoting sustainable travel choices."
+    "Maximize the adoption rate of sustainable travel modes.",
+    "Minimize the carbon footprint associated with travel.",
+    "Identify the most effective interventions for promoting sustainable travel across different lifestyle groups."
   ],
   "input": [
-    "Travel cost (price of fuel, public transport tickets, etc.)",
-    "Travel time (duration of journey by different modes)",
-    "Awareness of environmental impact (level of knowledge about carbon emissions from travel)"
+    "Travel cost (price of fuel, public transport tickets).",
+    "Availability and accessibility of public transport.",
+    "Awareness of environmental impact of travel choices."
   ],
   "output": [
-    "Modal share (percentage of trips made by different modes of transport)",
-    "Total carbon emissions from travel (kilograms of CO2 equivalent)",
-    "Adoption rate of sustainable travel initiatives (percentage of individuals participating in programs promoting sustainable travel)"
+    "Modal share of different transport types (car, train, bus, bicycle, walking).",
+    "Total carbon emissions from travel.",
+    "Adoption rate of sustainable travel behaviors (e.g., cycling to work, using public transport for leisure)."
   ]
 }

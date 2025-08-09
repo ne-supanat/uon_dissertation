@@ -1,20 +1,36 @@
-["Income Level", "Residential Location", "Mode of Transportation"]
+["Income Level", "Travel Distance", "Mode of Transportation"]
 
 [
   "Eco-Conscious Commuter",
   "Convenience-Driven Commuter",
-  "Cost-Sensitive Commuter"
+  "Environmentally Aware but Inert Commuter"
 ]
 
 {
-  "choices": [
-    "Continue commuting by car despite awareness of environmental concerns.",
-    "Actively seek and utilize public transport options for commuting.",
-    "Explore and adopt cycling as a primary mode of transport for commuting."
-  ],
-  "questions": [
-    "Which choice best reflects your current commuting behavior?",
-    "Which choice would you be most likely to make if public transport reliability significantly improved?",
-    "Which choice would you be most likely to make if there were dedicated, safe cycling lanes implemented throughout the city?"
+  "scenarios": [
+    {
+      "scenario": "It is a regular workday morning. How likely are you to...",
+      "actions": [
+        "Drive alone to work, even if traffic is heavy.",
+        "Take public transport, even if it's slightly less direct.",
+        "Cycle or walk to work, if feasible, despite the distance."
+      ]
+    },
+    {
+      "scenario": "There is a new initiative promoting sustainable travel with incentives (e.g., free public transport for a month). How likely are you to...",
+      "actions": [
+        "Continue using your car as usual.",
+        "Try the free public transport for the month.",
+        "Consider cycling or walking more often."
+      ]
+    },
+    {
+      "scenario": "You are running late for an important meeting. How likely are you to...",
+      "actions": [
+        "Drive as fast as possible, even if it means breaking traffic rules.",
+        "Take the quickest public transport option available, even if it's crowded.",
+        "Call to reschedule or join the meeting remotely."
+      ]
+    }
   ]
 }

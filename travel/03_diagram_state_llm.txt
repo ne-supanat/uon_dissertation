@@ -1,0 +1,11 @@
+stateDiagram
+    [*] --> Choosing_Transportation
+    Choosing_Transportation --> Walking: Short Distance & Weather Permits
+    Choosing_Transportation --> Cycling: Medium Distance & Weather Permits
+    Choosing_Transportation --> Public_Transport: Long Distance & Available Routes
+    Choosing_Transportation --> Driving: Convenience & Necessity
+    Walking --> At_Work: Arrived
+    Cycling --> At_Work: Arrived
+    Public_Transport --> At_Work: Arrived
+    Driving --> At_Work: Arrived
+    At_Work --> Choosing_Transportation: End of Day
