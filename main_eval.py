@@ -3,7 +3,6 @@ import os
 import sys
 
 import eval_02_build_eabss_evaluation
-import stage_02_build_eabss_extra
 
 import eval_05_profile_evaluation
 
@@ -29,7 +28,6 @@ def ask_continue() -> bool:
 def run_evaluate_thematic_analysis(path: SystemPath, show_all: bool):
     if os.path.isfile(path.get_02_thematic_analysis_path()):
         eval_02_build_eabss_evaluation.evaluate(path)
-        # thematic_analysis_extra.analyse(source_paths)
     else:
         print(f"File not found: '{path.get_02_thematic_analysis_path()}'")
 
@@ -54,13 +52,13 @@ def main(project_name: str, show_all: bool):
         print(f'No project name {project_name}. Please run "main.py" first.')
         sys.exit()
 
-    # # Evaluate thematic analysis
-    # run_evaluate_thematic_analysis(path, show_all)
-    # print()
+    # Evaluate thematic analysis
+    run_evaluate_thematic_analysis(path, show_all)
+    print()
 
-    # # Evaluate Profiles
-    # run_evaluate_extract_profile(path, show_all)
-    # print()
+    # Evaluate Profiles
+    run_evaluate_extract_profile(path, show_all)
+    print()
 
     # Create Decision probability table
     run_evaluate_create_decision_probability_table(path)
