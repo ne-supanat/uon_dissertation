@@ -83,7 +83,7 @@ Interaction diagram:
 Archetype action probability
 {display_progress.decision_probability_table_progess(path)}
 
-Generate a very simple NetLogo simulation script that can represent system based on UML diagrams
+Generate a NetLogo simulation script that can represent system based on UML diagrams
 and can answer objective key
 and respond with output key at the end of simulation.
 
