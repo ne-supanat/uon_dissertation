@@ -115,6 +115,7 @@ def buidl_eabss_remaining_diagrams(path: SystemPath):
             path.get_03_eabss_class_diagram_path(),
             path.get_03_eabss_state_diagram_path(),
             path.get_03_eabss_activity_diagram_path(),
+            path.get_03_eabss_interaction_diagram_path(),
         ],
     ):
         print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
