@@ -201,11 +201,10 @@ def run_create_decision_probability_table(path: SystemPath):
             print(
                 f"Select the method to answer the scenario question{"s" if len(questions) > 1 else ""}"
             )
-            profile_str = "profile" + ("s" if profile_size > 1 else "")
             print(
-                f"1. Use {profile_str} based on extracted {profile_str} ({profile_size} result{"s" if profile_size>1 else ""})"
+                f"1. Use profile-based approach ({profile_size} result{"s" if profile_size>1 else ""})"
             )
-            print(f"2. Use profiles based on ground truth ({100} results)")
+            print(f"2. Use archetype-based approach ({100} results)")
 
             method = None
             while method not in ["1", "2"]:
