@@ -34,8 +34,8 @@ def generate_content(prompt: str, response_schema=None) -> GenerateContentRespon
         config=config,
     )
 
-    print(response.text)
-    print(response.usage_metadata.total_token_count)
+    # print(response.text)
+    # print(response.usage_metadata.total_token_count)
     with open("total_token.txt", "+a") as f:
         f.write(f"{response.usage_metadata.total_token_count}\n")
     return response
