@@ -15,8 +15,6 @@ from bert_score import BERTScorer
 
 # TODO: add comments
 
-# TODO: result reflect form (for better structure review)
-
 
 def ask_continue() -> bool:
     approve = None

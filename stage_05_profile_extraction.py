@@ -55,7 +55,7 @@ Model's outline:
 Scenario detail:
 {display_progress.scenario_progess(path)}
 
-Summarise profile within 100 words that relevant to model's outline and scenario detail.
+Summarise profile within {100} words that relevant to model's outline and scenario detail.
 Find supporting evidence (quotes) that related to model's outline and scenario detail. 
 Each quote must be a sentence or sentences that exactly the same and in one speaking line from the original transcript.
 
