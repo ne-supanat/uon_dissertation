@@ -8,19 +8,14 @@
         ],
         "archetype_action_probs": {
             "Eco-Conscious Commuter": [
-                0.6,
-                0.1,
-                0.3
+                0.25,
+                0.5,
+                0.25
             ],
             "Convenience-Driven Commuter": [
-                0.1,
-                0.7,
-                0.2
-            ],
-            "Cost-Sensitive Commuter": [
-                0.1,
-                0.2,
-                0.7
+                0.0667,
+                0.7667,
+                0.1667
             ]
         }
     },
@@ -33,19 +28,14 @@
         ],
         "archetype_action_probs": {
             "Eco-Conscious Commuter": [
-                0.3,
-                0.1,
-                0.6
+                0.15,
+                0.15,
+                0.7
             ],
             "Convenience-Driven Commuter": [
                 0.1,
-                0.3,
-                0.6
-            ],
-            "Cost-Sensitive Commuter": [
-                0.1,
-                0.2,
-                0.7
+                0.3167,
+                0.5833
             ]
         }
     },
@@ -58,19 +48,14 @@
         ],
         "archetype_action_probs": {
             "Eco-Conscious Commuter": [
-                0.6,
-                0.1,
-                0.3
+                0.3,
+                0.25,
+                0.45
             ],
             "Convenience-Driven Commuter": [
                 0.1,
-                0.5,
-                0.4
-            ],
-            "Cost-Sensitive Commuter": [
-                0.2,
-                0.3,
-                0.5
+                0.6167,
+                0.2833
             ]
         }
     },
@@ -83,19 +68,14 @@
         ],
         "archetype_action_probs": {
             "Eco-Conscious Commuter": [
-                0.6,
-                0.1,
-                0.3
+                0.4,
+                0.125,
+                0.475
             ],
             "Convenience-Driven Commuter": [
-                0.1,
-                0.5,
+                0.1667,
+                0.4333,
                 0.4
-            ],
-            "Cost-Sensitive Commuter": [
-                0.2,
-                0.3,
-                0.5
             ]
         }
     },
@@ -111,12 +91,8 @@
                 0.8
             ],
             "Convenience-Driven Commuter": [
-                0.7,
-                0.3
-            ],
-            "Cost-Sensitive Commuter": [
-                0.4,
-                0.6
+                0.3,
+                0.7
             ]
         }
     },
@@ -128,16 +104,12 @@
         ],
         "archetype_action_probs": {
             "Eco-Conscious Commuter": [
-                0.8,
-                0.2
+                0.75,
+                0.25
             ],
             "Convenience-Driven Commuter": [
-                0.7,
-                0.3
-            ],
-            "Cost-Sensitive Commuter": [
-                0.6,
-                0.4
+                0.7667,
+                0.2333
             ]
         }
     },
@@ -149,16 +121,12 @@
         ],
         "archetype_action_probs": {
             "Eco-Conscious Commuter": [
-                0.7,
-                0.3
+                0.4,
+                0.6
             ],
             "Convenience-Driven Commuter": [
                 0.2,
                 0.8
-            ],
-            "Cost-Sensitive Commuter": [
-                0.1,
-                0.9
             ]
         }
     },
@@ -170,16 +138,12 @@
         ],
         "archetype_action_probs": {
             "Eco-Conscious Commuter": [
-                0.8,
-                0.2
+                0.5,
+                0.5
             ],
             "Convenience-Driven Commuter": [
-                0.3,
-                0.7
-            ],
-            "Cost-Sensitive Commuter": [
-                0.1,
-                0.9
+                0.15,
+                0.85
             ]
         }
     }

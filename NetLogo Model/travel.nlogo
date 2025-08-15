@@ -1,22 +1,22 @@
 turtles-own [
   archetype
-  travel-mode
-  happy
+  happy ; 1: happy, 0: unhappy
+  commute-method
 ]
 
 globals [
   total-carbon-emissions
   average-satisfaction
-  scenario
+  policy-scenario ; 1: baseline, 2: improved public transport, 3: increased parking/fuel taxes, 4: car restrictions
 ]
 
 to setup
   clear-all
   set total-carbon-emissions 0
   set average-satisfaction 0
-  set scenario 1 ; Initial scenario
+  set policy-scenario 1 ; Default to baseline
 
-  create-turtles 100 [
+  create-turtles 100 [ ; Number of commuters
     setxy random-xcor random-ycor
     set shape "person"
 
@@ -34,211 +34,184 @@ to setup
         set archetype "Cost-Sensitive Commuter"
       ]
     ]
-    set happy false ; Initialize happiness
+
+    ; Initialize happiness based on current policy (Scenario 1)
+    set happy calculate-initial-happiness
+    set commute-method choose-commute-method
   ]
   reset-ticks
 end
 
 to go
   tick
-  set total-carbon-emissions 0
 
-  set scenario position scenario-apply ["No intervention" "Improved public transport" "Increased car taxes" "Car restriction policy"] + 1
+  set total-carbon-emissions 0
+  set policy-scenario position scenario-apply ["No intervention" "Improved public transport" "Increased car taxes" "Car restriction policy"] + 1
 
   ask turtles [
+    set commute-method choose-commute-method
+    set happy calculate-happiness
     commuting
   ]
-  update-metrics
-  save
-  if ticks = 500 [ stop ]
+
+  calculate-global-metrics
+  ;save
+  ;if ticks = 500 [ stop ]
 end
 
 to commuting
-  ; Determine travel mode based on archetype and scenario
-  let cycling-prob 0
-  let car-prob 0
-  let public-transport-prob 0
-
-  ; Scenario 1: Regular workday
-  if scenario = 1 [
-    if archetype = "Eco-Conscious Commuter" [
-      set cycling-prob 0.6
-      set car-prob 0.1
-      set public-transport-prob 0.3
-    ]
-    if archetype = "Convenience-Driven Commuter" [
-      set cycling-prob 0.1
-      set car-prob 0.7
-      set public-transport-prob 0.2
-    ]
-    if archetype = "Cost-Sensitive Commuter" [
-      set cycling-prob 0.1
-      set car-prob 0.2
-      set public-transport-prob 0.7
-    ]
-  ]
-
-  ; Scenario 2: Improved public transport
-  if scenario = 2 [
-    if archetype = "Eco-Conscious Commuter" [
-      set cycling-prob 0.3
-      set car-prob 0.1
-      set public-transport-prob 0.6
-    ]
-    if archetype = "Convenience-Driven Commuter" [
-      set cycling-prob 0.1
-      set car-prob 0.3
-      set public-transport-prob 0.6
-    ]
-    if archetype = "Cost-Sensitive Commuter" [
-      set cycling-prob 0.1
-      set car-prob 0.1
-      set public-transport-prob 0.8
-    ]
-  ]
-
-  ; Scenario 3: Increased parking charges, fuel taxes, car taxes
-  if scenario = 3 [
-    if archetype = "Eco-Conscious Commuter" [
-      set cycling-prob 0.6
-      set car-prob 0.1
-      set public-transport-prob 0.3
-    ]
-    if archetype = "Convenience-Driven Commuter" [
-      set cycling-prob 0.1
-      set car-prob 0.5
-      set public-transport-prob 0.4
-    ]
-    if archetype = "Cost-Sensitive Commuter" [
-      set cycling-prob 0.2
-      set car-prob 0.3
-      set public-transport-prob 0.5
-    ]
-  ]
-
-    ; Scenario 4: Car restriction policy
-  if scenario = 4 [
-    if archetype = "Eco-Conscious Commuter" [
-      set cycling-prob 0.6
-      set car-prob 0.1
-      set public-transport-prob 0.3
-    ]
-    if archetype = "Convenience-Driven Commuter" [
-      set cycling-prob 0.1
-      set car-prob 0.4
-      set public-transport-prob 0.5
-    ]
-    if archetype = "Cost-Sensitive Commuter" [
-      set cycling-prob 0.2
-      set car-prob 0.3
-      set public-transport-prob 0.5
-    ]
-  ]
-
-  ; Choose travel mode based on probabilities
-  let random-number random-float 1
-  ifelse random-number < cycling-prob [
-    set travel-mode "cycling"
-    set total-carbon-emissions total-carbon-emissions + 1 ;cycling is good, so reduce carbon emission
+  ; Simplified carbon emission calculation based on commute method
+  ifelse commute-method = "cycling" [
+    set total-carbon-emissions total-carbon-emissions + 0 ; Cycling emits no carbon
   ] [
-    ifelse random-number < cycling-prob + car-prob [
-      set travel-mode "car"
-      set total-carbon-emissions total-carbon-emissions + 10 ;car is bad, so increase carbon emission
+    ifelse commute-method = "use cars" [
+      set total-carbon-emissions total-carbon-emissions + 10 ; Cars emit more carbon
     ] [
-      set travel-mode "public transport"
-      set total-carbon-emissions total-carbon-emissions + 5 ;public transport is ok, so medium carbon emission
+      set total-carbon-emissions total-carbon-emissions + 5 ; Public transport emits some carbon
     ]
   ]
-
-  ; Determine happiness based on policy scenarios
-  let happy-prob 0
-  let unhappy-prob 0
-
-  if scenario = 1 [
-    set happy-prob 0.5
-    set unhappy-prob 0.5
-  ]
-  ; Scenario 5: Happiness with public transport improvement
-  if scenario = 2 [
-    if archetype = "Eco-Conscious Commuter" [
-      set happy-prob 0.8
-      set unhappy-prob 0.2
-    ]
-    if archetype = "Convenience-Driven Commuter" [
-      set happy-prob 0.7
-      set unhappy-prob 0.3
-    ]
-    if archetype = "Cost-Sensitive Commuter" [
-      set happy-prob 0.6
-      set unhappy-prob 0.4
-    ]
-  ]
-
-  ; Scenario 6: Happiness with increased parking charges, fuel taxes, car taxes
-  if scenario = 3 [
-    if archetype = "Eco-Conscious Commuter" [
-      set happy-prob 0.6
-      set unhappy-prob 0.4
-    ]
-    if archetype = "Convenience-Driven Commuter" [
-      set happy-prob 0.3
-      set unhappy-prob 0.7
-    ]
-    if archetype = "Cost-Sensitive Commuter" [
-      set happy-prob 0.1
-      set unhappy-prob 0.9
-    ]
-  ]
-
-  ; Scenario 7: Happiness with car restriction policy
-  if scenario = 4 [
-    if archetype = "Eco-Conscious Commuter" [
-      set happy-prob 0.8
-      set unhappy-prob 0.2
-    ]
-    if archetype = "Convenience-Driven Commuter" [
-      set happy-prob 0.3
-      set unhappy-prob 0.7
-    ]
-    if archetype = "Cost-Sensitive Commuter" [
-      set happy-prob 0.2
-      set unhappy-prob 0.8
-    ]
-  ]
-
-  ; Set happiness based on probabilities
-  let happiness-random-number random-float 1
-    ifelse happiness-random-number < happy-prob [
-      set happy true
-    ] [
-      set happy false
-    ]
 end
 
-to update-metrics
-  ; Calculate total carbon emissions
-  ; set total-carbon-emissions sum [carbon-footprint] of turtles
-
+to calculate-global-metrics
   ; Calculate average satisfaction
-  let happy-turtles count turtles with [ happy = true ]
-  ifelse count turtles > 0 [
-    set average-satisfaction ( happy-turtles / count turtles ) * 100
+  set average-satisfaction mean [happy] of turtles
+end
+
+to-report calculate-initial-happiness
+  ; Scenario 5: Initial happiness based on current transportation policy
+  ifelse archetype = "Eco-Conscious Commuter" [
+    ifelse random-float 1 < 0.2 [report 1] [report 0]
   ] [
-    set average-satisfaction 0
+    ifelse archetype = "Convenience-Driven Commuter" [
+      ifelse random-float 1 < 0.7 [report 1] [report 0]
+    ] [
+      ifelse random-float 1 < 0.4 [report 1] [report 0]
+        ]
+  ]
+end
+
+to-report calculate-happiness
+  ; Update happiness based on policy scenario
+  if policy-scenario = 1 [report calculate-initial-happiness] ; Baseline
+  if policy-scenario = 2 [report calculate-happiness-scenario-2]
+  if policy-scenario = 3 [report calculate-happiness-scenario-3]
+  if policy-scenario = 4 [report calculate-happiness-scenario-4]
+end
+
+to-report calculate-happiness-scenario-2
+  ; Scenario 6: Happiness with improved public transport
+  ifelse archetype = "Eco-Conscious Commuter" [
+    ifelse random-float 1 < 0.8 [report 1] [report 0]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      ifelse random-float 1 < 0.7 [report 1] [report 0]
+    ] [
+      ifelse random-float 1 < 0.6 [report 1] [report 0]
+    ]
+  ]
+end
+
+to-report calculate-happiness-scenario-3
+  ; Scenario 7: Happiness with increased parking/fuel taxes
+  ifelse archetype = "Eco-Conscious Commuter" [
+    ifelse random-float 1 < 0.7 [report 1] [report 0]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      ifelse random-float 1 < 0.2 [report 1] [report 0]
+    ] [
+      ifelse random-float 1 < 0.1 [report 1] [report 0]
+    ]
+  ]
+end
+
+to-report calculate-happiness-scenario-4
+  ; Scenario 8: Happiness with car restrictions
+  ifelse archetype = "Eco-Conscious Commuter" [
+    ifelse random-float 1 < 0.8 [report 1] [report 0]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      ifelse random-float 1 < 0.3 [report 1] [report 0]
+    ] [
+      ifelse random-float 1 < 0.1 [report 1] [report 0]
+    ]
+  ]
+end
+
+to-report choose-commute-method
+  ; Choose commute method based on archetype and policy scenario
+  if policy-scenario = 1 [report choose-commute-method-scenario-1]
+  if policy-scenario = 2 [report choose-commute-method-scenario-2]
+  if policy-scenario = 3 [report choose-commute-method-scenario-3]
+  if policy-scenario = 4 [report choose-commute-method-scenario-4]
+end
+
+to-report choose-commute-method-scenario-1
+  ; Scenario 1: Regular workday
+  ifelse archetype = "Eco-Conscious Commuter" [
+    let rand random-float 1
+    ifelse rand < 0.6 [report "cycling"] [ifelse rand < 0.7 [report "use cars"] [report "use public transport"]]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      let rand random-float 1
+      ifelse rand < 0.1 [report "cycling"] [ifelse rand < 0.8 [report "use cars"] [report "use public transport"]]
+    ] [
+      let rand random-float 1
+      ifelse rand < 0.1 [report "cycling"] [ifelse rand < 0.3 [report "use cars"] [report "use public transport"]]
+    ]
+  ]
+end
+
+to-report choose-commute-method-scenario-2
+  ; Scenario 2: Improved public transport
+  ifelse archetype = "Eco-Conscious Commuter" [
+    let rand random-float 1
+    ifelse rand < 0.3 [report "cycling"] [ifelse rand < 0.4 [report "use cars"] [report "use public transport"]]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      let rand random-float 1
+      ifelse rand < 0.1 [report "cycling"] [ifelse rand < 0.4 [report "use cars"] [report "use public transport"]]
+    ] [
+      let rand random-float 1
+      ifelse rand < 0.1 [report "cycling"] [ifelse rand < 0.3 [report "use cars"] [report "use public transport"]]
+    ]
+  ]
+end
+
+to-report choose-commute-method-scenario-3
+  ; Scenario 3: Increased parking/fuel taxes
+  ifelse archetype = "Eco-Conscious Commuter" [
+    let rand random-float 1
+    ifelse rand < 0.6 [report "cycling"] [ifelse rand < 0.7 [report "use cars"] [report "use public transport"]]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      let rand random-float 1
+      ifelse rand < 0.1 [report "cycling"] [ifelse rand < 0.6 [report "use cars"] [report "use public transport"]]
+    ] [
+      let rand random-float 1
+      ifelse rand < 0.2 [report "cycling"] [ifelse rand < 0.5 [report "use cars"] [report "use public transport"]]
+    ]
+  ]
+end
+
+to-report choose-commute-method-scenario-4
+  ; Scenario 4: Car restrictions
+  ifelse archetype = "Eco-Conscious Commuter" [
+    let rand random-float 1
+    ifelse rand < 0.6 [report "cycling"] [ifelse rand < 0.7 [report "use cars"] [report "use public transport"]]
+  ] [
+    ifelse archetype = "Convenience-Driven Commuter" [
+      let rand random-float 1
+      ifelse rand < 0.1 [report "cycling"] [ifelse rand < 0.6 [report "use cars"] [report "use public transport"]]
+    ] [
+      let rand random-float 1
+      ifelse rand < 0.2 [report "cycling"] [ifelse rand < 0.5 [report "use cars"] [report "use public transport"]]
+    ]
   ]
 end
 
 to save
-
-  let cycling-users count turtles with [travel-mode = "cycling"]
-  let car-users count turtles with [travel-mode = "car"]
-  let public-transport-users count turtles with [travel-mode = "public transport"]
-
   file-open "outputs.csv"
-  if ticks = 1 [
-      file-print (word "total-carbon-emissions" "," "average-satisfaction" "," "cycling" "," "car" "," "public transport")
-    ]
-  file-print (word total-carbon-emissions "," average-satisfaction "," cycling-users "," car-users "," public-transport-users)
+  file-print (word total-carbon-emissions "," average-satisfaction)
   file-close
 end
 @#$#@#$#@
@@ -319,7 +292,7 @@ true
 false
 "set-plot-y-range 0 count turtles\n" "set-plot-x-range ticks - 100 ticks"
 PENS
-"Bus" 1.0 0 -13840069 true "" "plot count turtles with [ travel-mode = \"cycling\" ]"
+"Bus" 1.0 0 -13840069 true "" "plot count turtles with [ commute-method = \"cycling\" ]"
 
 CHOOSER
 207
@@ -365,7 +338,7 @@ true
 false
 "set-plot-y-range 0 count turtles\n" "set-plot-x-range ticks - 100 ticks"
 PENS
-"default" 1.0 0 -2674135 true "" "plot count turtles with [ travel-mode = \"car\" ]"
+"default" 1.0 0 -2674135 true "" "plot count turtles with [ commute-method = \"use cars\" ]"
 
 PLOT
 440
@@ -381,9 +354,9 @@ users
 10.0
 true
 false
-"set-plot-y-range 0 count turtles\n" "set-plot-x-range ticks - 100 ticks\n\n"
+"set-plot-y-range 0 count turtles\n" "set-plot-x-range ticks - 100 ticks\n\n\n"
 PENS
-"default" 1.0 0 -13791810 true "" "plot count turtles with [ travel-mode = \"public transport\" ]"
+"default" 1.0 0 -13791810 true "" "plot count turtles with [ commute-method = \"use public transport\" ]"
 
 PLOT
 226
@@ -401,7 +374,7 @@ true
 false
 "set-plot-y-range 0 count turtles\n" "set-plot-x-range ticks - 100 ticks"
 PENS
-"default" 1.0 0 -955883 true "" "plot count turtles with [happy = true]"
+"default" 1.0 0 -955883 true "" "plot count turtles with [happy = 1]"
 
 @#$#@#$#@
 ## WHAT IS IT?

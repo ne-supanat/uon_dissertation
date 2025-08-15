@@ -32,6 +32,13 @@
         ]
     },
     {
+        "scenario": "Are you happy with current transportation policy?",
+        "actions": [
+            "happy",
+            "unhappy"
+        ]
+    },
+    {
         "scenario": "Are you happy with the public transport reliability improvement policy?",
         "actions": [
             "happy",
