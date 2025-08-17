@@ -302,7 +302,7 @@ CHOOSER
 scenario-apply
 scenario-apply
 "No intervention" "Improved public transport" "Increased car taxes" "Car restriction policy"
-0
+1
 
 PLOT
 10
@@ -363,7 +363,7 @@ PLOT
 100
 432
 262
-Happy
+Satisfaction
 day
 NIL
 0.0
