@@ -12,8 +12,8 @@
                 ],
                 "action_probs": [
                     0.05,
-                    0.85,
-                    0.1
+                    0.75,
+                    0.2
                 ]
             },
             {
@@ -24,9 +24,9 @@
                     "use public transport"
                 ],
                 "action_probs": [
-                    0.15,
-                    0.35,
-                    0.5
+                    0.05,
+                    0.3,
+                    0.65
                 ]
             },
             {
@@ -37,9 +37,9 @@
                     "use public transport"
                 ],
                 "action_probs": [
-                    0.05,
-                    0.75,
-                    0.2
+                    0.1,
+                    0.5,
+                    0.4
                 ]
             },
             {
@@ -50,35 +50,13 @@
                     "use public transport"
                 ],
                 "action_probs": [
-                    0.1,
-                    0.6,
-                    0.3
+                    0.15,
+                    0.45,
+                    0.4
                 ]
             },
             {
                 "scenario": "Are you happy with current transportation policy?",
-                "actions": [
-                    "happy",
-                    "unhappy"
-                ],
-                "action_probs": [
-                    0.4,
-                    0.6
-                ]
-            },
-            {
-                "scenario": "Are you happy with the public transport reliability improvement policy?",
-                "actions": [
-                    "happy",
-                    "unhappy"
-                ],
-                "action_probs": [
-                    0.8,
-                    0.2
-                ]
-            },
-            {
-                "scenario": "Are you happy with the increasing parking charge in urban areas, fuel taxes, and car taxes?",
                 "actions": [
                     "happy",
                     "unhappy"
@@ -89,14 +67,36 @@
                 ]
             },
             {
+                "scenario": "Are you happy with the public transport reliability improvement policy?",
+                "actions": [
+                    "happy",
+                    "unhappy"
+                ],
+                "action_probs": [
+                    0.7,
+                    0.3
+                ]
+            },
+            {
+                "scenario": "Are you happy with the increasing parking charge in urban areas, fuel taxes, and car taxes?",
+                "actions": [
+                    "happy",
+                    "unhappy"
+                ],
+                "action_probs": [
+                    0.3,
+                    0.7
+                ]
+            },
+            {
                 "scenario": "Are you happy with the car restriction policy that apply no car day, limit number of cars each household?",
                 "actions": [
                     "happy",
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.15,
-                    0.85
+                    0.3,
+                    0.7
                 ]
             }
         ]
@@ -186,8 +186,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.3,
-                    0.7
+                    0.2,
+                    0.8
                 ]
             },
             {
@@ -197,8 +197,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.2,
-                    0.8
+                    0.1,
+                    0.9
                 ]
             }
         ]
@@ -241,9 +241,9 @@
                     "use public transport"
                 ],
                 "action_probs": [
-                    0.05,
+                    0.1,
                     0.6,
-                    0.35
+                    0.3
                 ]
             },
             {
@@ -254,9 +254,9 @@
                     "use public transport"
                 ],
                 "action_probs": [
-                    0.1,
-                    0.4,
-                    0.5
+                    0.15,
+                    0.25,
+                    0.6
                 ]
             },
             {
@@ -266,8 +266,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.2,
-                    0.8
+                    0.1,
+                    0.9
                 ]
             },
             {
@@ -277,8 +277,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.7,
-                    0.3
+                    0.8,
+                    0.2
                 ]
             },
             {
@@ -330,9 +330,9 @@
                     "use public transport"
                 ],
                 "action_probs": [
+                    0.3,
                     0.2,
-                    0.1,
-                    0.7
+                    0.5
                 ]
             },
             {
@@ -344,8 +344,8 @@
                 ],
                 "action_probs": [
                     0.4,
-                    0.1,
-                    0.5
+                    0.2,
+                    0.4
                 ]
             },
             {
@@ -356,9 +356,9 @@
                     "use public transport"
                 ],
                 "action_probs": [
-                    0.5,
-                    0.05,
-                    0.45
+                    0.4,
+                    0.1,
+                    0.5
                 ]
             },
             {
@@ -401,8 +401,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.7,
-                    0.3
+                    0.6,
+                    0.4
                 ]
             }
         ]
@@ -420,8 +420,8 @@
                 ],
                 "action_probs": [
                     0.1,
-                    0.7,
-                    0.2
+                    0.6,
+                    0.3
                 ]
             },
             {
@@ -459,8 +459,8 @@
                 ],
                 "action_probs": [
                     0.3,
-                    0.2,
-                    0.5
+                    0.3,
+                    0.4
                 ]
             },
             {
@@ -470,8 +470,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.3,
-                    0.7
+                    0.4,
+                    0.6
                 ]
             },
             {
@@ -492,8 +492,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.2,
-                    0.8
+                    0.3,
+                    0.7
                 ]
             },
             {
@@ -503,8 +503,8 @@
                     "unhappy"
                 ],
                 "action_probs": [
-                    0.3,
-                    0.7
+                    0.2,
+                    0.8
                 ]
             }
         ]

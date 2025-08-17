@@ -10,17 +10,17 @@
         {
             "element": "Walking",
             "description": "The most environmental friendly method, great for short distance travelling",
-            "justification": "One common methods for travelling"
+            "justification": "One of common methods for travelling"
         },
         {
             "element": "Cycling",
             "description": "The most environmental friendly method, great for short-medium distance travelling",
-            "justification": "One common methods for travelling"
+            "justification": "One of common methods for travelling"
         },
         {
             "element": "Public transport",
             "description": "An option of public transport for travelling in the city, this element includes buses, trains and trams",
-            "justification": "One common methods for travelling"
+            "justification": "One of common methods for travelling"
         },
         {
             "element": "Cars",

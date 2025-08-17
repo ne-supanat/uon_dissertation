@@ -1,97 +1,119 @@
 {
   "file": "data/travel_profile_txt/CreditonStLawrence.txt",
-  "summary": "The interviewee is a mostly retired ex-economics teacher who values cost and convenience in travel choices. Cost is important for longer journeys, influencing the use of public transport to airports. For local travel, convenience outweighs cost, especially when weather is a factor. He acknowledges the necessity of car travel for work due to limited public transport options. He is open to public transport if quality and convenience improve, and supports nationalizing transport infrastructure. He is skeptical of carbon offsetting schemes and prefers incentivizing sustainable choices over penalizing car use.",
+  "summary": "The interviewee is a retired ex-economics teacher who lives in a semi-rural environment. Cost influences his travel choices for longer journeys, especially regarding airport travel, where he prefers public transport. For local travel, convenience outweighs cost, and he uses his car frequently, despite acknowledging it may not be the most economical option. He values time efficiency but prioritizes comfort and convenience, making him resistant to significant changes in travel behavior unless forced by circumstances like congestion. He is skeptical of current transport policies and favors improvements in public transport quality over penalizing car use.",
   "quotes": [
     "I think that for the local bits, I don’t actually, I am not aware of how much roughly I spend on petrol.",
     "I think when I take longer journeys, when I go abroad, which I do five, six times a year then I am very much more influenced by the cost of getting there.",
     "If it’s pouring with rain I will use the car to drive to the shops, five hundred yards away, almost.",
     "Well yes I think it is, because I make the value judgement, being an ex economics teacher there is as far as I am concerned I make the judgement, well I would prefer to spend the money than the experience that not spending money, or reducing the money.",
-    "Now I travel 70 miles a day on the days I work, I couldn’t take public transport, I have to travel to Holsworthy.",
-    "Long journeys it’s not cost effective and if I, if I am going to, or…",
     "I don’t think I feel any pressure personally to change the way I exist in relation to the environment, global warming, whatever.",
     "I am a great, my belief is that people will only make changes that they see are practical to them, you can’t un invent the convenience of having their own cars.",
-    "I tend to feel that I was more in line with scenario one, than I was with the other two to be honest.",
+    "I think the changes have got to come with, with innovations, I think we have got to look at public transport in a different way.",
     "I think if delivered then I personally would be comfortable to pay the extra taxation.",
     "You have got to improve the quality of the experience before people will make change, because they will make that as a positive choice, you know."
   ],
   "attributes": [
-    "environmental awareness level: Aware but not proactively changing behavior"
+    "environmental awareness level: Moderate - Acknowledges environmental issues but prioritizes convenience and personal practicality."
   ],
   "archetype": "Convenience-Driven Commuter"
 }
 
 {
   "file": "data/travel_profile_txt/CullomptonNorth.txt",
-  "summary": "The interviewee prioritizes convenience and time efficiency in her travel choices, relying heavily on car travel due to the lack of adequate public transportation infrastructure in her area. Cost is not a primary concern, but she acknowledges the expense of car ownership and usage. She expresses a willingness to use public transport if it were more convenient, direct, and affordable. She supports improvements to public transport and cycling infrastructure and is open to congestion charges and increased car taxes for more polluting vehicles. She believes that behavioral changes need to start with education in schools.",
+  "summary": "The interviewee prioritizes convenience and flexibility in her travel choices, relying heavily on car travel due to the lack of adequate public transport infrastructure in her area. Cost is not a primary concern, but she acknowledges the expense of car ownership and usage. She expresses a willingness to use public transport if it were more convenient, direct, and affordable. She supports improvements to public transport and cycling infrastructure and is open to some measures like congestion charges and increased car taxes for polluting vehicles.",
   "quotes": [
     "Doesn’t come into it at all really, I don’t think.",
+    "I can afford to run a car and my husband can afford to run a car and so we run two cars.",
     "Yes we do walk an awful lot of places, we don’t use the car for short journeys, it’s mainly for sort of travelling to Exeter for example and then we would get a park and ride bus into Exeter, so we are sort of using public transport as well, but yes the cost isn’t influencing us in that way.",
-    "Not really.",
     "Definitely because you can go when you want to go, you are not tied by a timetable.",
-    "Yes I think so, in this generation certainly will need to think about it in a different way, I think maybe that needs to be an infrastructure set up, not necessarily from individuals I think it needs to be more of an infrastructure put into place for, to make it easier for people to travel on public transport.",
-    "I probably wouldn’t need to change my behaviour necessarily because I don’t tend to use the car hugely anyway.",
-    "Well if we change the way we travel the rest of the world has to take that on board as well, there is no point us doing it and China not having the measures in place as well.",
-    "I am not aware of anything, all I know is that I think the public transport that we have in Deben needs to be improved and there needs to be some government funding to do that.",
     "Yes I would if it was more convenient.",
-    "Yes definitely more links, not rail links, more bus links, more affordable bus links as well, make it more affordable for everyone to change."
+    "If it was more direct as well I suppose, not so many, I suppose it’s not fair on the outside villages if they don’t have a service.",
+    "But definitely a train would be more beneficial in Collumpton especially, I am thinking of myself now, but maybe more cycle paths, more cycling, more secure places to store bikes around, that maybe something that would help, more education for children I think to use bikes and think about the way they travel, it’s got to start really at the teenagers, if people are willing to get off their backsides and walk more often!"
   ],
   "attributes": [
-    "environmental awareness level: Aware of environmental issues and supports global efforts, but prioritizes convenience and affordability."
+    "environmental awareness level: Aware of environmental issues and supports some measures to reduce carbon emissions, but convenience and practicality are higher priorities."
   ],
   "archetype": "Convenience-Driven Commuter"
 }
 
 {
   "file": "data/travel_profile_txt/Pennsylvania1.txt",
-  "summary": "The interviewee is a retired individual who values convenience over cost when it comes to daily travel. While acknowledging the rising fuel prices and their impact, they primarily use a car due to its convenience and time efficiency compared to public transport. They possess a free bus pass but only utilize it when time is not a constraint. They express skepticism towards cycling facilities and emphasize the need for cheaper, more convenient, and reliable public transport to encourage behavioral change. They also highlight a societal shift towards laziness and car dependence.",
+  "summary": "The interviewee is a retired individual who values convenience in travel. While acknowledging the rising cost of fuel and its impact on personal finances, they primarily use a car for daily commutes due to its time efficiency compared to public transport. They possess a bus pass but prioritize the flexibility and directness of car travel, especially when time is limited. They express skepticism towards current transport policies, advocating for improved and more affordable public transport as a key to changing travel behavior.",
   "quotes": [
     "I don’t think it has a significant affect on my day to day travel, obviously I’ve noticed a significant increase in the price of fuel, as everybody has and I have strong views about this, I believe that the public, the man in the street is being used by large corporations and also the government to capitalise on profits and I include the government in the profit making as they have got to fund things, but you know there seems to be a sort of a general trend to bleed the public as much as you can.",
     "Well it’s not cost effective if I had the time to use public, I am retired and therefore I have got a bus pass.",
     "Which I am grateful for, not that I use it that much, but I think the convenience of cars out strip the sometimes inconvenience of public transport and I don’t feel in my car that I am tied to anybodies problem, expect my own.",
+    "I think there used to be more of a sort of national effort on looking at making public transport more accessible, more frequent, more, and cheaper.",
     "I think we need to…it ought to be cheaper and as quick to travel by public transport as it does by car.",
     "It’s almost like a sort of, it’s an ethos almost isn’t it, we have become slaves to our cars for the very simple reason that it is convenient, if we were, if you were able to make public transport convenient, I am not saying everybody would do it, because there is a world worship of the car, it’s no longer the nice thing that you take out on a Sunday, it’s your left leg, you know or your right arm, you can’t do with it, then the generations that follow me, they are so conditioned to use the car, that they don’t know how to use, it’s a bit like that old song, you know everyone’s gone to the moon, where everybody will be walking around with wheels one day, because they don’t need to use their legs and legs will disappear, people that are born without legs will have wheels.",
-    "I think there needs to be, the whole of the nation needs to be, become more conscious of the fact that they should be proud of the reliability of the public infrastructure of public transport."
+    "I don’t think the government wants to change the transport system particularly.",
+    "I think they want the tax revenue from fuel and I think if you reduced the, the amount of motor cars on the road, you would reduce the fuel tax to the government and therefore they would have to find another way of raising revenue, it’s a bit like the Shylark in Shakespeare, their money lenders, the government are money lenders, it gives you fuel, wants you to use fuel, but doesn’t want you to use fuel, they don’t want you to drive but they want money that you create by driving.",
+    "Increased frequency of bus and rail services, obviously that would, I believe that would have, eventually have an impact on and reduce the traffic density and congestion and use of fuel, without a doubt.",
+    "I am not so sure smart card ticketing is particularly relevant, I mean it would be nice, it would be easy to do, but reduced fares are the major key factor in getting people to jump on a bus, or a train."
   ],
   "attributes": [
-    "environmental awareness level: Aware of environmental issues but convenience is a stronger driver"
+    "environmental awareness level: Aware of environmental issues and carbon emissions, but convenience and cost are primary drivers of travel choices."
   ],
   "archetype": "Convenience-Driven Commuter"
 }
 
 {
   "file": "data/travel_profile_txt/Pennsylvania2.txt",
-  "summary": "The interviewee prioritizes cost and time efficiency in travel decisions, especially for long distances, favoring trains over cars and planes. Local travel choices are influenced more by convenience and the experience of being present rather than cost. They advocate for increased public transport and stricter environmental policies, expressing skepticism towards current transport policies and carbon emission reduction efforts. They are open to using public transport more if it were more accessible and had lower emissions, supporting measures like banning high-emission vehicles and pedestrianizing urban centers.",
+  "summary": "The interviewee is influenced by cost for long-distance travel, favoring trains over cars for cost efficiency. For local travel, convenience and the experience of being present on a bike outweigh cost considerations. He supports public transport and drastic measures like banning high-emission vehicles and pedestrianizing urban centers. He is skeptical of carbon offsetting schemes and current transport policies, advocating for government-led initiatives for low-emission vehicles and energy. He is open to car sharing but needs instant car access. He believes in nil carbon emission travel and government enforcement to drive industry change.",
   "quotes": [
     "Well if I am going to travel to, well for example I have just been up to London by train, if I travel for, well if I travel so that I am going to arrive before 9 o’clock it’s going to cost me about 3 times the price.",
     "And if I don’t have to arrive before 9 then it’s much cheaper.",
     "So why would I pay 3 times the price for something I don’t want.",
     "Well in terms of cost efficiency the longer you go, obviously it’s aircraft, then trains and then cars.",
     "Generally speaking I would use the car if I am going to go and purchase anything or do anything like that where I need to carry stuff and bring stuff back, otherwise I use my bike.",
+    "Oh no it’s not to do with cost, it’s much more to do with…If I am using a bike, I am basically present, if I am using a car it’s rather like everything is one room because you are looking at it through a glass screen.",
+    "It’s as if these things aren’t generally there.",
     "Not for local travel, no.",
     "Yes absolutely.",
     "Well I think that, I was in London a few days ago and it’s absolutely jammed up with travel, now to be fare it’s a great deal less now then there used to be before they actually had the charges, but it’s still incredibly full.",
     "So yes I think there would be, my preference would certainly to be to have much more public transport than incidents where you have to use the car.",
     "Well apart from environmentalism which is a basic it’s really to do with the Cities.",
     "I think in a situation in which you have a large number of people living together, the less amount of individual transport of which you use the better the City will actually be.",
+    "I don’t even know there is one.",
+    "Well okay if you really want to go down that route then I think that the privatisation of railway was an absolutely disaster and I think it needs, there is no single national way forward on trains, the same is largely true of buses.",
+    "Categorically not.",
+    "I think it’s total bullshit!",
+    "I would like it to be true, but I don’t know how they are going to commit to doing it.",
+    "Indeed.",
+    "Well I think a combination of public transport and private transport, I mean just for example I have a diesel car and I am running on bio diesel for the last sort of 5 years, and it works fine, it’s just very expensive and you know the commissions are comparably low but the carbon emissions to produce the recycled bio fuel themselves are actually comparably high.",
+    "Equally if buses and trams and trains and indeed aircraft could actually have nil emissions or, you know, virtually no emissions then that would be a great combination, so my ideal situation would be to have bicycles, nil emission private cars and nil emission on public transport.",
+    "Well if they are all lower emission I am perfectly comfortable having a combination.",
     "I think scenario 3 is probably the one that would actually work, with the exception of the restriction of the number of cars each household could own.",
-    "But I think the rest of it is quite viable and might actually work.",
+    "I think so, yes.",
     "The only thing is basically if you happen to be incredibly rich why would you care, if you are medium rich then it becomes an aspiration to get rich enough that you can actually do carbon emissions.",
     "So, I mean so much of the stuff is to do with the economics, it’s not necessarily to do with social responsibility, It’s not necessarily just to do with society, so the idea of banning vehicles for high pollution engines I think is a fantastic idea and I would vote for that, you know on day one.",
+    "No car days, yes I don’t think that’s an issue.",
+    "Full or part pedestrianisation of urban cities, absolutely.",
+    "Restriction the number of cars each household, maybe.",
+    "Major and sustained decrease in traffic levels, yes absolutely makes perfect sense.",
+    "Rubbish, don’t believe a word of them.",
     "Well I don’t believe in carbon offsetting schemes, mostly they talk about doing things like, there’s one in South America which is planting new trees as an offset, but the only thing of course is what they do is they cut them down and it is complete rubbish.",
     "The idea is it’s a great way of making money, but it has absolutely no fact on carbon emissions.",
     "In fact if anything it is more carbon emissions on this carbon offsetting, I think they are completely corrupt and I don’t believe a word of them.",
+    "Incentivise UK holidays, perhaps through tax breaks or not paying VAT for UK holidays, yes I think that is a very good idea indeed.",
+    "Tax payers tickets, based on the environmental performance of the aircraft, that I think does make very good sense.",
     "If they provide citizens with a carbon budgets, restricting the amount of carbon in terms of activities I think that is a very good idea.",
-    "Well the key message they need to hear is that travel has got nil carbon emission."
+    "It doesn't work for me because I don’t do regular things, I don’t sort of travel into work, now I do know people who do car sharing and not Car Share Devon but they do travel together, they actually travel in from this area into the same place on a regular basis.",
+    "It probably wouldn’t for me because I don’t, I can’t really predict when I am going to need to use the car.",
+    "Oh that does come into it yes.",
+    "No I am not particularly concerned about owning my own car, yes if I have access to one all the time, that would be perfect.",
+    "Well the key message they need to hear is that travel has got nil carbon emission.",
+    "Basically what happens is it’s an absolute, then what will happen is the industry actually put the time and money and the effort into developing alternatives, at the moment they have lots of time and they put all the money into developing what they have done at the moment."
   ],
   "attributes": [
-    "environmental awareness level: high"
+    "environmental awareness level: High"
   ],
   "archetype": "Eco-Conscious Commuter"
 }
 
 {
   "file": "data/travel_profile_txt/StLoyes.txt",
-  "summary": "The interviewee is a retired female who primarily uses her car for travel, valuing its time efficiency and convenience for multi-tasking. Cost is not a major influence on her travel choices due to her retirement and free bus pass. She acknowledges the environmental impact of car use and supports improvements in public transport, including increased frequency, reliability, and affordability. She is open to cycling with better infrastructure. She is skeptical about carbon offsetting and restrictions but recognizes the need for behavioral change and integrated environmental planning.",
+  "summary": "The interviewee is a retired female who primarily travels for shopping, church, and family visits. Cost is not a major influence on her travel choices due to her retirement and free bus pass. She values the time efficiency of car travel for completing multiple tasks. She is environmentally conscious, acknowledging congestion and pollution. She supports improving public transport and cycling infrastructure. She is skeptical about carbon offsetting and restrictions due to enforcement concerns. She is open to car sharing and car clubs, especially after her husband retires and they consider reducing their car ownership.",
   "quotes": [
     "Well because I am retired I don’t do a daily travel so it’s an as and when, and the reasons I travel are more important to me than a regular, you know having to get somewhere, so that’s why costs don’t, well I suppose costs influence me a bit but not majorly.",
     "Probably not but I suppose I factored it into my life.",
@@ -103,23 +125,12 @@
     "And obviously the influence on the environment and the fuel, becoming shorter and the energy disappearing.",
     "I think that the only way they can influence transport policies is to provide more, I mean I think you will get a lot more people going on buses when they have free bus passes and I don’t see why they can’t make local travel anyway a lot cheaper and a lot more user friendly as it were.",
     "Well one thing has changed already in that, during the summer I have been cycling to the supermarket, not for the weekly shop, the big one, because I can’t carry it.",
-    "But at other times but that is because they have actually put in cycle lanes now which I can access and they are reasonably flat, because at my age I do not want to be going up and down steep hills and in among all the traffic.",
-    "So that has influenced me, but I think, what was the question again?",
-    "Well I think it would have to be more convenient….I came from Milton Keynes here and each area there was built on a kilometre grid square with inside it there was the shop and the doctor and the local primary school and you know so you could actually access these things very conveniently.",
-    "And I think there would have to be a lot of environmental planning to do that.",
-    "The smart ticketing I think is a good idea because you haven’t always got change and I do appreciate the free bus pass and I think that’s actually, I know they say that it costs a lot but I think in the end it will be cost effective by removing cars from the city centre.",
-    "There are many more cycling facilities now and I do appreciate that those are being put in quite frequently now which is good.",
-    "Yes and any time there is an improvement in public transport then you have got to get it from tax revenue, you are going to get more people using it.",
-    "I think you certainly want to ban vehicles with highly polluting engines.",
-    "I think people would object to it but I think, yes I think it would just make them think and make them realise that they can do it a different way and yes I don’t know how it works, whether it is just one area that is you don’t have cars that particular day or, I don’t understand the planning behind it, but yes I think it would focus people.",
+    "I don’t use rail services very often but the bus service is I think, the frequency is important, they are fairly punctual and they are fairly reliable as far as I am concerned.",
     "I think that’s a get out to be honest.",
-    "I certainly think that would be important, yes.",
     "I must admit I am morally against the cheap airlines and I think that in a way they become dangerous, because they cut corners so much, but yes I also wouldn’t want to pay an awful lot more but I don’t go on planes very often so.",
     "I just cannot see how it would be policed.",
-    "Yes I think people would if they could see how to do it.",
     "I think that only works if you are going at a particular time in a particular direction and I tend to go in different directions at different times, because I am free to do it when I want to sort of thing.",
     "Yes that might be useful, my husband hasn’t retired yet, but he is due to so we are thinking of going to one car, although (15.23)",
-    "It took me a long time to get cycling, yet once I did it I really enjoyed it and, mind you I was a fair weather cyclist.",
     "It would probably be financial, basically.",
     "It was too expensive and if the rail alternative is offered then I think that would be the motivation."
   ],

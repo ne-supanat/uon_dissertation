@@ -1,6 +1,6 @@
 {
   "file": "data/travel_profile_txt/CreditonStLawrence.txt",
-  "summary": "He is traveling mostly by car but strongly tend to use public transport.He does not care much about cost of travel. he prioritises the experiences more.He needs to go to work at Halsworthy which has no public transport available.He thinks people will change their habit when it not practical anymore.He likes scenario one (improving public transport).but he thinks the quality of busses is more important than frequency and we should stop keep using old buses.He does not like penalty tax policy because the concerns about its transparency of where taxes spent.",
+  "summary": "He is traveling mostly by car but strongly tend to use public transport.He does not care much about cost of travel. He prioritises the experiences more.He needs to go to work at Halsworthy which has no public transport available. He thinks people will change their habit when it not practical anymore. He likes scenario one (improving public transport) but he thinks the quality of busses is more important than frequency and we should stop keep using old buses. He does not like penalty tax policy because the concerns about its transparency of where taxes spent.",
   "quotes": [
     "I do most of my travelling by my own car",
     "Yes, I think it’s quite interesting.  I tend to feel that I was more in line with scenario one, than I was with the other two to be honest.",
