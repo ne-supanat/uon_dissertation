@@ -9,6 +9,7 @@ import eval_05_profile_evaluation
 from system_path import SystemPath
 import display_progress
 
+from sklearn.metrics import mean_squared_error
 from bert_score import BERTScorer
 
 # TODO: add comments
