@@ -6,8 +6,6 @@ import eval_02_build_eabss_evaluation
 
 import eval_05_profile_evaluation
 
-import eval_06_scenario_decision_evaluation
-
 from system_path import SystemPath
 import display_progress
 
@@ -37,13 +35,6 @@ def run_evaluate_extract_profile(path: SystemPath, show_all: bool):
         print(f"File not found: '{path.get_05_profiles_path()}'")
 
 
-def run_evaluate_create_decision_probability_table(path: SystemPath):
-    if os.path.isfile(path.get_06_profile_scenario_answers_path()):
-        eval_06_scenario_decision_evaluation.score_profile_anwsers(path)
-    else:
-        print(f"File not found: '{path.get_06_profile_scenario_answers_path()}'")
-
-
 def main(project_name: str, show_all: bool):
     path = SystemPath(project_name)
     if not os.path.isdir(project_name):
@@ -57,9 +48,6 @@ def main(project_name: str, show_all: bool):
     # Evaluate Profiles
     run_evaluate_extract_profile(path, show_all)
     print()
-
-    # Create Decision probability table
-    run_evaluate_create_decision_probability_table(path)
 
     print()
 
