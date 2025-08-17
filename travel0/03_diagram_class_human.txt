@@ -1,8 +1,0 @@
-classDiagram
-    class Commuter {
-        -position
-        -destination
-        -transportModePreference
-        -environmentalAwarenessLevel
-        +commuting()
-    }

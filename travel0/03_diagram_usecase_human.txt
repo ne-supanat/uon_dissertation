@@ -1,5 +1,0 @@
-flowchart LR
-    actor[Commuters]
-    usecase[Commuting]
-
-    actor --> usecase

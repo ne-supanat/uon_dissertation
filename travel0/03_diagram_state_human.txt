@@ -1,4 +1,0 @@
-stateDiagram
-        [*] --> Idle
-        Idle --> Commuting
-        Commuting --> Idle

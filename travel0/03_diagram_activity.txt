@@ -1,9 +1,0 @@
-flowchart TD
-    start[Start] --> choose{Select
-    transport
-    mode}
-    choose -- Cycling --> commuting
-    choose -- Cars --> commuting
-    choose -- Public Transport --> commuting[Commuting]
-    commuting --> emission[Estimate carbon footprint]
-    emission --> finish[End]
