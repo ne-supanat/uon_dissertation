@@ -183,9 +183,11 @@ def setup_scenarios(path: SystemPath):
     )
 
     print()
-    print("Final Result Example: It is Friday night. How likely are you to...")
+    print("Final Result Example: ")
+    print()
+    print("Scenario: It is Friday night. How likely are you to...")
 
-    header = (["Archetype", "Stay at home", "Go to party", "Go to restaurant"],)
+    header = ["Archetype", "Stay at home", "Go to party", "Go to restaurant"]
     table = [
         ["Introvert", "0.7", "0.1", "0.2"],
         ["Ambivert", "0.3", "0.3", "0.4"],

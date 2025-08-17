@@ -15,8 +15,6 @@ import display_result
 from system_path import SystemPath
 import utils
 
-
-# TODO: (optional) resume the process: error at profile 3 > should continue at profile 4
 # TODO: add comments
 
 
@@ -182,22 +180,28 @@ def run_create_decision_probability_table(path: SystemPath):
         if proceed:
             # Ask user to use profile-based or archetype-based
             # to create scenario answers
+            with open(path.get_04_archetypes_path(), "r") as f:
+                archetypes = f.read().strip().splitlines()
+            archetypes_size = len(archetypes)
+
             with open(path.get_04_scenario_path(), "r") as f:
                 questions = f.read().strip().splitlines()
 
             with open(path.get_05_profiles_path(), "r") as f:
                 content = f.read()
             profiles = [profile for profile in content.strip().split("\n\n")]
-            profile_size = len(profiles)
+            profiles_size = len(profiles)
 
             print()
             print(
                 f"Select the method to answer the scenario question{"s" if len(questions) > 1 else ""}"
             )
             print(
-                f"1. Use profile-based approach ({profile_size} result{"s" if profile_size>1 else ""})"
+                f"1. Use profile-based approach ({profiles_size} profile{"s" if profiles_size>1 else ""})"
             )
-            print(f"2. Use archetype-based approach ({100} results)")
+            print(
+                f"2. Use archetype-based approach ({archetypes_size} archetype{"s" if archetypes_size>1 else ""})"
+            )
 
             method = None
             while method not in ["1", "2"]:
@@ -277,15 +281,9 @@ def main(
 
 
 if __name__ == "__main__":
-    # NOTE: As Reminder - A List of Datasets
-
-    # Sustanable Travel
-    # Scope: "data/travel_scope_txt"
-    # Profile: "data/travel_profile_txt"
-
-    # Plastic Bag Charge
-    # Scope: "data/diary_txt"
-    # Profile: "data/diary_txt"
+    # NOTE: (As Reminder) - A List of Datasets
+    # Scope: data/travel_scope_txt
+    # Profile: data/travel_profile_txt
 
     parser = argparse.ArgumentParser("Main System")
     parser.add_argument("project_name", help="A project name", type=str)
