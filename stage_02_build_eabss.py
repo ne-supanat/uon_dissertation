@@ -2,7 +2,7 @@ import json
 import pandas as pd
 from google.genai.types import GenerateContentResponse
 import ast
-import display_progress
+import display_result
 
 import utils
 import llm
@@ -157,7 +157,7 @@ Using following Theme codes & quotes of "{component_name}"
 {theme_codes_str}
 
 and Model's outline
-{display_progress.topic_outline_progress(path)}
+{display_result.topic_outline_result(path)}
 
 Select minimum items from the theme codes & quotes that are the most important to build Agent-based modelling simulation
 

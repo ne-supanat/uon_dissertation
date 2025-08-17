@@ -4,13 +4,13 @@ import llm
 from models.response_models import Profile, Scenario, ActionProbability
 from models.archetypes import Archetype
 
-import display_progress
+import display_result
 from system_path import SystemPath
 
 import json
 
 
-def create_ground_truth(path: SystemPath):
+def create_decision_archetype(path: SystemPath):
     with open(path.get_04_archetypes_path(), "r") as f:
         archetypes = f.read().strip().splitlines()
 
@@ -23,7 +23,7 @@ def create_ground_truth(path: SystemPath):
 
     ground_truth = []
     for scenario in scenarios:
-        response = generate_ground_truth(scenario)
+        response = generate_decision_archetype(scenario)
         archetype_action_probs: list[ActionProbability] = response.parsed
 
         truth = {
@@ -37,17 +37,17 @@ def create_ground_truth(path: SystemPath):
 
         ground_truth.append(truth)
 
-    with open(path.get_06_scenario_ground_truth_path(), "w") as f:
+    with open(path.get_06_decision_archetype_path(), "w") as f:
         f.write(json.dumps(list(ground_truth), indent=4))
 
     print()
     print("-" * 50)
     print(
-        f"Scenario ground truths saved to: '{path.get_06_scenario_ground_truth_path()}'\n"
+        f"Archetype-based decision weights saved to: '{path.get_06_decision_archetype_path()}'\n"
     )
 
 
-def generate_ground_truth(scenario: Scenario):
+def generate_decision_archetype(scenario: Scenario):
     prompt = f"""
 Archetypes: 
 {", ".join([type.value for type in Archetype])}
@@ -69,7 +69,22 @@ Example response:
     return response
 
 
-def create_profile_scenario_answers(path: SystemPath):
+def create_decision_archetype_table(path: SystemPath):
+    # Copy weights to decision probabilities file
+    with open(path.get_06_decision_archetype_path(), "r") as f:
+        content = f.read()
+
+    with open(path.get_06_decision_probability_path(), "w") as f:
+        f.write(content)
+
+    print()
+    print("-" * 50)
+    print(
+        f"Decision probability table saved to: '{path.get_06_decision_probability_path()}'\n"
+    )
+
+
+def create_decision_profile_answers(path: SystemPath):
     with open(path.get_04_scenario_path(), "r") as f:
         content = f.read()
         scenarios: list[Scenario] = [
@@ -87,7 +102,7 @@ def create_profile_scenario_answers(path: SystemPath):
     all_profile_answers = []
     for profile in profiles:
         # Generate all scenario answer
-        profile_answers: list[ActionProbability] = generate_profile_scenario_answers(
+        profile_answers: list[ActionProbability] = generate_decision_profile_answers(
             path, profile
         )
 
@@ -108,13 +123,13 @@ def create_profile_scenario_answers(path: SystemPath):
 
         all_profile_answers.append(profile_dict)
 
-    with open(path.get_06_profile_scenario_answers_path(), "w") as f:
+    with open(path.get_06_decision_profile_path(), "w") as f:
         f.write(json.dumps(all_profile_answers, indent=4))
 
         print()
     print("-" * 50)
     print(
-        f"Profile scenario answers saved to: '{path.get_06_profile_scenario_answers_path()}'\n"
+        f"Profile-based decision weights saved to: '{path.get_06_decision_profile_path()}'\n"
     )
 
     # TODO: (optional) save as csv as well
@@ -138,7 +153,7 @@ def create_profile_scenario_answers(path: SystemPath):
     #             f.write("\n")
 
 
-def generate_profile_scenario_answers(
+def generate_decision_profile_answers(
     path: SystemPath,
     profile: Profile,
 ) -> list[ActionProbability]:
@@ -146,22 +161,25 @@ def generate_profile_scenario_answers(
 Based on this profile summary:
 {profile.summary}
 
+Supporting quotes:
+{"\n".join([f'{i+1}. {quote}' for i,quote in enumerate(profile.quotes)])}
+
 Profile attributes:
 {"\n".join([f'{i+1}. {attribute}' for i,attribute in enumerate(profile.attributes)])}
 
-Supporting quotes:
-{"\n".join([f'{i+1}. {quote}' for i,quote in enumerate(profile.quotes)])}
+Profile archetype:
+{profile.archetype.value}
 
 Give probability to each action base on profile preference.
 The total probability across all actions must equal to {1}
 
-{display_progress.scenario_progess(path)}
+{display_result.scenario_result(path)}
 """
     response = llm.generate_content(prompt, list[ActionProbability])
     return response.parsed
 
 
-def create_scenario_action_probability_table(path: SystemPath):
+def create_decision_profile_table(path: SystemPath):
     # Fetch scenario questions
     with open(path.get_04_archetypes_path(), "r") as f:
         archetypes = f.read().strip().splitlines()
@@ -173,7 +191,9 @@ def create_scenario_action_probability_table(path: SystemPath):
             for scenario_raw in json.loads(content)
         ]
 
-    scenario_answer_dict = convert_profile_answer_to_scenario_archetype_dict(path)
+    scenario_answer_dict = convert_decision_profile_answer_to_scenario_archetype_dict(
+        path
+    )
 
     scenario_probs = []
     for scenario in scenarios:
@@ -206,8 +226,8 @@ def create_scenario_action_probability_table(path: SystemPath):
     )
 
 
-def convert_profile_answer_to_scenario_archetype_dict(path: SystemPath):
-    with open(path.get_06_profile_scenario_answers_path(), "r") as f:
+def convert_decision_profile_answer_to_scenario_archetype_dict(path: SystemPath):
+    with open(path.get_06_decision_profile_path(), "r") as f:
         content = f.read()
         all_profile_scenario_answers = json.loads(content)
 
@@ -247,28 +267,13 @@ def convert_profile_answer_to_scenario_archetype_dict(path: SystemPath):
     return scenario_answer_dict
 
 
-def create_decision_probability_table_from_ground_truth(path: SystemPath):
-    # Copy ground truth to decision probabilities file
-    with open(path.get_06_scenario_ground_truth_path(), "r") as f:
-        content = f.read()
-
-    with open(path.get_06_decision_probability_path(), "w") as f:
-        f.write(content)
-
-    print()
-    print("-" * 50)
-    print(
-        f"Decision probability table saved to: '{path.get_06_decision_probability_path()}'\n"
-    )
-
-
 if __name__ == "__main__":
     path = SystemPath("travel")
 
-    ## Create decision probability using ground truth (roleplay as archetype)
-    # create_ground_truth(path)
-    # create_decision_probability_table_from_ground_truth(path)
+    # ## Create decision probability using archetype-based approach
+    # create_decision_archetype(path)
+    # create_decision_archetype_table(path)
 
-    ## Create decision probability using roleplay as profile
-    # create_profile_scenario_answers(path)
-    create_scenario_action_probability_table(path)
+    ## Create decision probability using profile-based approach
+    create_decision_profile_answers(path)
+    create_decision_profile_table(path)

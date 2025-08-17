@@ -6,7 +6,7 @@ from google.genai.types import GenerateContentResponse, GenerateContentConfig, P
 
 import requests
 
-import display_progress
+import display_result
 from models.response_models import ThinkResponse
 from system_path import SystemPath
 

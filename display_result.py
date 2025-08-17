@@ -9,10 +9,10 @@ from system_path import SystemPath
 
 
 def display_header():
-    print("\nCurrent progress")
+    print("\nCurrent result:")
 
 
-def topic_outline_progress(path: SystemPath):
+def topic_outline_result(path: SystemPath):
     str = "-" * 50 + "\n"
     with open(path.get_01_topic_path(), "r") as f:
         content = f.read()
@@ -35,7 +35,7 @@ def topic_outline_progress(path: SystemPath):
     return str
 
 
-def eabss_scope_progress(path: SystemPath):
+def eabss_scope_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "EABSS Scope model:\n"
     with open(path.get_02_eabss_scope_path(), "r") as f:
@@ -54,7 +54,7 @@ def eabss_scope_progress(path: SystemPath):
     return str
 
 
-def eabss_scope_progress_table(path: SystemPath):
+def eabss_scope_result_table(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "EABSS Components:\n"
     with open(path.get_02_eabss_scope_path(), "r") as f:
@@ -79,13 +79,13 @@ def diagram_header():
     return str
 
 
-def eabss_usecase_diagrams_progess(path: SystemPath):
+def eabss_usecase_diagrams_result(path: SystemPath):
     return "  {:<25} {:<30}".format(
         "Use case diagram", f": saved to '{path.get_03_eabss_usecase_diagram_path()}'"
     )
 
 
-def eabss_diagrams_progess(path: SystemPath):
+def eabss_diagrams_result(path: SystemPath):
     strs = []
     for name, path in zip(
         [
@@ -107,12 +107,12 @@ def eabss_diagrams_progess(path: SystemPath):
 
 
 def display_stage04(path: SystemPath):
-    print(archetype_progess(path))
-    print(attribute_progess(path))
-    print(scenario_progess(path))
+    print(archetype_result(path))
+    print(attribute_result(path))
+    print(scenario_result(path))
 
 
-def archetype_progess(path: SystemPath):
+def archetype_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "Archetypes:"
     with open(path.get_04_archetypes_path(), "r") as f:
@@ -124,7 +124,7 @@ def archetype_progess(path: SystemPath):
     return str
 
 
-def attribute_progess(path: SystemPath):
+def attribute_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "Profile attributes:"
     with open(path.get_04_attributes_path(), "r") as f:
@@ -136,7 +136,7 @@ def attribute_progess(path: SystemPath):
     return str
 
 
-def scenario_progess(path: SystemPath):
+def scenario_result(path: SystemPath):
     # Example output
     # ---------------------
     # Scenarios:
@@ -160,7 +160,7 @@ def scenario_progess(path: SystemPath):
     return str
 
 
-def profile_progess(path: SystemPath):
+def profile_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "{:<25} {:<30}".format(
         "Profiles", f": saved to '{path.get_05_profiles_path()}'"
@@ -169,25 +169,26 @@ def profile_progess(path: SystemPath):
     return str
 
 
-def ground_truth_progess(path: SystemPath):
+def decision_archetype_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "{:<25} {:<30}".format(
-        "Ground truth", f": saved to '{path.get_06_scenario_ground_truth_path()}'"
+        "Archetype-based decision",
+        f": saved to '{path.get_06_decision_archetype_path()}'",
     )
     return str
 
 
-def profile_scenario_answer_progess(path: SystemPath):
+def decision_profile_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "{:<25} {:<30}".format(
-        "Scenario answers",
-        f": saved to '{path.get_06_profile_scenario_answers_path()}'",
+        "Profile-based decision",
+        f": saved to '{path.get_06_decision_profile_path()}'",
     )
 
     return str
 
 
-def profile_answer_table_progess(path: SystemPath):
+def decision_profile_table_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "Profile answer table:\n"
 
@@ -202,7 +203,7 @@ def profile_answer_table_progess(path: SystemPath):
     #   0.3       0.3       0.4
     # =======  =========  =========
 
-    with open(path.get_06_profile_scenario_answers_path()) as f:
+    with open(path.get_06_decision_profile_path()) as f:
         content = f.read()
         all_profile_answer = json.loads(content)
 
@@ -220,7 +221,7 @@ def profile_answer_table_progess(path: SystemPath):
     return str
 
 
-def decision_probability_table_progess(path: SystemPath):
+def decision_probability_table_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "Decision probability table:\n"
 
@@ -256,7 +257,7 @@ def decision_probability_table_progess(path: SystemPath):
     return str
 
 
-def simulation_script_progess(path: SystemPath):
+def simulation_script_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "{:<25} {:<30}".format(
         "Simulation script", f": saved to '{path.get_07_simulation_script_path()}'"
@@ -265,64 +266,25 @@ def simulation_script_progess(path: SystemPath):
     return str
 
 
-def model_output_progess(output_path):
-    str = "-" * 50 + "\n"
-    str += "{:<35} {:<30}".format(
-        "Model output",
-        f": found at '{output_path}'",
-    )
-
-    return str
-
-
-def visualisation_template_progess(path: SystemPath):
-    str = "-" * 50 + "\n"
-    str += "{:<35} {:<30}".format(
-        "Visualisation template reasoning",
-        f": saved to '{path.get_09_visualisation_template_think_path()}'",
-    )
-    str += "\n"
-    str += "{:<35} {:<30}".format(
-        "Visualisation template script",
-        f": saved to '{path.get_09_visualisation_template_path()}'",
-    )
-
-    return str
-
-
-def visualisation_analysis_progess(path: SystemPath):
-    str = "-" * 50 + "\n"
-    str += "{:<35} {:<30}".format(
-        "Visualisation analysis ",
-        f": saved to '{path.get_10_visualisation_analysis_path()}'",
-    )
-
-    return str
-
-
 if __name__ == "__main__":
     path = SystemPath("travel")
 
-    # display_header()
-    # print(topic_outline_progress(path))
-    # print(eabss_scope_progress(path))
-    # print(eabss_scope_progress_table(path))
-    # print(diagram_header())
+    display_header()
+    print(topic_outline_result(path))
+    print(eabss_scope_result(path))
+    print(eabss_scope_result(path))
+    print(diagram_header())
 
-    # print(eabss_usecase_diagrams_progess(path))
-    # print(eabss_diagrams_progess(path))
-    # print(archetype_progess(path))
-    # print(attribute_progess(path))
-    # print(scenario_progess(path))
+    print(eabss_usecase_diagrams_result(path))
+    print(eabss_diagrams_result(path))
+    print(archetype_result(path))
+    print(attribute_result(path))
+    print(scenario_result(path))
 
-    # print(profile_progess(path))
-    # print(profile_scenario_answer_progess(path))
-    # print(ground_truth_progess(path))
-    print(profile_answer_table_progess(path))
-    # print(decision_probability_table_progess(path))
-    # print(simulation_script_progess(path))
-    # print()
-    # print(model_output_progess(path))
-    # print(visualisation_template_progess(path))
-    # print(visualisation_analysis_progess(path))
-    # print()
+    print(profile_result(path))
+    print(decision_profile_result(path))
+    print(decision_archetype_result(path))
+    print(decision_profile_table_result(path))
+    print(decision_probability_table_result(path))
+    print(simulation_script_result(path))
+    print()

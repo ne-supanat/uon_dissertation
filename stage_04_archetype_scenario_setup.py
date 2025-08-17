@@ -3,7 +3,7 @@ import re
 from google.genai.types import GenerateContentResponse
 from tabulate import tabulate
 
-import display_progress
+import display_result
 from system_path import SystemPath
 import llm
 from models.response_models import ScenarioList
@@ -72,7 +72,7 @@ def generate_potential_profile_attributes(path: SystemPath) -> GenerateContentRe
 
     prompt = f"""
 Based on the scope
-{display_progress.eabss_scope_progress(path)}
+{display_result.eabss_scope_result(path)}
 
 Please suggest {3} potential {main_actor} attributes.
 
@@ -162,7 +162,7 @@ def generate_potential_archetype(
 
     prompt = f"""
 Based on the scope
-{display_progress.eabss_scope_progress(path)}
+{display_result.eabss_scope_result(path)}
 
 And attribute
 {", ".join(attributes)}
@@ -276,7 +276,7 @@ def add_scenarios(path: SystemPath):
 def generate_scenario_suggestion(path: SystemPath) -> GenerateContentResponse:
     prompt = f"""
 Based on the model's scope
-{display_progress.eabss_scope_progress(path)}
+{display_result.eabss_scope_result(path)}
 
 Please suggest {3} scenarios with no more than {3} actions that help identify how each archetype behaves.
 Each scenario should designed to capture action preferences.

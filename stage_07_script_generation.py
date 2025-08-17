@@ -1,6 +1,6 @@
 import llm
 from models.response_models import ScopeThemeCode, ThinkScriptResponse
-import display_progress
+import display_result
 from models.archetypes import Archetype
 
 from system_path import SystemPath
@@ -63,8 +63,8 @@ Based on these EABSS key components:
 {ScopeThemeCode.get_explanation()}
 
 And following model detail:
-{display_progress.topic_outline_progress(path)}
-{display_progress.eabss_scope_progress(path)}
+{display_result.topic_outline_result(path)}
+{display_result.eabss_scope_result(path)}
 Use case diagram:
 {eabss_usecase_diagram}
 {"-"*50}
@@ -81,7 +81,7 @@ Interaction diagram:
 {eabss_interaction_diagram}
 {"-"*50}
 Archetype action probability
-{display_progress.decision_probability_table_progess(path)}
+{display_result.decision_probability_table_result(path)}
 
 Generate a NetLogo simulation script that can represent system based on UML diagrams
 and can answer objective key

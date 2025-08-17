@@ -11,7 +11,7 @@ import stage_05_profile_extraction
 import stage_06_scenario_decision
 import stage_07_script_generation
 
-import display_progress
+import display_result
 from system_path import SystemPath
 import utils
 
@@ -32,8 +32,7 @@ def print_end_stage(is_last_stage: bool = False):
         print("\nRun 'main.py' to continue to the next stage.\n")
     else:
         print("-" * 50 + "\nAll model development stages completed\n" + "=" * 50)
-        print("\nRun 'main.py' to review the progress.")
-        print("Run 'main_eval.py' to evaluate the system outputs.")
+        print("\nRun 'main.py' to review the result.")
 
 
 def run_setup_project(path: SystemPath):
@@ -44,7 +43,7 @@ def run_setup_project(path: SystemPath):
 
         stage_00_project_setup.run_setup_project(path)
     else:
-        display_progress.display_header()
+        display_result.display_header()
 
 
 def run_setup_topic_outline(path: SystemPath):
@@ -57,13 +56,13 @@ def run_setup_topic_outline(path: SystemPath):
         stage_01_outline_setup.setup_outline(path)
 
         # Display topic & outline of the model
-        print(display_progress.topic_outline_progress(path))
+        print(display_result.topic_outline_result(path))
 
         print_end_stage()
         sys.exit()
     else:
         # Display topic & outline of the model
-        print(display_progress.topic_outline_progress(path))
+        print(display_result.topic_outline_result(path))
 
 
 def run_build_eabss(path: SystemPath):
@@ -83,13 +82,13 @@ def run_build_eabss(path: SystemPath):
             stage_02_build_eabss.run_eabss_scope_finalisation(path)
 
             # Display EABSS components result
-            print(display_progress.eabss_scope_progress(path))
+            print(display_result.eabss_scope_result(path))
             print_end_stage()
 
         sys.exit()
     else:
         # Display EABSS components result
-        print(display_progress.eabss_scope_progress(path))
+        print(display_result.eabss_scope_result(path))
 
 
 def run_build_eabss_usecase_diagramm(path: SystemPath):
@@ -104,8 +103,8 @@ def run_build_eabss_usecase_diagramm(path: SystemPath):
         sys.exit()
     else:
         # Display EABSS usecase diagrams result
-        print(display_progress.diagram_header())
-        print(display_progress.eabss_usecase_diagrams_progess(path))
+        print(display_result.diagram_header())
+        print(display_result.eabss_usecase_diagrams_result(path))
 
 
 def should_build_remaining_eabss_diagrams(path: SystemPath):
@@ -130,7 +129,7 @@ def run_build_remaining_eabss_diagrams(path: SystemPath):
         sys.exit()
     else:
         # Display EABSS remaining diagrams result
-        print(display_progress.eabss_diagrams_progess(path))
+        print(display_result.eabss_diagrams_result(path))
 
 
 def should_design_profile_n_scenario(path: SystemPath):
@@ -150,12 +149,12 @@ def run_design_profile_n_scenario(path: SystemPath):
             # Design profile & scenarion
             stage_04_archetype_scenario_setup.design_profile_n_scenario(path)
 
-            display_progress.display_stage04(path)
+            display_result.display_stage04(path)
             print_end_stage()
         sys.exit()
     else:
         # Display Archetype, Attributes, Scenario saved locations
-        display_progress.display_stage04(path)
+        display_result.display_stage04(path)
 
 
 def run_extract_profiles(path: SystemPath):
@@ -173,7 +172,7 @@ def run_extract_profiles(path: SystemPath):
         sys.exit()
     else:
         # Display Profiles saved location
-        print(display_progress.profile_progess(path))
+        print(display_result.profile_result(path))
 
 
 def run_create_decision_probability_table(path: SystemPath):
@@ -181,13 +180,7 @@ def run_create_decision_probability_table(path: SystemPath):
         stage_str = "Decision probability table"
         proceed = ask_proceed(stage_str)
         if proceed:
-            # Create ground truth
-            if not os.path.isfile(path.get_06_scenario_ground_truth_path()):
-                stage_06_scenario_decision.create_ground_truth(path)
-
-            print(display_progress.ground_truth_progess(path))
-
-            # Ask user to use extracted profiles or generated ground truth
+            # Ask user to use profile-based or archetype-based
             # to create scenario answers
             with open(path.get_04_scenario_path(), "r") as f:
                 questions = f.read().strip().splitlines()
@@ -213,24 +206,25 @@ def run_create_decision_probability_table(path: SystemPath):
             # Answer scenario questions
             if method == "1":
                 # Based on extracted profile(s)
-                stage_06_scenario_decision.create_profile_scenario_answers(path)
-                # Create decision probability table
-                stage_06_scenario_decision.create_scenario_action_probability_table(
-                    path
-                )
-            elif method == "2":
-                # Based on ground truth
-                stage_06_scenario_decision.create_decision_probability_table_from_ground_truth(
-                    path
-                )
+                stage_06_scenario_decision.create_decision_profile_answers(path)
+                print(display_result.decision_profile_result(path))
 
-            print(display_progress.decision_probability_table_progess(path))
+                # Create decision probability table
+                stage_06_scenario_decision.create_decision_profile_table(path)
+            elif method == "2":
+                # Based on archetypes
+                stage_06_scenario_decision.create_decision_archetype(path)
+                print(display_result.decision_archetype_result(path))
+
+                # Create decision probability table
+                stage_06_scenario_decision.create_decision_archetype_table(path)
+
+            print(display_result.decision_probability_table_result(path))
             print_end_stage()
         sys.exit()
     else:
-        # Display Scenario answer saved path & Decision probability table
-        print(display_progress.profile_scenario_answer_progess(path))
-        print(display_progress.decision_probability_table_progess(path))
+        # Display Decision probability table saved path
+        print(display_result.decision_probability_table_result(path))
 
 
 def run_generate_simulation_script(path: SystemPath):
@@ -242,7 +236,7 @@ def run_generate_simulation_script(path: SystemPath):
 
             print_end_stage(True)
     else:
-        print(display_progress.simulation_script_progess(path))
+        print(display_result.simulation_script_result(path))
         print_end_stage(True)
 
 

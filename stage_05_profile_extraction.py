@@ -2,7 +2,7 @@ from google.genai.types import GenerateContentResponse
 
 import llm
 from models.response_models import Profile
-import display_progress
+import display_result
 
 from system_path import SystemPath
 import utils
@@ -50,10 +50,10 @@ Base on this transcript
 {document}
 
 Model's outline:
-{display_progress.topic_outline_progress(path)}
+{display_result.topic_outline_result(path)}
 
 Scenario detail:
-{display_progress.scenario_progess(path)}
+{display_result.scenario_result(path)}
 
 Summarise profile within {100} words that relevant to model's outline and scenario detail.
 Find supporting evidence (quotes) that related to model's outline and scenario detail. 
