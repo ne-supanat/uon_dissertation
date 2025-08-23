@@ -64,7 +64,7 @@ Based on these EABSS key components:
 
 And following model detail:
 {display_result.topic_outline_result(path)}
-{display_result.eabss_scope_result(path)}
+{display_result.model_scope_result(path)}
 Use case diagram:
 {eabss_usecase_diagram}
 {"-"*50}

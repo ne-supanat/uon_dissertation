@@ -72,10 +72,9 @@ def generate_potential_profile_attributes(path: SystemPath) -> GenerateContentRe
 
     prompt = f"""
 Based on the scope
-{display_result.eabss_scope_result(path)}
+{display_result.model_scope_result(path)}
 
 Please suggest {3} potential {main_actor} attributes.
-
 For example: Race, Age, Occupation
 """
 
@@ -162,7 +161,7 @@ def generate_potential_archetype(
 
     prompt = f"""
 Based on the scope
-{display_result.eabss_scope_result(path)}
+{display_result.model_scope_result(path)}
 
 And attribute
 {", ".join(attributes)}
@@ -278,7 +277,7 @@ def add_scenarios(path: SystemPath):
 def generate_scenario_suggestion(path: SystemPath) -> GenerateContentResponse:
     prompt = f"""
 Based on the model's scope
-{display_result.eabss_scope_result(path)}
+{display_result.model_scope_result(path)}
 
 Please suggest {3} scenarios with no more than {3} actions that help identify how each archetype behaves.
 Each scenario should designed to capture action preferences.

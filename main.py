@@ -80,13 +80,13 @@ def run_build_eabss(path: SystemPath):
             stage_02_build_eabss.run_eabss_scope_finalisation(path)
 
             # Display EABSS components result
-            print(display_result.eabss_scope_result(path))
+            print(display_result.model_scope_result(path))
             print_end_stage()
 
         sys.exit()
     else:
         # Display EABSS components result
-        print(display_result.eabss_scope_result(path))
+        print(display_result.model_scope_result(path))
 
 
 def run_build_eabss_usecase_diagramm(path: SystemPath):

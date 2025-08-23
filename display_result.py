@@ -35,7 +35,7 @@ def topic_outline_result(path: SystemPath):
     return str
 
 
-def eabss_scope_result(path: SystemPath):
+def model_scope_result(path: SystemPath):
     str = "-" * 50 + "\n"
     str += "EABSS Scope model:\n"
     with open(path.get_02_eabss_scope_path(), "r") as f:
@@ -270,21 +270,34 @@ if __name__ == "__main__":
     path = SystemPath("travel")
 
     display_header()
+    print()
     print(topic_outline_result(path))
-    print(eabss_scope_result(path))
-    print(eabss_scope_result(path))
+    print()
+    print(model_scope_result(path))
+    print()
     print(diagram_header())
+    print()
 
     print(eabss_usecase_diagrams_result(path))
+    print()
     print(eabss_diagrams_result(path))
+    print()
     print(archetype_result(path))
+    print()
     print(attribute_result(path))
+    print()
     print(scenario_result(path))
+    print()
 
     print(profile_result(path))
+    print()
     print(decision_profile_result(path))
+    print()
     print(decision_archetype_result(path))
+    print()
     print(decision_profile_table_result(path))
+    print()
     print(decision_probability_table_result(path))
+    print()
     print(simulation_script_result(path))
     print()
