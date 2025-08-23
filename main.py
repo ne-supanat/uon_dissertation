@@ -4,8 +4,8 @@ import sys
 
 import stage_00_project_setup
 import stage_01_outline_setup
-import stage_02_build_eabss
-import stage_03_generate_eabss_diagram
+import stage_02_build_scope
+import stage_03_generate_diagram
 import stage_04_archetype_scenario_setup
 import stage_05_profile_extraction
 import stage_06_scenario_decision
@@ -63,9 +63,9 @@ def run_setup_topic_outline(path: SystemPath):
         print(display_result.topic_outline_result(path))
 
 
-def run_build_eabss(path: SystemPath):
-    if not os.path.isfile(path.get_02_eabss_scope_path()):
-        stage_str = "Build EABSS components"
+def run_build_model_scope(path: SystemPath):
+    if not os.path.isfile(path.get_02_model_scope_path()):
+        stage_str = "Building The Model Scope"
         proceed = ask_proceed(stage_str)
 
         if proceed:
@@ -73,61 +73,61 @@ def run_build_eabss(path: SystemPath):
             scope_document_paths = utils.get_transcript_file_paths(
                 path.get_scope_data_directory_path()
             )
-            stage_02_build_eabss.run_thematic_analysis(path, scope_document_paths)
+            stage_02_build_scope.run_thematic_analysis(path, scope_document_paths)
             print()
 
-            # Finalise EABSS components
-            stage_02_build_eabss.run_eabss_scope_finalisation(path)
+            # Finalise model scope
+            stage_02_build_scope.run_model_scope_finalisation(path)
 
-            # Display EABSS components result
+            # Display model scope result
             print(display_result.model_scope_result(path))
             print_end_stage()
 
         sys.exit()
     else:
-        # Display EABSS components result
+        # Display model scope result
         print(display_result.model_scope_result(path))
 
 
-def run_build_eabss_usecase_diagramm(path: SystemPath):
-    if not os.path.isfile(path.get_03_eabss_usecase_diagram_path()):
-        stage_str = "Generate EABSS diagrams - use case diagram"
+def run_build_model_usecase_diagramm(path: SystemPath):
+    if not os.path.isfile(path.get_03_model_usecase_diagram_path()):
+        stage_str = "Creating model diagrams - use case diagram"
         proceed = ask_proceed(stage_str)
         if proceed:
-            # Generate EABSS usecase diagrams
-            stage_03_generate_eabss_diagram.build_eabss_usecase_diagrams(path)
+            # Create usecase diagrams
+            stage_03_generate_diagram.build_usecase_diagrams(path)
 
             print_end_stage()
         sys.exit()
     else:
-        # Display EABSS usecase diagrams result
+        # Display usecase diagrams result
         print(display_result.diagram_header())
-        print(display_result.eabss_usecase_diagrams_result(path))
+        print(display_result.model_usecase_diagrams_result(path))
 
 
-def should_build_remaining_eabss_diagrams(path: SystemPath):
+def should_build_remaining_model_diagrams(path: SystemPath):
     # Check if any of remaining diagram result files does not exist.
     return (
-        not os.path.isfile(path.get_03_eabss_activity_diagram_path())
-        or not os.path.isfile(path.get_03_eabss_state_diagram_path())
-        or not os.path.isfile(path.get_03_eabss_interaction_diagram_path())
-        or not os.path.isfile(path.get_03_eabss_class_diagram_path())
+        not os.path.isfile(path.get_03_model_activity_diagram_path())
+        or not os.path.isfile(path.get_03_model_state_diagram_path())
+        or not os.path.isfile(path.get_03_model_interaction_diagram_path())
+        or not os.path.isfile(path.get_03_model_class_diagram_path())
     )
 
 
-def run_build_remaining_eabss_diagrams(path: SystemPath):
-    if should_build_remaining_eabss_diagrams(path):
-        stage_str = "Generate EABSS diagrams - remaining diagrams"
+def run_build_remaining_model_diagrams(path: SystemPath):
+    if should_build_remaining_model_diagrams(path):
+        stage_str = "Creating model diagrams - remaining diagrams"
         proceed = ask_proceed(stage_str)
         if proceed:
-            # Generate EABSS diagrams
-            stage_03_generate_eabss_diagram.buidl_eabss_remaining_diagrams(path)
+            # Generate remaining diagrams
+            stage_03_generate_diagram.build_remaining_diagrams(path)
 
             print_end_stage()
         sys.exit()
     else:
-        # Display EABSS remaining diagrams result
-        print(display_result.eabss_diagrams_result(path))
+        # Display remaining diagrams result
+        print(display_result.model_diagrams_result(path))
 
 
 def should_design_profile_n_scenario(path: SystemPath):
@@ -255,15 +255,15 @@ def main(
     # Stage 00 Setup Project
     run_setup_project(path)
 
-    # Stage 01 Setup Objective
+    # Stage 01 Setup model outline
     run_setup_topic_outline(path)
 
-    # Stage 02 Build EABSS scope
-    run_build_eabss(path)
+    # Stage 02 Build model scope
+    run_build_model_scope(path)
 
-    # Stage 03 Build EABSS diagrams
-    run_build_eabss_usecase_diagramm(path)
-    run_build_remaining_eabss_diagrams(path)
+    # Stage 03 Build model diagrams
+    run_build_model_usecase_diagramm(path)
+    run_build_remaining_model_diagrams(path)
 
     # Stage 04 Design profile, scenario
     run_design_profile_n_scenario(path)

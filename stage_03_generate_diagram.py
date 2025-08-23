@@ -8,10 +8,10 @@ import display_result
 from system_path import SystemPath
 
 
-def build_eabss_usecase_diagrams(path: SystemPath):
+def build_usecase_diagrams(path: SystemPath):
     # key activities - UML use case diagram
-    usecase_diagram = generate_eabss_usecase_diagram(path)
-    with open(path.get_03_eabss_usecase_diagram_path(), "w") as f:
+    usecase_diagram = generate_usecase_diagram(path)
+    with open(path.get_03_model_usecase_diagram_path(), "w") as f:
         f.write(usecase_diagram)
 
     print()
@@ -19,13 +19,13 @@ def build_eabss_usecase_diagrams(path: SystemPath):
     print(
         "{:<25} {:<30}".format(
             "Use case diagram",
-            f": saved to '{path.get_03_eabss_usecase_diagram_path()}'",
+            f": saved to '{path.get_03_model_usecase_diagram_path()}'",
         )
     )
     print("\nPlease reivew and update the use case diagram if necessary.")
 
 
-def generate_eabss_usecase_diagram(path: SystemPath):
+def generate_usecase_diagram(path: SystemPath):
     prompt = f"""
 Following these key components
 {ScopeComponent.get_explanation()}
@@ -42,8 +42,8 @@ To link them with arrow use -->
     return response.script
 
 
-def buidl_eabss_remaining_diagrams(path: SystemPath):
-    with open(path.get_02_eabss_scope_path(), "r") as f:
+def build_remaining_diagrams(path: SystemPath):
+    with open(path.get_02_model_scope_path(), "r") as f:
         content = f.read()
         scope: ScopeComponent = ScopeComponent.model_validate_json(content)
 
@@ -70,36 +70,34 @@ def buidl_eabss_remaining_diagrams(path: SystemPath):
 
     main_actor = actors[choice - 1]
 
-    with open(path.get_03_eabss_main_actor_path(), "w") as f:
+    with open(path.get_03_main_actor_path(), "w") as f:
         f.write(main_actor)
 
-    with open(path.get_03_eabss_usecase_diagram_path(), "r") as f:
+    with open(path.get_03_model_usecase_diagram_path(), "r") as f:
         usecase_diagram = f.read()
 
     # actor class - UML class diagram
-    class_diagram = generate_eabss_class_diagram(path, usecase_diagram, main_actor)
-    with open(path.get_03_eabss_class_diagram_path(), "w") as f:
+    class_diagram = generate_class_diagram(path, usecase_diagram, main_actor)
+    with open(path.get_03_model_class_diagram_path(), "w") as f:
         f.write(class_diagram)
 
     # user state transition - UML state diagram (optional)
-    state_transition_diagram = generate_eabss_state_transition_diagram(
+    state_transition_diagram = generate_state_transition_diagram(
         path, usecase_diagram, main_actor
     )
-    with open(path.get_03_eabss_state_diagram_path(), "w") as f:
+    with open(path.get_03_model_state_diagram_path(), "w") as f:
         f.write(state_transition_diagram)
 
     # key activities - UML activity diagram
-    activity_diagram = generate_eabss_activity_diagram(
-        path, usecase_diagram, main_actor
-    )
-    with open(path.get_03_eabss_activity_diagram_path(), "w") as f:
+    activity_diagram = generate_activity_diagram(path, usecase_diagram, main_actor)
+    with open(path.get_03_model_activity_diagram_path(), "w") as f:
         f.write(activity_diagram)
 
     # interactions - UML sequence diagram
-    interactions_diagram = generate_eabss_interaction_diagram(
+    interactions_diagram = generate_interaction_diagram(
         path, usecase_diagram, main_actor
     )
-    with open(path.get_03_eabss_interaction_diagram_path(), "w") as f:
+    with open(path.get_03_model_interaction_diagram_path(), "w") as f:
         f.write(interactions_diagram)
 
     print()
@@ -112,19 +110,17 @@ def buidl_eabss_remaining_diagrams(path: SystemPath):
             "Interaction diagram",
         ],
         [
-            path.get_03_eabss_class_diagram_path(),
-            path.get_03_eabss_state_diagram_path(),
-            path.get_03_eabss_activity_diagram_path(),
-            path.get_03_eabss_interaction_diagram_path(),
+            path.get_03_model_class_diagram_path(),
+            path.get_03_model_state_diagram_path(),
+            path.get_03_model_activity_diagram_path(),
+            path.get_03_model_interaction_diagram_path(),
         ],
     ):
         print("{:<25} {:<30}".format(name, f": saved to '{path}'"))
-    print("\nPlease reivew and update the EABSS components if necessary.")
+    print("\nPlease reivew and update the diagrams if necessary.")
 
 
-def generate_eabss_class_diagram(
-    path: SystemPath, usecase_diagram: str, main_actor: str
-):
+def generate_class_diagram(path: SystemPath, usecase_diagram: str, main_actor: str):
     prompt = f"""
 Following these key components
 {ScopeComponent.get_explanation()}
@@ -141,7 +137,7 @@ Respond in mermaid.js format
     return response.script
 
 
-def generate_eabss_state_transition_diagram(
+def generate_state_transition_diagram(
     path: SystemPath, usecase_diagram: str, main_actor: str
 ):
     prompt = f"""
@@ -168,9 +164,7 @@ WakeUp --> Sleeping: is night
     return response.script
 
 
-def generate_eabss_activity_diagram(
-    path: SystemPath, usecase_diagram: str, main_actor: str
-):
+def generate_activity_diagram(path: SystemPath, usecase_diagram: str, main_actor: str):
     prompt = f"""
 Following these key components
 {ScopeComponent.get_explanation()}
@@ -192,7 +186,7 @@ To have text in link use -- Text -->
     return response.script
 
 
-def generate_eabss_interaction_diagram(
+def generate_interaction_diagram(
     path: SystemPath, usecase_diagram: str, main_actor: str
 ):
     prompt = f"""
@@ -219,5 +213,5 @@ To add text in link use Actor->>Object: Text
 if __name__ == "__main__":
     path = SystemPath("travel")
 
-    # build_eabss_usecase_diagrams(path)
-    buidl_eabss_remaining_diagrams(path)
+    # build_usecase_diagrams(path)
+    build_remaining_diagrams(path)

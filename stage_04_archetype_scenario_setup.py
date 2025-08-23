@@ -67,7 +67,7 @@ Example:
 
 
 def generate_potential_profile_attributes(path: SystemPath) -> GenerateContentResponse:
-    with open(path.get_03_eabss_main_actor_path(), "r") as f:
+    with open(path.get_03_main_actor_path(), "r") as f:
         main_actor = f.read()
 
     prompt = f"""
@@ -156,7 +156,7 @@ Example:
 def generate_potential_archetype(
     path: SystemPath, attributes: list[str]
 ) -> GenerateContentResponse:
-    with open(path.get_03_eabss_main_actor_path(), "r") as f:
+    with open(path.get_03_main_actor_path(), "r") as f:
         main_actor = f.read()
 
     prompt = f"""

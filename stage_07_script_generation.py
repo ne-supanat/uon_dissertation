@@ -7,28 +7,28 @@ from system_path import SystemPath
 
 
 def build_simulation_script(path: SystemPath):
-    with open(path.get_03_eabss_usecase_diagram_path(), "r") as f:
-        eabss_usecase_diagram = f.read()
+    with open(path.get_03_model_usecase_diagram_path(), "r") as f:
+        usecase_diagram = f.read()
 
-    with open(path.get_03_eabss_class_diagram_path(), "r") as f:
-        eabss_class_diagram = f.read()
+    with open(path.get_03_model_class_diagram_path(), "r") as f:
+        class_diagram = f.read()
 
-    with open(path.get_03_eabss_activity_diagram_path(), "r") as f:
-        eabss_activity_diagram = f.read()
+    with open(path.get_03_model_activity_diagram_path(), "r") as f:
+        activity_diagram = f.read()
 
-    with open(path.get_03_eabss_state_diagram_path(), "r") as f:
-        eabss_state_transition_diagram = f.read()
+    with open(path.get_03_model_state_diagram_path(), "r") as f:
+        state_transition_diagram = f.read()
 
-    with open(path.get_03_eabss_interaction_diagram_path(), "r") as f:
-        eabss_interaction_diagram = f.read()
+    with open(path.get_03_model_interaction_diagram_path(), "r") as f:
+        interaction_diagram = f.read()
 
     response = generate_simulation_script(
         path,
-        eabss_usecase_diagram,
-        eabss_activity_diagram,
-        eabss_state_transition_diagram,
-        eabss_interaction_diagram,
-        eabss_class_diagram,
+        usecase_diagram,
+        activity_diagram,
+        state_transition_diagram,
+        interaction_diagram,
+        class_diagram,
     )
 
     with open(path.get_07_simulation_script_think_path(), "w") as f:
@@ -52,11 +52,11 @@ def build_simulation_script(path: SystemPath):
 
 def generate_simulation_script(
     path: SystemPath,
-    eabss_usecase_diagram,
-    eabss_activity_diagram,
-    eabss_state_transition_diagram,
-    eabss_interaction_diagram,
-    eabss_class_diagram,
+    usecase_diagram,
+    activity_diagram,
+    state_transition_diagram,
+    interaction_diagram,
+    class_diagram,
 ) -> ThinkScriptResponse:
     prompt = f"""
 Based on these EABSS key components:
@@ -66,19 +66,19 @@ And following model detail:
 {display_result.topic_outline_result(path)}
 {display_result.model_scope_result(path)}
 Use case diagram:
-{eabss_usecase_diagram}
+{usecase_diagram}
 {"-"*50}
 Class diagram:
-{eabss_class_diagram}
+{class_diagram}
 {"-"*50}
 Activity diagram:
-{eabss_activity_diagram}
+{activity_diagram}
 {"-"*50}
 State transition diagram:
-{eabss_state_transition_diagram}
+{state_transition_diagram}
 {"-"*50}
 Interaction diagram:
-{eabss_interaction_diagram}
+{interaction_diagram}
 {"-"*50}
 Archetype action probability
 {display_result.decision_probability_table_result(path)}

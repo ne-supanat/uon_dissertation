@@ -96,7 +96,7 @@ def write_codes_csv_from_txt(path: SystemPath):
     df_sorted.to_csv(codes_csv_path, index=False)  # index=False : no row name
 
 
-def run_eabss_scope_finalisation(path: SystemPath):
+def run_model_scope_finalisation(path: SystemPath):
     # Finalise key components
     with open(path.get_02_thematic_analysis_path(), "r") as f:
         text = f.read()
@@ -116,7 +116,7 @@ def run_eabss_scope_finalisation(path: SystemPath):
     final_component_dict = {}
     for component in list(component_dict.keys()):
         if component != "file":
-            response = generate_eabss_scope(
+            response = generate_model_scope(
                 path,
                 component,
                 component_dict[component],
@@ -125,16 +125,16 @@ def run_eabss_scope_finalisation(path: SystemPath):
             final_component_dict[component] = ast.literal_eval(response.text)
 
     # Save key component
-    with open(path.get_02_eabss_scope_path(), "w") as f:
+    with open(path.get_02_model_scope_path(), "w") as f:
         f.write(json.dumps(final_component_dict, indent=4))
 
     print()
     print("-" * 50)
-    print(f"EABSS components result saved to: '{path.get_02_eabss_scope_path()}'")
-    print("\nPlease reivew and update the EABSS components if necessary.")
+    print(f"Model scope result saved to: '{path.get_02_model_scope_path()}'")
+    print("\nPlease reivew and update the model scope if necessary.")
 
 
-def generate_eabss_scope(
+def generate_model_scope(
     path: str,
     component_key: str,
     codes_quotes: list[dict],
@@ -147,7 +147,7 @@ def generate_eabss_scope(
         theme_codes_str += "".join([f"- {quote}\n" for quote in theme_code["quotes"]])
         theme_codes_str += "\n"
 
-    # Finalise EABSS' given component
+    # Finalise model scope's given component
     prompt = f"""
 Based on EABSS scope components
 {ScopeThemeCode.get_explanation()}
@@ -177,5 +177,5 @@ if __name__ == "__main__":
     )
 
     run_thematic_analysis(path, document_paths)
-    run_eabss_scope_finalisation(path)
+    run_model_scope_finalisation(path)
     # write_codes_csv_from_txt(path)

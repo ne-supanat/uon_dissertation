@@ -35,25 +35,25 @@ class SystemPath:
     def get_02_thematic_analysis_csv_path(self):
         return os.path.join(self.project_name, "02_theme_codes.csv")
 
-    def get_02_eabss_scope_path(self):
-        return os.path.join(self.project_name, "02_eabss_scope.txt")
+    def get_02_model_scope_path(self):
+        return os.path.join(self.project_name, "02_model_scope.txt")
 
-    def get_03_eabss_main_actor_path(self):
+    def get_03_main_actor_path(self):
         return os.path.join(self.project_name, "03_main_actor.txt")
 
-    def get_03_eabss_usecase_diagram_path(self):
+    def get_03_model_usecase_diagram_path(self):
         return os.path.join(self.project_name, "03_diagram_usecase.txt")
 
-    def get_03_eabss_class_diagram_path(self):
+    def get_03_model_class_diagram_path(self):
         return os.path.join(self.project_name, "03_diagram_class.txt")
 
-    def get_03_eabss_activity_diagram_path(self):
+    def get_03_model_activity_diagram_path(self):
         return os.path.join(self.project_name, "03_diagram_activity.txt")
 
-    def get_03_eabss_state_diagram_path(self):
+    def get_03_model_state_diagram_path(self):
         return os.path.join(self.project_name, "03_diagram_state.txt")
 
-    def get_03_eabss_interaction_diagram_path(self):
+    def get_03_model_interaction_diagram_path(self):
         return os.path.join(self.project_name, "03_diagram_interaction.txt")
 
     def get_04_archetypes_path(self):

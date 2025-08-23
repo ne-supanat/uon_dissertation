@@ -2,7 +2,7 @@ import argparse
 import os
 import sys
 
-import eval_02_build_eabss_evaluation
+import eval_02_build_scope_evaluation
 
 import eval_05_profile_evaluation
 
@@ -17,7 +17,7 @@ from bert_score import BERTScorer
 
 def run_evaluate_thematic_analysis(path: SystemPath):
     if os.path.isfile(path.get_02_thematic_analysis_path()):
-        eval_02_build_eabss_evaluation.evaluate(path)
+        eval_02_build_scope_evaluation.evaluate(path)
     else:
         print(f"File not found: '{path.get_02_thematic_analysis_path()}'")
 

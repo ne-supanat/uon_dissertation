@@ -37,8 +37,8 @@ def topic_outline_result(path: SystemPath):
 
 def model_scope_result(path: SystemPath):
     str = "-" * 50 + "\n"
-    str += "EABSS Scope model:\n"
-    with open(path.get_02_eabss_scope_path(), "r") as f:
+    str += "Model Scope model:\n"
+    with open(path.get_02_model_scope_path(), "r") as f:
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)
 
@@ -54,10 +54,10 @@ def model_scope_result(path: SystemPath):
     return str
 
 
-def eabss_scope_result_table(path: SystemPath):
+def model_scope_result_table(path: SystemPath):
     str = "-" * 50 + "\n"
-    str += "EABSS Components:\n"
-    with open(path.get_02_eabss_scope_path(), "r") as f:
+    str += "Model Scope Components:\n"
+    with open(path.get_02_model_scope_path(), "r") as f:
         scope_raw = f.read()
         scope: dict = json.loads(scope_raw)
 
@@ -75,17 +75,17 @@ def eabss_scope_result_table(path: SystemPath):
 
 def diagram_header():
     str = "-" * 50 + "\n"
-    str += "You can view EABSS diagrams using mermaid.js"
+    str += "You can view model diagrams using mermaid.js"
     return str
 
 
-def eabss_usecase_diagrams_result(path: SystemPath):
+def model_usecase_diagrams_result(path: SystemPath):
     return "  {:<25} {:<30}".format(
-        "Use case diagram", f": saved to '{path.get_03_eabss_usecase_diagram_path()}'"
+        "Use case diagram", f": saved to '{path.get_03_model_usecase_diagram_path()}'"
     )
 
 
-def eabss_diagrams_result(path: SystemPath):
+def model_diagrams_result(path: SystemPath):
     strs = []
     for name, path in zip(
         [
@@ -95,10 +95,10 @@ def eabss_diagrams_result(path: SystemPath):
             "Class diagram",
         ],
         [
-            path.get_03_eabss_class_diagram_path(),
-            path.get_03_eabss_activity_diagram_path(),
-            path.get_03_eabss_state_diagram_path(),
-            path.get_03_eabss_interaction_diagram_path(),
+            path.get_03_model_class_diagram_path(),
+            path.get_03_model_activity_diagram_path(),
+            path.get_03_model_state_diagram_path(),
+            path.get_03_model_interaction_diagram_path(),
         ],
     ):
         strs.append("  {:<25} {:<30}".format(name, f": saved to '{path}'"))
@@ -278,9 +278,9 @@ if __name__ == "__main__":
     print(diagram_header())
     print()
 
-    print(eabss_usecase_diagrams_result(path))
+    print(model_usecase_diagrams_result(path))
     print()
-    print(eabss_diagrams_result(path))
+    print(model_diagrams_result(path))
     print()
     print(archetype_result(path))
     print()
